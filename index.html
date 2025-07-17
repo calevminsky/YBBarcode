@@ -3,21 +3,33 @@
 <html>
 <head>
   <title>Shopify Barcode Lookup</title>
+  <script src="https://unpkg.com/@zxing/library@latest"></script>
   <style>
     body { font-family: sans-serif; text-align: center; padding: 2rem; }
     input { font-size: 1.5rem; padding: 0.5rem; width: 80%; max-width: 400px; }
-    button { padding: 0.5rem 1rem; font-size: 1.2rem; margin-left: 1rem; }
+    button { padding: 0.5rem 1rem; font-size: 1.2rem; margin: 0.5rem; }
     .product { margin-top: 2rem; }
     img { max-width: 200px; margin-top: 1rem; }
+    video { max-width: 400px; width: 100%; margin-top: 1rem; display: none; }
   </style>
 </head>
 <body>
   <h2>Enter or Scan Barcode</h2>
-  <input type="text" id="barcodeInput" placeholder="Scan or enter barcode" autofocus />
-  <button onclick="lookupBarcode()">Lookup</button>
+  <input type="text" id="barcodeInput" placeholder="Scan or enter barcode" />
+  <div>
+    <button onclick="lookupBarcode()">Lookup</button>
+    <button onclick="startCameraScan()">Scan with Camera</button>
+  </div>
+  <video id="video"></video>
   <div class="product" id="product"></div>
 
   <script>
+    const video = document.getElementById("video");
+
+    window.onload = () => {
+      document.getElementById("barcodeInput").focus();
+    };
+
     async function lookupBarcode() {
       const barcode = document.getElementById("barcodeInput").value.trim();
       if (!barcode) return;
@@ -46,6 +58,23 @@
       `;
 
       document.getElementById("barcodeInput").value = "";
+      document.getElementById("barcodeInput").focus();
+    }
+
+    function startCameraScan() {
+      const codeReader = new ZXing.BrowserBarcodeReader();
+      video.style.display = "block";
+
+      codeReader.decodeOnceFromVideoDevice(undefined, 'video')
+        .then(result => {
+          document.getElementById("barcodeInput").value = result.text;
+          video.style.display = "none";
+          lookupBarcode();
+        })
+        .catch(err => {
+          console.error("Camera scan error", err);
+          video.style.display = "none";
+        });
     }
 
     document.getElementById("barcodeInput").addEventListener("keydown", function(event) {
