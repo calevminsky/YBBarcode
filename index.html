@@ -9,8 +9,29 @@
     input { font-size: 1.5rem; padding: 0.5rem; width: 80%; max-width: 400px; }
     button { padding: 0.5rem 1rem; font-size: 1.2rem; margin: 0.5rem; }
     .product { margin-top: 2rem; }
+    .price { font-size: 2rem; font-weight: bold; margin-top: 0.5rem; }
     img { max-width: 200px; margin-top: 1rem; }
-    video { max-width: 400px; width: 100%; margin-top: 1rem; display: none; }
+    .video-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    video {
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid #ccc;
+      display: block;
+    }
+    .overlay-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      height: 80px;
+      transform: translate(-50%, -50%);
+      border: 2px dashed red;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -18,13 +39,20 @@
   <input type="text" id="barcodeInput" placeholder="Scan or enter barcode" />
   <div>
     <button onclick="lookupBarcode()">Lookup</button>
-    <button onclick="startCameraScan()">Scan with Camera</button>
+    <button onclick="startCameraScan()">Start Camera</button>
   </div>
-  <video id="video"></video>
+
+  <div class="video-container" id="videoContainer" style="display:none;">
+    <video id="video"></video>
+    <div class="overlay-box"></div>
+  </div>
+
   <div class="product" id="product"></div>
 
   <script>
     const video = document.getElementById("video");
+    const videoContainer = document.getElementById("videoContainer");
+    let codeReader;
 
     window.onload = () => {
       document.getElementById("barcodeInput").focus();
@@ -54,7 +82,7 @@
       document.getElementById("product").innerHTML = `
         <h3>${data.title}</h3>
         <img src="${data.image}" alt="Product image" />
-        <p>Price: $${data.price}</p>
+        <div class="price">Price: $${data.price}</div>
       `;
 
       document.getElementById("barcodeInput").value = "";
@@ -62,19 +90,23 @@
     }
 
     function startCameraScan() {
-      const codeReader = new ZXing.BrowserBarcodeReader();
-      video.style.display = "block";
+      codeReader = new ZXing.BrowserBarcodeReader();
+      const constraints = {
+        video: {
+          facingMode: "environment",
+          width: { ideal: 1280 },
+          height: { ideal: 720 }
+        }
+      };
 
-      codeReader.decodeOnceFromVideoDevice(undefined, 'video')
-        .then(result => {
+      videoContainer.style.display = "inline-block";
+
+      codeReader.decodeFromConstraints({ video: constraints }, 'video', result => {
+        if (result) {
           document.getElementById("barcodeInput").value = result.text;
-          video.style.display = "none";
           lookupBarcode();
-        })
-        .catch(err => {
-          console.error("Camera scan error", err);
-          video.style.display = "none";
-        });
+        }
+      });
     }
 
     document.getElementById("barcodeInput").addEventListener("keydown", function(event) {
