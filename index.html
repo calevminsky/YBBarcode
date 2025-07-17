@@ -52,7 +52,8 @@
   <script>
     const video = document.getElementById("video");
     const videoContainer = document.getElementById("videoContainer");
-    let codeReader;
+    let codeReader = new ZXing.BrowserBarcodeReader();
+    let scanCooldown = false;
 
     window.onload = () => {
       document.getElementById("barcodeInput").focus();
@@ -89,24 +90,32 @@
       document.getElementById("barcodeInput").focus();
     }
 
-    function startCameraScan() {
-      codeReader = new ZXing.BrowserBarcodeReader();
-      const constraints = {
-        video: {
-          facingMode: "environment",
-          width: { ideal: 1280 },
-          height: { ideal: 720 }
-        }
-      };
+    async function startCameraScan() {
+      try {
+        videoContainer.style.display = "inline-block";
 
-      videoContainer.style.display = "inline-block";
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
 
-      codeReader.decodeFromConstraints({ video: constraints }, 'video', result => {
-        if (result) {
-          document.getElementById("barcodeInput").value = result.text;
-          lookupBarcode();
+        let backCamera = videoDevices.find(device => /back|rear|environment/i.test(device.label));
+        if (!backCamera) {
+          backCamera = videoDevices.length > 1 ? videoDevices[1] : videoDevices[0];
         }
-      });
+
+        const selectedDeviceId = backCamera.deviceId;
+
+        codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async result => {
+          if (result && !scanCooldown) {
+            scanCooldown = true;
+            document.getElementById("barcodeInput").value = result.text;
+            await lookupBarcode();
+            setTimeout(() => { scanCooldown = false; }, 3000); // 3-second pause
+          }
+        });
+      } catch (err) {
+        console.error("Camera scan error:", err);
+        alert("Camera access failed.");
+      }
     }
 
     document.getElementById("barcodeInput").addEventListener("keydown", function(event) {
