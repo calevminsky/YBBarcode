@@ -302,15 +302,23 @@
       try {
         showStatus("📷 Starting camera...", 'scanning');
         
-        const constraints = {
-          video: {
-            facingMode: { ideal: 'environment' },
-            width: { ideal: 1920 },
-            height: { ideal: 1080 }
-          }
-        };
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
 
-        currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+        let backCamera = videoDevices.find(device => /back|rear|environment/i.test(device.label));
+        if (!backCamera) {
+          backCamera = videoDevices.length > 1 ? videoDevices[1] : videoDevices[0];
+        }
+
+        const selectedDeviceId = backCamera.deviceId;
+
+        currentStream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined,
+            facingMode: selectedDeviceId ? undefined : { ideal: 'environment' }
+          }
+        });
+        
         video.srcObject = currentStream;
         currentTrack = currentStream.getVideoTracks()[0];
         
@@ -325,7 +333,7 @@
         
         showStatus("📱 Point camera at barcode", 'scanning');
 
-        codeReader.decodeFromVideoDevice(undefined, 'video', async result => {
+        codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async result => {
           if (result && !scanCooldown) {
             scanCooldown = true;
             document.getElementById("barcodeInput").value = result.text;
