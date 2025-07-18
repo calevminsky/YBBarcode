@@ -1,111 +1,254 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Shopify Barcode Lookup - Enhanced</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopify Barcode Lookup - Mobile</title>
   <script src="https://unpkg.com/@zxing/library@latest"></script>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 1rem; margin: 0; }
-    input { font-size: 1.5rem; padding: 0.5rem; width: 80%; max-width: 400px; }
-    button { padding: 0.5rem 1rem; font-size: 1.2rem; margin: 0.5rem; }
-    .product { margin-top: 2rem; }
-    .price { font-size: 2rem; font-weight: bold; margin-top: 0.5rem; }
-    img { max-width: 200px; margin-top: 1rem; }
-    .video-container {
-      position: relative;
-      display: inline-block;
-      margin-top: 1rem;
-      max-width: 100%;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
+    
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 1rem;
+      background: #f5f5f5;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+      font-size: 1.5rem;
+    }
+    
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    input {
+      flex: 1;
+      font-size: 1.2rem;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+    }
+    
+    input:focus {
+      border-color: #007AFF;
+    }
+    
+    .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: #007AFF;
+      color: white;
+    }
+    
+    .btn-success {
+      background: #34C759;
+      color: white;
+    }
+    
+    .btn-danger {
+      background: #FF3B30;
+      color: white;
+    }
+    
+    .btn:active {
+      transform: scale(0.98);
+    }
+    
+    .camera-container {
+      margin: 1rem 0;
+    }
+    
+    .video-wrapper {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+    
     video {
       width: 100%;
-      max-width: 500px;
-      height: auto;
-      border: 2px solid #333;
-      display: block;
-      border-radius: 8px;
+      height: 300px;
+      object-fit: cover;
     }
-    .overlay-box {
+    
+    .scan-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 70%;
-      height: 100px;
       transform: translate(-50%, -50%);
-      border: 3px solid #ff0000;
-      border-style: dashed;
-      pointer-events: none;
+      width: 80%;
+      height: 80px;
+      border: 3px dashed #ff0000;
       border-radius: 8px;
+      pointer-events: none;
     }
+    
     .scan-line {
       position: absolute;
       top: 50%;
-      left: 15%;
-      right: 15%;
+      left: 10%;
+      right: 10%;
       height: 2px;
       background: linear-gradient(90deg, transparent, #ff0000, transparent);
       animation: scan 2s linear infinite;
     }
+    
     @keyframes scan {
-      0% { transform: translateY(-50px); }
-      100% { transform: translateY(50px); }
+      0% { transform: translateY(-40px); }
+      100% { transform: translateY(40px); }
     }
-    .controls {
+    
+    .status {
+      padding: 1rem;
+      border-radius: 8px;
       margin: 1rem 0;
+      text-align: center;
+      font-weight: 600;
     }
+    
+    .status.scanning {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+    
+    .status.success {
+      background: #e8f5e8;
+      color: #2e7d32;
+    }
+    
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+    }
+    
+    .product {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+    
+    .product h3 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .product img {
+      max-width: 200px;
+      max-height: 200px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #34C759;
+    }
+    
     .torch-btn {
-      background: #333;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
     }
-    .status {
-      margin: 1rem 0;
-      padding: 0.5rem;
-      border-radius: 4px;
-      font-weight: bold;
+    
+    @media (max-width: 480px) {
+      .container {
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+      }
+      
+      .input-group {
+        flex-direction: column;
+      }
+      
+      video {
+        height: 250px;
+      }
     }
-    .status.scanning { background: #e7f3ff; color: #0066cc; }
-    .status.success { background: #e7f7e7; color: #008800; }
-    .status.error { background: #ffe7e7; color: #cc0000; }
-
   </style>
 </head>
 <body>
-  <h2>Enhanced Barcode Scanner</h2>
-  <input type="text" id="barcodeInput" placeholder="Scan or enter barcode" />
-  
-  <div class="controls">
-    <button onclick="lookupBarcode()">Lookup</button>
-    <button onclick="startCameraScan()">Start Camera</button>
-    <button onclick="stopCamera()">Stop Camera</button>
-    <button id="torchBtn" class="torch-btn" onclick="toggleTorch()" style="display:none;">🔦 Torch</button>
+  <div class="container">
+    <h1>📱 Shopify Scanner</h1>
+    
+    <div class="input-group">
+      <input type="text" id="barcodeInput" placeholder="Scan or enter barcode" autocomplete="off" />
+      <button class="btn btn-primary" onclick="lookupBarcode()">Lookup</button>
+    </div>
+
+    <div class="input-group">
+      <button class="btn btn-success" onclick="startCamera()">📷 Start Camera</button>
+      <button class="btn btn-danger" onclick="stopCamera()" style="display:none;" id="stopBtn">⏹ Stop</button>
+    </div>
+
+    <div id="status" class="status" style="display:none;"></div>
+
+    <div class="camera-container" id="cameraContainer" style="display:none;">
+      <div class="video-wrapper">
+        <video id="video" playsinline></video>
+        <div class="scan-overlay"></div>
+        <div class="scan-line"></div>
+        <button class="torch-btn" id="torchBtn" onclick="toggleTorch()" style="display:none;">🔦</button>
+      </div>
+    </div>
+
+    <div class="product" id="product" style="display:none;"></div>
   </div>
-
-  <div id="status" class="status" style="display:none;"></div>
-
-  <div class="video-container" id="videoContainer" style="display:none;">
-    <video id="video" playsinline></video>
-    <div class="overlay-box"></div>
-    <div class="scan-line"></div>
-  </div>
-
-  <div class="product" id="product"></div>
 
   <script>
     const video = document.getElementById("video");
-    const videoContainer = document.getElementById("videoContainer");
-    const torchBtn = document.getElementById("torchBtn");
+    const cameraContainer = document.getElementById("cameraContainer");
     const statusDiv = document.getElementById("status");
+    const stopBtn = document.getElementById("stopBtn");
+    const torchBtn = document.getElementById("torchBtn");
     
     let codeReader = new ZXing.BrowserBarcodeReader();
     let scanCooldown = false;
     let currentStream = null;
-    let videoDevices = [];
     let currentTrack = null;
 
     window.onload = () => {
       document.getElementById("barcodeInput").focus();
-      loadCameraDevices();
     };
 
     function showStatus(message, type = 'scanning') {
@@ -118,34 +261,22 @@
       statusDiv.style.display = 'none';
     }
 
-    async function loadCameraDevices() {
-      try {
-        await navigator.mediaDevices.getUserMedia({ video: true });
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        videoDevices = devices.filter(device => device.kind === 'videoinput');
-      } catch (err) {
-        console.error("Error loading camera devices:", err);
-      }
-    }
-
     async function lookupBarcode() {
       const barcode = document.getElementById("barcodeInput").value.trim();
       if (!barcode) return;
 
-      showStatus("Looking up " + barcode + "...", 'scanning');
+      showStatus("🔍 Looking up " + barcode + "...", 'scanning');
 
       try {
         const res = await fetch("https://shopify-barcode-backend.onrender.com/lookup", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ barcode })
         });
 
         if (!res.ok) {
           const errorData = await res.json();
-          showStatus("Error: " + (errorData.error || "Unknown error"), 'error');
+          showStatus("❌ " + (errorData.error || "Product not found"), 'error');
           return;
         }
 
@@ -153,76 +284,62 @@
         document.getElementById("product").innerHTML = `
           <h3>${data.title}</h3>
           <img src="${data.image}" alt="Product image" />
-          <div class="price">Price: $${data.price}</div>
+          <div class="price">$${data.price}</div>
         `;
+        document.getElementById("product").style.display = 'block';
 
-        showStatus("Product found!", 'success');
+        showStatus("✅ Product found!", 'success');
         setTimeout(hideStatus, 3000);
 
         document.getElementById("barcodeInput").value = "";
         document.getElementById("barcodeInput").focus();
       } catch (err) {
-        showStatus("Network error", 'error');
-        console.error("Lookup error:", err);
+        showStatus("❌ Network error", 'error');
       }
     }
 
-    async function startCameraScan() {
+    async function startCamera() {
       try {
-        showStatus("Starting camera...", 'scanning');
+        showStatus("📷 Starting camera...", 'scanning');
         
-        const selectedDeviceId = getBackCameraId();
-
         const constraints = {
           video: {
-            deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined,
+            facingMode: { ideal: 'environment' },
             width: { ideal: 1920 },
-            height: { ideal: 1080 },
-            facingMode: selectedDeviceId ? undefined : { ideal: 'environment' },
-            focusMode: 'continuous',
-            exposureMode: 'continuous',
-            whiteBalanceMode: 'continuous'
+            height: { ideal: 1080 }
           }
         };
 
         currentStream = await navigator.mediaDevices.getUserMedia(constraints);
         video.srcObject = currentStream;
-        
         currentTrack = currentStream.getVideoTracks()[0];
         
-        // Check if torch is available
         const capabilities = currentTrack.getCapabilities();
         if (capabilities.torch) {
-          torchBtn.style.display = 'inline-block';
+          torchBtn.style.display = 'block';
         }
 
-        videoContainer.style.display = "inline-block";
+        cameraContainer.style.display = "block";
+        stopBtn.style.display = "inline-block";
+        event.target.style.display = "none";
         
-        showStatus("Camera ready - scanning for barcodes...", 'scanning');
+        showStatus("📱 Point camera at barcode", 'scanning');
 
-        codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async result => {
+        codeReader.decodeFromVideoDevice(undefined, 'video', async result => {
           if (result && !scanCooldown) {
             scanCooldown = true;
             document.getElementById("barcodeInput").value = result.text;
-            showStatus("Barcode detected: " + result.text, 'success');
+            showStatus("✅ Barcode detected: " + result.text, 'success');
             await lookupBarcode();
             setTimeout(() => { 
               scanCooldown = false; 
-              if (currentStream) showStatus("Ready to scan...", 'scanning');
+              if (currentStream) showStatus("📱 Ready to scan...", 'scanning');
             }, 3000);
           }
         });
       } catch (err) {
-        console.error("Camera scan error:", err);
-        showStatus("Camera access failed", 'error');
+        showStatus("❌ Camera access failed", 'error');
       }
-    }
-
-    function getBackCameraId() {
-      const backCamera = videoDevices.find(device => 
-        /back|rear|environment/i.test(device.label)
-      );
-      return backCamera ? backCamera.deviceId : (videoDevices.length > 1 ? videoDevices[1].deviceId : videoDevices[0]?.deviceId);
     }
 
     function stopCamera() {
@@ -231,24 +348,11 @@
         currentStream = null;
         currentTrack = null;
       }
-      videoContainer.style.display = "none";
-      document.getElementById("cameraSettings").style.display = "none";
+      cameraContainer.style.display = "none";
+      stopBtn.style.display = "none";
+      document.querySelector('.btn-success').style.display = "inline-block";
       torchBtn.style.display = "none";
       hideStatus();
-    }
-
-    async function switchCamera() {
-      if (currentStream) {
-        stopCamera();
-        await startCameraScan();
-      }
-    }
-
-    async function changeResolution() {
-      if (currentStream) {
-        stopCamera();
-        await startCameraScan();
-      }
     }
 
     async function toggleTorch() {
@@ -258,14 +362,12 @@
           if (capabilities.torch) {
             const settings = currentTrack.getSettings();
             await currentTrack.applyConstraints({
-              advanced: [{
-                torch: !settings.torch
-              }]
+              advanced: [{ torch: !settings.torch }]
             });
-            torchBtn.textContent = settings.torch ? '🔦 Torch' : '🔦 Torch On';
+            torchBtn.textContent = settings.torch ? '🔦' : '💡';
           }
         } catch (err) {
-          console.error("Torch toggle error:", err);
+          console.error("Torch error:", err);
         }
       }
     }
@@ -276,7 +378,6 @@
       }
     });
 
-    // Cleanup on page unload
     window.addEventListener('beforeunload', stopCamera);
   </script>
 </body>
