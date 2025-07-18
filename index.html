@@ -67,14 +67,7 @@
     .status.scanning { background: #e7f3ff; color: #0066cc; }
     .status.success { background: #e7f7e7; color: #008800; }
     .status.error { background: #ffe7e7; color: #cc0000; }
-    .camera-settings {
-      margin: 1rem 0;
-      font-size: 0.9rem;
-    }
-    select {
-      padding: 0.3rem;
-      font-size: 1rem;
-    }
+
   </style>
 </head>
 <body>
@@ -86,18 +79,6 @@
     <button onclick="startCameraScan()">Start Camera</button>
     <button onclick="stopCamera()">Stop Camera</button>
     <button id="torchBtn" class="torch-btn" onclick="toggleTorch()" style="display:none;">🔦 Torch</button>
-  </div>
-
-  <div class="camera-settings" id="cameraSettings" style="display:none;">
-    <label>Camera: </label>
-    <select id="cameraSelect" onchange="switchCamera()"></select>
-    <br><br>
-    <label>Resolution: </label>
-    <select id="resolutionSelect" onchange="changeResolution()">
-      <option value="1920x1080">1920x1080 (FHD)</option>
-      <option value="1280x720">1280x720 (HD)</option>
-      <option value="640x480">640x480 (VGA)</option>
-    </select>
   </div>
 
   <div id="status" class="status" style="display:none;"></div>
@@ -113,8 +94,6 @@
   <script>
     const video = document.getElementById("video");
     const videoContainer = document.getElementById("videoContainer");
-    const cameraSelect = document.getElementById("cameraSelect");
-    const resolutionSelect = document.getElementById("resolutionSelect");
     const torchBtn = document.getElementById("torchBtn");
     const statusDiv = document.getElementById("status");
     
@@ -144,14 +123,6 @@
         await navigator.mediaDevices.getUserMedia({ video: true });
         const devices = await navigator.mediaDevices.enumerateDevices();
         videoDevices = devices.filter(device => device.kind === 'videoinput');
-        
-        cameraSelect.innerHTML = '';
-        videoDevices.forEach((device, index) => {
-          const option = document.createElement('option');
-          option.value = device.deviceId;
-          option.textContent = device.label || `Camera ${index + 1}`;
-          cameraSelect.appendChild(option);
-        });
       } catch (err) {
         console.error("Error loading camera devices:", err);
       }
@@ -200,14 +171,13 @@
       try {
         showStatus("Starting camera...", 'scanning');
         
-        const selectedDeviceId = cameraSelect.value || getBackCameraId();
-        const [width, height] = resolutionSelect.value.split('x').map(Number);
+        const selectedDeviceId = getBackCameraId();
 
         const constraints = {
           video: {
             deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined,
-            width: { ideal: width },
-            height: { ideal: height },
+            width: { ideal: 1920 },
+            height: { ideal: 1080 },
             facingMode: selectedDeviceId ? undefined : { ideal: 'environment' },
             focusMode: 'continuous',
             exposureMode: 'continuous',
@@ -227,7 +197,6 @@
         }
 
         videoContainer.style.display = "inline-block";
-        document.getElementById("cameraSettings").style.display = "block";
         
         showStatus("Camera ready - scanning for barcodes...", 'scanning');
 
