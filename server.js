@@ -108,10 +108,10 @@ async function getLocations() {
   return locationsCache;
 }
 
-// Main lookup endpoint
 app.post('/lookup', async (req, res) => {
   try {
-    const { barcode } = req.body;
+    const rawBarcode = req.body.barcode;
+    const barcode = rawBarcode?.trim();
 
     if (!barcode) {
       return res.status(400).json({ error: 'Barcode is required' });
@@ -119,19 +119,28 @@ app.post('/lookup', async (req, res) => {
 
     console.log(`Looking up barcode: ${barcode}`);
 
-    // Search for product variant by barcode using GraphQL
-    const result = await shopifyGraphQL(SEARCH_PRODUCT_BY_BARCODE, {
-      query: `barcode:${barcode}`
-    });
+    // Try multiple query formats to maximize success
+    const queriesToTry = [
+      `barcode:"${barcode}"`,
+      `barcode:${barcode}`,
+      barcode
+    ];
 
-    // Check for GraphQL errors
-    if (result.errors) {
-      console.error('GraphQL errors:', result.errors);
-      return res.status(400).json({ error: 'Search error' });
+    let variants = [];
+
+    for (const queryStr of queriesToTry) {
+      console.log(`Trying query: ${queryStr}`);
+      const result = await shopifyGraphQL(SEARCH_PRODUCT_BY_BARCODE, { query: queryStr });
+
+      if (result.errors) {
+        console.error('GraphQL errors:', result.errors);
+        continue;
+      }
+
+      variants = result.data.productVariants.edges;
+      if (variants.length > 0) break;
     }
 
-    // Check if any variants found
-    const variants = result.data.productVariants.edges;
     if (variants.length === 0) {
       console.log(`No variant found for barcode: ${barcode}`);
       return res.status(404).json({ error: 'Product not found' });
@@ -140,36 +149,28 @@ app.post('/lookup', async (req, res) => {
     const variant = variants[0].node;
     const product = variant.product;
 
-    console.log(`Found variant: ${product.title} - ${variant.title}`);
-
-    // Get product image
-    const image = product.images.edges.length > 0 
-      ? product.images.edges[0].node.url 
+    const image = product.images.edges.length > 0
+      ? product.images.edges[0].node.url
       : 'https://via.placeholder.com/150';
 
-    // Your target locations
     const targetLocationNames = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
-    
-    // Process inventory levels
     const inventoryLevels = variant.inventoryItem.inventoryLevels.edges;
-    
+
     const locationInventory = targetLocationNames.map(targetName => {
-      // Find inventory for this location
       const inventoryLevel = inventoryLevels.find(level => {
         const locationName = level.node.location.name;
         return locationName.toLowerCase().includes(targetName.toLowerCase()) ||
                targetName.toLowerCase().includes(locationName.toLowerCase());
       });
-      
+
       const quantity = inventoryLevel ? inventoryLevel.node.available : 0;
-      
+
       return {
         name: targetName,
         quantity: quantity
       };
     });
 
-    // Prepare response
     const response = {
       title: product.title,
       image: image,
@@ -188,10 +189,11 @@ app.post('/lookup', async (req, res) => {
     res.json(response);
 
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error in /lookup:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 // Get locations endpoint
 app.get('/locations', async (req, res) => {
