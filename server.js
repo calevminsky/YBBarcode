@@ -192,6 +192,51 @@ app.get('/locations', async (req, res) => {
   }
 });
 
+// Debug endpoint to see products and barcodes
+app.get('/debug-products', async (req, res) => {
+  try {
+    console.log('Fetching products for debugging...');
+    
+    let allVariants = [];
+    let page = 1;
+    let hasMore = true;
+
+    while (hasMore && page <= 3) { // Limit to 3 pages for debugging
+      const data = await shopifyREST(`products.json?limit=50&page=${page}&fields=id,title,variants`);
+      
+      if (data.products && data.products.length > 0) {
+        data.products.forEach(product => {
+          if (product.variants) {
+            product.variants.forEach(variant => {
+              allVariants.push({
+                product_title: product.title,
+                variant_id: variant.id,
+                variant_title: variant.title,
+                sku: variant.sku,
+                barcode: variant.barcode,
+                price: variant.price
+              });
+            });
+          }
+        });
+        page++;
+      } else {
+        hasMore = false;
+      }
+    }
+
+    console.log(`Found ${allVariants.length} variants`);
+    res.json({
+      total_variants: allVariants.length,
+      variants: allVariants.slice(0, 20) // Show first 20 for debugging
+    });
+
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Error fetching products' });
+  }
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
