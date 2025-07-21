@@ -51,7 +51,7 @@ const SEARCH_PRODUCT_BY_BARCODE = `
                     id
                     name
                   }
-                  quantities {
+                  quantities(names: ["available"]) {
                     name
                     quantity
                   }
@@ -77,6 +77,7 @@ const SEARCH_PRODUCT_BY_BARCODE = `
     }
   }
 `;
+
 
 // Get locations query
 const GET_LOCATIONS = `
