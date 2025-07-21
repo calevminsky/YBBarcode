@@ -1,207 +1,465 @@
-// Updated backend code using Shopify REST API for inventory
-const express = require('express');
-const cors = require('cors');
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-// Your Shopify credentials
-const SHOPIFY_STORE = 'yakirabella.myshopify.com';
-const ACCESS_TOKEN = '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';
-
-// Function to make REST API request to Shopify
-async function shopifyREST(endpoint) {
-  const response = await fetch(`https://${SHOPIFY_STORE}/admin/api/2025-01/${endpoint}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Access-Token': ACCESS_TOKEN,
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopify Inventory Scanner</title>
+  <script src="https://unpkg.com/@zxing/library@latest"></script>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 1rem;
+      background: #f5f5f5;
+      margin: 0;
     }
-  });
-
-  if (!response.ok) {
-    throw new Error(`Shopify API error: ${response.status}`);
-  }
-
-  return response.json();
-}
-
-// Get locations first (to map location IDs to names)
-let locationsCache = null;
-
-async function getLocations() {
-  if (!locationsCache) {
-    try {
-      const data = await shopifyREST('locations.json');
-      locationsCache = data.locations;
-      console.log('Available locations:', locationsCache.map(l => l.name));
-    } catch (error) {
-      console.error('Error fetching locations:', error);
-      locationsCache = [];
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-  }
-  return locationsCache;
-}
-
-// Function to get inventory levels for a specific inventory item
-async function getInventoryLevels(inventoryItemId) {
-  try {
-    const data = await shopifyREST(`inventory_levels.json?inventory_item_ids=${inventoryItemId}`);
-    return data.inventory_levels || [];
-  } catch (error) {
-    console.error('Error fetching inventory levels:', error);
-    return [];
-  }
-}
-
-// Function to find product variant by barcode
-async function findProductByBarcode(barcode) {
-  try {
-    // Search for products (REST API doesn't directly search by barcode)
-    // We'll need to get products and check variants
-    let allVariants = [];
-    let page = 1;
-    let hasMore = true;
-
-    while (hasMore && page <= 5) { // Limit to 5 pages to avoid timeout
-      const data = await shopifyREST(`products.json?limit=250&page=${page}&fields=id,title,vendor,product_type,image,variants`);
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+    
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    input {
+      flex: 1;
+      font-size: 1.2rem;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+    }
+    
+    input:focus {
+      border-color: #007AFF;
+    }
+    
+    .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary { background: #007AFF; color: white; }
+    .btn-success { background: #34C759; color: white; }
+    .btn-danger { background: #FF3B30; color: white; }
+    
+    .btn:active { transform: scale(0.98); }
+    
+    .camera-container { margin: 1rem 0; }
+    
+    .video-wrapper {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+    
+    video {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    
+    .scan-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 80px;
+      border: 3px dashed #ff0000;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    
+    .status {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .status.scanning { background: #e3f2fd; color: #1976d2; }
+    .status.success { background: #e8f5e8; color: #2e7d32; }
+    .status.error { background: #ffebee; color: #c62828; }
+    
+    .product-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      border: 1px solid #e9ecef;
+    }
+    
+    .product-header {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      align-items: center;
+    }
+    
+    .product-image {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    
+    .product-info {
+      flex: 1;
+    }
+    
+    .product-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    
+    .product-price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #34C759;
+    }
+    
+    .inventory-section {
+      border-top: 2px solid #ddd;
+      padding-top: 1.5rem;
+    }
+    
+    .inventory-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #333;
+      text-align: center;
+    }
+    
+    .inventory-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .inventory-table th {
+      background: #007AFF;
+      color: white;
+      padding: 0.8rem 0.5rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .inventory-table td {
+      padding: 0.8rem 0.5rem;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      font-weight: 500;
+    }
+    
+    .inventory-table tbody tr:hover {
+      background: #f8f9fa;
+    }
+    
+    .location-name {
+      font-weight: bold;
+      text-align: left !important;
+      color: #333;
+      background: #f1f3f4 !important;
+    }
+    
+    .total-column {
+      background: #e8f5e8 !important;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    
+    .total-row {
+      background: #e8f5e8 !important;
+      font-weight: bold;
+    }
+    
+    .total-row td {
+      color: #2e7d32;
+      border-top: 2px solid #34C759;
+    }
+    
+    .stock-number {
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-weight: bold;
+      min-width: 25px;
+      display: inline-block;
+    }
+    
+    .stock-high { background: #e8f5e8; color: #2e7d32; }
+    .stock-medium { background: #fff3cd; color: #856404; }
+    .stock-low { background: #f8d7da; color: #721c24; }
+    .stock-zero { background: #f5f5f5; color: #999; }
+    
+    @media (max-width: 768px) {
+      .container { 
+        margin: 0; 
+        border-radius: 0; 
+        min-height: 100vh; 
+        padding: 1rem;
+      }
+      .input-group { flex-direction: column; }
+      .product-header { flex-direction: column; text-align: center; }
+      .product-image { align-self: center; }
       
-      if (data.products && data.products.length > 0) {
-        // Extract all variants from all products
-        data.products.forEach(product => {
-          if (product.variants) {
-            product.variants.forEach(variant => {
-              allVariants.push({
-                ...variant,
-                product_title: product.title,
-                product_vendor: product.vendor,
-                product_type: product.product_type,
-                product_image: product.image ? product.image.src : null
-              });
-            });
-          }
-        });
-        page++;
-      } else {
-        hasMore = false;
+      .inventory-table {
+        font-size: 0.8rem;
+      }
+      
+      .inventory-table th,
+      .inventory-table td {
+        padding: 0.5rem 0.3rem;
       }
     }
-
-    // Find variant with matching barcode
-    const matchingVariant = allVariants.find(variant => 
-      variant.barcode === barcode || 
-      variant.sku === barcode ||
-      variant.id.toString() === barcode
-    );
-
-    return matchingVariant;
-  } catch (error) {
-    console.error('Error finding product by barcode:', error);
-    return null;
-  }
-}
-
-// Main lookup endpoint
-app.post('/lookup', async (req, res) => {
-  try {
-    const { barcode } = req.body;
-
-    if (!barcode) {
-      return res.status(400).json({ error: 'Barcode is required' });
-    }
-
-    console.log(`Looking up barcode: ${barcode}`);
-
-    // Find product variant by barcode
-    const variant = await findProductByBarcode(barcode);
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏪 Store Inventory Scanner</h1>
     
-    if (!variant) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
+    <div class="input-group">
+      <input type="text" id="barcodeInput" placeholder="Scan or enter barcode" autocomplete="off" />
+      <button class="btn btn-primary" onclick="lookupBarcode()">Lookup</button>
+    </div>
 
-    console.log(`Found variant: ${variant.product_title} - ${variant.title}`);
+    <div class="input-group">
+      <button class="btn btn-success" onclick="startCamera()">📷 Start Camera</button>
+      <button class="btn btn-danger" onclick="stopCamera()" style="display:none;" id="stopBtn">⏹ Stop</button>
+    </div>
 
-    // Get locations
-    const locations = await getLocations();
-    
-    // Get inventory levels for this variant
-    const inventoryLevels = await getInventoryLevels(variant.inventory_item_id);
-    
-    // Your target locations
-    const targetLocationNames = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
-    
-    // Format inventory data
-    const locationInventory = targetLocationNames.map(targetName => {
-      // Find matching location
-      const location = locations.find(loc => 
-        loc.name.toLowerCase().includes(targetName.toLowerCase()) ||
-        targetName.toLowerCase().includes(loc.name.toLowerCase())
-      );
-      
-      let quantity = 0;
-      
-      if (location) {
-        // Find inventory level for this location
-        const inventoryLevel = inventoryLevels.find(level => 
-          level.location_id === location.id
-        );
-        
-        if (inventoryLevel) {
-          quantity = inventoryLevel.available || 0;
-        }
-      }
-      
-      return {
-        name: targetName,
-        quantity: quantity
-      };
-    });
+    <div id="status" class="status" style="display:none;"></div>
 
-    // Prepare response
-    const response = {
-      title: variant.product_title,
-      image: variant.product_image || 'https://via.placeholder.com/150',
-      price: variant.price,
-      sku: variant.sku,
-      barcode: variant.barcode,
-      vendor: variant.product_vendor,
-      productType: variant.product_type,
-      inventory: {
-        locations: locationInventory
-      }
+    <div class="camera-container" id="cameraContainer" style="display:none;">
+      <div class="video-wrapper">
+        <video id="video" playsinline></video>
+        <div class="scan-overlay"></div>
+      </div>
+    </div>
+
+    <div class="product-card" id="product" style="display:none;"></div>
+  </div>
+
+  <script>
+    const video = document.getElementById("video");
+    const cameraContainer = document.getElementById("cameraContainer");
+    const statusDiv = document.getElementById("status");
+    const stopBtn = document.getElementById("stopBtn");
+    
+    let codeReader = new ZXing.BrowserBarcodeReader();
+    let scanCooldown = false;
+    let currentStream = null;
+
+    // Backend URL - update this to your actual backend URL
+    const BACKEND_URL = 'https://ybbarcode.onrender.com';
+
+    window.onload = () => {
+      document.getElementById("barcodeInput").focus();
     };
 
-    console.log('Inventory by location:', locationInventory);
+    function showStatus(message, type = 'scanning') {
+      statusDiv.textContent = message;
+      statusDiv.className = `status ${type}`;
+      statusDiv.style.display = 'block';
+    }
 
-    res.json(response);
+    function hideStatus() {
+      statusDiv.style.display = 'none';
+    }
 
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+    async function lookupBarcode() {
+      const barcode = document.getElementById("barcodeInput").value.trim();
+      if (!barcode) return;
 
-// Debug endpoint to see all locations
-app.get('/locations', async (req, res) => {
-  try {
-    const locations = await getLocations();
-    res.json(locations);
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching locations' });
-  }
-});
+      showStatus("🔍 Looking up " + barcode + "...", 'scanning');
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
-});
+      try {
+        const res = await fetch(`${BACKEND_URL}/lookup`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ barcode })
+        });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Shopify store: ${SHOPIFY_STORE}`);
-  console.log('Visit /locations to see available locations');
-});
+        if (!res.ok) {
+          const errorData = await res.json();
+          showStatus("❌ " + (errorData.error || "Product not found"), 'error');
+          return;
+        }
 
-module.exports = app;
+        const data = await res.json();
+        displayProduct(data);
+        showStatus("✅ Product found!", 'success');
+        setTimeout(hideStatus, 3000);
+
+        document.getElementById("barcodeInput").value = "";
+        document.getElementById("barcodeInput").focus();
+      } catch (err) {
+        showStatus("❌ Network error", 'error');
+        console.error('Lookup error:', err);
+      }
+    }
+
+    function getStockClass(quantity) {
+      if (quantity === 0) return 'stock-zero';
+      if (quantity <= 2) return 'stock-low';
+      if (quantity <= 5) return 'stock-medium';
+      return 'stock-high';
+    }
+
+    function displayProduct(data) {
+      // Use real inventory data from API
+      const locations = data.inventory?.locations || [];
+      
+      // Calculate total inventory
+      const totalInventory = locations.reduce((sum, location) => sum + (location.quantity || 0), 0);
+
+      // Build inventory table
+      let tableHTML = `
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th style="text-align: left;">Location</th>
+              <th>Available</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      // Location rows
+      locations.forEach(location => {
+        const qty = location.quantity || 0;
+        tableHTML += `
+          <tr>
+            <td class="location-name">${location.name}</td>
+            <td><span class="stock-number ${getStockClass(qty)}">${qty}</span></td>
+          </tr>
+        `;
+      });
+
+      // Total row
+      tableHTML += `
+        <tr class="total-row">
+          <td class="location-name">TOTAL</td>
+          <td>${totalInventory}</td>
+        </tr>
+      `;
+
+      tableHTML += `
+          </tbody>
+        </table>
+      `;
+
+      document.getElementById("product").innerHTML = `
+        <div class="product-header">
+          <img src="${data.image}" alt="Product image" class="product-image" />
+          <div class="product-info">
+            <div class="product-title">${data.title}</div>
+            <div class="product-price">$${data.price}</div>
+          </div>
+        </div>
+        
+        <div class="inventory-section">
+          <div class="inventory-title">📊 Inventory by Location</div>
+          ${tableHTML}
+        </div>
+      `;
+      
+      document.getElementById("product").style.display = 'block';
+    }
+
+    async function startCamera() {
+      try {
+        showStatus("📷 Starting camera...", 'scanning');
+        
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+
+        let backCamera = videoDevices.find(device => /back|rear|environment/i.test(device.label));
+        if (!backCamera) {
+          backCamera = videoDevices.length > 1 ? videoDevices[1] : videoDevices[0];
+        }
+
+        const selectedDeviceId = backCamera.deviceId;
+
+        currentStream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined,
+            facingMode: selectedDeviceId ? undefined : { ideal: 'environment' }
+          }
+        });
+        
+        video.srcObject = currentStream;
+
+        cameraContainer.style.display = "block";
+        stopBtn.style.display = "inline-block";
+        event.target.style.display = "none";
+        
+        showStatus("📱 Point camera at barcode", 'scanning');
+
+        codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', async result => {
+          if (result && !scanCooldown) {
+            scanCooldown = true;
+            document.getElementById("barcodeInput").value = result.text;
+            showStatus("✅ Barcode detected: " + result.text, 'success');
+            await lookupBarcode();
+            setTimeout(() => { 
+              scanCooldown = false; 
+              if (currentStream) showStatus("📱 Ready to scan...", 'scanning');
+            }, 3000);
+          }
+        });
+      } catch (err) {
+        showStatus("❌ Camera access failed", 'error');
+      }
+    }
+
+    function stopCamera() {
+      if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
+        currentStream = null;
+      }
+      cameraContainer.style.display = "none";
+      stopBtn.style.display = "none";
+      document.querySelector('.btn-success').style.display = "inline-block";
+      hideStatus();
+    }
+
+    document.getElementById("barcodeInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        lookupBarcode();
+      }
+    });
+
+    window.addEventListener('beforeunload', stopCamera);
+  </script>
+</body>
+</html>
