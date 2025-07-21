@@ -1,4 +1,3 @@
-// Updated backend using Shopify GraphQL API
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -6,11 +5,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Your Shopify credentials
 const SHOPIFY_STORE = 'yakirabella.myshopify.com';
 const ACCESS_TOKEN = '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';
 
-// Function to make GraphQL request to Shopify
 async function shopifyGraphQL(query, variables = {}) {
   const response = await fetch(`https://${SHOPIFY_STORE}/admin/api/2025-01/graphql.json`, {
     method: 'POST',
@@ -18,20 +15,13 @@ async function shopifyGraphQL(query, variables = {}) {
       'Content-Type': 'application/json',
       'X-Shopify-Access-Token': ACCESS_TOKEN,
     },
-    body: JSON.stringify({
-      query,
-      variables
-    })
+    body: JSON.stringify({ query, variables })
   });
 
-  if (!response.ok) {
-    throw new Error(`Shopify API error: ${response.status}`);
-  }
-
+  if (!response.ok) throw new Error(`Shopify API error: ${response.status}`);
   return response.json();
 }
 
-// GraphQL query to search for product by barcode
 const SEARCH_PRODUCT_BY_BARCODE = `
   query searchProduct($query: String!) {
     productVariants(first: 10, query: $query) {
@@ -44,20 +34,6 @@ const SEARCH_PRODUCT_BY_BARCODE = `
           price
           inventoryItem {
             id
-            inventoryLevels(first: 20) {
-              edges {
-                node {
-                  location {
-                    id
-                    name
-                  }
-                  quantities(names: ["available"]) {
-                    name
-                    quantity
-                  }
-                }
-              }
-            }
           }
           product {
             id
@@ -78,8 +54,41 @@ const SEARCH_PRODUCT_BY_BARCODE = `
   }
 `;
 
+const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
+  query getProductInventory($productId: ID!) {
+    product(id: $productId) {
+      title
+      variants(first: 50) {
+        edges {
+          node {
+            id
+            title
+            sku
+            barcode
+            price
+            inventoryItem {
+              inventoryLevels(first: 20) {
+                edges {
+                  node {
+                    location {
+                      id
+                      name
+                    }
+                    quantities(names: ["available"]) {
+                      name
+                      quantity
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
-// Get locations query
 const GET_LOCATIONS = `
   query {
     locations(first: 20) {
@@ -93,9 +102,7 @@ const GET_LOCATIONS = `
   }
 `;
 
-// Cache locations
 let locationsCache = null;
-
 async function getLocations() {
   if (!locationsCache) {
     try {
@@ -116,30 +123,19 @@ app.post('/lookup', async (req, res) => {
   try {
     const rawBarcode = req.body.barcode;
     const barcode = rawBarcode?.trim();
-
-    if (!barcode) {
-      return res.status(400).json({ error: 'Barcode is required' });
-    }
+    if (!barcode) return res.status(400).json({ error: 'Barcode is required' });
 
     console.log(`Looking up barcode: ${barcode}`);
-
-    const queriesToTry = [
-      `barcode:"${barcode}"`,
-      `barcode:${barcode}`,
-      barcode
-    ];
-
+    const queriesToTry = [`barcode:"${barcode}"`, `barcode:${barcode}`, barcode];
     let variants = [];
 
     for (const queryStr of queriesToTry) {
       console.log(`Trying query: ${queryStr}`);
       const result = await shopifyGraphQL(SEARCH_PRODUCT_BY_BARCODE, { query: queryStr });
-
       if (result.errors) {
         console.error('GraphQL errors:', result.errors);
         continue;
       }
-
       variants = result.data.productVariants.edges;
       if (variants.length > 0) break;
     }
@@ -151,44 +147,53 @@ app.post('/lookup', async (req, res) => {
 
     const variant = variants[0].node;
     const product = variant.product;
+    const productId = product.id;
 
     const image = product.images.edges.length > 0
       ? product.images.edges[0].node.url
       : 'https://via.placeholder.com/150';
 
-    const targetLocationNames = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
-    const inventoryLevels = variant.inventoryItem.inventoryLevels.edges;
+    const productResult = await shopifyGraphQL(GET_PRODUCT_VARIANTS_WITH_INVENTORY, { productId });
+    if (productResult.errors) {
+      console.error('GraphQL error loading full product:', productResult.errors);
+      return res.status(500).json({ error: 'Failed to load product inventory' });
+    }
 
-    const locationInventory = targetLocationNames.map(targetName => {
-      const inventoryLevel = inventoryLevels.find(level => {
-        const locationName = level.node.location.name;
-        return locationName.toLowerCase().includes(targetName.toLowerCase()) ||
-               targetName.toLowerCase().includes(locationName.toLowerCase());
+    const productVariants = productResult.data.product.variants.edges.map(edge => edge.node);
+    const targetLocationNames = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
+
+    const inventoryMatrix = productVariants.map(v => {
+      const inventoryLevels = v.inventoryItem.inventoryLevels.edges;
+
+      const quantities = targetLocationNames.map(locationName => {
+        const level = inventoryLevels.find(lvl => {
+          const actual = lvl.node.location.name.toLowerCase();
+          return actual.includes(locationName.toLowerCase()) || locationName.toLowerCase().includes(actual);
+        });
+
+        const qtyEntry = level?.node?.quantities?.find(q => q.name === 'available');
+        return {
+          location: locationName,
+          quantity: qtyEntry?.quantity || 0
+        };
       });
 
-      const quantityEntry = inventoryLevel?.node?.quantities?.find(q => q.name === 'available');
-      const quantity = quantityEntry ? quantityEntry.quantity : 0;
-
       return {
-        name: targetName,
-        quantity: quantity
+        variantTitle: v.title,
+        sku: v.sku,
+        barcode: v.barcode,
+        price: v.price,
+        inventory: quantities
       };
     });
 
     const response = {
       title: product.title,
       image: image,
-      price: variant.price,
-      sku: variant.sku,
-      barcode: variant.barcode,
       vendor: product.vendor,
       productType: product.productType,
-      inventory: {
-        locations: locationInventory
-      }
+      variants: inventoryMatrix
     };
-
-    console.log('Inventory by location:', locationInventory);
 
     res.json(response);
 
@@ -231,9 +236,7 @@ app.get('/debug', async (req, res) => {
         }
       }
     `;
-    
     const result = await shopifyGraphQL(query);
-    
     res.json({
       status: 'GraphQL working',
       variants: result.data.productVariants.edges.map(edge => ({
@@ -245,10 +248,7 @@ app.get('/debug', async (req, res) => {
       }))
     });
   } catch (error) {
-    res.json({
-      status: 'GraphQL error',
-      error: error.message
-    });
+    res.json({ status: 'GraphQL error', error: error.message });
   }
 });
 
@@ -261,5 +261,3 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Shopify store: ${SHOPIFY_STORE}`);
 });
-
-module.exports = app;
