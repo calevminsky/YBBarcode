@@ -55,16 +55,20 @@ async function getInventoryLevels(inventoryItemId) {
   }
 }
 
-// Function to find product variant by barcode
+// Updated function to find product variant by barcode
 async function findProductByBarcode(barcode) {
   try {
-    // Search for products (REST API doesn't directly search by barcode)
-    // We'll need to get products and check variants
+    console.log(`Searching for barcode: ${barcode}`);
+    
+    // Try different approaches to find the product
     let allVariants = [];
     let page = 1;
     let hasMore = true;
 
-    while (hasMore && page <= 5) { // Limit to 5 pages to avoid timeout
+    // Search through products more thoroughly
+    while (hasMore && page <= 10) { // Increase page limit
+      console.log(`Checking page ${page}...`);
+      
       const data = await shopifyREST(`products.json?limit=250&page=${page}&fields=id,title,vendor,product_type,image,variants`);
       
       if (data.products && data.products.length > 0) {
@@ -88,12 +92,29 @@ async function findProductByBarcode(barcode) {
       }
     }
 
-    // Find variant with matching barcode
-    const matchingVariant = allVariants.find(variant => 
-      variant.barcode === barcode || 
-      variant.sku === barcode ||
-      variant.id.toString() === barcode
-    );
+    console.log(`Total variants found: ${allVariants.length}`);
+    
+    // Find variant with matching barcode (try different matching strategies)
+    const matchingVariant = allVariants.find(variant => {
+      return variant.barcode === barcode || 
+             variant.sku === barcode ||
+             variant.id.toString() === barcode ||
+             (variant.barcode && variant.barcode.toString() === barcode) ||
+             (variant.sku && variant.sku.toString() === barcode);
+    });
+
+    if (matchingVariant) {
+      console.log(`Found matching variant: ${matchingVariant.product_title} - ${matchingVariant.title}`);
+    } else {
+      console.log(`No variant found for barcode: ${barcode}`);
+      // Log some example barcodes for debugging
+      const exampleBarcodes = allVariants.slice(0, 5).map(v => ({
+        title: v.product_title,
+        barcode: v.barcode,
+        sku: v.sku
+      }));
+      console.log('Example barcodes in store:', exampleBarcodes);
+    }
 
     return matchingVariant;
   } catch (error) {
