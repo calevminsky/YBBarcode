@@ -51,7 +51,7 @@ const SEARCH_PRODUCT_BY_BARCODE = `
                     id
                     name
                   }
-                  available
+                  quantity
                 }
               }
             }
@@ -163,7 +163,8 @@ app.post('/lookup', async (req, res) => {
                targetName.toLowerCase().includes(locationName.toLowerCase());
       });
 
-      const quantity = inventoryLevel ? inventoryLevel.node.available : 0;
+      const quantity = inventoryLevel ? inventoryLevel.node.quantity : 0;
+
 
       return {
         name: targetName,
