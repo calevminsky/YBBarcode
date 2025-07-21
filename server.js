@@ -51,7 +51,10 @@ const SEARCH_PRODUCT_BY_BARCODE = `
                     id
                     name
                   }
-                  quantity
+                  quantities {
+                    name
+                    quantity
+                  }
                 }
               }
             }
@@ -119,7 +122,6 @@ app.post('/lookup', async (req, res) => {
 
     console.log(`Looking up barcode: ${barcode}`);
 
-    // Try multiple query formats to maximize success
     const queriesToTry = [
       `barcode:"${barcode}"`,
       `barcode:${barcode}`,
@@ -163,8 +165,8 @@ app.post('/lookup', async (req, res) => {
                targetName.toLowerCase().includes(locationName.toLowerCase());
       });
 
-      const quantity = inventoryLevel ? inventoryLevel.node.quantity : 0;
-
+      const quantityEntry = inventoryLevel?.node?.quantities?.find(q => q.name === 'available');
+      const quantity = quantityEntry ? quantityEntry.quantity : 0;
 
       return {
         name: targetName,
@@ -195,8 +197,6 @@ app.post('/lookup', async (req, res) => {
   }
 });
 
-
-// Get locations endpoint
 app.get('/locations', async (req, res) => {
   try {
     const locations = await getLocations();
@@ -206,12 +206,10 @@ app.get('/locations', async (req, res) => {
   }
 });
 
-// Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-// Simple debug endpoint using GraphQL
 app.get('/debug', async (req, res) => {
   try {
     const query = `
@@ -253,7 +251,6 @@ app.get('/debug', async (req, res) => {
   }
 });
 
-// Serve the frontend HTML file
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
