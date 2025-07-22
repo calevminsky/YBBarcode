@@ -78,7 +78,7 @@
   </div>
 
   <script>
-    const BACKEND_URL = 'https://ybbc.onrender.com'; // replace with your deployed backend if different
+    const BACKEND_URL = 'https://ybbc.onrender.com';
 
     const video = document.getElementById("video");
     const cameraContainer = document.getElementById("cameraContainer");
@@ -152,67 +152,64 @@
     }
 
     function displayProduct(data) {
-  const allVariants = data.variants || [];
-  const locationSums = {};
+      const allVariants = data.variants || [];
+      const locationSums = {};
 
-  // Loop through all variants and add up quantities per location
-  allVariants.forEach(variant => {
-    variant.inventory.forEach(entry => {
-      const loc = entry.location;
-      const qty = entry.quantity || 0;
-      if (!locationSums[loc]) locationSums[loc] = 0;
-      locationSums[loc] += qty;
-    });
-  });
+      allVariants.forEach(variant => {
+        variant.inventory.forEach(entry => {
+          const loc = entry.location;
+          const qty = entry.quantity || 0;
+          if (!locationSums[loc]) locationSums[loc] = 0;
+          locationSums[loc] += qty;
+        });
+      });
 
-  // Convert object to array
-  const locations = Object.entries(locationSums).map(([loc, quantity]) => ({
-    location: loc,
-    quantity
-  }));
+      const locations = Object.entries(locationSums).map(([loc, quantity]) => ({
+        location: loc,
+        quantity
+      }));
 
-  const totalInventory = locations.reduce((sum, loc) => sum + loc.quantity, 0);
+      const totalInventory = locations.reduce((sum, loc) => sum + loc.quantity, 0);
 
-  let tableHTML = `
-    <table class="inventory-table">
-      <thead>
+      let tableHTML = `
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      locations.forEach(loc => {
+        tableHTML += `
+          <tr>
+            <td>${loc.location}</td>
+            <td class="${getStockClass(loc.quantity)}">${loc.quantity}</td>
+          </tr>
+        `;
+      });
+
+      tableHTML += `
         <tr>
-          <th>Location</th>
-          <th>Quantity</th>
+          <td><strong>Total</strong></td>
+          <td><strong>${totalInventory}</strong></td>
         </tr>
-      </thead>
-      <tbody>
-  `;
+        </tbody>
+        </table>
+      `;
 
-  locations.forEach(loc => {
-    tableHTML += `
-      <tr>
-        <td>${loc.location}</td>
-        <td class="${getStockClass(loc.quantity)}">${loc.quantity}</td>
-      </tr>
-    `;
-  });
+      productDiv.innerHTML = `
+        <div style="margin-bottom: 1em;">
+          <strong>${data.title}</strong><br>
+          <img src="${data.image}" class="product-image" alt="Product image" />
+        </div>
+        ${tableHTML}
+      `;
 
-  tableHTML += `
-    <tr>
-      <td><strong>Total</strong></td>
-      <td><strong>${totalInventory}</strong></td>
-    </tr>
-    </tbody>
-    </table>
-  `;
-
-  productDiv.innerHTML = `
-    <div style="margin-bottom: 1em;">
-      <strong>${data.title}</strong><br>
-      <img src="${data.image}" class="product-image" alt="Product image" />
-    </div>
-    ${tableHTML}
-  `;
-
-  productDiv.style.display = "block";
-}
-
+      productDiv.style.display = "block";
+    }
 
     async function startCamera() {
       try {
