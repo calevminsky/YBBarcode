@@ -167,22 +167,22 @@
       display: inline-block;
       margin-left: 10px;
     }
+
+    .product-link:hover {
+      text-decoration: underline !important;
+    }
     
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🏪 Professional Inventory Scanner <span class="professional-badge">Dynamsoft Powered</span></h1>
+    <h1>Yakira Bella Inventory</h1>
 
     <input id="barcodeInput" type="text" placeholder="Enter or scan barcode" />
 
     <div style="margin-bottom: 15px;">
-      <button class="btn-success" onclick="lookupBarcode()">🔍 Lookup Barcode</button>
-      <button class="btn-primary" onclick="startDynamsoft()">⚡ Professional Scanner</button>
-    </div>
-
-    <div style="margin-bottom: 10px; padding: 10px; background: #e8f5e8; border-radius: 5px; font-size: 0.9em;">
-      ⚡ <strong>Professional Scanner:</strong> Dynamsoft-powered for fast, accurate scanning on iPhones.
+      <button class="btn-success" onclick="lookupBarcode()">Manual Lookup</button>
+      <button class="btn-primary" onclick="startDynamsoft()">Camera Scanner</button>
     </div>
 
     <div id="status" class="status scanning" style="display:none;"></div>
@@ -237,8 +237,7 @@
 
         const data = await res.json();
         displayProduct(data);
-        showStatus("✅ Product found!", 'success');
-        setTimeout(hideStatus, 3000);
+        hideStatus();
 
         document.getElementById("barcodeInput").value = "";
         document.getElementById("barcodeInput").focus();
@@ -333,13 +332,26 @@
       productDiv.innerHTML = `
         <div style="margin-bottom: 1em;">
           <img src="${data.image}" class="product-image" alt="Product image" style="float: right; margin-left: 15px;" />
-          <strong style="font-size: 1.3em;">${data.title}</strong><br>
+          <a href="https://yakirabella.myshopify.com/admin/products/${extractProductId(data.variants[0])}" target="_blank" style="color: #007bff; text-decoration: none; font-size: 1.3em; font-weight: bold;">
+            ${data.title}
+          </a><br>
           ${priceHTML}
           <div style="clear: both;"></div>
         </div>
         ${tableHTML}
       `;
       productDiv.style.display = "block";
+    }
+
+    // Extract product ID from variant data for Shopify admin link
+    function extractProductId(variant) {
+      // The backend should include product ID, but if not available, 
+      // we'll extract from the variant data or use a fallback
+      if (variant && variant.product_id) {
+        return variant.product_id;
+      }
+      // Fallback - this might need adjustment based on your data structure
+      return '';
     }
 
     async function startDynamsoft() {
