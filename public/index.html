@@ -13,7 +13,7 @@
       color: #111;
     }
     .container {
-      max-width: 600px;
+      max-width: 800px;
       margin: auto;
     }
     .status {
@@ -32,6 +32,7 @@
     .inventory-table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 10px;
     }
     .inventory-table th, .inventory-table td {
       border: 1px solid #ccc;
@@ -56,6 +57,15 @@
       border-radius: 4px;
       cursor: pointer;
       margin-top: 10px;
+    }
+
+    .price-block {
+      font-size: 1.2em;
+      margin: 0.5em 0;
+    }
+    .price-block s {
+      margin-left: 8px;
+      color: #999;
     }
   </style>
 </head>
@@ -152,87 +162,79 @@
     }
 
     function displayProduct(data) {
-  const allVariants = data.variants || [];
-  const locationSums = {};
-  let lowestPrice = null;
-  let lowestCompareAt = null;
+      const variants = data.variants || [];
+      const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
 
-  // Aggregate quantities & find lowest price
-  allVariants.forEach(variant => {
-    const price = parseFloat(variant.price);
-    const compareAt = parseFloat(variant.compareAtPrice || 0);
+      let lowestPrice = null;
+      let lowestCompareAt = null;
 
-    if (!isNaN(price) && (lowestPrice === null || price < lowestPrice)) {
-      lowestPrice = price;
-      lowestCompareAt = !isNaN(compareAt) ? compareAt : null;
+      // Prepare inventory matrix
+      const matrixRows = variants.map(v => {
+        const row = {
+          title: v.title,
+          price: parseFloat(v.price),
+          compareAtPrice: parseFloat(v.compareAtPrice || 0),
+          quantities: {}
+        };
+
+        locations.forEach(loc => row.quantities[loc] = 0);
+
+        v.inventory.forEach(entry => {
+          if (locations.includes(entry.location)) {
+            row.quantities[entry.location] = entry.quantity || 0;
+          }
+        });
+
+        // Find lowest price
+        if (!isNaN(row.price) && (lowestPrice === null || row.price < lowestPrice)) {
+          lowestPrice = row.price;
+          lowestCompareAt = !isNaN(row.compareAtPrice) ? row.compareAtPrice : null;
+        }
+
+        return row;
+      });
+
+      // Build inventory table
+      let tableHTML = `
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th>Size</th>
+              ${locations.map(loc => `<th>${loc}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      matrixRows.forEach(row => {
+        tableHTML += `<tr><td>${row.title}</td>`;
+        locations.forEach(loc => {
+          const qty = row.quantities[loc];
+          tableHTML += `<td class="${getStockClass(qty)}">${qty}</td>`;
+        });
+        tableHTML += `</tr>`;
+      });
+
+      tableHTML += `</tbody></table>`;
+
+      let priceHTML = '';
+      if (lowestCompareAt && lowestCompareAt > lowestPrice) {
+        priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong> <s>$${lowestCompareAt.toFixed(2)}</s></div>`;
+      } else if (lowestPrice !== null) {
+        priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong></div>`;
+      }
+
+      productDiv.innerHTML = `
+        <div style="margin-bottom: 1em;">
+          <strong>${data.title}</strong><br>
+          ${priceHTML}
+          <img src="${data.image}" class="product-image" alt="Product image" />
+        </div>
+        ${tableHTML}
+      `;
+
+      productDiv.style.display = "block";
     }
-
-    variant.inventory.forEach(entry => {
-      const loc = entry.location;
-      const qty = entry.quantity || 0;
-      if (!locationSums[loc]) locationSums[loc] = 0;
-      locationSums[loc] += qty;
-    });
-  });
-
-  const locations = Object.entries(locationSums).map(([loc, quantity]) => ({
-    location: loc,
-    quantity
-  }));
-
-  const totalInventory = locations.reduce((sum, loc) => sum + loc.quantity, 0);
-
-  // Build inventory table
-  let tableHTML = `
-    <table class="inventory-table">
-      <thead>
-        <tr>
-          <th>Location</th>
-          <th>Quantity</th>
-        </tr>
-      </thead>
-      <tbody>
-  `;
-
-  locations.forEach(loc => {
-    tableHTML += `
-      <tr>
-        <td>${loc.location}</td>
-        <td class="${getStockClass(loc.quantity)}">${loc.quantity}</td>
-      </tr>
-    `;
-  });
-
-  tableHTML += `
-    <tr>
-      <td><strong>Total</strong></td>
-      <td><strong>${totalInventory}</strong></td>
-    </tr>
-    </tbody>
-    </table>
-  `;
-
-  // Format price display
-  let priceHTML = '';
-  if (lowestCompareAt && lowestCompareAt > lowestPrice) {
-    priceHTML = `<div><strong>$${lowestPrice.toFixed(2)}</strong> <s>$${lowestCompareAt.toFixed(2)}</s></div>`;
-  } else if (lowestPrice !== null) {
-    priceHTML = `<div><strong>$${lowestPrice.toFixed(2)}</strong></div>`;
-  }
-
-  // Inject into page
-  productDiv.innerHTML = `
-    <div style="margin-bottom: 1em;">
-      <strong>${data.title}</strong><br>
-      ${priceHTML}
-      <img src="${data.image}" class="product-image" alt="Product image" />
-    </div>
-    ${tableHTML}
-  `;
-  productDiv.style.display = "block";
-}
-
-
 
     async function startCamera() {
       try {
