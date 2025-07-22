@@ -113,6 +113,45 @@
     #cameraContainer {
       display: none;
       margin-top: 15px;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      max-width: 400px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .focus-indicator {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border: 2px solid #00ff00;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .scan-zone {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 250px;
+      height: 80px;
+      border: 2px dashed #ff0000;
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+    .camera-instructions {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #666;
     }
 
     .btn-success {
@@ -159,13 +198,6 @@
       border-color: #007bff;
       outline: none;
     }
-
-    video {
-      width: 100%;
-      max-width: 400px;
-      border: 2px solid #ddd;
-      border-radius: 5px;
-    }
     
   </style>
 </head>
@@ -175,13 +207,25 @@
 
     <input id="barcodeInput" type="text" placeholder="Enter or scan barcode" />
 
-    <div id="status" class="status scanning" style="display:none;"></div>
+    <div style="margin-bottom: 15px;">
+      <button class="btn-success" onclick="lookupBarcode()">🔍 Lookup Barcode</button>
+      <button class="btn-success" onclick="startCamera()">📷 Start Camera</button>
+      <button id="stopBtn" class="btn-danger" style="display: none;" onclick="stopCamera()">🛑 Stop Camera</button>
+    </div>
 
-    <button class="btn-success" onclick="startCamera()">📷 Start Camera</button>
-    <button id="stopBtn" class="btn-danger" style="display: none;" onclick="stopCamera()">🛑 Stop Camera</button>
+    <div style="margin-bottom: 10px; padding: 10px; background: #f0f8ff; border-radius: 5px; font-size: 0.9em;">
+      💡 <strong>Tip:</strong> If camera scanning is slow, try typing the barcode manually or use a dedicated barcode scanner.
+    </div>
+
+    <div id="status" class="status scanning" style="display:none;"></div>
 
     <div id="cameraContainer">
       <video id="video" autoplay muted playsinline></video>
+      <div class="scan-zone"></div>
+      <div class="focus-indicator" id="focusIndicator"></div>
+      <div class="camera-instructions">
+        📱 Tap on the video to focus • Hold barcode steady in red box
+      </div>
     </div>
 
     <div id="product" style="margin-top: 20px; display: none;"></div>
@@ -195,10 +239,12 @@
     const statusDiv = document.getElementById("status");
     const stopBtn = document.getElementById("stopBtn");
     const productDiv = document.getElementById("product");
+    const focusIndicator = document.getElementById("focusIndicator");
 
     let codeReader = new ZXing.BrowserBarcodeReader();
     let scanCooldown = false;
     let currentStream = null;
+    let currentTrack = null;
 
     window.onload = () => {
       document.getElementById("barcodeInput").focus();
@@ -271,7 +317,7 @@
       // Prepare matrix
       const matrixRows = variants.map(v => {
         const row = {
-          size: v.size || v.variantTitle || 'Unknown', // Use the size from backend
+          size: v.size || v.variantTitle || 'Unknown',
           price: parseFloat(v.price),
           compareAtPrice: parseFloat(v.compareAtPrice || 0),
           quantities: {},
@@ -353,6 +399,66 @@
       productDiv.style.display = "block";
     }
 
+    // Add tap-to-focus functionality
+    video.addEventListener('click', async (event) => {
+      if (!currentTrack) return;
+
+      try {
+        const rect = video.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+
+        // Show focus indicator
+        const indicator = focusIndicator;
+        indicator.style.left = (event.clientX - rect.left - 30) + 'px';
+        indicator.style.top = (event.clientY - rect.top - 30) + 'px';
+        indicator.style.opacity = '1';
+
+        // Apply focus constraints
+        const capabilities = currentTrack.getCapabilities();
+        
+        if (capabilities.focusMode && capabilities.focusMode.includes('manual')) {
+          await currentTrack.applyConstraints({
+            advanced: [{
+              focusMode: 'manual',
+              pointsOfInterest: [{ x: x, y: y }]
+            }]
+          });
+        } else if (capabilities.focusMode && capabilities.focusMode.includes('single-shot')) {
+          await currentTrack.applyConstraints({
+            advanced: [{
+              focusMode: 'single-shot',
+              pointsOfInterest: [{ x: x, y: y }]
+            }]
+          });
+        } else {
+          // Fallback: try to refocus by toggling focus mode
+          await currentTrack.applyConstraints({
+            advanced: [{
+              focusMode: 'continuous'
+            }]
+          });
+        }
+
+        // Hide indicator after a delay
+        setTimeout(() => {
+          indicator.style.opacity = '0';
+        }, 500);
+
+        showStatus("📱 Focusing...", 'scanning');
+        setTimeout(() => {
+          if (currentStream) showStatus("📱 Ready to scan...", 'scanning');
+        }, 1000);
+
+      } catch (error) {
+        console.log('Focus failed:', error);
+        // Fallback: just show the focus indicator for user feedback
+        setTimeout(() => {
+          focusIndicator.style.opacity = '0';
+        }, 500);
+      }
+    });
+
     async function startCamera() {
       try {
         showStatus("📷 Starting camera...", 'scanning');
@@ -364,15 +470,23 @@
         currentStream = await navigator.mediaDevices.getUserMedia({
           video: {
             deviceId: backCamera.deviceId ? { exact: backCamera.deviceId } : undefined,
-            facingMode: backCamera.deviceId ? undefined : { ideal: 'environment' }
+            facingMode: backCamera.deviceId ? undefined : { ideal: 'environment' },
+            width: { ideal: 1280, min: 640 },
+            height: { ideal: 720, min: 480 },
+            focusMode: { ideal: 'continuous' },
+            exposureMode: { ideal: 'continuous' },
+            whiteBalanceMode: { ideal: 'continuous' }
           }
         });
+
+        // Get the video track for focus control
+        currentTrack = currentStream.getVideoTracks()[0];
 
         video.srcObject = currentStream;
         cameraContainer.style.display = "block";
         stopBtn.style.display = "inline-block";
 
-        showStatus("📱 Point camera at barcode", 'scanning');
+        showStatus("📱 Point camera at barcode • Tap to focus", 'scanning');
 
         codeReader.decodeFromVideoDevice(backCamera.deviceId, 'video', async result => {
           if (result && !scanCooldown) {
@@ -382,7 +496,7 @@
             await lookupBarcode();
             setTimeout(() => {
               scanCooldown = false;
-              if (currentStream) showStatus("📱 Ready to scan...", 'scanning');
+              if (currentStream) showStatus("📱 Ready to scan • Tap to focus", 'scanning');
             }, 3000);
           }
         });
@@ -396,9 +510,11 @@
       if (currentStream) {
         currentStream.getTracks().forEach(track => track.stop());
         currentStream = null;
+        currentTrack = null;
       }
       cameraContainer.style.display = "none";
       stopBtn.style.display = "none";
+      focusIndicator.style.opacity = "0";
       hideStatus();
     }
   </script>
