@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopify Inventory Scanner</title>
+  <script src="https://unpkg.com/@zxing/library@latest"></script>
+  <style>
+    /* your existing CSS remains unchanged */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏪 Store Inventory Scanner</h1>
+    <!-- inputs, buttons, camera container, product card, etc. remain unchanged -->
+  </div>
+  <script>
+    const video = document.getElementById("video");
+    const cameraContainer = document.getElementById("cameraContainer");
+    const statusDiv = document.getElementById("status");
+    const stopBtn = document.getElementById("stopBtn");
+    let codeReader = new ZXing.BrowserBarcodeReader();
+    let scanCooldown = false;
+    let currentStream = null;
+
+    const BACKEND_URL = 'https://ybbc.onrender.com';
+
+    window.onload = () => {
+      document.getElementById("barcodeInput").focus();
+    };
+
+    function showStatus(message, type = 'scanning') {
+      statusDiv.textContent = message;
+      statusDiv.className = `status ${type}`;
+      statusDiv.style.display = 'block';
+    }
+
+    function hideStatus() {
+      statusDiv.style.display = 'none';
+    }
+
+    async function lookupBarcode() {
+      const barcode = document.getElementById("barcodeInput").value.trim();
+      if (!barcode) return;
+
+      showStatus("🔍 Looking up " + barcode + "...", 'scanning');
+
+      try {
+        const res = await fetch(`${BACKEND_URL}/lookup`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ barcode })
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          showStatus("❌ " + (errorData.error || "Product not found"), 'error');
+          return;
+        }
+
+        const data = await res.json();
+        displayProduct(data);
+        showStatus("✅ Product found!", 'success');
+        setTimeout(hideStatus, 3000);
+
+        document.getElementById("barcodeInput").value = "";
+        document.getElementById("barcodeInput").focus();
+      } catch (err) {
+        showStatus("❌ Network error", 'error');
+        console.error('Lookup error:', err);
+      }
+    }
+
+    function getStockClass(quantity) {
+      if (quantity === 0) return 'stock-zero';
+      if (quantity <= 2) return 'stock-low';
+      if (quantity <= 5) return 'stock-medium';
+      return 'stock-high';
+    }
+
+    function displayProduct(data) {
+      const locations = data.inventory?.locations || [];
+      const totalInventory = locations.reduce((sum, loc) => sum + (loc.quantity || 0), 0);
+      let tableHTML = `
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th style="text-align: left;">Location</th>
+              <th>Available</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+      locations.forEach(loc => {
+        tableHTML += `
+          <tr>
+            <td class="location-name">${loc.name}</td>
+            <td><span class="stock-number ${getStockClass(loc.quantity)}">${loc.quantity}</span></td>
+          </tr>`;
+      });
+      tableHTML += `
+        <tr class="total-row">
+          <td class="location-name">TOTAL</td>
+          <td>${totalInventory}</td>
+        </tr></tbody></table>`;
+
+      document.getElementById("product").innerHTML = `
+        <div class="product-header">
+          <img src="${data.image}" alt="Product image" class="product-image" />
+          <div class="product-info">
+            <div class="product-title">${data.title}</div>
+            <div class="product-price">$${data.price}</div>
+          </div>
+        </div>
+        <div class="inventory-section">
+          <div class="inventory-title">📊 Inventory by Location</div>
+          ${tableHTML}
+        </div>`;
+      document.getElementById("product").style.display = 'block';
+    }
+
+    async function startCamera() {
+      try {
+        showStatus("📷 Starting camera...", 'scanning');
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(d => d.kind === 'videoinput');
+        let backCam = videoDevices.find(d => /back|rear|environment/i.test(d.label)) || videoDevices[0];
+
+        const selectedId = backCam.deviceId;
+        currentStream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            deviceId: selectedId ? { exact: selectedId } : undefined,
+            facingMode: selectedId ? undefined : { ideal: 'environment' }
+          }
+        });
+
+        video.srcObject = currentStream;
+        cameraContainer.style.display = "block";
+        stopBtn.style.display = "inline-block";
+        document.querySelector('.btn-success').style.display = "none";
+
+        showStatus("📱 Point camera at barcode", 'scanning');
+
+        codeReader.decodeFromVideoDevice(selectedId, 'video', async result => {
+          if (result && !scanCooldown) {
+            scanCooldown = true;
+            document.getElementById("barcodeInput").value = result.text;
+            showStatus("✅ Barcode: " + result.text, 'success');
+            await lookupBarcode();
+            setTimeout(() => {
+              scanCooldown = false;
+              if (currentStream) showStatus("📱 Ready to scan...", 'scanning');
+            }, 3000);
+          }
+        });
+      } catch (err) {
+        showStatus("❌ Camera failed", 'error');
+        console.error(err);
+      }
+    }
+
+    function stopCamera() {
+      if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
+        currentStream = null;
+      }
+      cameraContainer.style.display = "none";
+      stopBtn.style.display = "none";
+      document.querySelector('.btn-success').style.display = "inline-block";
+      hideStatus();
+    }
+
+    document.getElementById("barcodeInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") lookupBarcode();
+    });
+
+    window.addEventListener('beforeunload', stopCamera);
+  </script>
+</body>
+</html>
