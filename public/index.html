@@ -151,42 +151,38 @@
       return 'stock-high';
     }
 
-    function displayProduct(data) {function displayProduct(data) {
+    function displayProduct(data) {
   const allVariants = data.variants || [];
-  const locationSums = [];
-  let lowestPriceVariant = null;
+  const locationSums = {};
+  let lowestPrice = null;
+  let lowestCompareAt = null;
 
-  const locationTotals = {};
-
+  // Aggregate quantities & find lowest price
   allVariants.forEach(variant => {
     const price = parseFloat(variant.price);
-    const compareAt = parseFloat(variant.compare_at_price || 0);
+    const compareAt = parseFloat(variant.compareAtPrice || 0);
 
-    if (!lowestPriceVariant || price < parseFloat(lowestPriceVariant.price)) {
-      lowestPriceVariant = { price, compare_at_price: compareAt };
+    if (!isNaN(price) && (lowestPrice === null || price < lowestPrice)) {
+      lowestPrice = price;
+      lowestCompareAt = !isNaN(compareAt) ? compareAt : null;
     }
 
     variant.inventory.forEach(entry => {
       const loc = entry.location;
       const qty = entry.quantity || 0;
-      if (!locationTotals[loc]) locationTotals[loc] = 0;
-      locationTotals[loc] += qty;
+      if (!locationSums[loc]) locationSums[loc] = 0;
+      locationSums[loc] += qty;
     });
   });
 
-  const locations = Object.entries(locationTotals).map(([loc, quantity]) => ({
+  const locations = Object.entries(locationSums).map(([loc, quantity]) => ({
     location: loc,
     quantity
   }));
 
   const totalInventory = locations.reduce((sum, loc) => sum + loc.quantity, 0);
 
-  const priceHTML = lowestPriceVariant
-    ? lowestPriceVariant.compare_at_price > lowestPriceVariant.price
-      ? `$${lowestPriceVariant.price.toFixed(2)} <s style="color:#999; font-weight:normal;">$${lowestPriceVariant.compare_at_price.toFixed(2)}</s>`
-      : `$${lowestPriceVariant.price.toFixed(2)}`
-    : '';
-
+  // Build inventory table
   let tableHTML = `
     <table class="inventory-table">
       <thead>
@@ -216,17 +212,26 @@
     </table>
   `;
 
+  // Format price display
+  let priceHTML = '';
+  if (lowestCompareAt && lowestCompareAt > lowestPrice) {
+    priceHTML = `<div><strong>$${lowestPrice.toFixed(2)}</strong> <s>$${lowestCompareAt.toFixed(2)}</s></div>`;
+  } else if (lowestPrice !== null) {
+    priceHTML = `<div><strong>$${lowestPrice.toFixed(2)}</strong></div>`;
+  }
+
+  // Inject into page
   productDiv.innerHTML = `
     <div style="margin-bottom: 1em;">
       <strong>${data.title}</strong><br>
-      <div style="font-size: 1.3em; margin: 5px 0;">${priceHTML}</div>
+      ${priceHTML}
       <img src="${data.image}" class="product-image" alt="Product image" />
     </div>
     ${tableHTML}
   `;
-
   productDiv.style.display = "block";
 }
+
 
 
     async function startCamera() {
