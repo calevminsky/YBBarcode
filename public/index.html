@@ -29,16 +29,20 @@
       max-width: 100px;
       max-height: 100px;
     }
-    .inventory-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    .inventory-table th, .inventory-table td {
-      border: 1px solid #ccc;
-      padding: 6px;
-      text-align: center;
-    }
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+.inventory-table th,
+.inventory-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+  max-width: 80px;
+  word-break: break-word;
+  font-size: 0.9em;
+}
 
     .stock-zero { color: red; }
     .stock-low { color: orange; }
@@ -67,6 +71,7 @@
       margin-left: 8px;
       color: #999;
     }
+    
   </style>
 </head>
 <body>
@@ -171,7 +176,7 @@
   // Prepare matrix
   const matrixRows = variants.map(v => {
     const row = {
-      size: v.option1 || v.title || '—',
+      size: v.option1 || (v.title?.split(' / ')[0]) || 'Unknown',
       price: parseFloat(v.price),
       compareAtPrice: parseFloat(v.compareAtPrice || 0),
       quantities: {},
