@@ -1,33 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shopify Inventory Scanner</title>
   <script src="https://unpkg.com/@zxing/library@latest"></script>
   <style>
-    /* your existing CSS remains unchanged */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff;
+      color: #111;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .status {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    .status.success { background: #e0ffe0; color: #1a8e1a; }
+    .status.error { background: #ffe0e0; color: #d22; }
+    .status.scanning { background: #e0f0ff; color: #0056b3; }
+
+    .product-image {
+      max-width: 100px;
+      max-height: 100px;
+    }
+    .inventory-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .inventory-table th, .inventory-table td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+    }
+
+    .stock-zero { color: red; }
+    .stock-low { color: orange; }
+    .stock-medium { color: #888; }
+    .stock-high { color: green; }
+
+    #cameraContainer {
+      display: none;
+    }
+
+    .btn-success {
+      background: #28a745;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🏪 Store Inventory Scanner</h1>
-    <!-- inputs, buttons, camera container, product card, etc. remain unchanged -->
+
+    <input id="barcodeInput" type="text" placeholder="Enter or scan barcode" style="width: 100%; padding: 10px; font-size: 1.1em;"/>
+
+    <div id="status" class="status scanning" style="display:none;"></div>
+
+    <button class="btn-success" onclick="startCamera()">📷 Start Camera</button>
+    <button id="stopBtn" style="display: none;" onclick="stopCamera()">🛑 Stop Camera</button>
+
+    <div id="cameraContainer">
+      <video id="video" width="100%" autoplay muted playsinline></video>
+    </div>
+
+    <div id="product" style="margin-top: 20px; display: none;"></div>
   </div>
+
   <script>
+    const BACKEND_URL = 'https://ybbc.onrender.com'; // replace with your deployed backend if different
+
     const video = document.getElementById("video");
     const cameraContainer = document.getElementById("cameraContainer");
     const statusDiv = document.getElementById("status");
     const stopBtn = document.getElementById("stopBtn");
+    const productDiv = document.getElementById("product");
+
     let codeReader = new ZXing.BrowserBarcodeReader();
     let scanCooldown = false;
     let currentStream = null;
 
-    const BACKEND_URL = 'https://ybbc.onrender.com';
-
     window.onload = () => {
       document.getElementById("barcodeInput").focus();
     };
+
+    document.getElementById("barcodeInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        lookupBarcode();
+      }
+    });
+
+    window.addEventListener('beforeunload', stopCamera);
 
     function showStatus(message, type = 'scanning') {
       statusDiv.textContent = message;
@@ -79,73 +152,76 @@
     }
 
     function displayProduct(data) {
-      const locations = data.inventory?.locations || [];
+      const locations = data.variants?.[0]?.inventory || [];
+
       const totalInventory = locations.reduce((sum, loc) => sum + (loc.quantity || 0), 0);
+
       let tableHTML = `
         <table class="inventory-table">
           <thead>
             <tr>
-              <th style="text-align: left;">Location</th>
-              <th>Available</th>
+              <th>Location</th>
+              <th>Quantity</th>
             </tr>
           </thead>
           <tbody>
       `;
+
       locations.forEach(loc => {
         tableHTML += `
           <tr>
-            <td class="location-name">${loc.name}</td>
-            <td><span class="stock-number ${getStockClass(loc.quantity)}">${loc.quantity}</span></td>
-          </tr>`;
+            <td>${loc.location}</td>
+            <td class="${getStockClass(loc.quantity)}">${loc.quantity}</td>
+          </tr>
+        `;
       });
-      tableHTML += `
-        <tr class="total-row">
-          <td class="location-name">TOTAL</td>
-          <td>${totalInventory}</td>
-        </tr></tbody></table>`;
 
-      document.getElementById("product").innerHTML = `
-        <div class="product-header">
-          <img src="${data.image}" alt="Product image" class="product-image" />
-          <div class="product-info">
-            <div class="product-title">${data.title}</div>
-            <div class="product-price">$${data.price}</div>
-          </div>
+      tableHTML += `
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>${totalInventory}</strong></td>
+        </tr>
+        </tbody>
+        </table>
+      `;
+
+      productDiv.innerHTML = `
+        <div style="margin-bottom: 1em;">
+          <strong>${data.title}</strong><br>
+          <img src="${data.image}" class="product-image" alt="Product image" />
         </div>
-        <div class="inventory-section">
-          <div class="inventory-title">📊 Inventory by Location</div>
-          ${tableHTML}
-        </div>`;
-      document.getElementById("product").style.display = 'block';
+        ${tableHTML}
+      `;
+
+      productDiv.style.display = "block";
     }
 
     async function startCamera() {
       try {
         showStatus("📷 Starting camera...", 'scanning');
         const devices = await navigator.mediaDevices.enumerateDevices();
-        const videoDevices = devices.filter(d => d.kind === 'videoinput');
-        let backCam = videoDevices.find(d => /back|rear|environment/i.test(d.label)) || videoDevices[0];
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        let backCamera = videoDevices.find(device => /back|rear|environment/i.test(device.label));
+        if (!backCamera && videoDevices.length > 0) backCamera = videoDevices[0];
 
-        const selectedId = backCam.deviceId;
         currentStream = await navigator.mediaDevices.getUserMedia({
           video: {
-            deviceId: selectedId ? { exact: selectedId } : undefined,
-            facingMode: selectedId ? undefined : { ideal: 'environment' }
+            deviceId: backCamera.deviceId ? { exact: backCamera.deviceId } : undefined,
+            facingMode: backCamera.deviceId ? undefined : { ideal: 'environment' }
           }
         });
 
         video.srcObject = currentStream;
         cameraContainer.style.display = "block";
         stopBtn.style.display = "inline-block";
-        document.querySelector('.btn-success').style.display = "none";
 
         showStatus("📱 Point camera at barcode", 'scanning');
 
-        codeReader.decodeFromVideoDevice(selectedId, 'video', async result => {
+        codeReader.decodeFromVideoDevice(backCamera.deviceId, 'video', async result => {
           if (result && !scanCooldown) {
             scanCooldown = true;
             document.getElementById("barcodeInput").value = result.text;
-            showStatus("✅ Barcode: " + result.text, 'success');
+            showStatus("✅ Barcode detected: " + result.text, 'success');
             await lookupBarcode();
             setTimeout(() => {
               scanCooldown = false;
@@ -154,8 +230,8 @@
           }
         });
       } catch (err) {
-        showStatus("❌ Camera failed", 'error');
-        console.error(err);
+        console.error('Camera start error:', err);
+        showStatus("❌ Camera access failed", 'error');
       }
     }
 
@@ -166,15 +242,8 @@
       }
       cameraContainer.style.display = "none";
       stopBtn.style.display = "none";
-      document.querySelector('.btn-success').style.display = "inline-block";
       hideStatus();
     }
-
-    document.getElementById("barcodeInput").addEventListener("keydown", e => {
-      if (e.key === "Enter") lookupBarcode();
-    });
-
-    window.addEventListener('beforeunload', stopCamera);
   </script>
 </body>
 </html>
