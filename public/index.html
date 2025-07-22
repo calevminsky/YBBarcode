@@ -152,49 +152,67 @@
     }
 
     function displayProduct(data) {
-      const locations = data.variants?.[0]?.inventory || [];
+  const allVariants = data.variants || [];
+  const locationSums = {};
 
-      const totalInventory = locations.reduce((sum, loc) => sum + (loc.quantity || 0), 0);
+  // Loop through all variants and add up quantities per location
+  allVariants.forEach(variant => {
+    variant.inventory.forEach(entry => {
+      const loc = entry.location;
+      const qty = entry.quantity || 0;
+      if (!locationSums[loc]) locationSums[loc] = 0;
+      locationSums[loc] += qty;
+    });
+  });
 
-      let tableHTML = `
-        <table class="inventory-table">
-          <thead>
-            <tr>
-              <th>Location</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
+  // Convert object to array
+  const locations = Object.entries(locationSums).map(([loc, quantity]) => ({
+    location: loc,
+    quantity
+  }));
 
-      locations.forEach(loc => {
-        tableHTML += `
-          <tr>
-            <td>${loc.location}</td>
-            <td class="${getStockClass(loc.quantity)}">${loc.quantity}</td>
-          </tr>
-        `;
-      });
+  const totalInventory = locations.reduce((sum, loc) => sum + loc.quantity, 0);
 
-      tableHTML += `
+  let tableHTML = `
+    <table class="inventory-table">
+      <thead>
         <tr>
-          <td><strong>Total</strong></td>
-          <td><strong>${totalInventory}</strong></td>
+          <th>Location</th>
+          <th>Quantity</th>
         </tr>
-        </tbody>
-        </table>
-      `;
+      </thead>
+      <tbody>
+  `;
 
-      productDiv.innerHTML = `
-        <div style="margin-bottom: 1em;">
-          <strong>${data.title}</strong><br>
-          <img src="${data.image}" class="product-image" alt="Product image" />
-        </div>
-        ${tableHTML}
-      `;
+  locations.forEach(loc => {
+    tableHTML += `
+      <tr>
+        <td>${loc.location}</td>
+        <td class="${getStockClass(loc.quantity)}">${loc.quantity}</td>
+      </tr>
+    `;
+  });
 
-      productDiv.style.display = "block";
-    }
+  tableHTML += `
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong>${totalInventory}</strong></td>
+    </tr>
+    </tbody>
+    </table>
+  `;
+
+  productDiv.innerHTML = `
+    <div style="margin-bottom: 1em;">
+      <strong>${data.title}</strong><br>
+      <img src="${data.image}" class="product-image" alt="Product image" />
+    </div>
+    ${tableHTML}
+  `;
+
+  productDiv.style.display = "block";
+}
+
 
     async function startCamera() {
       try {
