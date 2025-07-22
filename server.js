@@ -210,6 +210,7 @@ app.post('/lookup', async (req, res) => {
       image: image,
       vendor: product.vendor,
       productType: product.productType,
+      productId: product.id,
       variants: inventoryMatrix
     };
 
