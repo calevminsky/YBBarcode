@@ -332,7 +332,7 @@
       productDiv.innerHTML = `
         <div style="margin-bottom: 1em;">
           <img src="${data.image}" class="product-image" alt="Product image" style="float: right; margin-left: 15px;" />
-          <a href="https://yakirabella.myshopify.com/admin/products/${extractProductId(data.variants[0])}" target="_blank" style="color: #007bff; text-decoration: none; font-size: 1.3em; font-weight: bold;">
+          <a href="https://yakirabella.myshopify.com/admin/products/${extractProductId(data.productId)}" target="_blank" style="color: #007bff; text-decoration: none; font-size: 1.3em; font-weight: bold;">
             ${data.title}
           </a><br>
           ${priceHTML}
@@ -343,15 +343,14 @@
       productDiv.style.display = "block";
     }
 
-    // Extract product ID from variant data for Shopify admin link
-    function extractProductId(variant) {
-      // The backend should include product ID, but if not available, 
-      // we'll extract from the variant data or use a fallback
-      if (variant && variant.product_id) {
-        return variant.product_id;
+    // Extract product ID from GraphQL response
+    function extractProductId(productId) {
+      // Shopify GraphQL returns IDs like: "gid://shopify/Product/123456789"
+      // We need just the number part: "123456789"
+      if (productId && productId.includes('gid://shopify/Product/')) {
+        return productId.split('/').pop();
       }
-      // Fallback - this might need adjustment based on your data structure
-      return '';
+      return productId || '';
     }
 
     async function startDynamsoft() {
