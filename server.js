@@ -4,8 +4,6 @@ const app = express();
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
 app.use(cors());
 app.use(express.json());
 
@@ -63,34 +61,37 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
     product(id: $productId) {
       title
       variants(first: 50) {
-  edges {
-    node {
-      id
-      title
-      sku
-      barcode
-      price
-      compareAtPrice
-      inventoryItem {
-        inventoryLevels(first: 20) {
-          edges {
-            node {
-              location {
-                id
-                name
-              }
-              quantities(names: ["available"]) {
-                name
-                quantity
+        edges {
+          node {
+            id
+            title
+            sku
+            barcode
+            price
+            compareAtPrice
+            selectedOptions {
+              name
+              value
+            }
+            inventoryItem {
+              inventoryLevels(first: 20) {
+                edges {
+                  node {
+                    location {
+                      id
+                      name
+                    }
+                    quantities(names: ["available"]) {
+                      name
+                      quantity
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
-    }
-  }
-}
-
     }
   }
 `;
@@ -169,6 +170,15 @@ app.post('/lookup', async (req, res) => {
     const targetLocationNames = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
 
     const inventoryMatrix = productVariants.map(v => {
+      // Extract size from selectedOptions
+      const sizeOption = v.selectedOptions.find(opt => 
+        opt.name.toLowerCase().includes('size') || 
+        opt.name.toLowerCase() === 'title' ||
+        opt.name === v.selectedOptions[0]?.name // Use first option as fallback
+      );
+      
+      const size = sizeOption ? sizeOption.value : (v.title || 'Unknown');
+      
       const inventoryLevels = v.inventoryItem.inventoryLevels.edges;
 
       const quantities = targetLocationNames.map(locationName => {
@@ -186,9 +196,11 @@ app.post('/lookup', async (req, res) => {
 
       return {
         variantTitle: v.title,
+        size: size,
         sku: v.sku,
         barcode: v.barcode,
         price: v.price,
+        compareAtPrice: v.compareAtPrice,
         inventory: quantities
       };
     });
@@ -234,6 +246,10 @@ app.get('/debug', async (req, res) => {
               sku
               barcode
               price
+              selectedOptions {
+                name
+                value
+              }
               product {
                 title
               }
@@ -250,7 +266,8 @@ app.get('/debug', async (req, res) => {
         variant_title: edge.node.title,
         barcode: edge.node.barcode,
         sku: edge.node.sku,
-        price: edge.node.price
+        price: edge.node.price,
+        options: edge.node.selectedOptions
       }))
     });
   } catch (error) {
@@ -261,7 +278,6 @@ app.get('/debug', async (req, res) => {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
