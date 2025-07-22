@@ -63,32 +63,34 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
     product(id: $productId) {
       title
       variants(first: 50) {
-        edges {
-          node {
-            id
-            title
-            sku
-            barcode
-            price
-            inventoryItem {
-              inventoryLevels(first: 20) {
-                edges {
-                  node {
-                    location {
-                      id
-                      name
-                    }
-                    quantities(names: ["available"]) {
-                      name
-                      quantity
-                    }
-                  }
-                }
+  edges {
+    node {
+      id
+      title
+      sku
+      barcode
+      price
+      compareAtPrice
+      inventoryItem {
+        inventoryLevels(first: 20) {
+          edges {
+            node {
+              location {
+                id
+                name
+              }
+              quantities(names: ["available"]) {
+                name
+                quantity
               }
             }
           }
         }
       }
+    }
+  }
+}
+
     }
   }
 `;
