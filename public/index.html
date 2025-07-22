@@ -29,34 +29,54 @@
       max-width: 100px;
       max-height: 100px;
     }
-.inventory-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: auto;
-}
-.inventory-table th,
-.inventory-table td {
-  border: 1px solid #ccc;
-  padding: 6px;
-  text-align: center;
-  max-width: 80px;
-  word-break: break-word;
-  font-size: 0.9em;
-}
+    
+    .inventory-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+      margin-top: 15px;
+    }
+    
+    .inventory-table th,
+    .inventory-table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      max-width: 80px;
+      word-break: break-word;
+      font-size: 0.9em;
+    }
 
-    .stock-zero { color: red; }
-    .stock-low { color: orange; }
-    .stock-medium { color: #888; }
-    .stock-high { color: green; }
+    .inventory-table th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .stock-zero { color: red; font-weight: bold; }
+    .stock-low { color: orange; font-weight: bold; }
+    .stock-medium { color: #888; font-weight: bold; }
+    .stock-high { color: green; font-weight: bold; }
 
     #cameraContainer {
       display: none;
+      margin-top: 15px;
     }
 
     .btn-success {
       background: #28a745;
       color: white;
-      padding: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+      padding: 10px 15px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
@@ -67,9 +87,31 @@
       font-size: 1.2em;
       margin: 0.5em 0;
     }
+    
     .price-block s {
       margin-left: 8px;
       color: #999;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.1em;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    video {
+      width: 100%;
+      max-width: 400px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
     }
     
   </style>
@@ -78,15 +120,15 @@
   <div class="container">
     <h1>🏪 Store Inventory Scanner</h1>
 
-    <input id="barcodeInput" type="text" placeholder="Enter or scan barcode" style="width: 100%; padding: 10px; font-size: 1.1em;"/>
+    <input id="barcodeInput" type="text" placeholder="Enter or scan barcode" />
 
     <div id="status" class="status scanning" style="display:none;"></div>
 
     <button class="btn-success" onclick="startCamera()">📷 Start Camera</button>
-    <button id="stopBtn" style="display: none;" onclick="stopCamera()">🛑 Stop Camera</button>
+    <button id="stopBtn" class="btn-danger" style="display: none;" onclick="stopCamera()">🛑 Stop Camera</button>
 
     <div id="cameraContainer">
-      <video id="video" width="100%" autoplay muted playsinline></video>
+      <video id="video" autoplay muted playsinline></video>
     </div>
 
     <div id="product" style="margin-top: 20px; display: none;"></div>
@@ -167,82 +209,96 @@
     }
 
     function displayProduct(data) {
-  const variants = data.variants || [];
-  const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
+      const variants = data.variants || [];
+      const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
 
-  let lowestPrice = null;
-  let lowestCompareAt = null;
+      let lowestPrice = null;
+      let lowestCompareAt = null;
 
-  // Prepare matrix
-  const matrixRows = variants.map(v => {
-    const row = {
-      size: v.option1 || (v.title?.split(' / ')[0]) || 'Unknown',
-      price: parseFloat(v.price),
-      compareAtPrice: parseFloat(v.compareAtPrice || 0),
-      quantities: {},
-      total: 0
-    };
+      // Prepare matrix
+      const matrixRows = variants.map(v => {
+        const row = {
+          size: v.size || v.variantTitle || 'Unknown', // Use the size from backend
+          price: parseFloat(v.price),
+          compareAtPrice: parseFloat(v.compareAtPrice || 0),
+          quantities: {},
+          total: 0
+        };
 
-    locations.forEach(loc => row.quantities[loc] = 0);
+        locations.forEach(loc => row.quantities[loc] = 0);
 
-    v.inventory.forEach(entry => {
-      if (locations.includes(entry.location)) {
-        row.quantities[entry.location] = entry.quantity || 0;
-        row.total += entry.quantity || 0;
+        v.inventory.forEach(entry => {
+          if (locations.includes(entry.location)) {
+            row.quantities[entry.location] = entry.quantity || 0;
+            row.total += entry.quantity || 0;
+          }
+        });
+
+        // Track lowest price
+        if (!isNaN(row.price) && (lowestPrice === null || row.price < lowestPrice)) {
+          lowestPrice = row.price;
+          lowestCompareAt = !isNaN(row.compareAtPrice) ? row.compareAtPrice : null;
+        }
+
+        return row;
+      });
+
+      // Calculate totals by location
+      const locationTotals = {};
+      locations.forEach(loc => {
+        locationTotals[loc] = matrixRows.reduce((sum, row) => sum + row.quantities[loc], 0);
+      });
+      const grandTotal = Object.values(locationTotals).reduce((sum, total) => sum + total, 0);
+
+      // Table
+      let tableHTML = `
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th style="min-width: 60px;">Size</th>
+              ${locations.map(loc => `<th style="min-width: 80px;">${loc}</th>`).join('')}
+              <th style="min-width: 60px;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      matrixRows.forEach(row => {
+        tableHTML += `<tr><td><strong>${row.size}</strong></td>`;
+        locations.forEach(loc => {
+          const qty = row.quantities[loc];
+          tableHTML += `<td class="${getStockClass(qty)}">${qty}</td>`;
+        });
+        tableHTML += `<td><strong>${row.total}</strong></td></tr>`;
+      });
+
+      // Add totals row
+      tableHTML += `<tr style="background-color: #f0f0f0;"><td><strong>TOTAL</strong></td>`;
+      locations.forEach(loc => {
+        tableHTML += `<td><strong>${locationTotals[loc]}</strong></td>`;
+      });
+      tableHTML += `<td><strong>${grandTotal}</strong></td></tr>`;
+
+      tableHTML += `</tbody></table>`;
+
+      let priceHTML = '';
+      if (lowestCompareAt && lowestCompareAt > lowestPrice) {
+        priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong> <s>$${lowestCompareAt.toFixed(2)}</s></div>`;
+      } else if (lowestPrice !== null) {
+        priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong></div>`;
       }
-    });
 
-    // Track lowest price
-    if (!isNaN(row.price) && (lowestPrice === null || row.price < lowestPrice)) {
-      lowestPrice = row.price;
-      lowestCompareAt = !isNaN(row.compareAtPrice) ? row.compareAtPrice : null;
+      productDiv.innerHTML = `
+        <div style="margin-bottom: 1em;">
+          <img src="${data.image}" class="product-image" alt="Product image" style="float: right; margin-left: 15px;" />
+          <strong style="font-size: 1.3em;">${data.title}</strong><br>
+          ${priceHTML}
+          <div style="clear: both;"></div>
+        </div>
+        ${tableHTML}
+      `;
+      productDiv.style.display = "block";
     }
-
-    return row;
-  });
-
-  // Table
-  let tableHTML = `
-    <table class="inventory-table">
-      <thead>
-        <tr>
-          <th style="min-width: 60px;">Size</th>
-          ${locations.map(loc => `<th style="min-width: 80px;">${loc}</th>`).join('')}
-          <th style="min-width: 60px;">Total</th>
-        </tr>
-      </thead>
-      <tbody>
-  `;
-
-  matrixRows.forEach(row => {
-    tableHTML += `<tr><td>${row.size}</td>`;
-    locations.forEach(loc => {
-      const qty = row.quantities[loc];
-      tableHTML += `<td class="${getStockClass(qty)}">${qty}</td>`;
-    });
-    tableHTML += `<td><strong>${row.total}</strong></td></tr>`;
-  });
-
-  tableHTML += `</tbody></table>`;
-
-  let priceHTML = '';
-  if (lowestCompareAt && lowestCompareAt > lowestPrice) {
-    priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong> <s>$${lowestCompareAt.toFixed(2)}</s></div>`;
-  } else if (lowestPrice !== null) {
-    priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong></div>`;
-  }
-
-  productDiv.innerHTML = `
-    <div style="margin-bottom: 1em;">
-      <strong>${data.title}</strong><br>
-      ${priceHTML}
-      <img src="${data.image}" class="product-image" alt="Product image" />
-    </div>
-    ${tableHTML}
-  `;
-  productDiv.style.display = "block";
-}
-
 
     async function startCamera() {
       try {
