@@ -80,8 +80,8 @@
       <button class="btn-primary" onclick="startDynamsoft()">Camera Scanner</button>
     </div>
 
-    <!-- View toggle -->
-    <div style="margin-bottom: 10px;">
+    <!-- View toggle (hidden automatically in client mode) -->
+    <div id="viewControls" style="margin-bottom: 10px;">
       <label for="viewMode" style="margin-right:8px;font-weight:600;">View:</label>
       <select id="viewMode" style="padding:8px 10px;border:1px solid #ccc;border-radius:6px;">
         <option value="inventory" selected>Inventory</option>
@@ -96,31 +96,35 @@
 
   <script>
     // ---- CONFIG ----
-    const BACKEND_URL = 'https://ybbc.onrender.com'; // change to your server URL if different
+    const BACKEND_URL = 'https://ybbc.onrender.com'; // change if needed
     const DYNAMSOFT_LICENSE = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTA0MzEyNTE0LTEwNDQ2Nzg3NCIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJvcmdhbml6YXRpb25JRCI6IjEwNDMxMjUxNCIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL3NkbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJjaGVja0NvZGUiOjE5MzI1NzIzNDd9";
 
     // ---- STATE ----
     const statusDiv = document.getElementById("status");
     const productDiv = document.getElementById("product");
-    let viewMode = 'inventory';
+    const viewControls = document.getElementById("viewControls");
+    const viewSelect = document.getElementById("viewMode");
+
+    // Determine client mode from URL:
+    // - ?mode=client  OR  pathname ends with /client
+    const params = new URLSearchParams(location.search);
+    const clientByQuery = (params.get('mode') || '').toLowerCase() === 'client';
+    const clientByPath = location.pathname.replace(/\/+$/, '').endsWith('/client');
+    const CLIENT_MODE = clientByQuery || clientByPath;
+
+    let viewMode = CLIENT_MODE ? 'client' : 'inventory';
     let lastProductData = null;
 
-    // Optional: allow setting the initial view via URL ?view=client
-    const params = new URLSearchParams(location.search);
-    const initialMode = params.get('view');
-    if (initialMode && ['inventory','matching','client'].includes(initialMode)) {
-      viewMode = initialMode;
-      // set dropdown once DOM is ready
-      window.addEventListener('DOMContentLoaded', () => {
-        const sel = document.getElementById('viewMode');
-        if (sel) sel.value = initialMode;
+    // Hide the selector in client mode and lock to client view
+    if (CLIENT_MODE) {
+      viewControls.style.display = 'none';
+    } else {
+      viewSelect.value = viewMode;
+      viewSelect.addEventListener('change', (e) => {
+        viewMode = e.target.value;
+        if (lastProductData) displayProduct(lastProductData);
       });
     }
-
-    document.getElementById('viewMode').addEventListener('change', (e) => {
-      viewMode = e.target.value;
-      if (lastProductData) displayProduct(lastProductData);
-    });
 
     window.onload = () => document.getElementById("barcodeInput").focus();
     document.getElementById("barcodeInput").addEventListener("keydown", e => {
@@ -214,7 +218,7 @@
       }
 
       // Header (image, title, price)
-      const headerHTML = `
+      const adminHeader = `
         <div style="margin-bottom: 1em;">
           <img src="${data.image}" class="product-image" alt="Product image" style="float: right; margin-left: 15px;" />
           <a href="https://yakirabella.myshopify.com/admin/products/${extractProductId(data.productId)}" target="_blank" style="color: #007bff; text-decoration: none; font-size: 1.3em; font-weight: bold;">
@@ -224,8 +228,17 @@
           <div style="clear: both;"></div>
         </div>
       `;
+      const clientHeader = `
+        <div style="margin-bottom: 1em;">
+          <img src="${data.image}" class="product-image" alt="Product image" style="float: right; margin-left: 15px;" />
+          <div style="color: #111; font-size: 1.3em; font-weight: bold;">${data.title}</div>
+          ${priceHTML}
+          <div style="clear: both;"></div>
+        </div>
+      `;
+      const headerHTML = CLIENT_MODE ? clientHeader : adminHeader;
 
-      // ----- Inventory view -----
+      // ----- Inventory view (hidden in client mode by locking viewMode) -----
       let inventoryHTML = '';
       if (Array.isArray(data.variants) && data.variants.length) {
         const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
@@ -264,7 +277,7 @@
       // ----- Matching view -----
       let matchingHTML = '';
       if (Array.isArray(data.upsells) && data.upsells.length) {
-        matchingHTML = `<div class="upsell-grid">${data.upsells.map(p => cardHTML(p, viewMode==='client')).join('')}</div>`;
+        matchingHTML = `<div class="upsell-grid">${data.upsells.map(p => cardHTML(p, CLIENT_MODE)).join('')}</div>`;
       } else {
         matchingHTML = `<div style="margin-top:8px;color:#666;">No matching products found.</div>`;
       }
@@ -272,7 +285,7 @@
       // ----- Siblings (other colors) -----
       let siblingsHTML = '';
       if (Array.isArray(data.siblings) && data.siblings.length) {
-        siblingsHTML = `<div class="upsell-grid">${data.siblings.map(p => cardHTML(p, viewMode==='client')).join('')}</div>`;
+        siblingsHTML = `<div class="upsell-grid">${data.siblings.map(p => cardHTML(p, CLIENT_MODE)).join('')}</div>`;
       } else {
         siblingsHTML = `<div style="margin-top:8px;color:#666;">No other colors found.</div>`;
       }
