@@ -96,6 +96,47 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
   }
 `;
 
+const GET_PRODUCT_UPSELLS = `
+  query getUpsells($productId: ID!) {
+    product(id: $productId) {
+      id
+      metafield(namespace: "theme", key: "upsell_list") {
+        type
+        value
+        references(first: 30) {
+          nodes {
+            __typename
+            ... on Product {
+              id
+              title
+              handle
+              images(first: 1) { edges { node { url } } }
+              variants(first: 1) { edges { node { price } } }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const SEARCH_PRODUCTS = `
+  query searchProducts($query: String!) {
+    products(first: 30, query: $query) {
+      edges {
+        node {
+          id
+          title
+          handle
+          images(first: 1) { edges { node { url } } }
+          variants(first: 1) { edges { node { price } } }
+        }
+      }
+    }
+  }
+`;
+
+
 const GET_LOCATIONS = `
   query {
     locations(first: 20) {
@@ -125,6 +166,51 @@ async function getLocations() {
   }
   return locationsCache;
 }
+
+async function getUpsellProducts(productId) {
+  try {
+    const result = await shopifyGraphQL(GET_PRODUCT_UPSELLS, { productId });
+    const mf = result?.data?.product?.metafield;
+    if (!mf) return [];
+
+    // Case 1: list.product_reference — use references
+    const refs = mf.references?.nodes?.filter(n => n?.__typename === "Product") || [];
+    if (refs.length) {
+      return refs.map(p => ({
+        id: p.id,
+        title: p.title,
+        handle: p.handle,
+        image: p.images?.edges?.[0]?.node?.url || 'https://via.placeholder.com/150',
+        price: p.variants?.edges?.[0]?.node?.price || null
+      }));
+    }
+
+    // Case 2: raw text (handles or titles), try both
+    const raw = (mf.value || "").trim();
+    if (!raw) return [];
+
+    const tokens = raw.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    if (!tokens.length) return [];
+
+    const handlePart = tokens.map(t => `handle:${t}`).join(" OR ");
+    const titlePart  = tokens.map(t => `title:"${t.replace(/"/g, '\\"')}"`).join(" OR ");
+    const query = `(${handlePart}) OR (${titlePart})`;
+
+    const search = await shopifyGraphQL(SEARCH_PRODUCTS, { query });
+    const nodes = search?.data?.products?.edges?.map(e => e.node) || [];
+    return nodes.map(p => ({
+      id: p.id,
+      title: p.title,
+      handle: p.handle,
+      image: p.images?.edges?.[0]?.node?.url || 'https://via.placeholder.com/150',
+      price: p.variants?.edges?.[0]?.node?.price || null
+    }));
+  } catch (err) {
+    console.error("getUpsellProducts error:", err);
+    return [];
+  }
+}
+
 
 app.post('/lookup', async (req, res) => {
   try {
@@ -205,16 +291,21 @@ app.post('/lookup', async (req, res) => {
       };
     });
 
-    const response = {
-      title: product.title,
-      image: image,
-      vendor: product.vendor,
-      productType: product.productType,
-      productId: product.id,
-      variants: inventoryMatrix
-    };
+// NEW: fetch upsell/matching products
+const upsells = await getUpsellProducts(productId);
 
-    res.json(response);
+const response = {
+  title: product.title,
+  image: image,
+  vendor: product.vendor,
+  productType: product.productType,
+  productId: product.id,
+  variants: inventoryMatrix,
+  upsells
+};
+
+res.json(response);
+
 
   } catch (error) {
     console.error('Error in /lookup:', error);
