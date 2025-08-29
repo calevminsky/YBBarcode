@@ -366,7 +366,12 @@
         // Initialize Dynamsoft Barcode Scanner
       const barcodeScanner = new Dynamsoft.BarcodeScanner({
   license: "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTA0MzEyNTE0LTEwNDQ2Nzg3NCIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJvcmdhbml6YXRpb25JRCI6IjEwNDMxMjUxNCIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL3NkbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJjaGVja0NvZGUiOjE5MzI1NzIzNDd9"
-});
+
+  barcodeFormats: [
+    Dynamsoft.DBR.EnumBarcodeFormat.BF_ONED
+  ],
+        
+      });
 
 
         showStatus("📱 Professional scanner launching...", 'scanning');
