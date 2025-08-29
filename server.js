@@ -2,14 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(express.json());
 
+// ----- Shopify config -----
 const SHOPIFY_STORE = 'yakirabella.myshopify.com';
 const ACCESS_TOKEN = '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';
 
+// Helper to call Shopify Admin GraphQL
 async function shopifyGraphQL(query, variables = {}) {
   const response = await fetch(`https://${SHOPIFY_STORE}/admin/api/2025-01/graphql.json`, {
     method: 'POST',
@@ -19,11 +21,12 @@ async function shopifyGraphQL(query, variables = {}) {
     },
     body: JSON.stringify({ query, variables })
   });
-
   if (!response.ok) throw new Error(`Shopify API error: ${response.status}`);
   return response.json();
 }
 
+// ----- GraphQL queries -----
+// 1) Find productVariant by barcode
 const SEARCH_PRODUCT_BY_BARCODE = `
   query searchProduct($query: String!) {
     productVariants(first: 10, query: $query) {
@@ -34,21 +37,13 @@ const SEARCH_PRODUCT_BY_BARCODE = `
           sku
           barcode
           price
-          inventoryItem {
-            id
-          }
+          inventoryItem { id }
           product {
             id
             title
             vendor
             productType
-            images(first: 1) {
-              edges {
-                node {
-                  url
-                }
-              }
-            }
+            images(first: 1) { edges { node { url } } }
           }
         }
       }
@@ -56,6 +51,7 @@ const SEARCH_PRODUCT_BY_BARCODE = `
   }
 `;
 
+// 2) Get full product variants with per-location inventory
 const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
   query getProductInventory($productId: ID!) {
     product(id: $productId) {
@@ -69,22 +65,13 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
             barcode
             price
             compareAtPrice
-            selectedOptions {
-              name
-              value
-            }
+            selectedOptions { name value }
             inventoryItem {
               inventoryLevels(first: 20) {
                 edges {
                   node {
-                    location {
-                      id
-                      name
-                    }
-                    quantities(names: ["available"]) {
-                      name
-                      quantity
-                    }
+                    location { id name }
+                    quantities(names: ["available"]) { name quantity }
                   }
                 }
               }
@@ -96,6 +83,7 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
   }
 `;
 
+// 3) Upsells metafield (theme.upsell_list) supporting product refs or text list
 const GET_PRODUCT_UPSELLS = `
   query getUpsells($productId: ID!) {
     product(id: $productId) {
@@ -120,6 +108,7 @@ const GET_PRODUCT_UPSELLS = `
   }
 `;
 
+// 4) Generic product search (used for upsells text mode)
 const SEARCH_PRODUCTS = `
   query searchProducts($query: String!) {
     products(first: 30, query: $query) {
@@ -136,26 +125,73 @@ const SEARCH_PRODUCTS = `
   }
 `;
 
-
+// 5) Locations (optional: used for logging / health)
 const GET_LOCATIONS = `
   query {
     locations(first: 20) {
-      edges {
-        node {
-          id
-          name
+      edges { node { id name } }
+    }
+  }
+`;
+
+// 6) Siblings: product metafield theme.siblings = *collection handle* (single-line text)
+const GET_PRODUCT_SIBLINGS_HANDLE = `
+  query getSiblingsHandle($productId: ID!) {
+    product(id: $productId) {
+      id
+      handle
+      metafield(namespace: "theme", key: "siblings") { value }
+    }
+  }
+`;
+
+// 7) Fetch collection products by handle
+const GET_COLLECTION_PRODUCTS_BY_HANDLE = `
+  query collectionByHandle($handle: String!) {
+    collectionByHandle(handle: $handle) {
+      id
+      handle
+      title
+      products(first: 100) {
+        edges {
+          node {
+            id
+            title
+            handle
+            images(first: 1) { edges { node { url } } }
+            variants(first: 1) { edges { node { price } } }
+          }
         }
       }
     }
   }
 `;
 
+// 8) Fallback search if collectionByHandle fails/empty
+const SEARCH_PRODUCTS_FALLBACK = `
+  query searchProducts($query: String!) {
+    products(first: 100, query: $query) {
+      edges {
+        node {
+          id
+          title
+          handle
+          images(first: 1) { edges { node { url } } }
+          variants(first: 1) { edges { node { price } } }
+        }
+      }
+    }
+  }
+`;
+
+// ----- Caches / helpers -----
 let locationsCache = null;
+
 async function getLocations() {
   if (!locationsCache) {
     try {
       const result = await shopifyGraphQL(GET_LOCATIONS);
-      if (result.data && result.data.locations) {
+      if (result.data?.locations) {
         locationsCache = result.data.locations.edges.map(edge => edge.node);
         console.log('Available locations:', locationsCache.map(l => l.name));
       }
@@ -173,7 +209,7 @@ async function getUpsellProducts(productId) {
     const mf = result?.data?.product?.metafield;
     if (!mf) return [];
 
-    // Case 1: list.product_reference — use references
+    // Case 1: metafield holds product references
     const refs = mf.references?.nodes?.filter(n => n?.__typename === "Product") || [];
     if (refs.length) {
       return refs.map(p => ({
@@ -185,10 +221,9 @@ async function getUpsellProducts(productId) {
       }));
     }
 
-    // Case 2: raw text (handles or titles), try both
+    // Case 2: metafield holds text (handles or titles)
     const raw = (mf.value || "").trim();
     if (!raw) return [];
-
     const tokens = raw.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
     if (!tokens.length) return [];
 
@@ -211,7 +246,71 @@ async function getUpsellProducts(productId) {
   }
 }
 
+// Siblings from product metafield theme.siblings (collection handle)
+async function getSiblingsFromCollectionHandleMetafield(productId) {
+  try {
+    // a) Read metafield value from product
+    const r1 = await shopifyGraphQL(GET_PRODUCT_SIBLINGS_HANDLE, { productId });
+    const prod = r1?.data?.product;
+    const currentHandle = prod?.handle;
+    let colHandle = (prod?.metafield?.value || "").trim();
 
+    if (!colHandle) {
+      console.warn("theme.siblings metafield empty");
+      return [];
+    }
+
+    // Allow full URL in metafield; extract last path segment
+    try {
+      if (colHandle.includes('http')) {
+        const u = new URL(colHandle);
+        const parts = u.pathname.split('/').filter(Boolean);
+        colHandle = parts[parts.length - 1] || colHandle;
+      }
+    } catch (_) { /* ignore */ }
+
+    // b) Try collectionByHandle
+    let nodes = [];
+    try {
+      const r2 = await shopifyGraphQL(GET_COLLECTION_PRODUCTS_BY_HANDLE, { handle: colHandle });
+      nodes = r2?.data?.collectionByHandle?.products?.edges?.map(e => e.node) || [];
+    } catch (e) {
+      console.warn("collectionByHandle failed:", e?.message || e);
+    }
+
+    // c) Fallback if needed: search by collection handle/title
+    if (!nodes.length) {
+      const qParts = [
+        `collection_handle:${colHandle}`,
+        `collection_title:"${colHandle.replace(/"/g, '\\"')}"`
+      ];
+      const r3 = await shopifyGraphQL(SEARCH_PRODUCTS_FALLBACK, { query: qParts.join(' OR ') });
+      nodes = r3?.data?.products?.edges?.map(e => e.node) || [];
+    }
+
+    // d) Normalize, exclude current product, dedupe
+    const seen = new Set();
+    const siblings = [];
+    for (const p of nodes) {
+      if (!p || p.handle === currentHandle) continue;
+      if (seen.has(p.id)) continue;
+      seen.add(p.id);
+      siblings.push({
+        id: p.id,
+        title: p.title,
+        handle: p.handle,
+        image: p.images?.edges?.[0]?.node?.url || 'https://via.placeholder.com/150',
+        price: p.variants?.edges?.[0]?.node?.price || null
+      });
+    }
+    return siblings;
+  } catch (err) {
+    console.error("getSiblingsFromCollectionHandleMetafield error:", err);
+    return [];
+  }
+}
+
+// ----- Routes -----
 app.post('/lookup', async (req, res) => {
   try {
     const rawBarcode = req.body.barcode;
@@ -246,6 +345,7 @@ app.post('/lookup', async (req, res) => {
       ? product.images.edges[0].node.url
       : 'https://via.placeholder.com/150';
 
+    // Full product inventory by variant/location
     const productResult = await shopifyGraphQL(GET_PRODUCT_VARIANTS_WITH_INVENTORY, { productId });
     if (productResult.errors) {
       console.error('GraphQL error loading full product:', productResult.errors);
@@ -253,36 +353,34 @@ app.post('/lookup', async (req, res) => {
     }
 
     const productVariants = productResult.data.product.variants.edges.map(edge => edge.node);
+
+    // Stores to show (adjust names as you like)
     const targetLocationNames = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
 
     const inventoryMatrix = productVariants.map(v => {
-      // Extract size from selectedOptions
-      const sizeOption = v.selectedOptions.find(opt => 
-        opt.name.toLowerCase().includes('size') || 
+      // Extract size from selectedOptions (prefer the "Size" option)
+      const sizeOption = v.selectedOptions.find(opt =>
+        opt.name.toLowerCase().includes('size') ||
         opt.name.toLowerCase() === 'title' ||
-        opt.name === v.selectedOptions[0]?.name // Use first option as fallback
+        opt.name === v.selectedOptions[0]?.name
       );
-      
       const size = sizeOption ? sizeOption.value : (v.title || 'Unknown');
-      
+
       const inventoryLevels = v.inventoryItem.inventoryLevels.edges;
 
       const quantities = targetLocationNames.map(locationName => {
         const level = inventoryLevels.find(lvl => {
-          const actual = lvl.node.location.name.toLowerCase();
-          return actual.includes(locationName.toLowerCase()) || locationName.toLowerCase().includes(actual);
+          const actual = (lvl.node.location.name || '').toLowerCase();
+          const wanted = locationName.toLowerCase();
+          return actual.includes(wanted) || wanted.includes(actual);
         });
-
         const qtyEntry = level?.node?.quantities?.find(q => q.name === 'available');
-        return {
-          location: locationName,
-          quantity: qtyEntry?.quantity || 0
-        };
+        return { location: locationName, quantity: qtyEntry?.quantity || 0 };
       });
 
       return {
         variantTitle: v.title,
-        size: size,
+        size,
         sku: v.sku,
         barcode: v.barcode,
         price: v.price,
@@ -291,22 +389,23 @@ app.post('/lookup', async (req, res) => {
       };
     });
 
-// NEW: fetch upsell/matching products
-const upsells = await getUpsellProducts(productId);
+    // Upsells & Siblings
+    const upsells  = await getUpsellProducts(productId);
+    const siblings = await getSiblingsFromCollectionHandleMetafield(productId);
 
-const response = {
-  title: product.title,
-  image: image,
-  vendor: product.vendor,
-  productType: product.productType,
-  productId: product.id,
-  variants: inventoryMatrix,
-  upsells
-};
+    // Response
+    const response = {
+      title: product.title,
+      image,
+      vendor: product.vendor,
+      productType: product.productType,
+      productId: product.id,
+      variants: inventoryMatrix,
+      upsells,
+      siblings
+    };
 
-res.json(response);
-
-
+    res.json(response);
   } catch (error) {
     console.error('Error in /lookup:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -338,13 +437,8 @@ app.get('/debug', async (req, res) => {
               sku
               barcode
               price
-              selectedOptions {
-                name
-                value
-              }
-              product {
-                title
-              }
+              selectedOptions { name value }
+              product { title }
             }
           }
         }
@@ -371,6 +465,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// ----- Start -----
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
