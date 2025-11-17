@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 // ----- Shopify config -----
-const SHOPIFY_STORE = 'yakirabella.myshopify.com';
+const SHOPIFY_STORE = process.env.SHOPIFY_STORE || 'yakirabella.myshopify.com';
 const ACCESS_TOKEN  = process.env.SHOPIFY_ACCESS_TOKEN;
 
 // Helper to call Shopify Admin GraphQL
