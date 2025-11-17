@@ -9,7 +9,7 @@ app.use(express.json());
 
 // ----- Shopify config -----
 const SHOPIFY_STORE = 'yakirabella.myshopify.com';
-const ACCESS_TOKEN = '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';
+const ACCESS_TOKEN = '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';
 
 // Helper to call Shopify Admin GraphQL
 async function shopifyGraphQL(query, variables = {}) {
