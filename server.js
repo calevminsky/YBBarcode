@@ -9,11 +9,11 @@ app.use(express.json());
 
 // ----- Shopify config -----
 const SHOPIFY_STORE = 'yakirabella.myshopify.com';
-const ACCESS_TOKEN = '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';
+const ACCESS_TOKEN = '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';
 
 // Helper to call Shopify Admin GraphQL
 async function shopifyGraphQL(query, variables = {}) {
-  const response = await fetch(`https://${SHOPIFY_STORE}/admin/api/2025-01/graphql.json`, {
+  const response = await fetch(`https://${SHOPIFY_STORE}/admin/api/2025-10/graphql.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
