@@ -469,6 +469,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// NEW: dedicated returns page
+app.get('/returns', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'returns.html'));
+});
+
 // ----- Start -----
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
