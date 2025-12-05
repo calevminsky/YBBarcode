@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yakira Bella Returns Scanner</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-barcode-reader-bundle@11.0.3000/dist/dbr.bundle.js"></script>
+
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #fff; color: #111; }
+    .container { max-width: 900px; margin: auto; }
+
+    .status { padding: 10px; margin-bottom: 10px; border-radius: 5px; display:none; }
+    .status.success { background: #e0ffe0; color: #1a8e1a; }
+    .status.error   { background: #ffe0e0; color: #d22; }
+    .status.scanning{ background: #e0f0ff; color: #0056b3; }
+
+    .product-image { max-width: 150px; max-height: 150px; }
+
+    .inventory-table { width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 15px; font-size: 0.85em; }
+    .inventory-table th, .inventory-table td { border: 1px solid #ccc; padding: 6px 4px; text-align: center; word-break: break-word; }
+    .inventory-table th { background-color: #f5f5f5; font-weight: bold; font-size: 0.8em; }
+    .inventory-table th:first-child, .inventory-table td:first-child { width: 15%; font-weight: bold; }
+
+    .stock-zero { color: red; font-weight: bold; }
+    .stock-low { color: orange; font-weight: bold; }
+    .stock-medium { color: #888; font-weight: bold; }
+    .stock-high { color: green; font-weight: bold; }
+
+    .scanned-variant-row {
+      background-color: #f5f2ff;
+    }
+
+    .btn-success, .btn-primary {
+      color: white; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; margin-top: 10px; margin-right: 10px;
+    }
+    .btn-success { background: #28a745; }
+    .btn-primary { background: #007bff; }
+
+    .price-block { font-size: 1.2em; margin: 0.5em 0; }
+    .price-block s { margin-left: 8px; color: #999; }
+
+    input[type="text"] {
+      width: 100%; padding: 12px; font-size: 1.05em; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 12px;
+    }
+    input[type="text"]:focus { border-color: #007bff; outline: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Yakira Bella Returns</h1>
+
+    <input id="barcodeInput" type="text" placeholder="Scan or enter barcode to process return" />
+
+    <div style="margin-bottom: 12px;">
+      <button class="btn-success" onclick="lookupBarcode()">Manual Lookup</button>
+      <button class="btn-primary" onclick="startDynamsoft()">Camera Scanner</button>
+    </div>
+
+    <div id="status" class="status scanning"></div>
+    <div id="product" style="margin-top: 18px; display: none;"></div>
+  </div>
+
+  <script>
+    const BACKEND_URL = 'https://ybbc.onrender.com';
+    const DYNAMSOFT_LICENSE = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTA0MzEyNTE0LTEwNDQ2Nzg3NCIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJvcmdhbml6YXRpb25JRCI6IjEwNDMxMjUxNCIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL3NkbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJjaGVja0NvZGUiOjE5MzI1NzIzNDd9";
+
+    // ---- RETURN RULES (single rule based on total warehouse inventory) ----
+    const RETURN_RULES = {
+      warehouseLocation: "Bogota", // which location name is your warehouse column
+      threshold: 3,               // if total at warehouse AFTER return <= threshold => SEND TO STORES
+      addReturnedUnit: true       // count this return as +1
+    };
+
+    const statusDiv = document.getElementById("status");
+    const productDiv = document.getElementById("product");
+    let lastProductData = null;
+
+    window.onload = () => document.getElementById("barcodeInput").focus();
+    document.getElementById("barcodeInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") lookupBarcode();
+    });
+
+    function showStatus(message, type='scanning') {
+      statusDiv.textContent = message;
+      statusDiv.className = `status ${type}`;
+      statusDiv.style.display = 'block';
+    }
+    function hideStatus() { statusDiv.style.display = 'none'; }
+
+    async function lookupBarcode() {
+      const barcode = document.getElementById("barcodeInput").value.trim();
+      if (!barcode) return;
+
+      showStatus("🔍 Looking up " + barcode + "...", 'scanning');
+      try {
+        const res = await fetch(`${BACKEND_URL}/lookup`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ barcode })
+        });
+        if (!res.ok) {
+          const errorData = await res.json().catch(()=>({}));
+          showStatus("❌ " + (errorData.error || "Product not found"), 'error');
+          return;
+        }
+        const data = await res.json();
+        lastProductData = data;
+        displayProduct(data);
+        hideStatus();
+        const input = document.getElementById("barcodeInput");
+        input.value = "";
+        input.focus();
+      } catch (err) {
+        console.error(err);
+        showStatus("❌ Network error", 'error');
+      }
+    }
+
+    function getStockClass(q) {
+      if (q === 0) return 'stock-zero';
+      if (q <= 2) return 'stock-low';
+      if (q <= 5) return 'stock-medium';
+      return 'stock-high';
+    }
+
+    function extractProductId(productId) {
+      if (productId?.includes('gid://shopify/Product/')) return productId.split('/').pop();
+      return productId || '';
+    }
+
+    // Decision based on total product inventory at the warehouse
+    function computeReturnDecision(data) {
+      if (!data || !Array.isArray(data.variants) || !data.variants.length) return null;
+
+      const warehouseLocation = RETURN_RULES.warehouseLocation || "Bogota";
+
+      let totalWarehouseQty = 0;
+      data.variants.forEach(v => {
+        const level = (v.inventory || []).find(e => e.location === warehouseLocation);
+        totalWarehouseQty += level?.quantity || 0;
+      });
+
+      if (RETURN_RULES.addReturnedUnit) {
+        totalWarehouseQty += 1;
+      }
+
+      const sendToStores = totalWarehouseQty <= RETURN_RULES.threshold;
+      return sendToStores ? "SEND_TO_STORES" : "RESTOCK_TO_WAREHOUSE";
+    }
+
+    function displayProduct(data) {
+      // Price
+      let priceHTML = '';
+      if (Array.isArray(data.variants) && data.variants.length) {
+        const prices = data.variants.map(v => parseFloat(v.price)).filter(n => !isNaN(n));
+        const compares = data.variants.map(v => parseFloat(v.compareAtPrice)).filter(n => !isNaN(n) && isFinite(n));
+        const lowestPrice = prices.length ? Math.min(...prices) : null;
+        const lowestCompareAt = compares.length ? Math.min(...compares) : null;
+
+        if (lowestPrice != null) {
+          if (lowestCompareAt && lowestCompareAt > lowestPrice) {
+            priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong> <s>$${lowestCompareAt.toFixed(2)}</s></div>`;
+          } else {
+            priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong></div>`;
+          }
+        }
+      }
+
+      const headerHTML = `
+        <div style="margin-bottom: 1em;">
+          <img src="${data.image}" class="product-image" alt="Product image" style="float: right; margin-left: 15px;" />
+          <a href="https://yakirabella.myshopify.com/admin/products/${extractProductId(data.productId)}" target="_blank" style="color: #007bff; text-decoration: none; font-size: 1.3em; font-weight: bold;">
+            ${data.title}
+          </a><br>
+          ${priceHTML}
+          <div style="clear: both;"></div>
+        </div>
+      `;
+
+      // Decision banner
+      let decisionHTML = '';
+      const decision = computeReturnDecision(data);
+      if (decision) {
+        const isSendToStore = decision === "SEND_TO_STORES";
+        const bannerColor = isSendToStore ? '#28a745' : '#007bff';
+        const bannerBg = isSendToStore ? '#e6ffed' : '#e7f0ff';
+        const bannerText = isSendToStore ? 'SEND TO STORES' : 'RESTOCK TO WAREHOUSE';
+
+        decisionHTML = `
+          <div style="border-radius:8px;padding:12px 14px;margin-bottom:16px;background:${bannerBg};">
+            <div style="font-size:1.3em;font-weight:800;color:${bannerColor};text-align:center;">
+              ${bannerText}
+            </div>
+          </div>
+        `;
+      }
+
+      // Inventory table with scanned size highlighted
+      let inventoryHTML = '';
+      if (Array.isArray(data.variants) && data.variants.length) {
+        const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
+        let tableHTML = `
+          <table class="inventory-table">
+            <thead>
+              <tr>
+                <th>Size</th>
+                ${locations.map(loc => `<th>${loc}</th>`).join('')}
+                <th>Total</th>
+              </tr>
+            </thead><tbody>
+        `;
+
+        const scannedBarcode = data.scannedVariantBarcode || null;
+        const locationTotals = Object.fromEntries(locations.map(l => [l, 0]));
+        let grandTotal = 0;
+
+        data.variants.forEach(row => {
+          const isScanned = scannedBarcode && row.barcode === scannedBarcode;
+          tableHTML += `<tr class="${isScanned ? 'scanned-variant-row' : ''}"><td><strong>${row.size}</strong></td>`;
+          let rowTotal = 0;
+          locations.forEach(loc => {
+            const qty = (row.inventory || []).find(e => e.location === loc)?.quantity || 0;
+            locationTotals[loc] += qty; rowTotal += qty; grandTotal += qty;
+            tableHTML += `<td class="${getStockClass(qty)}">${qty}</td>`;
+          });
+          tableHTML += `<td><strong>${rowTotal}</strong></td></tr>`;
+        });
+
+        tableHTML += `<tr style="background:#f0f0f0;"><td><strong>TOTAL</strong></td>`;
+        locations.forEach(loc => tableHTML += `<td><strong>${locationTotals[loc]}</strong></td>`);
+        tableHTML += `<td><strong>${grandTotal}</strong></td></tr></tbody></table>`;
+        inventoryHTML = tableHTML;
+      } else {
+        inventoryHTML = `<div style="color:#666;">No inventory data.</div>`;
+      }
+
+      productDiv.innerHTML = headerHTML + decisionHTML + inventoryHTML;
+      productDiv.style.display = "block";
+    }
+
+    async function startDynamsoft() {
+      try {
+        showStatus("⚡ Starting professional scanner...", 'scanning');
+
+        if (typeof Dynamsoft === 'undefined') {
+          showStatus("❌ Dynamsoft not loaded. Check internet connection.", 'error');
+          return;
+        }
+
+        const barcodeScanner = new Dynamsoft.BarcodeScanner({
+          license: DYNAMSOFT_LICENSE,
+          barcodeFormats: [ Dynamsoft.DBR.EnumBarcodeFormat.BF_ONED ]
+        });
+
+        barcodeScanner.onLicenseVerificationCallback = function (isSuccess, error) {
+          if (isSuccess) {
+            console.log("✅ License verified successfully (1D only)");
+          } else {
+            console.error("❌ License verification failed:", (error && error.message) || error);
+          }
+        };
+
+        const result = await barcodeScanner.launch();
+        if (result.barcodeResults?.length) {
+          const barcode = result.barcodeResults[0].text;
+          document.getElementById("barcodeInput").value = barcode;
+          showStatus("⚡ Professional scan: " + barcode, 'success');
+          await lookupBarcode();
+        } else {
+          showStatus("📱 No barcode detected. Try again.", 'scanning');
+          setTimeout(hideStatus, 3000);
+        }
+      } catch (error) {
+        console.error('Dynamsoft error:', error);
+        showStatus("❌ Scanner error: " + error.message, 'error');
+      }
+    }
+  </script>
+</body>
+</html>
