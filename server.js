@@ -340,6 +340,8 @@ app.post('/lookup', async (req, res) => {
     const variant = variants[0].node;
     const product = variant.product;
     const productId = product.id;
+    const scannedVariantId = variant.id;
+    const scannedVariantBarcode = variant.barcode;
 
     const image = product.images.edges.length > 0
       ? product.images.edges[0].node.url
@@ -402,7 +404,9 @@ app.post('/lookup', async (req, res) => {
       productId: product.id,
       variants: inventoryMatrix,
       upsells,
-      siblings
+      siblings,
+      scannedVariantId,
+      scannedVariantBarcode
     };
 
     res.json(response);
