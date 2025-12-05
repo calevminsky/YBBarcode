@@ -29,6 +29,11 @@
     .stock-medium { color: #888; font-weight: bold; }
     .stock-high { color: green; font-weight: bold; }
 
+    /* NEW: faint highlight for scanned variant row */
+    .scanned-variant-row {
+      background-color: #f5f2ff;
+    }
+
     .btn-success, .btn-primary {
       color: white; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; margin-top: 10px; margin-right: 10px;
     }
@@ -86,7 +91,7 @@
       <select id="viewMode" style="padding:8px 10px;border:1px solid #ccc;border-radius:6px;">
         <option value="inventory" selected>Inventory</option>
         <option value="matching">Matching</option>
-        <option value="returns">Returns</option> <!-- NEW: returns view -->
+        <option value="returns">Returns</option>
         <option value="client">Client</option>
       </select>
     </div>
@@ -101,24 +106,16 @@
     const DYNAMSOFT_LICENSE = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTA0MzEyNTE0LTEwNDQ2Nzg3NCIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJvcmdhbml6YXRpb25JRCI6IjEwNDMxMjUxNCIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL3NkbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJjaGVja0NvZGUiOjE5MzI1NzIzNDd9";
 
     // ---- RETURN RULES (EDIT HERE TO CHANGE LOGIC) ----
-    // This is where you configure "scraggler" rules.
-    // Explanation:
-    // - warehouseLocation: which location to treat as the warehouse
-    // - threshold: if total warehouse inventory (after this return) <= threshold => SEND TO STORES
-    // - addReturnedUnit: if true, we simulate "after return" by adding 1 to current quantity
-    // - byProductType: overrides threshold per Shopify productType (optional)
+    // Decision is based on TOTAL product inventory at the warehouse (sum of all sizes).
     const RETURN_RULES = {
       default: {
-        warehouseLocation: "Bogota",
-        threshold: 3,
-        compareAgainst: "total",   // "total" (sum of all sizes) or "variant"
-        addReturnedUnit: true
+        warehouseLocation: "Bogota",  // which column is your main warehouse
+        threshold: 3,                 // if total <= threshold AFTER this return => SEND TO STORES
+        addReturnedUnit: true         // treat this scan as 1 unit coming back
       },
       byProductType: {
-        // EXAMPLES — adjust to match your Shopify productType names:
-        // "Dress":   { threshold: 2 },
+        // Example overrides (match Shopify productType strings):
         // "Dresses": { threshold: 2 },
-        // "Skirt":   { threshold: 4 },
         // "Skirts":  { threshold: 4 }
       }
     };
@@ -129,8 +126,6 @@
     const viewControls = document.getElementById("viewControls");
     const viewSelect = document.getElementById("viewMode");
 
-    // Determine client mode from URL:
-    // - ?mode=client  OR  pathname ends with /client
     const params = new URLSearchParams(location.search);
     const clientByQuery = (params.get('mode') || '').toLowerCase() === 'client';
     const clientByPath = location.pathname.replace(/\/+$/, '').endsWith('/client');
@@ -230,13 +225,14 @@
       return { ...base, ...overrides };
     }
 
+    // Decision is based on TOTAL product inventory at the warehouse
     function computeReturnDecision(data) {
       if (!data || !Array.isArray(data.variants) || !data.variants.length) return null;
 
       const rule = getReturnRule(data.productType || "");
       const warehouseLocation = rule.warehouseLocation || "Bogota";
 
-      // Find total warehouse inventory for this product
+      // Total inventory for this product at warehouse (all sizes)
       let totalWarehouseQty = 0;
       data.variants.forEach(v => {
         const level = (v.inventory || []).find(e => e.location === warehouseLocation);
@@ -251,11 +247,7 @@
       const sendToStores = totalWarehouseQty <= rule.threshold;
 
       return {
-        action: sendToStores ? "SEND_TO_STORES" : "RESTOCK_TO_WAREHOUSE",
-        location: warehouseLocation,
-        threshold: rule.threshold,
-        quantityAfterReturn: totalWarehouseQty,
-        rule
+        action: sendToStores ? "SEND_TO_STORES" : "RESTOCK_TO_WAREHOUSE"
       };
     }
 
@@ -312,11 +304,14 @@
               </tr>
             </thead><tbody>
         `;
+
+        const scannedBarcode = data.scannedVariantBarcode || null;
         const locationTotals = Object.fromEntries(locations.map(l => [l, 0]));
         let grandTotal = 0;
 
         data.variants.forEach(row => {
-          tableHTML += `<tr><td><strong>${row.size}</strong></td>`;
+          const isScanned = scannedBarcode && row.barcode === scannedBarcode;
+          tableHTML += `<tr class="${isScanned ? 'scanned-variant-row' : ''}"><td><strong>${row.size}</strong></td>`;
           let rowTotal = 0;
           locations.forEach(loc => {
             const qty = (row.inventory || []).find(e => e.location === loc)?.quantity || 0;
@@ -362,7 +357,7 @@
         </div>
       `;
 
-      // ----- Returns view (uses inventory + return rules) -----
+      // ----- Returns view (banner + inventory table) -----
       let returnsHTML = '';
       if (Array.isArray(data.variants) && data.variants.length) {
         const decision = computeReturnDecision(data);
@@ -372,21 +367,11 @@
           const bannerBg = isSendToStore ? '#e6ffed' : '#e7f0ff';
           const bannerText = isSendToStore ? 'SEND TO STORES' : 'RESTOCK TO WAREHOUSE';
 
-          const explanation = isSendToStore
-            ? `Total ${decision.location} inventory after this return (${decision.quantityAfterReturn}) is at or below your threshold (${decision.threshold}).`
-            : `Total ${decision.location} inventory after this return (${decision.quantityAfterReturn}) is above your threshold (${decision.threshold}).`;
-
           returnsHTML = `
             <div style="border-radius:8px;padding:12px 14px;margin-bottom:16px;background:${bannerBg};">
-              <div style="font-weight:700;font-size:1.05em;margin-bottom:4px;">Return Decision</div>
-              <div style="font-size:1.3em;font-weight:800;color:${bannerColor};margin-bottom:4px;">
+              <div style="font-size:1.3em;font-weight:800;color:${bannerColor};text-align:center;">
                 ${bannerText}
               </div>
-              <div style="font-size:0.9em;color:#444;">${explanation}</div>
-              <div style="font-size:0.85em;color:#666;margin-top:4px;">
-                Rules: Warehouse = ${decision.location}, Threshold = ${decision.threshold}, Compare = ${decision.rule.compareAgainst}, Add returned unit = ${decision.rule.addReturnedUnit}.
-              </div>
-              ${data.productType ? `<div style="font-size:0.85em;color:#666;margin-top:2px;">Product type: ${data.productType}</div>` : ''}
             </div>
             ${inventoryHTML}
           `;
@@ -421,7 +406,6 @@
           barcodeFormats: [ Dynamsoft.DBR.EnumBarcodeFormat.BF_ONED ] // 1D only
         });
 
-        // License debug — shows exact reason if it fails
         barcodeScanner.onLicenseVerificationCallback = function (isSuccess, error) {
           if (isSuccess) {
             console.log("✅ License verified successfully (1D only)");
