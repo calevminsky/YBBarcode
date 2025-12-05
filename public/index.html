@@ -86,6 +86,7 @@
       <select id="viewMode" style="padding:8px 10px;border:1px solid #ccc;border-radius:6px;">
         <option value="inventory" selected>Inventory</option>
         <option value="matching">Matching</option>
+        <option value="returns">Returns</option> <!-- NEW: returns view -->
         <option value="client">Client</option>
       </select>
     </div>
@@ -98,6 +99,29 @@
     // ---- CONFIG ----
     const BACKEND_URL = 'https://ybbc.onrender.com'; // change if needed
     const DYNAMSOFT_LICENSE = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTA0MzEyNTE0LTEwNDQ2Nzg3NCIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJvcmdhbml6YXRpb25JRCI6IjEwNDMxMjUxNCIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL3NkbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJjaGVja0NvZGUiOjE5MzI1NzIzNDd9";
+
+    // ---- RETURN RULES (EDIT HERE TO CHANGE LOGIC) ----
+    // This is where you configure "scraggler" rules.
+    // Explanation:
+    // - warehouseLocation: which location to treat as the warehouse
+    // - threshold: if total warehouse inventory (after this return) <= threshold => SEND TO STORES
+    // - addReturnedUnit: if true, we simulate "after return" by adding 1 to current quantity
+    // - byProductType: overrides threshold per Shopify productType (optional)
+    const RETURN_RULES = {
+      default: {
+        warehouseLocation: "Bogota",
+        threshold: 3,
+        compareAgainst: "total",   // "total" (sum of all sizes) or "variant"
+        addReturnedUnit: true
+      },
+      byProductType: {
+        // EXAMPLES — adjust to match your Shopify productType names:
+        // "Dress":   { threshold: 2 },
+        // "Dresses": { threshold: 2 },
+        // "Skirt":   { threshold: 4 },
+        // "Skirts":  { threshold: 4 }
+      }
+    };
 
     // ---- STATE ----
     const statusDiv = document.getElementById("status");
@@ -199,6 +223,42 @@
       `;
     }
 
+    // ---- RETURN DECISION HELPERS ----
+    function getReturnRule(productType) {
+      const base = { ...RETURN_RULES.default };
+      const overrides = (RETURN_RULES.byProductType && RETURN_RULES.byProductType[productType]) || {};
+      return { ...base, ...overrides };
+    }
+
+    function computeReturnDecision(data) {
+      if (!data || !Array.isArray(data.variants) || !data.variants.length) return null;
+
+      const rule = getReturnRule(data.productType || "");
+      const warehouseLocation = rule.warehouseLocation || "Bogota";
+
+      // Find total warehouse inventory for this product
+      let totalWarehouseQty = 0;
+      data.variants.forEach(v => {
+        const level = (v.inventory || []).find(e => e.location === warehouseLocation);
+        totalWarehouseQty += level?.quantity || 0;
+      });
+
+      // Simulate "after this return arrives"
+      if (rule.addReturnedUnit) {
+        totalWarehouseQty += 1;
+      }
+
+      const sendToStores = totalWarehouseQty <= rule.threshold;
+
+      return {
+        action: sendToStores ? "SEND_TO_STORES" : "RESTOCK_TO_WAREHOUSE",
+        location: warehouseLocation,
+        threshold: rule.threshold,
+        quantityAfterReturn: totalWarehouseQty,
+        rule
+      };
+    }
+
     function displayProduct(data) {
       // Price block from variants (lowest)
       let priceHTML = '';
@@ -238,7 +298,7 @@
       `;
       const headerHTML = CLIENT_MODE ? clientHeader : adminHeader;
 
-      // ----- Inventory view (hidden in client mode by locking viewMode) -----
+      // ----- Inventory view -----
       let inventoryHTML = '';
       if (Array.isArray(data.variants) && data.variants.length) {
         const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
@@ -302,10 +362,46 @@
         </div>
       `;
 
+      // ----- Returns view (uses inventory + return rules) -----
+      let returnsHTML = '';
+      if (Array.isArray(data.variants) && data.variants.length) {
+        const decision = computeReturnDecision(data);
+        if (decision) {
+          const isSendToStore = decision.action === "SEND_TO_STORES";
+          const bannerColor = isSendToStore ? '#28a745' : '#007bff';
+          const bannerBg = isSendToStore ? '#e6ffed' : '#e7f0ff';
+          const bannerText = isSendToStore ? 'SEND TO STORES' : 'RESTOCK TO WAREHOUSE';
+
+          const explanation = isSendToStore
+            ? `Total ${decision.location} inventory after this return (${decision.quantityAfterReturn}) is at or below your threshold (${decision.threshold}).`
+            : `Total ${decision.location} inventory after this return (${decision.quantityAfterReturn}) is above your threshold (${decision.threshold}).`;
+
+          returnsHTML = `
+            <div style="border-radius:8px;padding:12px 14px;margin-bottom:16px;background:${bannerBg};">
+              <div style="font-weight:700;font-size:1.05em;margin-bottom:4px;">Return Decision</div>
+              <div style="font-size:1.3em;font-weight:800;color:${bannerColor};margin-bottom:4px;">
+                ${bannerText}
+              </div>
+              <div style="font-size:0.9em;color:#444;">${explanation}</div>
+              <div style="font-size:0.85em;color:#666;margin-top:4px;">
+                Rules: Warehouse = ${decision.location}, Threshold = ${decision.threshold}, Compare = ${decision.rule.compareAgainst}, Add returned unit = ${decision.rule.addReturnedUnit}.
+              </div>
+              ${data.productType ? `<div style="font-size:0.85em;color:#666;margin-top:2px;">Product type: ${data.productType}</div>` : ''}
+            </div>
+            ${inventoryHTML}
+          `;
+        } else {
+          returnsHTML = `<div style="margin:8px 0;color:#666;">No inventory data to evaluate return decision.</div>`;
+        }
+      } else {
+        returnsHTML = `<div style="margin:8px 0;color:#666;">No inventory data to evaluate return decision.</div>`;
+      }
+
       // Choose which body to display
       let bodyHTML = inventoryHTML;
       if (viewMode === 'matching') bodyHTML = matchingHTML;
       if (viewMode === 'client')   bodyHTML = clientHTML;
+      if (viewMode === 'returns')  bodyHTML = returnsHTML;
 
       productDiv.innerHTML = headerHTML + bodyHTML;
       productDiv.style.display = "block";
