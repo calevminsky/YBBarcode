@@ -370,6 +370,87 @@ async function getSiblingsFromCollectionHandleMetafield(productId) {
 }
 
 // ----- Routes -----
+
+// Search autocomplete: returns list of products matching a query
+app.get('/search', async (req, res) => {
+  try {
+    const q = (req.query.q || '').trim();
+    if (!q || q.length < 2) return res.json([]);
+
+    const escaped = escapeSearchTerm(q);
+    const query = `title:*${escaped}*`;
+    const result = await shopifyGraphQL(SEARCH_PRODUCTS, { query });
+    const products = (result?.data?.products?.edges || []).map(e => {
+      const p = e.node;
+      return {
+        id: p.id,
+        title: p.title,
+        handle: p.handle,
+        image: p.images?.edges?.[0]?.node?.url || null
+      };
+    });
+    res.json(products);
+  } catch (err) {
+    console.error('Search error:', err);
+    res.status(500).json({ error: 'Search failed' });
+  }
+});
+
+// Full inventory matrix for a product by Shopify product ID
+app.get('/product-inventory/:productId', async (req, res) => {
+  try {
+    const rawId = req.params.productId;
+    const productId = rawId.startsWith('gid://') ? rawId : `gid://shopify/Product/${rawId}`;
+
+    const productResult = await shopifyGraphQL(GET_PRODUCT_VARIANTS_WITH_INVENTORY, { productId });
+    if (productResult.errors || !productResult?.data?.product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    const product = productResult.data.product;
+    const productVariants = product.variants.edges.map(edge => edge.node);
+    const targetLocationNames = TARGET_LOCATION_NAMES;
+
+    const inventoryMatrix = productVariants.map(v => {
+      const sizeOption = v.selectedOptions.find(opt =>
+        opt.name.toLowerCase().includes('size') ||
+        opt.name.toLowerCase() === 'title' ||
+        opt.name === v.selectedOptions[0]?.name
+      );
+      const size = sizeOption ? sizeOption.value : (v.title || 'Unknown');
+      const inventoryLevels = v.inventoryItem.inventoryLevels.edges;
+      const quantities = targetLocationNames.map(locationName => {
+        const level = inventoryLevels.find(lvl => {
+          const actual = (lvl.node.location.name || '').toLowerCase();
+          const wanted = locationName.toLowerCase();
+          return actual.includes(wanted) || wanted.includes(actual);
+        });
+        const qtyEntry = level?.node?.quantities?.find(q => q.name === 'available');
+        return { location: locationName, quantity: qtyEntry?.quantity || 0 };
+      });
+
+      return {
+        variantTitle: v.title,
+        size,
+        sku: v.sku,
+        barcode: v.barcode,
+        price: v.price,
+        compareAtPrice: v.compareAtPrice,
+        inventory: quantities
+      };
+    });
+
+    res.json({
+      title: product.title,
+      productId,
+      variants: inventoryMatrix
+    });
+  } catch (err) {
+    console.error('Product inventory error:', err);
+    res.status(500).json({ error: 'Failed to load product inventory' });
+  }
+});
+
 app.post('/lookup', async (req, res) => {
   try {
     const rawSearch = req.body.barcode || req.body.query || req.body.term;

@@ -44,9 +44,38 @@
     .price-block s { margin-left: 8px; color: #999; }
 
     input[type="text"] {
-      width: 100%; padding: 12px; font-size: 1.05em; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 12px;
+      width: 100%; padding: 12px; font-size: 1.05em; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 0;
     }
     input[type="text"]:focus { border-color: #007bff; outline: none; }
+
+    .search-wrapper { position: relative; margin-bottom: 12px; }
+    .search-dropdown {
+      position: absolute; top: 100%; left: 0; right: 0; z-index: 100;
+      background: #fff; border: 1px solid #ddd; border-top: none; border-radius: 0 0 6px 6px;
+      max-height: 320px; overflow-y: auto; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .search-dropdown-item {
+      display: flex; align-items: center; padding: 10px 12px; cursor: pointer;
+      border-bottom: 1px solid #f0f0f0; gap: 10px;
+    }
+    .search-dropdown-item:hover, .search-dropdown-item.active { background: #f0f4ff; }
+    .search-dropdown-item img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+    .search-dropdown-item span { font-size: 0.95em; }
+
+    .matching-matrix-section { margin-top: 20px; }
+    .matching-product-header {
+      display: flex; align-items: center; gap: 10px; padding: 10px; cursor: pointer;
+      background: #f8f8f8; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 8px;
+    }
+    .matching-product-header:hover { background: #eef3ff; }
+    .matching-product-header img { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; }
+    .matching-product-header .mp-info { flex: 1; }
+    .matching-product-header .mp-title { font-weight: 600; font-size: 0.95em; }
+    .matching-product-header .mp-price { font-size: 0.85em; color: #555; }
+    .matching-product-header .mp-toggle { font-size: 1.2em; color: #999; transition: transform 0.2s; }
+    .matching-product-header .mp-toggle.open { transform: rotate(90deg); }
+    .matching-product-matrix { display: none; margin: 0 0 12px 0; padding: 0 8px 8px 8px; }
+    .matching-product-matrix.open { display: block; }
 
     .product-link:hover { text-decoration: underline !important; }
 
@@ -81,7 +110,10 @@
   <div class="container">
     <h1>Yakira Bella Inventory</h1>
 
-    <input id="barcodeInput" type="text" placeholder="Scan barcode or search by SKU/title" />
+    <div class="search-wrapper">
+      <input id="barcodeInput" type="text" placeholder="Scan barcode or search by name, SKU, or title..." autocomplete="off" />
+      <div id="searchDropdown" class="search-dropdown"></div>
+    </div>
 
     <div style="margin-bottom: 12px;">
       <button class="btn-success" onclick="lookupBarcode()">Manual Lookup</button>
@@ -148,10 +180,169 @@
       });
     }
 
+    const searchDropdown = document.getElementById("searchDropdown");
+    let searchTimeout = null;
+    let activeDropdownIndex = -1;
+    let dropdownItems = [];
+
     window.onload = () => document.getElementById("barcodeInput").focus();
-    document.getElementById("barcodeInput").addEventListener("keydown", e => {
-      if (e.key === "Enter") lookupBarcode();
+
+    const barcodeInput = document.getElementById("barcodeInput");
+    barcodeInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        if (activeDropdownIndex >= 0 && dropdownItems[activeDropdownIndex]) {
+          e.preventDefault();
+          selectDropdownItem(dropdownItems[activeDropdownIndex]);
+        } else {
+          hideDropdown();
+          lookupBarcode();
+        }
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        navigateDropdown(1);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        navigateDropdown(-1);
+      } else if (e.key === "Escape") {
+        hideDropdown();
+      }
     });
+
+    barcodeInput.addEventListener("input", () => {
+      const val = barcodeInput.value.trim();
+      if (searchTimeout) clearTimeout(searchTimeout);
+      // Only search if input looks like text (not a barcode number)
+      if (val.length >= 2 && !/^\d+$/.test(val)) {
+        searchTimeout = setTimeout(() => doAutocomplete(val), 300);
+      } else {
+        hideDropdown();
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", e => {
+      if (!e.target.closest('.search-wrapper')) hideDropdown();
+    });
+
+    async function doAutocomplete(query) {
+      try {
+        const res = await fetch(`${BACKEND_URL}/search?q=${encodeURIComponent(query)}`);
+        if (!res.ok) return hideDropdown();
+        const products = await res.json();
+        if (!products.length) return hideDropdown();
+        showDropdown(products);
+      } catch (err) {
+        console.error('Autocomplete error:', err);
+        hideDropdown();
+      }
+    }
+
+    function showDropdown(products) {
+      dropdownItems = products;
+      activeDropdownIndex = -1;
+      searchDropdown.innerHTML = products.map((p, i) => `
+        <div class="search-dropdown-item" data-index="${i}">
+          ${p.image ? `<img src="${p.image}" alt="">` : `<div style="width:40px;height:40px;background:#eee;border-radius:4px;"></div>`}
+          <span>${p.title}</span>
+        </div>
+      `).join('');
+      searchDropdown.style.display = 'block';
+
+      searchDropdown.querySelectorAll('.search-dropdown-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const idx = parseInt(el.dataset.index);
+          selectDropdownItem(dropdownItems[idx]);
+        });
+      });
+    }
+
+    function hideDropdown() {
+      searchDropdown.style.display = 'none';
+      dropdownItems = [];
+      activeDropdownIndex = -1;
+    }
+
+    function navigateDropdown(dir) {
+      if (!dropdownItems.length) return;
+      activeDropdownIndex += dir;
+      if (activeDropdownIndex < 0) activeDropdownIndex = dropdownItems.length - 1;
+      if (activeDropdownIndex >= dropdownItems.length) activeDropdownIndex = 0;
+      searchDropdown.querySelectorAll('.search-dropdown-item').forEach((el, i) => {
+        el.classList.toggle('active', i === activeDropdownIndex);
+      });
+    }
+
+    function selectDropdownItem(product) {
+      hideDropdown();
+      barcodeInput.value = product.title;
+      lookupBarcode();
+    }
+
+    function inventorySummaryInline(summary) {
+      if (!summary || !summary.inventory) return '';
+      const total = summary.totalAvailable || 0;
+      return `<div style="font-size:0.8em;color:#888;">Total stock: ${total}</div>`;
+    }
+
+    const matchingMatrixCache = {};
+
+    async function toggleMatchingMatrix(index, productId) {
+      const matrixDiv = document.getElementById(`mpMatrix${index}`);
+      const toggleDiv = document.getElementById(`mpToggle${index}`);
+      if (!matrixDiv || !toggleDiv) return;
+
+      const isOpen = matrixDiv.classList.contains('open');
+      if (isOpen) {
+        matrixDiv.classList.remove('open');
+        toggleDiv.classList.remove('open');
+        return;
+      }
+
+      matrixDiv.classList.add('open');
+      toggleDiv.classList.add('open');
+
+      // Load inventory if not cached
+      if (!matchingMatrixCache[productId]) {
+        matrixDiv.innerHTML = '<div style="padding:12px;color:#666;">Loading inventory...</div>';
+        try {
+          const numericId = productId.includes('gid://') ? productId.split('/').pop() : productId;
+          const res = await fetch(`${BACKEND_URL}/product-inventory/${numericId}`);
+          if (!res.ok) throw new Error('Failed to load');
+          matchingMatrixCache[productId] = await res.json();
+        } catch (err) {
+          matrixDiv.innerHTML = '<div style="padding:12px;color:#d22;">Failed to load inventory.</div>';
+          return;
+        }
+      }
+
+      const data = matchingMatrixCache[productId];
+      matrixDiv.innerHTML = buildInventoryTable(data.variants);
+    }
+
+    function buildInventoryTable(variants, scannedBarcode) {
+      if (!Array.isArray(variants) || !variants.length) return '<div style="color:#666;">No inventory data.</div>';
+      const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
+      let html = `<table class="inventory-table"><thead><tr><th>Size</th>${locations.map(l => `<th>${l}</th>`).join('')}<th>Total</th></tr></thead><tbody>`;
+      const locationTotals = Object.fromEntries(locations.map(l => [l, 0]));
+      let grandTotal = 0;
+
+      variants.forEach(row => {
+        const isScanned = scannedBarcode && row.barcode === scannedBarcode;
+        html += `<tr class="${isScanned ? 'scanned-variant-row' : ''}"><td><strong>${row.size}</strong></td>`;
+        let rowTotal = 0;
+        locations.forEach(loc => {
+          const qty = (row.inventory || []).find(e => e.location === loc)?.quantity || 0;
+          locationTotals[loc] += qty; rowTotal += qty; grandTotal += qty;
+          html += `<td class="${getStockClass(qty)}">${qty}</td>`;
+        });
+        html += `<td><strong>${rowTotal}</strong></td></tr>`;
+      });
+
+      html += `<tr style="background:#f0f0f0;"><td><strong>TOTAL</strong></td>`;
+      locations.forEach(loc => html += `<td><strong>${locationTotals[loc]}</strong></td>`);
+      html += `<td><strong>${grandTotal}</strong></td></tr></tbody></table>`;
+      return html;
+    }
 
     function showStatus(message, type='scanning') {
       statusDiv.textContent = message;
@@ -178,6 +369,8 @@
         }
         const data = await res.json();
         lastProductData = data;
+        // Clear matching product matrix cache for new lookup
+        Object.keys(matchingMatrixCache).forEach(k => delete matchingMatrixCache[k]);
         displayProduct(data);
         hideStatus();
         const input = document.getElementById("barcodeInput");
@@ -314,38 +507,7 @@
       // ----- Inventory view -----
       let inventoryHTML = '';
       if (Array.isArray(data.variants) && data.variants.length) {
-        const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
-        let tableHTML = `
-          <table class="inventory-table">
-            <thead>
-              <tr>
-                <th>Size</th>
-                ${locations.map(loc => `<th>${loc}</th>`).join('')}
-                <th>Total</th>
-              </tr>
-            </thead><tbody>
-        `;
-
-        const scannedBarcode = data.scannedVariantBarcode || null;
-        const locationTotals = Object.fromEntries(locations.map(l => [l, 0]));
-        let grandTotal = 0;
-
-        data.variants.forEach(row => {
-          const isScanned = scannedBarcode && row.barcode === scannedBarcode;
-          tableHTML += `<tr class="${isScanned ? 'scanned-variant-row' : ''}"><td><strong>${row.size}</strong></td>`;
-          let rowTotal = 0;
-          locations.forEach(loc => {
-            const qty = (row.inventory || []).find(e => e.location === loc)?.quantity || 0;
-            locationTotals[loc] += qty; rowTotal += qty; grandTotal += qty;
-            tableHTML += `<td class="${getStockClass(qty)}">${qty}</td>`;
-          });
-          tableHTML += `<td><strong>${rowTotal}</strong></td></tr>`;
-        });
-
-        tableHTML += `<tr style="background:#f0f0f0;"><td><strong>TOTAL</strong></td>`;
-        locations.forEach(loc => tableHTML += `<td><strong>${locationTotals[loc]}</strong></td>`);
-        tableHTML += `<td><strong>${grandTotal}</strong></td></tr></tbody></table>`;
-        inventoryHTML = tableHTML;
+        inventoryHTML = buildInventoryTable(data.variants, data.scannedVariantBarcode || null);
       } else {
         inventoryHTML = `<div style="color:#666;">No inventory data.</div>`;
       }
@@ -353,7 +515,33 @@
       // ----- Matching view -----
       let matchingHTML = '';
       if (Array.isArray(data.upsells) && data.upsells.length) {
-        matchingHTML = `<div class="upsell-grid">${data.upsells.map(p => cardHTML(p, CLIENT_MODE)).join('')}</div>`;
+        if (CLIENT_MODE) {
+          matchingHTML = `<div class="upsell-grid">${data.upsells.map(p => cardHTML(p, true)).join('')}</div>`;
+        } else {
+          matchingHTML = `<div class="matching-matrix-section">` +
+            data.upsells.map((p, i) => {
+              const pid = extractProductId(p.id);
+              const img = p.image || 'https://via.placeholder.com/150';
+              const price = p.price ? `$${Number(p.price).toFixed(2)}` : '';
+              const link = `https://yakirabella.myshopify.com/admin/products/${pid}`;
+              return `
+                <div>
+                  <div class="matching-product-header" onclick="toggleMatchingMatrix(${i}, '${p.id}')">
+                    <img src="${img}" alt="">
+                    <div class="mp-info">
+                      <div class="mp-title"><a href="${link}" target="_blank" style="color:#007bff;text-decoration:none;">${p.title}</a></div>
+                      <div class="mp-price">${price}</div>
+                      ${inventorySummaryInline(p.inventorySummary)}
+                    </div>
+                    <div class="mp-toggle" id="mpToggle${i}">&#9654;</div>
+                  </div>
+                  <div class="matching-product-matrix" id="mpMatrix${i}">
+                    <div style="padding:12px;color:#666;font-size:0.9em;">Click to load inventory...</div>
+                  </div>
+                </div>
+              `;
+            }).join('') + `</div>`;
+        }
       } else {
         matchingHTML = `<div style="margin-top:8px;color:#666;">No matching products found.</div>`;
       }
@@ -403,8 +591,18 @@
         returnsHTML = `<div style="margin:8px 0;color:#666;">No inventory data to evaluate return decision.</div>`;
       }
 
+      // ----- Combined inventory + matching view (default store view) -----
+      let inventoryPlusMatchingHTML = inventoryHTML;
+      if (Array.isArray(data.upsells) && data.upsells.length) {
+        inventoryPlusMatchingHTML += `
+          <div style="margin-top:24px;">
+            <div style="font-size:1.1em;font-weight:700;margin-bottom:8px;border-bottom:2px solid #ddd;padding-bottom:6px;">Matching Products</div>
+            ${matchingHTML}
+          </div>`;
+      }
+
       // Choose which body to display
-      let bodyHTML = inventoryHTML;
+      let bodyHTML = inventoryPlusMatchingHTML;
       if (viewMode === 'matching') bodyHTML = matchingHTML;
       if (viewMode === 'client')   bodyHTML = clientHTML;
       if (viewMode === 'returns')  bodyHTML = returnsHTML;
