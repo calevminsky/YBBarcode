@@ -10,7 +10,7 @@ app.use(express.json());
 // ----- Shopify config -----
 const SHOPIFY_STORE = process.env.SHOPIFY_STORE || 'yakirabella.myshopify.com';
 const ACCESS_TOKEN  = process.env.SHOPIFY_ACCESS_TOKEN;
-const TARGET_LOCATION_NAMES = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
+const TARGET_LOCATION_NAMES = ['Warehouse', 'Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
 
 // Helper to call Shopify Admin GraphQL
 async function shopifyGraphQL(query, variables = {}) {

@@ -321,7 +321,7 @@
 
     function buildInventoryTable(variants, scannedBarcode) {
       if (!Array.isArray(variants) || !variants.length) return '<div style="color:#666;">No inventory data.</div>';
-      const locations = ["Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
+      const locations = ["Warehouse", "Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
       let html = `<table class="inventory-table"><thead><tr><th>Size</th>${locations.map(l => `<th>${l}</th>`).join('')}<th>Total</th></tr></thead><tbody>`;
       const locationTotals = Object.fromEntries(locations.map(l => [l, 0]));
       let grandTotal = 0;
