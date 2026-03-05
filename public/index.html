@@ -63,6 +63,9 @@
     }
     .upsell-title { font-size: 0.95em; font-weight: 600; margin: 4px 0; }
     .upsell-price { font-size: 0.9em; color: #333; }
+    .upsell-inventory { margin-top: 8px; font-size: 0.82em; color: #333; text-align: left; }
+    .upsell-inventory-row { display: flex; justify-content: space-between; border-top: 1px solid #eee; padding: 2px 0; }
+    .upsell-inventory-total { margin-top: 4px; font-weight: 700; text-align: right; }
 
     @media (max-width: 768px) {
       body { padding: 10px; }
@@ -78,7 +81,7 @@
   <div class="container">
     <h1>Yakira Bella Inventory</h1>
 
-    <input id="barcodeInput" type="text" placeholder="Enter or scan barcode" />
+    <input id="barcodeInput" type="text" placeholder="Scan barcode or search by SKU/title" />
 
     <div style="margin-bottom: 12px;">
       <button class="btn-success" onclick="lookupBarcode()">Manual Lookup</button>
@@ -166,7 +169,7 @@
         const res = await fetch(`${BACKEND_URL}/lookup`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ barcode })
+          body: JSON.stringify({ query: barcode })
         });
         if (!res.ok) {
           const errorData = await res.json().catch(()=>({}));
@@ -198,6 +201,23 @@
       return productId || '';
     }
 
+    function inventorySummaryHTML(summary) {
+      if (!summary || !Array.isArray(summary.inventory) || !summary.inventory.length) {
+        return `<div class="upsell-inventory" style="color:#666;">Inventory unavailable</div>`;
+      }
+
+      const rows = summary.inventory
+        .map(row => `<div class="upsell-inventory-row"><span>${row.location}</span><strong>${row.quantity}</strong></div>`)
+        .join('');
+
+      return `
+        <div class="upsell-inventory">
+          ${rows}
+          <div class="upsell-inventory-total">Total: ${summary.totalAvailable || 0}</div>
+        </div>
+      `;
+    }
+
     function cardHTML(p, clientMode=false) {
       const pid = extractProductId(p.id);
       const img = p.image || 'https://via.placeholder.com/150';
@@ -214,6 +234,7 @@
             </a>
           </div>
           <div class="upsell-price">${price}</div>
+          ${inventorySummaryHTML(p.inventorySummary)}
         </div>
       `;
     }

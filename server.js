@@ -10,6 +10,7 @@ app.use(express.json());
 // ----- Shopify config -----
 const SHOPIFY_STORE = process.env.SHOPIFY_STORE || 'yakirabella.myshopify.com';
 const ACCESS_TOKEN  = process.env.SHOPIFY_ACCESS_TOKEN;
+const TARGET_LOCATION_NAMES = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
 
 // Helper to call Shopify Admin GraphQL
 async function shopifyGraphQL(query, variables = {}) {
@@ -246,6 +247,64 @@ async function getUpsellProducts(productId) {
   }
 }
 
+function escapeSearchTerm(value = '') {
+  return String(value).replace(/"/g, '\\"').trim();
+}
+
+async function getProductInventorySummary(productId, targetLocationNames = TARGET_LOCATION_NAMES) {
+  if (!productId) return null;
+  try {
+    const productResult = await shopifyGraphQL(GET_PRODUCT_VARIANTS_WITH_INVENTORY, { productId });
+    if (productResult.errors || !productResult?.data?.product?.variants?.edges) {
+      return null;
+    }
+
+    const variants = productResult.data.product.variants.edges.map(edge => edge.node);
+    const totals = Object.fromEntries(targetLocationNames.map(location => [location, 0]));
+
+    variants.forEach(v => {
+      const levels = v?.inventoryItem?.inventoryLevels?.edges || [];
+      targetLocationNames.forEach(locationName => {
+        const level = levels.find(lvl => {
+          const actual = (lvl.node.location.name || '').toLowerCase();
+          const wanted = locationName.toLowerCase();
+          return actual.includes(wanted) || wanted.includes(actual);
+        });
+        const qtyEntry = level?.node?.quantities?.find(q => q.name === 'available');
+        totals[locationName] += qtyEntry?.quantity || 0;
+      });
+    });
+
+    const inventory = targetLocationNames.map(location => ({
+      location,
+      quantity: totals[location]
+    }));
+
+    return {
+      inventory,
+      totalAvailable: inventory.reduce((sum, row) => sum + row.quantity, 0)
+    };
+  } catch (err) {
+    console.error('getProductInventorySummary error:', err);
+    return null;
+  }
+}
+
+async function attachInventoryToProducts(products = [], targetLocationNames = TARGET_LOCATION_NAMES) {
+  const uniqueById = [];
+  const seen = new Set();
+  for (const item of products) {
+    if (!item?.id || seen.has(item.id)) continue;
+    seen.add(item.id);
+    uniqueById.push(item);
+  }
+
+  return Promise.all(uniqueById.map(async (product) => ({
+    ...product,
+    inventorySummary: await getProductInventorySummary(product.id, targetLocationNames)
+  })));
+}
+
 // Siblings from product metafield theme.siblings (collection handle)
 async function getSiblingsFromCollectionHandleMetafield(productId) {
   try {
@@ -313,16 +372,25 @@ async function getSiblingsFromCollectionHandleMetafield(productId) {
 // ----- Routes -----
 app.post('/lookup', async (req, res) => {
   try {
-    const rawBarcode = req.body.barcode;
-    const barcode = rawBarcode?.trim();
-    if (!barcode) return res.status(400).json({ error: 'Barcode is required' });
+    const rawSearch = req.body.barcode || req.body.query || req.body.term;
+    const searchTerm = rawSearch?.trim();
+    if (!searchTerm) return res.status(400).json({ error: 'Barcode or product lookup text is required' });
 
-    console.log(`Looking up barcode: ${barcode}`);
-    const queriesToTry = [`barcode:"${barcode}"`, `barcode:${barcode}`, barcode];
+    const escaped = escapeSearchTerm(searchTerm);
+
+    console.log(`Looking up term: ${searchTerm}`);
+    const queriesToTry = [
+      `barcode:"${escaped}"`,
+      `barcode:${escaped}`,
+      `sku:"${escaped}"`,
+      `sku:${escaped}`,
+      `title:*${escaped}*`,
+      escaped
+    ];
     let variants = [];
 
     for (const queryStr of queriesToTry) {
-      console.log(`Trying query: ${queryStr}`);
+      console.log(`Trying variant query: ${queryStr}`);
       const result = await shopifyGraphQL(SEARCH_PRODUCT_BY_BARCODE, { query: queryStr });
       if (result.errors) {
         console.error('GraphQL errors:', result.errors);
@@ -333,7 +401,7 @@ app.post('/lookup', async (req, res) => {
     }
 
     if (variants.length === 0) {
-      console.log(`No variant found for barcode: ${barcode}`);
+      console.log(`No variant found for lookup term: ${searchTerm}`);
       return res.status(404).json({ error: 'Product not found' });
     }
 
@@ -357,7 +425,7 @@ app.post('/lookup', async (req, res) => {
     const productVariants = productResult.data.product.variants.edges.map(edge => edge.node);
 
     // Stores to show (adjust names as you like)
-    const targetLocationNames = ['Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
+    const targetLocationNames = TARGET_LOCATION_NAMES;
 
     const inventoryMatrix = productVariants.map(v => {
       // Extract size from selectedOptions (prefer the "Size" option)
@@ -392,8 +460,12 @@ app.post('/lookup', async (req, res) => {
     });
 
     // Upsells & Siblings
-    const upsells  = await getUpsellProducts(productId);
-    const siblings = await getSiblingsFromCollectionHandleMetafield(productId);
+    const upsellsRaw  = await getUpsellProducts(productId);
+    const siblingsRaw = await getSiblingsFromCollectionHandleMetafield(productId);
+    const [upsells, siblings] = await Promise.all([
+      attachInventoryToProducts(upsellsRaw, targetLocationNames),
+      attachInventoryToProducts(siblingsRaw, targetLocationNames)
+    ]);
 
     // Response
     const response = {
