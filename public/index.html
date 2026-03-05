@@ -125,6 +125,7 @@
       <label for="viewMode" style="margin-right:8px;font-weight:600;">View:</label>
       <select id="viewMode" style="padding:8px 10px;border:1px solid #ccc;border-radius:6px;">
         <option value="inventory" selected>Inventory</option>
+        <option value="stores">Stores</option>
         <option value="matching">Matching</option>
         <option value="returns">Returns</option>
         <option value="client">Client</option>
@@ -275,7 +276,33 @@
     function selectDropdownItem(product) {
       hideDropdown();
       barcodeInput.value = product.title;
-      lookupBarcode();
+      lookupByProductId(product.id);
+    }
+
+    async function lookupByProductId(productId) {
+      showStatus("Looking up product...", 'scanning');
+      try {
+        const res = await fetch(`${BACKEND_URL}/lookup`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId })
+        });
+        if (!res.ok) {
+          const errorData = await res.json().catch(()=>({}));
+          showStatus("" + (errorData.error || "Product not found"), 'error');
+          return;
+        }
+        const data = await res.json();
+        lastProductData = data;
+        Object.keys(matchingMatrixCache).forEach(k => delete matchingMatrixCache[k]);
+        displayProduct(data);
+        hideStatus();
+        barcodeInput.value = "";
+        barcodeInput.focus();
+      } catch (err) {
+        console.error(err);
+        showStatus("Network error", 'error');
+      }
     }
 
     function inventorySummaryInline(summary) {
@@ -591,10 +618,10 @@
         returnsHTML = `<div style="margin:8px 0;color:#666;">No inventory data to evaluate return decision.</div>`;
       }
 
-      // ----- Combined inventory + matching view (default store view) -----
-      let inventoryPlusMatchingHTML = inventoryHTML;
+      // ----- Stores view: inventory + matching products with expandable matrices -----
+      let storesHTML = inventoryHTML;
       if (Array.isArray(data.upsells) && data.upsells.length) {
-        inventoryPlusMatchingHTML += `
+        storesHTML += `
           <div style="margin-top:24px;">
             <div style="font-size:1.1em;font-weight:700;margin-bottom:8px;border-bottom:2px solid #ddd;padding-bottom:6px;">Matching Products</div>
             ${matchingHTML}
@@ -602,7 +629,8 @@
       }
 
       // Choose which body to display
-      let bodyHTML = inventoryPlusMatchingHTML;
+      let bodyHTML = inventoryHTML;
+      if (viewMode === 'stores')   bodyHTML = storesHTML;
       if (viewMode === 'matching') bodyHTML = matchingHTML;
       if (viewMode === 'client')   bodyHTML = clientHTML;
       if (viewMode === 'returns')  bodyHTML = returnsHTML;

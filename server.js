@@ -57,6 +57,9 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
   query getProductInventory($productId: ID!) {
     product(id: $productId) {
       title
+      vendor
+      productType
+      images(first: 1) { edges { node { url } } }
       variants(first: 50) {
         edges {
           node {
@@ -454,56 +457,72 @@ app.get('/product-inventory/:productId', async (req, res) => {
 app.post('/lookup', async (req, res) => {
   try {
     const rawSearch = req.body.barcode || req.body.query || req.body.term;
+    const rawProductId = req.body.productId; // direct product ID from search dropdown
     const searchTerm = rawSearch?.trim();
-    if (!searchTerm) return res.status(400).json({ error: 'Barcode or product lookup text is required' });
+    if (!searchTerm && !rawProductId) return res.status(400).json({ error: 'Barcode or product lookup text is required' });
 
-    const escaped = escapeSearchTerm(searchTerm);
+    let productId;
+    let scannedVariantId = null;
+    let scannedVariantBarcode = null;
+    let image = 'https://via.placeholder.com/150';
+    let productTitle, productVendor, productType;
 
-    console.log(`Looking up term: ${searchTerm}`);
-    const queriesToTry = [
-      `barcode:"${escaped}"`,
-      `barcode:${escaped}`,
-      `sku:"${escaped}"`,
-      `sku:${escaped}`,
-      `title:*${escaped}*`,
-      escaped
-    ];
-    let variants = [];
+    if (rawProductId) {
+      // Direct product ID lookup (from search dropdown) - skip search phase
+      productId = rawProductId.startsWith('gid://') ? rawProductId : `gid://shopify/Product/${rawProductId}`;
+      console.log(`Direct product lookup: ${productId}`);
+    } else {
+      const escaped = escapeSearchTerm(searchTerm);
 
-    for (const queryStr of queriesToTry) {
-      console.log(`Trying variant query: ${queryStr}`);
-      const result = await shopifyGraphQL(SEARCH_PRODUCT_BY_BARCODE, { query: queryStr });
-      if (result.errors) {
-        console.error('GraphQL errors:', result.errors);
-        continue;
+      console.log(`Looking up term: ${searchTerm}`);
+      const queriesToTry = [
+        `barcode:"${escaped}"`,
+        `barcode:${escaped}`,
+        `sku:"${escaped}"`,
+        `sku:${escaped}`,
+        `title:*${escaped}*`,
+        escaped
+      ];
+      let variants = [];
+
+      for (const queryStr of queriesToTry) {
+        console.log(`Trying variant query: ${queryStr}`);
+        const result = await shopifyGraphQL(SEARCH_PRODUCT_BY_BARCODE, { query: queryStr });
+        if (result.errors) {
+          console.error('GraphQL errors:', result.errors);
+          continue;
+        }
+        variants = result.data.productVariants.edges;
+        if (variants.length > 0) break;
       }
-      variants = result.data.productVariants.edges;
-      if (variants.length > 0) break;
+
+      if (variants.length === 0) {
+        console.log(`No variant found for lookup term: ${searchTerm}`);
+        return res.status(404).json({ error: 'Product not found' });
+      }
+
+      const variant = variants[0].node;
+      const product = variant.product;
+      productId = product.id;
+      scannedVariantId = variant.id;
+      scannedVariantBarcode = variant.barcode;
+      image = product.images.edges.length > 0 ? product.images.edges[0].node.url : image;
     }
-
-    if (variants.length === 0) {
-      console.log(`No variant found for lookup term: ${searchTerm}`);
-      return res.status(404).json({ error: 'Product not found' });
-    }
-
-    const variant = variants[0].node;
-    const product = variant.product;
-    const productId = product.id;
-    const scannedVariantId = variant.id;
-    const scannedVariantBarcode = variant.barcode;
-
-    const image = product.images.edges.length > 0
-      ? product.images.edges[0].node.url
-      : 'https://via.placeholder.com/150';
 
     // Full product inventory by variant/location
     const productResult = await shopifyGraphQL(GET_PRODUCT_VARIANTS_WITH_INVENTORY, { productId });
-    if (productResult.errors) {
+    if (productResult.errors || !productResult?.data?.product) {
       console.error('GraphQL error loading full product:', productResult.errors);
       return res.status(500).json({ error: 'Failed to load product inventory' });
     }
 
-    const productVariants = productResult.data.product.variants.edges.map(edge => edge.node);
+    const fullProduct = productResult.data.product;
+    const productVariants = fullProduct.variants.edges.map(edge => edge.node);
+
+    // For direct productId lookups, get image from full product data
+    if (rawProductId) {
+      image = fullProduct.images?.edges?.[0]?.node?.url || image;
+    }
 
     // Stores to show (adjust names as you like)
     const targetLocationNames = TARGET_LOCATION_NAMES;
@@ -550,11 +569,11 @@ app.post('/lookup', async (req, res) => {
 
     // Response
     const response = {
-      title: product.title,
+      title: fullProduct.title,
       image,
-      vendor: product.vendor,
-      productType: product.productType,
-      productId: product.id,
+      vendor: fullProduct.vendor || '',
+      productType: fullProduct.productType || '',
+      productId,
       variants: inventoryMatrix,
       upsells,
       siblings,
