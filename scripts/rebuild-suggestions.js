@@ -204,9 +204,12 @@ async function fetchAllProducts(productType) {
 // ----- Fetch products from a specific collection -----
 async function fetchCollectionProducts(handle) {
   console.log(`  Fetching collection: ${handle}...`);
-  const result = await shopifyGraphQL(`
+
+  // Shopify collections query doesn't reliably match handles directly.
+  // Search by title, then verify the handle matches.
+  const COLLECTION_WITH_PRODUCTS = `
     query findCollection($query: String!) {
-      collections(first: 1, query: $query) {
+      collections(first: 5, query: $query) {
         edges {
           node {
             title
@@ -254,9 +257,12 @@ async function fetchCollectionProducts(handle) {
         }
       }
     }
-  `, { query: handle });
+  `;
 
-  // Try to find the collection matching the handle
+  // Try title-based search (most reliable for Shopify Admin API)
+  const result = await shopifyGraphQL(COLLECTION_WITH_PRODUCTS, { query: `title:*${handle}*` });
+
+  // Find the collection whose handle matches
   let collection = null;
   for (const edge of (result.data?.collections?.edges || [])) {
     if (edge.node.handle === handle) {
@@ -264,28 +270,12 @@ async function fetchCollectionProducts(handle) {
       break;
     }
   }
-  // If exact handle match fails, take the first result
+  // If no exact handle match, take the first result (user likely typed the right thing)
   if (!collection) {
     collection = result.data?.collections?.edges?.[0]?.node;
   }
   if (!collection) {
-    console.error(`  Collection "${handle}" not found!`);
-    console.log('  Trying title search as fallback...');
-    // Try searching with the handle as a title
-    const fallback = await shopifyGraphQL(`
-      query findCollection($query: String!) {
-        collections(first: 5, query: $query) {
-          edges { node { title handle products(first: 1) { edges { node { id } } } } }
-        }
-      }
-    `, { query: `title:*${handle}*` });
-    const found = fallback.data?.collections?.edges || [];
-    if (found.length) {
-      console.log('  Available collections matching:');
-      found.forEach(e => console.log(`    - "${e.node.title}" (handle: ${e.node.handle})`));
-    } else {
-      console.log('  No collections found matching that term. Check the handle in Shopify admin.');
-    }
+    console.error(`  Collection "${handle}" not found. Check the handle in Shopify admin.`);
     return [];
   }
   console.log(`  Found collection: "${collection.title}" (handle: ${collection.handle})`);
