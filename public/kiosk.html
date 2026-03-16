@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>Yakira Bella</title>
+
+  <!-- Dynamsoft Barcode Reader -->
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-barcode-reader-bundle@11.0.3000/dist/dbr.bundle.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fafafa; color: #111; font-size: 18px;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none; user-select: none;
+      overflow-x: hidden;
+    }
+
+    /* ---- Store Selector ---- */
+    .store-selector {
+      min-height: 100dvh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 40px 20px;
+      background: linear-gradient(135deg, #f8f6f3 0%, #ede8e3 100%);
+    }
+    .store-selector h1 { font-size: 2.2em; font-weight: 300; letter-spacing: 2px; margin-bottom: 8px; color: #222; }
+    .store-selector .subtitle { font-size: 1em; color: #888; margin-bottom: 48px; letter-spacing: 1px; }
+    .store-buttons { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 400px; }
+    .store-btn {
+      display: block; width: 100%; padding: 22px 28px; font-size: 1.15em; font-weight: 500;
+      background: #fff; border: 2px solid #e0dbd5; border-radius: 14px; color: #333;
+      cursor: pointer; transition: all 0.15s; text-align: center; letter-spacing: 0.5px;
+    }
+    .store-btn:active { background: #111; color: #fff; border-color: #111; transform: scale(0.97); }
+
+    /* ---- Kiosk App Shell ---- */
+    .kiosk-app { display: none; min-height: 100dvh; }
+    .kiosk-header {
+      position: sticky; top: 0; z-index: 50; background: #fff;
+      border-bottom: 1px solid #eee; padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .kiosk-header .back-btn {
+      display: none; width: 44px; height: 44px; border: none; background: #f0f0f0;
+      border-radius: 10px; font-size: 1.3em; cursor: pointer; flex-shrink: 0;
+    }
+    .kiosk-header .back-btn:active { background: #ddd; }
+    .kiosk-header .brand { font-size: 1.1em; font-weight: 300; letter-spacing: 1.5px; color: #333; flex-shrink: 0; }
+    .kiosk-header .store-label { font-size: 0.75em; color: #999; letter-spacing: 0.5px; }
+
+    /* ---- Home / Scan Screen ---- */
+    .scan-screen {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 60px 24px; min-height: calc(100dvh - 80px);
+    }
+    .scan-screen .logo-text { font-size: 2.4em; font-weight: 300; letter-spacing: 3px; color: #222; margin-bottom: 6px; }
+    .scan-screen .store-name-display { font-size: 1em; color: #999; margin-bottom: 48px; letter-spacing: 1px; }
+
+    .search-area { width: 100%; max-width: 560px; position: relative; }
+    .search-area input {
+      width: 100%; padding: 18px 20px; font-size: 1.1em; border: 2px solid #ddd;
+      border-radius: 14px; background: #fff; outline: none;
+    }
+    .search-area input:focus { border-color: #111; }
+    .kiosk-dropdown {
+      position: absolute; top: 100%; left: 0; right: 0; z-index: 100;
+      background: #fff; border: 1px solid #ddd; border-top: none; border-radius: 0 0 14px 14px;
+      max-height: 400px; overflow-y: auto; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .kiosk-dropdown-item {
+      display: flex; align-items: center; padding: 14px 16px; cursor: pointer;
+      border-bottom: 1px solid #f0f0f0; gap: 14px;
+    }
+    .kiosk-dropdown-item:active, .kiosk-dropdown-item.active { background: #f5f3f0; }
+    .kiosk-dropdown-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+    .kiosk-dropdown-item span { font-size: 1em; }
+
+    .scan-btn {
+      margin-top: 20px; width: 100%; max-width: 560px; padding: 20px; font-size: 1.15em;
+      font-weight: 600; background: #111; color: #fff; border: none; border-radius: 14px;
+      cursor: pointer; letter-spacing: 0.5px;
+    }
+    .scan-btn:active { background: #333; transform: scale(0.98); }
+
+    .kiosk-status {
+      margin-top: 16px; padding: 12px 20px; border-radius: 10px; font-size: 0.95em;
+      display: none; width: 100%; max-width: 560px; text-align: center;
+    }
+    .kiosk-status.loading { background: #f0f4ff; color: #0056b3; display: block; }
+    .kiosk-status.error { background: #fff0f0; color: #d22; display: block; }
+
+    /* ---- Product Detail (PDP) ---- */
+    .pdp-screen { display: none; padding-bottom: 40px; }
+
+    .image-carousel {
+      width: 100%; overflow-x: auto; scroll-snap-type: x mandatory;
+      display: flex; -webkit-overflow-scrolling: touch; background: #fff;
+    }
+    .image-carousel::-webkit-scrollbar { display: none; }
+    .image-carousel img {
+      width: 100%; max-height: 50vh; object-fit: contain; flex-shrink: 0;
+      scroll-snap-align: center; padding: 16px;
+    }
+    .carousel-dots {
+      display: flex; justify-content: center; gap: 8px; padding: 12px 0;
+    }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #ddd;
+    }
+    .carousel-dot.active { background: #111; }
+
+    .pdp-info { padding: 20px 24px; }
+    .pdp-title { font-size: 1.5em; font-weight: 600; color: #111; margin-bottom: 4px; cursor: pointer; }
+    .pdp-title:active { opacity: 0.7; }
+    .pdp-price { font-size: 1.25em; margin: 8px 0 4px; }
+    .pdp-price .sale { color: #c0392b; font-weight: 700; }
+    .pdp-price .compare { color: #999; text-decoration: line-through; margin-left: 8px; font-weight: 400; }
+    .view-online-btn {
+      display: inline-block; margin-top: 12px; padding: 12px 28px; font-size: 0.95em;
+      border: 2px solid #111; border-radius: 10px; color: #111; background: #fff;
+      text-decoration: none; font-weight: 500; letter-spacing: 0.3px;
+    }
+    .view-online-btn:active { background: #111; color: #fff; }
+
+    /* ---- Size Availability ---- */
+    .availability-section { padding: 0 24px; margin-top: 24px; }
+    .availability-section h3 {
+      font-size: 1em; font-weight: 600; color: #555; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 14px;
+    }
+    .size-grid {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .size-chip {
+      min-width: 64px; padding: 12px 16px; border-radius: 10px; text-align: center;
+      font-size: 0.95em; font-weight: 600; border: 2px solid transparent;
+    }
+    .size-chip.in-stock { background: #f0faf0; border-color: #28a745; color: #1a7a31; }
+    .size-chip.low-stock { background: #fff8f0; border-color: #e67e22; color: #b35c00; }
+    .size-chip.out-of-stock { background: #f5f5f5; border-color: #ddd; color: #bbb; }
+    .size-chip .qty { display: block; font-size: 0.75em; font-weight: 400; margin-top: 2px; }
+
+    .online-expand {
+      margin-top: 16px; padding: 0;
+    }
+    .online-toggle {
+      display: flex; align-items: center; gap: 8px; padding: 14px 0; cursor: pointer;
+      font-size: 0.95em; color: #555; font-weight: 500; border: none; background: none; width: 100%;
+    }
+    .online-toggle:active { opacity: 0.6; }
+    .online-toggle .arrow { transition: transform 0.2s; font-size: 0.8em; }
+    .online-toggle .arrow.open { transform: rotate(90deg); }
+    .online-sizes { display: none; }
+    .online-sizes.open { display: flex; flex-wrap: wrap; gap: 10px; padding-bottom: 8px; }
+    .online-chip {
+      min-width: 64px; padding: 10px 14px; border-radius: 10px; text-align: center;
+      font-size: 0.9em; background: #f0f4ff; border: 1px solid #d0d8f0; color: #333;
+    }
+    .online-chip .qty { display: block; font-size: 0.75em; color: #666; margin-top: 2px; }
+
+    /* ---- Siblings (Other Colors) ---- */
+    .siblings-section { padding: 0 24px; margin-top: 32px; }
+    .siblings-section h3 {
+      font-size: 1em; font-weight: 600; color: #555; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 14px;
+    }
+    .siblings-scroll {
+      display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px;
+      scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+    }
+    .siblings-scroll::-webkit-scrollbar { display: none; }
+    .sibling-card {
+      flex-shrink: 0; width: 140px; cursor: pointer; scroll-snap-align: start;
+    }
+    .sibling-card:active { opacity: 0.7; }
+    .sibling-card img { width: 140px; height: 170px; object-fit: cover; border-radius: 12px; background: #f0f0f0; }
+    .sibling-card .sc-title { font-size: 0.8em; margin-top: 6px; font-weight: 500; color: #333; line-height: 1.3; }
+    .sibling-card .sc-price { font-size: 0.8em; color: #666; margin-top: 2px; }
+    .sibling-card .sc-stock { font-size: 0.75em; margin-top: 3px; font-weight: 600; }
+    .sibling-card .sc-stock.has-stock { color: #28a745; }
+    .sibling-card .sc-stock.no-stock { color: #ccc; }
+
+    /* ---- Matches (Goes Well With) ---- */
+    .matches-section { padding: 0 24px; margin-top: 32px; padding-bottom: 60px; }
+    .matches-section h3 {
+      font-size: 1em; font-weight: 600; color: #555; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 14px;
+    }
+    .matches-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px;
+    }
+    .match-card {
+      background: #fff; border-radius: 14px; overflow: hidden; cursor: pointer;
+      border: 1px solid #eee; transition: transform 0.1s;
+    }
+    .match-card:active { transform: scale(0.97); }
+    .match-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: #f0f0f0; }
+    .match-card-info { padding: 12px 14px; }
+    .match-card .mc-title { font-size: 0.9em; font-weight: 500; color: #222; line-height: 1.3; }
+    .match-card .mc-price { font-size: 0.85em; color: #666; margin-top: 4px; }
+    .match-card .mc-stock { font-size: 0.8em; margin-top: 4px; font-weight: 600; }
+    .match-card .mc-stock.has-stock { color: #28a745; }
+    .match-card .mc-stock.no-stock { color: #ccc; }
+
+    /* ---- Responsive ---- */
+    @media (min-width: 1024px) {
+      .image-carousel img { max-height: 60vh; }
+      .pdp-info { max-width: 700px; }
+      .availability-section, .siblings-section, .matches-section { max-width: 700px; }
+    }
+    @media (max-width: 600px) {
+      .scan-screen .logo-text { font-size: 1.8em; }
+      .matches-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen 1: Store Selector -->
+  <div id="storeSelector" class="store-selector">
+    <h1>YAKIRA BELLA</h1>
+    <div class="subtitle">Select your store</div>
+    <div class="store-buttons" id="storeButtons"></div>
+  </div>
+
+  <!-- Screen 2: Kiosk App -->
+  <div id="kioskApp" class="kiosk-app">
+    <div class="kiosk-header">
+      <button class="back-btn" id="backBtn" onclick="goBack()">&#8592;</button>
+      <div>
+        <div class="brand">YAKIRA BELLA</div>
+        <div class="store-label" id="headerStoreLabel"></div>
+      </div>
+    </div>
+
+    <!-- Home / Scan Screen -->
+    <div id="scanScreen" class="scan-screen">
+      <div class="logo-text">YAKIRA BELLA</div>
+      <div class="store-name-display" id="scanStoreLabel"></div>
+      <div class="search-area">
+        <input id="kioskInput" type="text" placeholder="Scan barcode or search by name..." autocomplete="off" />
+        <div id="kioskDropdown" class="kiosk-dropdown"></div>
+      </div>
+      <button class="scan-btn" onclick="startScanner()">Scan Barcode</button>
+      <div id="kioskStatus" class="kiosk-status"></div>
+    </div>
+
+    <!-- Product Detail -->
+    <div id="pdpScreen" class="pdp-screen"></div>
+  </div>
+
+  <script>
+    // ---- CONFIG ----
+    const BACKEND_URL = 'https://ybbc.onrender.com';
+    const DYNAMSOFT_LICENSE = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMTA0MzEyNTE0LTEwNDQ2Nzg3NCIsIm1haW5TZXJ2ZXJVUkwiOiJodHRwczovL21kbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJvcmdhbml6YXRpb25JRCI6IjEwNDMxMjUxNCIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL3NkbHMuZHluYW1zb2Z0b25saW5lLmNvbS8iLCJjaGVja0NvZGUiOjE5MzI1NzIzNDd9";
+    const AVAILABLE_STORES = ['Teaneck Store', 'Toms River', 'Cedarhurst'];
+    const IDLE_TIMEOUT_MS = 3 * 60 * 1000; // 3 minutes
+
+    // ---- STATE ----
+    let currentStore = null;
+    let navStack = [];
+    let currentProductData = null;
+    let idleTimer = null;
+    let searchTimeout = null;
+    let activeDropdownIndex = -1;
+    let dropdownItems = [];
+
+    // ---- ELEMENTS ----
+    const storeSelector = document.getElementById('storeSelector');
+    const kioskApp = document.getElementById('kioskApp');
+    const scanScreen = document.getElementById('scanScreen');
+    const pdpScreen = document.getElementById('pdpScreen');
+    const kioskInput = document.getElementById('kioskInput');
+    const kioskDropdown = document.getElementById('kioskDropdown');
+    const kioskStatus = document.getElementById('kioskStatus');
+    const backBtn = document.getElementById('backBtn');
+
+    // ---- INIT ----
+    function init() {
+      const saved = localStorage.getItem('kioskStore');
+      const savedDate = localStorage.getItem('kioskStoreDate');
+      const today = new Date().toISOString().slice(0, 10);
+      const pathStore = decodeURIComponent(location.pathname.replace(/^\/store\/?/, ''));
+
+      if (saved && savedDate === today) {
+        currentStore = saved;
+        enterKiosk();
+      } else if (pathStore) {
+        // Check if URL has a valid store name
+        const match = AVAILABLE_STORES.find(s =>
+          s.toLowerCase().replace(/\s+/g, '-') === pathStore.toLowerCase() ||
+          s.toLowerCase() === pathStore.toLowerCase()
+        );
+        if (match) {
+          selectStore(match);
+          return;
+        }
+        showStoreSelector();
+      } else {
+        showStoreSelector();
+      }
+    }
+
+    function showStoreSelector() {
+      storeSelector.style.display = 'flex';
+      kioskApp.style.display = 'none';
+      const container = document.getElementById('storeButtons');
+      container.innerHTML = AVAILABLE_STORES.map(name =>
+        `<button class="store-btn" onclick="selectStore('${name}')">${name}</button>`
+      ).join('');
+    }
+
+    function selectStore(name) {
+      currentStore = name;
+      const today = new Date().toISOString().slice(0, 10);
+      localStorage.setItem('kioskStore', name);
+      localStorage.setItem('kioskStoreDate', today);
+      const slug = name.toLowerCase().replace(/\s+/g, '-');
+      if (!location.pathname.includes(slug)) {
+        history.replaceState(null, '', `/store/${slug}`);
+      }
+      enterKiosk();
+    }
+
+    function enterKiosk() {
+      storeSelector.style.display = 'none';
+      kioskApp.style.display = 'block';
+      document.getElementById('headerStoreLabel').textContent = currentStore;
+      document.getElementById('scanStoreLabel').textContent = currentStore;
+      showScanScreen();
+      startIdleTimer();
+    }
+
+    // ---- SCREENS ----
+    function showScanScreen() {
+      scanScreen.style.display = 'flex';
+      pdpScreen.style.display = 'none';
+      backBtn.style.display = 'none';
+      navStack = [];
+      currentProductData = null;
+      hideStatus();
+      hideDropdown();
+      kioskInput.value = '';
+      kioskInput.focus();
+    }
+
+    function showPDP() {
+      scanScreen.style.display = 'none';
+      pdpScreen.style.display = 'block';
+      backBtn.style.display = navStack.length > 0 ? 'block' : 'none';
+      window.scrollTo(0, 0);
+    }
+
+    function goBack() {
+      if (navStack.length > 0) {
+        const prev = navStack.pop();
+        currentProductData = prev;
+        renderPDP(prev);
+        showPDP();
+      } else {
+        showScanScreen();
+      }
+      resetIdleTimer();
+    }
+
+    // ---- IDLE TIMEOUT ----
+    function startIdleTimer() {
+      ['touchstart', 'touchmove', 'click', 'keydown', 'scroll'].forEach(evt => {
+        document.addEventListener(evt, resetIdleTimer, { passive: true });
+      });
+      resetIdleTimer();
+    }
+
+    function resetIdleTimer() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        showScanScreen();
+      }, IDLE_TIMEOUT_MS);
+    }
+
+    // ---- SEARCH / AUTOCOMPLETE ----
+    kioskInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        if (activeDropdownIndex >= 0 && dropdownItems[activeDropdownIndex]) {
+          e.preventDefault();
+          selectDropdownItem(dropdownItems[activeDropdownIndex]);
+        } else {
+          hideDropdown();
+          doLookup(kioskInput.value.trim());
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault(); navigateDropdown(1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault(); navigateDropdown(-1);
+      } else if (e.key === 'Escape') {
+        hideDropdown();
+      }
+    });
+
+    kioskInput.addEventListener('input', () => {
+      const val = kioskInput.value.trim();
+      if (searchTimeout) clearTimeout(searchTimeout);
+      if (val.length >= 2 && !/^\d+$/.test(val)) {
+        searchTimeout = setTimeout(() => doAutocomplete(val), 300);
+      } else {
+        hideDropdown();
+      }
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search-area')) hideDropdown();
+    });
+
+    async function doAutocomplete(query) {
+      try {
+        const res = await fetch(`${BACKEND_URL}/kiosk/search?q=${encodeURIComponent(query)}`);
+        if (!res.ok) return hideDropdown();
+        const products = await res.json();
+        if (!products.length) return hideDropdown();
+        showDropdown(products);
+      } catch (err) {
+        hideDropdown();
+      }
+    }
+
+    function showDropdown(products) {
+      dropdownItems = products;
+      activeDropdownIndex = -1;
+      kioskDropdown.innerHTML = products.map((p, i) => `
+        <div class="kiosk-dropdown-item" data-index="${i}">
+          ${p.image ? `<img src="${p.image}" alt="">` : `<div style="width:50px;height:50px;background:#eee;border-radius:8px;"></div>`}
+          <span>${escapeHTML(p.title)}</span>
+        </div>
+      `).join('');
+      kioskDropdown.style.display = 'block';
+      kioskDropdown.querySelectorAll('.kiosk-dropdown-item').forEach(el => {
+        el.addEventListener('click', () => {
+          selectDropdownItem(dropdownItems[parseInt(el.dataset.index)]);
+        });
+      });
+    }
+
+    function hideDropdown() {
+      kioskDropdown.style.display = 'none';
+      dropdownItems = [];
+      activeDropdownIndex = -1;
+    }
+
+    function navigateDropdown(dir) {
+      if (!dropdownItems.length) return;
+      activeDropdownIndex += dir;
+      if (activeDropdownIndex < 0) activeDropdownIndex = dropdownItems.length - 1;
+      if (activeDropdownIndex >= dropdownItems.length) activeDropdownIndex = 0;
+      kioskDropdown.querySelectorAll('.kiosk-dropdown-item').forEach((el, i) => {
+        el.classList.toggle('active', i === activeDropdownIndex);
+      });
+    }
+
+    function selectDropdownItem(product) {
+      hideDropdown();
+      kioskInput.value = '';
+      doLookup(null, product.id);
+    }
+
+    // ---- LOOKUP ----
+    async function doLookup(query, productId) {
+      if (!query && !productId) return;
+      showStatusMsg('Looking up product...', 'loading');
+      resetIdleTimer();
+
+      try {
+        const body = { store: currentStore };
+        if (productId) body.productId = productId;
+        else body.query = query;
+
+        const res = await fetch(`${BACKEND_URL}/kiosk/lookup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          showStatusMsg(err.error || 'Product not found', 'error');
+          return;
+        }
+        const data = await res.json();
+        currentProductData = data;
+        navStack = [];
+        renderPDP(data);
+        showPDP();
+        hideStatus();
+        kioskInput.value = '';
+      } catch (err) {
+        showStatusMsg('Network error. Please try again.', 'error');
+      }
+    }
+
+    async function navigateToProduct(productId) {
+      resetIdleTimer();
+      if (currentProductData) {
+        navStack.push(currentProductData);
+      }
+
+      // Show loading state in PDP
+      pdpScreen.innerHTML = '<div style="padding:60px 24px;text-align:center;color:#888;font-size:1.1em;">Loading product...</div>';
+      showPDP();
+
+      try {
+        const numId = productId.includes('gid://') ? productId.split('/').pop() : productId;
+        const res = await fetch(`${BACKEND_URL}/kiosk/product/${numId}?store=${encodeURIComponent(currentStore)}`);
+        if (!res.ok) {
+          pdpScreen.innerHTML = '<div style="padding:60px 24px;text-align:center;color:#d22;">Failed to load product.</div>';
+          return;
+        }
+        const data = await res.json();
+        currentProductData = data;
+        renderPDP(data);
+      } catch (err) {
+        pdpScreen.innerHTML = '<div style="padding:60px 24px;text-align:center;color:#d22;">Network error.</div>';
+      }
+    }
+
+    // ---- RENDER PDP ----
+    function renderPDP(data) {
+      const images = data.images || [];
+      const variants = data.variants || [];
+      const upsells = data.upsells || [];
+      const siblings = data.siblings || [];
+      const numericId = (data.productId || '').includes('gid://') ? data.productId.split('/').pop() : data.productId;
+
+      // Price
+      const prices = variants.map(v => parseFloat(v.price)).filter(n => !isNaN(n));
+      const compares = variants.map(v => parseFloat(v.compareAtPrice)).filter(n => !isNaN(n) && isFinite(n));
+      const lowestPrice = prices.length ? Math.min(...prices) : null;
+      const lowestCompare = compares.length ? Math.min(...compares) : null;
+      let priceHTML = '';
+      if (lowestPrice != null) {
+        if (lowestCompare && lowestCompare > lowestPrice) {
+          priceHTML = `<div class="pdp-price"><span class="sale">$${lowestPrice.toFixed(2)}</span><span class="compare">$${lowestCompare.toFixed(2)}</span></div>`;
+        } else {
+          priceHTML = `<div class="pdp-price"><strong>$${lowestPrice.toFixed(2)}</strong></div>`;
+        }
+      }
+
+      // Image carousel
+      let carouselHTML = '';
+      if (images.length) {
+        carouselHTML = `
+          <div class="image-carousel" id="imageCarousel">
+            ${images.map(url => `<img src="${url}" alt="${escapeHTML(data.title)}" />`).join('')}
+          </div>
+          ${images.length > 1 ? `
+            <div class="carousel-dots" id="carouselDots">
+              ${images.map((_, i) => `<div class="carousel-dot${i === 0 ? ' active' : ''}"></div>`).join('')}
+            </div>
+          ` : ''}
+        `;
+      }
+
+      // Store availability
+      let storeHTML = '';
+      if (variants.length) {
+        const chips = variants.map(v => {
+          const q = v.storeQuantity || 0;
+          let cls = 'out-of-stock';
+          if (q >= 3) cls = 'in-stock';
+          else if (q > 0) cls = 'low-stock';
+          return `<div class="size-chip ${cls}"><div>${escapeHTML(v.size)}</div><span class="qty">${q > 0 ? q + ' avail' : 'Out of stock'}</span></div>`;
+        }).join('');
+        storeHTML = `
+          <div class="availability-section">
+            <h3>Available in ${escapeHTML(currentStore)}</h3>
+            <div class="size-grid">${chips}</div>
+            <div class="online-expand">
+              <button class="online-toggle" onclick="toggleOnline()">
+                <span class="arrow" id="onlineArrow">&#9654;</span>
+                <span>Available Online</span>
+              </button>
+              <div class="online-sizes" id="onlineSizes">
+                ${variants.map(v => {
+                  const q = v.onlineQuantity || 0;
+                  return `<div class="online-chip"><div>${escapeHTML(v.size)}</div><span class="qty">${q > 0 ? q + ' avail' : 'Out of stock'}</span></div>`;
+                }).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Siblings
+      let siblingsHTML = '';
+      if (siblings.length) {
+        siblingsHTML = `
+          <div class="siblings-section">
+            <h3>Other Colors</h3>
+            <div class="siblings-scroll">
+              ${siblings.map(s => {
+                const stockClass = (s.storeTotal || 0) > 0 ? 'has-stock' : 'no-stock';
+                const stockText = (s.storeTotal || 0) > 0 ? 'In Stock' : 'Out of Stock';
+                return `
+                  <div class="sibling-card" onclick="navigateToProduct('${s.id}')">
+                    <img src="${s.image || ''}" alt="${escapeHTML(s.title)}" />
+                    <div class="sc-title">${escapeHTML(s.title)}</div>
+                    ${s.price ? `<div class="sc-price">$${Number(s.price).toFixed(2)}</div>` : ''}
+                    <div class="sc-stock ${stockClass}">${stockText}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Matches
+      let matchesHTML = '';
+      if (upsells.length) {
+        matchesHTML = `
+          <div class="matches-section">
+            <h3>Complete the Look</h3>
+            <div class="matches-grid">
+              ${upsells.map(u => {
+                const stockClass = (u.storeTotal || 0) > 0 ? 'has-stock' : 'no-stock';
+                const stockText = (u.storeTotal || 0) > 0 ? 'In Stock' : 'Out of Stock';
+                return `
+                  <div class="match-card" onclick="navigateToProduct('${u.id}')">
+                    <img src="${u.image || ''}" alt="${escapeHTML(u.title)}" />
+                    <div class="match-card-info">
+                      <div class="mc-title">${escapeHTML(u.title)}</div>
+                      ${u.price ? `<div class="mc-price">$${Number(u.price).toFixed(2)}</div>` : ''}
+                      <div class="mc-stock ${stockClass}">${stockText}</div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Assemble PDP
+      pdpScreen.innerHTML = `
+        ${carouselHTML}
+        <div class="pdp-info">
+          <div class="pdp-title" onclick="navigateToProduct('${data.productId}')">${escapeHTML(data.title)}</div>
+          ${priceHTML}
+          ${data.handle ? `<a class="view-online-btn" href="https://yakirabella.com/products/${data.handle}" target="_blank">View Online</a>` : ''}
+        </div>
+        ${storeHTML}
+        ${siblingsHTML}
+        ${matchesHTML}
+      `;
+
+      // Set up carousel scroll observer
+      if (images.length > 1) {
+        setTimeout(setupCarouselObserver, 50);
+      }
+    }
+
+    function setupCarouselObserver() {
+      const carousel = document.getElementById('imageCarousel');
+      const dots = document.querySelectorAll('.carousel-dot');
+      if (!carousel || !dots.length) return;
+
+      const imgs = carousel.querySelectorAll('img');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const idx = Array.from(imgs).indexOf(entry.target);
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+          }
+        });
+      }, { root: carousel, threshold: 0.6 });
+      imgs.forEach(img => observer.observe(img));
+    }
+
+    function toggleOnline() {
+      const sizes = document.getElementById('onlineSizes');
+      const arrow = document.getElementById('onlineArrow');
+      if (!sizes) return;
+      const isOpen = sizes.classList.contains('open');
+      sizes.classList.toggle('open');
+      arrow.classList.toggle('open');
+    }
+
+    // ---- BARCODE SCANNER ----
+    async function startScanner() {
+      resetIdleTimer();
+      try {
+        showStatusMsg('Starting scanner...', 'loading');
+        if (typeof Dynamsoft === 'undefined') {
+          showStatusMsg('Scanner not available. Please search instead.', 'error');
+          return;
+        }
+        const barcodeScanner = new Dynamsoft.BarcodeScanner({
+          license: DYNAMSOFT_LICENSE,
+          barcodeFormats: [Dynamsoft.DBR.EnumBarcodeFormat.BF_ONED]
+        });
+        const result = await barcodeScanner.launch();
+        if (result.barcodeResults?.length) {
+          const barcode = result.barcodeResults[0].text;
+          hideStatus();
+          doLookup(barcode);
+        } else {
+          showStatusMsg('No barcode detected. Try again.', 'error');
+          setTimeout(hideStatus, 3000);
+        }
+      } catch (err) {
+        showStatusMsg('Scanner error. Please search instead.', 'error');
+      }
+    }
+
+    // ---- HELPERS ----
+    function showStatusMsg(msg, type) {
+      kioskStatus.textContent = msg;
+      kioskStatus.className = `kiosk-status ${type}`;
+    }
+    function hideStatus() {
+      kioskStatus.className = 'kiosk-status';
+      kioskStatus.style.display = 'none';
+    }
+    function escapeHTML(str) {
+      const div = document.createElement('div');
+      div.textContent = str || '';
+      return div.innerHTML;
+    }
+
+    // ---- START ----
+    init();
+  </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const app = express();
 const path = require('path');
 
@@ -188,8 +189,52 @@ const SEARCH_PRODUCTS_FALLBACK = `
   }
 `;
 
+// 9) Locations with fulfillment flag (for kiosk online inventory)
+const GET_LOCATIONS_WITH_FULFILLMENT = `
+  query {
+    locations(first: 20) {
+      edges { node { id name fulfillsOnlineOrders } }
+    }
+  }
+`;
+
+// 10) Full product for kiosk (multiple images, no vendor/sku/barcode)
+const GET_PRODUCT_FOR_KIOSK = `
+  query getProductForKiosk($productId: ID!) {
+    product(id: $productId) {
+      title
+      handle
+      productType
+      images(first: 20) { edges { node { url altText } } }
+      variants(first: 50) {
+        edges {
+          node {
+            id
+            title
+            price
+            compareAtPrice
+            selectedOptions { name value }
+            inventoryItem {
+              inventoryLevels(first: 20) {
+                edges {
+                  node {
+                    location { id name }
+                    quantities(names: ["available"]) { name quantity }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 // ----- Caches / helpers -----
 let locationsCache = null;
+let fulfillmentCache = { data: null, fetchedAt: 0 };
+const FULFILLMENT_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
 
 async function getLocations() {
   if (!locationsCache) {
@@ -205,6 +250,107 @@ async function getLocations() {
     }
   }
   return locationsCache;
+}
+
+async function getFulfillmentLocations() {
+  const now = Date.now();
+  if (fulfillmentCache.data && (now - fulfillmentCache.fetchedAt) < FULFILLMENT_CACHE_TTL) {
+    return fulfillmentCache.data;
+  }
+  try {
+    const result = await shopifyGraphQL(GET_LOCATIONS_WITH_FULFILLMENT);
+    const locations = (result.data?.locations?.edges || []).map(e => e.node);
+    fulfillmentCache = { data: locations, fetchedAt: now };
+    console.log('Fulfillment locations cached:', locations.filter(l => l.fulfillsOnlineOrders).map(l => l.name));
+    return locations;
+  } catch (err) {
+    console.error('Error fetching fulfillment locations:', err);
+    return fulfillmentCache.data || [];
+  }
+}
+
+function findLocationQuantity(inventoryLevels, locationName) {
+  const level = inventoryLevels.find(lvl => {
+    const actual = (lvl.node.location.name || '').toLowerCase();
+    const wanted = locationName.toLowerCase();
+    return actual.includes(wanted) || wanted.includes(actual);
+  });
+  return level?.node?.quantities?.find(q => q.name === 'available')?.quantity || 0;
+}
+
+function extractSize(variant) {
+  const sizeOption = variant.selectedOptions.find(opt =>
+    opt.name.toLowerCase().includes('size') ||
+    opt.name.toLowerCase() === 'title' ||
+    opt.name === variant.selectedOptions[0]?.name
+  );
+  return sizeOption ? sizeOption.value : (variant.title || 'Unknown');
+}
+
+async function buildKioskProductData(productId, storeName) {
+  const [productResult, fulfillmentLocations] = await Promise.all([
+    shopifyGraphQL(GET_PRODUCT_FOR_KIOSK, { productId }),
+    getFulfillmentLocations()
+  ]);
+
+  if (productResult.errors || !productResult?.data?.product) return null;
+
+  const product = productResult.data.product;
+  const variants = product.variants.edges.map(e => e.node);
+  const onlineLocationNames = fulfillmentLocations
+    .filter(l => l.fulfillsOnlineOrders)
+    .map(l => l.name);
+
+  const kioskVariants = variants.map(v => {
+    const size = extractSize(v);
+    const levels = v.inventoryItem.inventoryLevels.edges;
+    const storeQty = findLocationQuantity(levels, storeName);
+
+    // Sum inventory across all online fulfillment locations
+    let onlineQty = 0;
+    onlineLocationNames.forEach(locName => {
+      onlineQty += findLocationQuantity(levels, locName);
+    });
+
+    return { size, price: v.price, compareAtPrice: v.compareAtPrice, storeQuantity: storeQty, onlineQuantity: onlineQty };
+  });
+
+  // Upsells & siblings (parallel)
+  const [upsellsRaw, siblingsRaw] = await Promise.all([
+    getUpsellProducts(productId),
+    getSiblingsFromCollectionHandleMetafield(productId)
+  ]);
+
+  // Attach store-specific inventory summary to upsells/siblings
+  async function attachKioskInventory(products) {
+    const unique = [];
+    const seen = new Set();
+    for (const p of products) {
+      if (!p?.id || seen.has(p.id)) continue;
+      seen.add(p.id);
+      unique.push(p);
+    }
+    return Promise.all(unique.map(async (p) => {
+      const summary = await getProductInventorySummary(p.id, [storeName]);
+      const storeTotal = summary?.inventory?.[0]?.quantity || 0;
+      return { id: p.id, title: p.title, handle: p.handle, image: p.image, price: p.price, storeTotal };
+    }));
+  }
+
+  const [upsells, siblings] = await Promise.all([
+    attachKioskInventory(upsellsRaw),
+    attachKioskInventory(siblingsRaw)
+  ]);
+
+  return {
+    title: product.title,
+    handle: product.handle,
+    productId,
+    images: product.images.edges.map(e => e.node.url),
+    variants: kioskVariants,
+    upsells,
+    siblings
+  };
 }
 
 async function getUpsellProducts(productId) {
@@ -644,6 +790,91 @@ app.get('/', (req, res) => {
 // NEW: dedicated returns page
 app.get('/returns', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'returns.html'));
+});
+
+// ----- Kiosk (customer-facing store view) -----
+const kioskLimiter = rateLimit({ windowMs: 60 * 1000, max: 60, standardHeaders: true });
+app.use('/kiosk', kioskLimiter);
+
+app.get('/kiosk/search', async (req, res) => {
+  try {
+    const q = (req.query.q || '').trim();
+    if (!q || q.length < 2) return res.json([]);
+    const escaped = escapeSearchTerm(q);
+    const result = await shopifyGraphQL(SEARCH_PRODUCTS, { query: `title:*${escaped}*` });
+    const products = (result?.data?.products?.edges || []).map(e => ({
+      id: e.node.id,
+      title: e.node.title,
+      handle: e.node.handle,
+      image: e.node.images?.edges?.[0]?.node?.url || null
+    }));
+    res.json(products);
+  } catch (err) {
+    console.error('Kiosk search error:', err);
+    res.status(500).json({ error: 'Search failed' });
+  }
+});
+
+app.post('/kiosk/lookup', async (req, res) => {
+  try {
+    const store = (req.body.store || '').trim();
+    if (!store) return res.status(400).json({ error: 'Store name is required' });
+
+    const rawSearch = req.body.barcode || req.body.query;
+    const rawProductId = req.body.productId;
+    const searchTerm = rawSearch?.trim();
+    if (!searchTerm && !rawProductId) return res.status(400).json({ error: 'Barcode or search term required' });
+
+    let productId;
+    if (rawProductId) {
+      productId = rawProductId.startsWith('gid://') ? rawProductId : `gid://shopify/Product/${rawProductId}`;
+    } else {
+      const escaped = escapeSearchTerm(searchTerm);
+      const queriesToTry = [
+        `barcode:"${escaped}"`, `barcode:${escaped}`,
+        `sku:"${escaped}"`, `sku:${escaped}`,
+        `title:*${escaped}*`, escaped
+      ];
+      let variants = [];
+      for (const queryStr of queriesToTry) {
+        const result = await shopifyGraphQL(SEARCH_PRODUCT_BY_BARCODE, { query: queryStr });
+        if (result.errors) continue;
+        variants = result.data.productVariants.edges;
+        if (variants.length > 0) break;
+      }
+      if (!variants.length) return res.status(404).json({ error: 'Product not found' });
+      productId = variants[0].node.product.id;
+    }
+
+    const data = await buildKioskProductData(productId, store);
+    if (!data) return res.status(500).json({ error: 'Failed to load product' });
+    res.json(data);
+  } catch (err) {
+    console.error('Kiosk lookup error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/kiosk/product/:productId', async (req, res) => {
+  try {
+    const store = (req.query.store || '').trim();
+    if (!store) return res.status(400).json({ error: 'Store name is required' });
+    const rawId = req.params.productId;
+    const productId = rawId.startsWith('gid://') ? rawId : `gid://shopify/Product/${rawId}`;
+    const data = await buildKioskProductData(productId, store);
+    if (!data) return res.status(404).json({ error: 'Product not found' });
+    res.json(data);
+  } catch (err) {
+    console.error('Kiosk product error:', err);
+    res.status(500).json({ error: 'Failed to load product' });
+  }
+});
+
+app.get('/store/:storeName', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'kiosk.html'));
+});
+app.get('/store', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'kiosk.html'));
 });
 
 // ----- Start -----
