@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Suggestion Review</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; padding: 20px; }
+  .header { max-width: 1200px; margin: 0 auto 24px; }
+  .header h1 { font-size: 24px; margin-bottom: 8px; }
+  .header .meta { color: #666; font-size: 14px; margin-bottom: 16px; }
+  .toggle-row { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+  .toggle-row button { padding: 8px 16px; border: 1px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; font-size: 14px; }
+  .toggle-row button.active { background: #111; color: #fff; border-color: #111; }
+  .product-card { max-width: 1200px; margin: 0 auto 32px; background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); overflow: hidden; }
+  .product-header { display: flex; gap: 20px; padding: 20px; border-bottom: 1px solid #eee; align-items: center; }
+  .product-header img { width: 120px; height: 150px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+  .product-header .info { flex: 1; }
+  .product-header .info h2 { font-size: 18px; margin-bottom: 4px; }
+  .product-header .info .detail { color: #666; font-size: 13px; }
+  .product-header .info a { color: #0066cc; text-decoration: none; font-size: 13px; }
+  .product-header .info a:hover { text-decoration: underline; }
+  .matches-label { padding: 12px 20px 4px; font-size: 13px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .matches-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; padding: 12px 20px 20px; }
+  .match-card { border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.2s; }
+  .match-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .match-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+  .match-card .match-info { padding: 10px; }
+  .match-card .match-info .match-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+  .match-card .match-info .match-price { font-size: 13px; color: #666; margin-bottom: 4px; }
+  .match-card .match-info .match-reason { font-size: 12px; color: #888; font-style: italic; line-height: 1.4; }
+  .no-image { width: 100%; aspect-ratio: 3/4; background: #eee; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 13px; }
+  .empty { text-align: center; padding: 60px 20px; color: #888; }
+  .stats { display: flex; gap: 24px; margin-bottom: 8px; }
+  .stats .stat { font-size: 14px; }
+  .stats .stat strong { font-size: 20px; display: block; }
+  .loading { text-align: center; padding: 60px; color: #888; font-size: 16px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>AI Suggestion Review</h1>
+  <div class="toggle-row">
+    <button id="btn-test" class="active" onclick="load('test')">Test Suggestions</button>
+    <button id="btn-prod" onclick="load('prod')">Production Suggestions</button>
+  </div>
+  <div class="meta" id="meta"></div>
+  <div class="stats" id="stats"></div>
+</div>
+<div id="content"><div class="loading">Loading...</div></div>
+
+<script>
+const STORE_URL = 'https://yakirabella.com';
+
+async function load(mode) {
+  document.getElementById('btn-test').classList.toggle('active', mode === 'test');
+  document.getElementById('btn-prod').classList.toggle('active', mode === 'prod');
+  document.getElementById('content').innerHTML = '<div class="loading">Loading...</div>';
+
+  const url = mode === 'test' ? '/suggestions/data?test=1' : '/suggestions/data';
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      document.getElementById('content').innerHTML = '<div class="empty">No suggestions file found. Run the rebuild script first.</div>';
+      document.getElementById('meta').textContent = '';
+      document.getElementById('stats').innerHTML = '';
+      return;
+    }
+    const data = await res.json();
+    render(data);
+  } catch (e) {
+    document.getElementById('content').innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+  }
+}
+
+function render(data) {
+  const meta = document.getElementById('meta');
+  const stats = document.getElementById('stats');
+  const content = document.getElementById('content');
+
+  const genDate = data.generatedAt ? new Date(data.generatedAt).toLocaleString() : 'Unknown';
+  meta.textContent = `Generated: ${genDate}`;
+  stats.innerHTML = `
+    <div class="stat"><strong>${data.totalProducts || 0}</strong> Products</div>
+    <div class="stat"><strong>${data.totalSuggestions || 0}</strong> Total Matches</div>
+    <div class="stat"><strong>${data.totalSuggestions && data.totalProducts ? (data.totalSuggestions / data.totalProducts).toFixed(1) : 0}</strong> Avg per Product</div>
+  `;
+
+  const suggestions = data.suggestions || {};
+  const entries = Object.entries(suggestions);
+
+  if (entries.length === 0) {
+    content.innerHTML = '<div class="empty">No suggestions generated yet.</div>';
+    return;
+  }
+
+  content.innerHTML = entries.map(([productId, item]) => {
+    const matches = item.matches || [];
+    const productImg = item.matches?.[0]?.image ? '' : ''; // We don't have the source product image in suggestions
+
+    return `
+      <div class="product-card">
+        <div class="product-header">
+          <div class="info">
+            <h2>${esc(item.productTitle)}</h2>
+            <div class="detail">${esc(productId)}</div>
+            <a href="${STORE_URL}/products/${esc(item.productHandle)}" target="_blank">View on store</a>
+          </div>
+        </div>
+        <div class="matches-label">Suggested Matches (${matches.length})</div>
+        <div class="matches-grid">
+          ${matches.map(m => `
+            <div class="match-card">
+              ${m.image
+                ? `<img src="${esc(m.image)}" alt="${esc(m.title)}" loading="lazy">`
+                : `<div class="no-image">No image</div>`
+              }
+              <div class="match-info">
+                <div class="match-title">${esc(m.title)}</div>
+                ${m.price ? `<div class="match-price">$${esc(m.price)}</div>` : ''}
+                ${m.reason ? `<div class="match-reason">${esc(m.reason)}</div>` : ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = String(s);
+  return d.innerHTML;
+}
+
+load('test');
+</script>
+</body>
+</html>
