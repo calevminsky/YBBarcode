@@ -254,11 +254,38 @@ async function fetchCollectionProducts(handle) {
         }
       }
     }
-  `, { query: `handle:${handle}` });
+  `, { query: handle });
 
-  const collection = result.data?.collections?.edges?.[0]?.node;
+  // Try to find the collection matching the handle
+  let collection = null;
+  for (const edge of (result.data?.collections?.edges || [])) {
+    if (edge.node.handle === handle) {
+      collection = edge.node;
+      break;
+    }
+  }
+  // If exact handle match fails, take the first result
+  if (!collection) {
+    collection = result.data?.collections?.edges?.[0]?.node;
+  }
   if (!collection) {
     console.error(`  Collection "${handle}" not found!`);
+    console.log('  Trying title search as fallback...');
+    // Try searching with the handle as a title
+    const fallback = await shopifyGraphQL(`
+      query findCollection($query: String!) {
+        collections(first: 5, query: $query) {
+          edges { node { title handle products(first: 1) { edges { node { id } } } } }
+        }
+      }
+    `, { query: `title:*${handle}*` });
+    const found = fallback.data?.collections?.edges || [];
+    if (found.length) {
+      console.log('  Available collections matching:');
+      found.forEach(e => console.log(`    - "${e.node.title}" (handle: ${e.node.handle})`));
+    } else {
+      console.log('  No collections found matching that term. Check the handle in Shopify admin.');
+    }
     return [];
   }
   console.log(`  Found collection: "${collection.title}" (handle: ${collection.handle})`);
