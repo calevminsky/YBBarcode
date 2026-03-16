@@ -354,6 +354,9 @@ async function buildKioskProductData(productId, storeName) {
     attachKioskInventory(siblingsRaw)
   ]);
 
+  // Load AI suggestions for this product
+  const aiMatches = await getAISuggestions(productId, storeName);
+
   return {
     title: product.title,
     handle: product.handle,
@@ -361,8 +364,28 @@ async function buildKioskProductData(productId, storeName) {
     images: product.images.edges.map(e => e.node.url),
     variants: kioskVariants,
     upsells,
-    siblings
+    siblings,
+    aiMatches
   };
+}
+
+function getAISuggestions(productId, storeName) {
+  try {
+    const filePath = path.join(__dirname, 'data', 'suggestions.json');
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    const entry = data.suggestions?.[productId];
+    if (!entry || !entry.matches?.length) return [];
+    return entry.matches.map(m => ({
+      id: m.productId,
+      title: m.title,
+      handle: m.handle,
+      image: m.image,
+      price: m.price,
+      reason: m.reason
+    }));
+  } catch {
+    return [];
+  }
 }
 
 async function getUpsellProducts(productId) {
