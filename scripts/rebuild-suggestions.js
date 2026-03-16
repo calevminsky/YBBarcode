@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 /**
- * Nightly rebuild of AI-suggested product matches.
+ * Incremental AI product match suggestions using Claude Batch API.
  *
- * Fetches all active skirts + tops from Shopify, reads their existing curated
- * matches (theme.upsell_list), then asks Claude to suggest additional matches
- * based on the patterns in the curated data.
+ * - Skirts: all active, published online, not finalsale, stock > 2
+ * - Tops: only from the "aimatchingtops" Shopify collection
+ * - Incremental: only processes skirts not already in suggestions.json
+ * - Cleanup: removes suggestions for skirts that are no longer active/available
+ * - Uses Anthropic Message Batches API (50% cheaper, no rate limits)
  *
- * Output: data/suggestions.json
+ * Flags:
+ *   --full        Force full rebuild (re-process all skirts)
+ *   --test        Test mode (process max 1 batch, output to suggestions-test.json)
+ *   --collection  Override skirt source with a specific collection handle
  *
  * Required env vars:
  *   SHOPIFY_ACCESS_TOKEN
  *   ANTHROPIC_API_KEY
- *   SHOPIFY_STORE (optional, defaults to yakirabella.myshopify.com)
  */
 
 const fs = require('fs');
@@ -22,8 +26,11 @@ const SHOPIFY_STORE = process.env.SHOPIFY_STORE || 'yakirabella.myshopify.com';
 const SHOPIFY_TOKEN = process.env.SHOPIFY_ACCESS_TOKEN;
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const API_VERSION = '2025-10';
+const TOPS_COLLECTION = 'aimatchingtops';
+const BATCH_SIZE = 10;
 
 const TEST_MODE = process.argv.includes('--test');
+const FULL_REBUILD = process.argv.includes('--full');
 const COLLECTION_FLAG_IDX = process.argv.indexOf('--collection');
 const TEST_COLLECTION = COLLECTION_FLAG_IDX !== -1 ? process.argv[COLLECTION_FLAG_IDX + 1] : null;
 
@@ -54,43 +61,70 @@ async function shopifyGraphQL(query, variables = {}) {
   return json;
 }
 
-// ----- Claude API helper (with retry for rate limits) -----
-async function askClaude(systemPrompt, userPrompt, retries = 5) {
-  for (let attempt = 1; attempt <= retries; attempt++) {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
+// ----- Anthropic Batch API helpers -----
+async function createBatch(requests) {
+  const res = await fetch('https://api.anthropic.com/v1/messages/batches', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': ANTHROPIC_KEY,
+      'anthropic-version': '2023-06-01'
+    },
+    body: JSON.stringify({ requests })
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Batch API create error ${res.status}: ${err}`);
+  }
+  return res.json();
+}
+
+async function pollBatch(batchId) {
+  while (true) {
+    const res = await fetch(`https://api.anthropic.com/v1/messages/batches/${batchId}`, {
       headers: {
-        'Content-Type': 'application/json',
         'x-api-key': ANTHROPIC_KEY,
         'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-5-20250929',
-        max_tokens: 16384,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userPrompt }]
-      })
+      }
     });
-
-    if (res.status === 429) {
-      const retryAfter = res.headers.get('retry-after');
-      const waitSec = retryAfter ? parseInt(retryAfter) : Math.min(15 * attempt, 120);
-      console.log(`    Rate limited. Waiting ${waitSec}s (attempt ${attempt}/${retries})...`);
-      await new Promise(r => setTimeout(r, waitSec * 1000));
-      continue;
-    }
 
     if (!res.ok) {
       const err = await res.text();
-      throw new Error(`Claude API error ${res.status}: ${err}`);
+      throw new Error(`Batch API poll error ${res.status}: ${err}`);
     }
-    const data = await res.json();
-    if (data.stop_reason === 'max_tokens') {
-      console.log('    Warning: Claude response was truncated (hit max_tokens). Consider smaller batches.');
+
+    const batch = await res.json();
+    const counts = batch.request_counts;
+    const done = counts.succeeded + counts.errored + counts.canceled + counts.expired;
+    const total = done + counts.processing;
+    console.log(`  Batch status: ${batch.processing_status} (${counts.succeeded} succeeded, ${counts.errored} errored, ${counts.processing} processing of ${total})`);
+
+    if (batch.processing_status === 'ended') {
+      return batch;
     }
-    return data.content?.[0]?.text || '';
+
+    // Poll every 30 seconds
+    await new Promise(r => setTimeout(r, 30000));
   }
-  throw new Error('Claude API: max retries exceeded due to rate limiting');
+}
+
+async function getBatchResults(batchId) {
+  const res = await fetch(`https://api.anthropic.com/v1/messages/batches/${batchId}/results`, {
+    headers: {
+      'x-api-key': ANTHROPIC_KEY,
+      'anthropic-version': '2023-06-01'
+    }
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Batch API results error ${res.status}: ${err}`);
+  }
+
+  // Results come as JSONL
+  const text = await res.text();
+  return text.trim().split('\n').map(line => JSON.parse(line));
 }
 
 // ----- Fetch all products of a given type (paginated) -----
@@ -147,6 +181,49 @@ const FETCH_PRODUCTS_QUERY = `
   }
 `;
 
+function parseProduct(p) {
+  const totalInventory = p.variants.edges.reduce((sum, v) => {
+    const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
+    return sum + levels.reduce((lSum, lvl) => {
+      const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
+      return lSum + qty;
+    }, 0);
+  }, 0);
+
+  const metafields = {};
+  for (const mfEdge of (p.metafields?.edges || [])) {
+    const mf = mfEdge.node;
+    metafields[`${mf.namespace}.${mf.key}`] = mf.value;
+  }
+
+  const curatedMatches = [];
+  const upsellMeta = p.upsellMeta;
+  if (upsellMeta) {
+    const refs = upsellMeta.references?.nodes || [];
+    if (refs.length) {
+      refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
+    } else if (upsellMeta.value) {
+      const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+      tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
+    }
+  }
+
+  return {
+    id: p.id,
+    title: p.title,
+    handle: p.handle,
+    productType: p.productType,
+    tags: p.tags,
+    image: p.images?.edges?.[0]?.node?.url || null,
+    price: p.variants.edges[0]?.node?.price || null,
+    totalInventory,
+    color: metafields['theme.color'] || metafields['custom.color'] || '',
+    material: metafields['theme.material'] || metafields['custom.material'] || '',
+    season: metafields['theme.season'] || metafields['custom.season'] || '',
+    curatedMatches
+  };
+}
+
 async function fetchAllProducts(productType) {
   const allProducts = [];
   let cursor = null;
@@ -164,50 +241,7 @@ async function fetchAllProducts(productType) {
     if (!data) break;
 
     for (const edge of data.edges) {
-      const p = edge.node;
-      const totalInventory = p.variants.edges.reduce((sum, v) => {
-        const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
-        return sum + levels.reduce((lSum, lvl) => {
-          const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
-          return lSum + qty;
-        }, 0);
-      }, 0);
-
-      // Extract metafields
-      const metafields = {};
-      for (const mfEdge of (p.metafields?.edges || [])) {
-        const mf = mfEdge.node;
-        metafields[`${mf.namespace}.${mf.key}`] = mf.value;
-      }
-
-      // Extract existing curated matches
-      const curatedMatches = [];
-      const upsellMeta = p.upsellMeta;
-      if (upsellMeta) {
-        const refs = upsellMeta.references?.nodes || [];
-        if (refs.length) {
-          refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
-        } else if (upsellMeta.value) {
-          // Text-based upsells — just store the raw handles/titles
-          const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
-          tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
-        }
-      }
-
-      allProducts.push({
-        id: p.id,
-        title: p.title,
-        handle: p.handle,
-        productType: p.productType,
-        tags: p.tags,
-        image: p.images?.edges?.[0]?.node?.url || null,
-        price: p.variants.edges[0]?.node?.price || null,
-        totalInventory,
-        color: metafields['theme.color'] || metafields['custom.color'] || '',
-        material: metafields['theme.material'] || metafields['custom.material'] || '',
-        season: metafields['theme.season'] || metafields['custom.season'] || '',
-        curatedMatches
-      });
+      allProducts.push(parseProduct(edge.node));
     }
 
     if (!data.pageInfo.hasNextPage) break;
@@ -218,13 +252,9 @@ async function fetchAllProducts(productType) {
 }
 
 // ----- Fetch products from a specific collection -----
-// Two-step approach to stay under Shopify's 1000-point query cost limit:
-// 1. Fetch product IDs from the collection (cheap query)
-// 2. Fetch full product details one at a time (reuses same field set as fetchAllProducts)
 async function fetchCollectionProducts(handle) {
   console.log(`  Fetching collection: ${handle}...`);
 
-  // Step 1: Get product IDs from collection (low cost query)
   const COLLECTION_IDS_QUERY = `
     query getCollectionProducts($handle: String!, $cursor: String) {
       collectionByHandle(handle: $handle) {
@@ -244,12 +274,7 @@ async function fetchCollectionProducts(handle) {
   const PRODUCT_DETAIL_QUERY = `
     query getProduct($id: ID!) {
       product(id: $id) {
-        id
-        title
-        handle
-        productType
-        tags
-        status
+        id title handle productType tags status
         images(first: 1) { edges { node { url } } }
         variants(first: 50) {
           edges {
@@ -271,8 +296,7 @@ async function fetchCollectionProducts(handle) {
           edges { node { namespace key value } }
         }
         upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
-          type
-          value
+          type value
           references(first: 30) {
             nodes { ... on Product { id title handle } }
           }
@@ -281,7 +305,6 @@ async function fetchCollectionProducts(handle) {
     }
   `;
 
-  // Collect product IDs from collection
   const productIds = [];
   let cursor = null;
   let page = 0;
@@ -305,7 +328,6 @@ async function fetchCollectionProducts(handle) {
     console.log(`  Collection page ${page}: ${edges.length} products`);
 
     for (const edge of edges) {
-      console.log(`    ${edge.node.title} | status=${edge.node.status}`);
       if (edge.node.status === 'ACTIVE') {
         productIds.push(edge.node.id);
       }
@@ -317,53 +339,12 @@ async function fetchCollectionProducts(handle) {
 
   console.log(`  ${productIds.length} active products to fetch details for...`);
 
-  // Step 2: Fetch full details for each product
   const products = [];
   for (const id of productIds) {
     const result = await shopifyGraphQL(PRODUCT_DETAIL_QUERY, { id });
     const p = result.data?.product;
     if (!p) continue;
-
-    const totalInventory = p.variants.edges.reduce((sum, v) => {
-      const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
-      return sum + levels.reduce((lSum, lvl) => {
-        const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
-        return lSum + qty;
-      }, 0);
-    }, 0);
-
-    const metafields = {};
-    for (const mfEdge of (p.metafields?.edges || [])) {
-      const mf = mfEdge.node;
-      metafields[`${mf.namespace}.${mf.key}`] = mf.value;
-    }
-
-    const curatedMatches = [];
-    const upsellMeta = p.upsellMeta;
-    if (upsellMeta) {
-      const refs = upsellMeta.references?.nodes || [];
-      if (refs.length) {
-        refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
-      } else if (upsellMeta.value) {
-        const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
-        tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
-      }
-    }
-
-    products.push({
-      id: p.id,
-      title: p.title,
-      handle: p.handle,
-      productType: p.productType,
-      tags: p.tags,
-      image: p.images?.edges?.[0]?.node?.url || null,
-      price: p.variants.edges[0]?.node?.price || null,
-      totalInventory,
-      color: metafields['theme.color'] || metafields['custom.color'] || '',
-      material: metafields['theme.material'] || metafields['custom.material'] || '',
-      season: metafields['theme.season'] || metafields['custom.season'] || '',
-      curatedMatches
-    });
+    products.push(parseProduct(p));
   }
 
   return products;
@@ -382,114 +363,136 @@ function buildProductSummary(product) {
   return parts.join(' | ');
 }
 
-// ----- Discover product types -----
-async function discoverProductTypes() {
-  const result = await shopifyGraphQL(`
-    query {
-      products(first: 250, query: "status:active") {
-        edges { node { productType } }
-      }
-    }
-  `);
-  const types = {};
-  for (const edge of (result.data?.products?.edges || [])) {
-    const t = edge.node.productType || '(empty)';
-    types[t] = (types[t] || 0) + 1;
-  }
-  return types;
-}
-
 // ----- Main -----
 async function main() {
-  console.log(`Starting suggestion rebuild${TEST_MODE ? ' (TEST MODE - 1 batch only)' : ''}...\n`);
+  const mode = TEST_MODE ? 'TEST' : FULL_REBUILD ? 'FULL REBUILD' : 'INCREMENTAL';
+  console.log(`Starting suggestion rebuild (${mode})...\n`);
 
-  // 0. Discover product types
-  console.log('Discovering product types...');
-  const typesCounts = await discoverProductTypes();
-  console.log('Product types found:');
-  for (const [type, count] of Object.entries(typesCounts).sort((a, b) => b[1] - a[1])) {
-    console.log(`  ${type}: ${count}`);
+  // 1. Fetch tops from aimatchingtops collection
+  console.log('Fetching tops from aimatchingtops collection...');
+  const allTops = await fetchCollectionProducts(TOPS_COLLECTION);
+  // Filter: stock > 2, not finalsale
+  const tops = allTops.filter(p => {
+    if (p.totalInventory <= 2) return false;
+    if ((p.tags || []).some(t => t.toLowerCase() === 'finalsale')) return false;
+    return true;
+  });
+  console.log(`  ${allTops.length} total → ${tops.length} after filtering (stock > 2, no finalsale)\n`);
+
+  if (tops.length === 0) {
+    throw new Error('No tops available after filtering. Check the aimatchingtops collection.');
   }
-  console.log('');
 
-  // Find the right type names (case-insensitive match)
-  const allTypes = Object.keys(typesCounts);
-  const skirtType = allTypes.find(t => t.toLowerCase().includes('skirt')) || 'Skirts';
-  const topType = allTypes.find(t => t.toLowerCase().includes('top')) || 'Tops';
-  console.log(`Using types: skirts="${skirtType}", tops="${topType}"\n`);
-
-  // 1. Fetch products
-  let skirts, tops;
-
+  // 2. Fetch skirts
+  let allSkirts;
   if (TEST_MODE && TEST_COLLECTION) {
-    console.log(`Fetching test collection: ${TEST_COLLECTION}...`);
-    skirts = await fetchCollectionProducts(TEST_COLLECTION);
-    console.log(`  Found ${skirts.length} products in collection\n`);
-
-    if (skirts.length === 0) {
+    console.log(`Fetching skirts from test collection: ${TEST_COLLECTION}...`);
+    allSkirts = await fetchCollectionProducts(TEST_COLLECTION);
+    if (allSkirts.length === 0) {
       throw new Error(`Test collection "${TEST_COLLECTION}" returned 0 products.`);
     }
   } else {
-    console.log('Fetching skirts...');
-    skirts = await fetchAllProducts(skirtType);
-    console.log(`  Found ${skirts.length} active skirts`);
+    console.log('Fetching skirts (active, published, not finalsale)...');
+    allSkirts = await fetchAllProducts('Skirt');
   }
 
-  console.log('Fetching tops...');
-  tops = await fetchAllProducts(topType);
-  console.log(`  Found ${tops.length} active tops\n`);
-
-  // Filter out very low stock, final sale, and online-unavailable tops
-  const availableSkirts = skirts.filter(p => p.totalInventory > 2);
-  const availableTops = tops.filter(p => {
+  // Filter skirts: stock > 2, not finalsale
+  const skirts = allSkirts.filter(p => {
     if (p.totalInventory <= 2) return false;
-    const lowerTags = (p.tags || []).map(t => t.toLowerCase());
-    if (lowerTags.includes('finalsale')) return false;
+    if ((p.tags || []).some(t => t.toLowerCase() === 'finalsale')) return false;
     return true;
   });
-  console.log(`After filtering (low stock + finalsale): ${availableSkirts.length} skirts/collection products, ${availableTops.length} tops\n`);
+  console.log(`  ${allSkirts.length} total → ${skirts.length} after filtering\n`);
 
-  // 2. Load matching instructions
-  const instructionsPath = path.join(__dirname, '..', 'data', 'matching-instructions.md');
-  const instructions = fs.readFileSync(instructionsPath, 'utf-8');
-
-  // 3. Build catalogs
-  const skirtCatalog = availableSkirts.map(buildProductSummary).join('\n');
-  const topCatalog = availableTops.map(buildProductSummary).join('\n');
-
-  // 4. Collect existing curated match examples
-  const curatedExamples = [];
-  [...skirts, ...tops].forEach(p => {
-    if (p.curatedMatches.length > 0) {
-      curatedExamples.push({
-        product: `${p.title} (${p.productType})`,
-        matchedWith: p.curatedMatches.map(m => m.title).join(', ')
-      });
+  // 3. Load existing suggestions for incremental mode
+  const outputFile = TEST_MODE ? 'suggestions-test.json' : 'suggestions.json';
+  const outputPath = path.join(__dirname, '..', 'data', outputFile);
+  let existing = { suggestions: {} };
+  if (!FULL_REBUILD && !TEST_MODE) {
+    try {
+      existing = JSON.parse(fs.readFileSync(outputPath, 'utf-8'));
+      console.log(`Loaded existing suggestions: ${Object.keys(existing.suggestions).length} products\n`);
+    } catch {
+      console.log('No existing suggestions file found. Running full rebuild.\n');
     }
-  });
+  }
 
-  const examplesText = curatedExamples.length
-    ? curatedExamples.map(e => `- "${e.product}" was matched with: ${e.matchedWith}`).join('\n')
-    : 'No curated examples available.';
+  // 4. Determine which skirts need processing
+  const activeSkirtIds = new Set(skirts.map(s => s.id));
+  const activeTopIds = new Set(tops.map(t => t.id));
+  let skirtsToProcess;
 
-  // 5. Ask Claude for suggestions in batches
-  const suggestions = {};
-  const BATCH_SIZE = 10;
-  const skirtLimit = TEST_MODE ? Math.min(BATCH_SIZE * 2, availableSkirts.length) : availableSkirts.length;
+  if (FULL_REBUILD || TEST_MODE) {
+    skirtsToProcess = skirts;
+  } else {
+    // Incremental: only skirts not already in suggestions
+    const existingIds = new Set(Object.keys(existing.suggestions));
+    skirtsToProcess = skirts.filter(s => !existingIds.has(s.id));
+    console.log(`Incremental: ${skirtsToProcess.length} new skirts to process (${existingIds.size} already have suggestions)\n`);
+  }
 
-  // Process skirts -> suggest tops
-  console.log('Generating suggestions for skirts (matching with tops)...');
-  for (let i = 0; i < skirtLimit; i += BATCH_SIZE) {
-    const batch = availableSkirts.slice(i, i + BATCH_SIZE);
-    console.log(`  Batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(availableSkirts.length / BATCH_SIZE)} (${batch.length} skirts)...`);
+  // In test mode, cap at 2 batches worth
+  if (TEST_MODE) {
+    skirtsToProcess = skirtsToProcess.slice(0, BATCH_SIZE * 2);
+    console.log(`Test mode: processing ${skirtsToProcess.length} skirts\n`);
+  }
 
-    const batchSummaries = batch.map(buildProductSummary).join('\n');
-    const existingMatchIds = new Set();
-    batch.forEach(p => p.curatedMatches.forEach(m => { if (m.id) existingMatchIds.add(m.id); }));
+  // 5. Cleanup stale suggestions (remove products no longer active/available, remove stale top matches)
+  if (!FULL_REBUILD && !TEST_MODE) {
+    const before = Object.keys(existing.suggestions).length;
+    for (const [productId, entry] of Object.entries(existing.suggestions)) {
+      // Remove suggestion entries for skirts that are no longer active
+      if (!activeSkirtIds.has(productId)) {
+        delete existing.suggestions[productId];
+        continue;
+      }
+      // Remove individual match tops that are no longer in the aimatchingtops collection
+      entry.matches = entry.matches.filter(m => activeTopIds.has(m.productId));
+    }
+    const after = Object.keys(existing.suggestions).length;
+    if (before !== after) {
+      console.log(`Cleanup: removed ${before - after} stale skirt entries`);
+    }
+  }
 
-    const response = await askClaude(
-      instructions,
-      `You are matching SKIRTS with TOPS. Below are the products to find matches for, the available tops catalog, and examples of existing curated matches to learn from.
+  // 6. Build prompts and submit batch
+  if (skirtsToProcess.length === 0) {
+    console.log('No new skirts to process. Writing cleaned-up suggestions.\n');
+  } else {
+    const instructionsPath = path.join(__dirname, '..', 'data', 'matching-instructions.md');
+    const instructions = fs.readFileSync(instructionsPath, 'utf-8');
+
+    const topCatalog = tops.map(buildProductSummary).join('\n');
+
+    // Collect curated match examples from all skirts
+    const curatedExamples = [];
+    [...skirts, ...tops].forEach(p => {
+      if (p.curatedMatches.length > 0) {
+        curatedExamples.push({
+          product: `${p.title} (${p.productType})`,
+          matchedWith: p.curatedMatches.map(m => m.title).join(', ')
+        });
+      }
+    });
+    const examplesText = curatedExamples.length
+      ? curatedExamples.map(e => `- "${e.product}" was matched with: ${e.matchedWith}`).join('\n')
+      : 'No curated examples available.';
+
+    // Build batch requests (one per batch of skirts)
+    const batchRequests = [];
+    for (let i = 0; i < skirtsToProcess.length; i += BATCH_SIZE) {
+      const batch = skirtsToProcess.slice(i, i + BATCH_SIZE);
+      const batchSummaries = batch.map(buildProductSummary).join('\n');
+
+      batchRequests.push({
+        custom_id: `skirts-batch-${Math.floor(i / BATCH_SIZE)}`,
+        params: {
+          model: 'claude-sonnet-4-5-20250929',
+          max_tokens: 16384,
+          system: instructions,
+          messages: [{
+            role: 'user',
+            content: `You are matching SKIRTS with TOPS. Below are the products to find matches for, the available tops catalog, and examples of existing curated matches to learn from.
 
 EXISTING CURATED MATCH EXAMPLES (learn the matching patterns from these):
 ${examplesText}
@@ -500,7 +503,7 @@ ${batchSummaries}
 AVAILABLE TOPS CATALOG:
 ${topCatalog}
 
-For each skirt, suggest 3-6 tops that would pair well with it. Do NOT suggest products already in the skirt's curated match list.
+For each skirt, suggest up to 10 tops that would pair well with it. Rank them best match first. Do NOT suggest products already in the skirt's curated match list.
 
 Respond ONLY in this exact JSON format, no other text:
 {
@@ -508,138 +511,102 @@ Respond ONLY in this exact JSON format, no other text:
     {
       "productId": "gid://shopify/Product/XXXXX",
       "suggestedMatches": [
-        { "productId": "gid://shopify/Product/YYYYY", "reason": "brief reason" }
+        { "productId": "gid://shopify/Product/YYYYY", "reason": "brief reason", "confidence": 0.95 }
       ]
     }
   ]
 }`
-    );
+          }]
+        }
+      });
+    }
 
-    try {
-      // Extract JSON from response (handle markdown code blocks)
-      const jsonStr = response.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-      const parsed = JSON.parse(jsonStr);
-      for (const item of (parsed.suggestions || [])) {
-        const product = batch.find(p => p.id === item.productId);
-        if (!product) continue;
-        const existingIds = new Set(product.curatedMatches.map(m => m.id).filter(Boolean));
-        const filtered = (item.suggestedMatches || []).filter(m => !existingIds.has(m.productId));
-        // Enrich with product data
-        suggestions[item.productId] = {
-          productTitle: product.title,
-          productHandle: product.handle,
-          matches: filtered.map(m => {
-            const matchProduct = availableTops.find(t => t.id === m.productId);
+    console.log(`Submitting ${batchRequests.length} batch requests to Claude Batch API...`);
+    const batch = await createBatch(batchRequests);
+    console.log(`  Batch created: ${batch.id}\n`);
+
+    // Poll until done
+    console.log('Waiting for batch to complete...');
+    const completedBatch = await pollBatch(batch.id);
+    console.log(`  Batch ended: ${completedBatch.request_counts.succeeded} succeeded, ${completedBatch.request_counts.errored} errored\n`);
+
+    // Retrieve results
+    console.log('Retrieving results...');
+    const results = await getBatchResults(batch.id);
+
+    // Process results
+    let totalNew = 0;
+    for (const result of results) {
+      if (result.result.type !== 'succeeded') {
+        console.error(`  Request ${result.custom_id} failed: ${result.result.type}`);
+        continue;
+      }
+
+      const responseText = result.result.message.content?.[0]?.text || '';
+      if (result.result.message.stop_reason === 'max_tokens') {
+        console.log(`  Warning: ${result.custom_id} response was truncated`);
+      }
+
+      try {
+        const jsonStr = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+        const parsed = JSON.parse(jsonStr);
+
+        // Figure out which batch this was from the custom_id
+        const batchIdx = parseInt(result.custom_id.split('-').pop());
+        const batchStart = batchIdx * BATCH_SIZE;
+        const batch = skirtsToProcess.slice(batchStart, batchStart + BATCH_SIZE);
+
+        for (const item of (parsed.suggestions || [])) {
+          const product = batch.find(p => p.id === item.productId);
+          if (!product) continue;
+
+          const existingIds = new Set(product.curatedMatches.map(m => m.id).filter(Boolean));
+          const filtered = (item.suggestedMatches || []).filter(m =>
+            !existingIds.has(m.productId) && activeTopIds.has(m.productId)
+          );
+
+          const matches = filtered.map(m => {
+            const matchProduct = tops.find(t => t.id === m.productId);
             return {
               productId: m.productId,
               title: matchProduct?.title || 'Unknown',
               handle: matchProduct?.handle || '',
               image: matchProduct?.image || null,
               price: matchProduct?.price || null,
-              reason: m.reason
+              reason: m.reason,
+              confidence: m.confidence || null
             };
-          }).filter(m => m.title !== 'Unknown') // Remove any that weren't found in catalog
-        };
-      }
-    } catch (e) {
-      console.error(`  Failed to parse Claude response for batch: ${e.message}`);
-      console.error(`  Response preview: ${response.slice(0, 200)}`);
-    }
+          }).filter(m => m.title !== 'Unknown');
 
-    // Rate limit: small delay between batches
-    if (i + BATCH_SIZE < availableSkirts.length) {
-      await new Promise(r => setTimeout(r, 65000)); // 65s between batches to respect rate limits
-    }
-  }
-
-  // Process tops -> suggest skirts
-  if (TEST_MODE) {
-    console.log('\nTEST MODE: Skipping tops. Only processed 1 batch of skirts.\n');
-  } else {
-    console.log('\nGenerating suggestions for tops (matching with skirts)...');
-  }
-  const topLimit = TEST_MODE ? 0 : availableTops.length;
-  for (let i = 0; i < topLimit; i += BATCH_SIZE) {
-    const batch = availableTops.slice(i, i + BATCH_SIZE);
-    console.log(`  Batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(availableTops.length / BATCH_SIZE)} (${batch.length} tops)...`);
-
-    const batchSummaries = batch.map(buildProductSummary).join('\n');
-
-    const response = await askClaude(
-      instructions,
-      `You are matching TOPS with SKIRTS. Below are the products to find matches for, the available skirts catalog, and examples of existing curated matches to learn from.
-
-EXISTING CURATED MATCH EXAMPLES (learn the matching patterns from these):
-${examplesText}
-
-TOPS TO FIND MATCHES FOR:
-${batchSummaries}
-
-AVAILABLE SKIRTS CATALOG:
-${skirtCatalog}
-
-For each top, suggest 3-6 skirts that would pair well with it. Do NOT suggest products already in the top's curated match list.
-
-Respond ONLY in this exact JSON format, no other text:
-{
-  "suggestions": [
-    {
-      "productId": "gid://shopify/Product/XXXXX",
-      "suggestedMatches": [
-        { "productId": "gid://shopify/Product/YYYYY", "reason": "brief reason" }
-      ]
-    }
-  ]
-}`
-    );
-
-    try {
-      const jsonStr = response.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-      const parsed = JSON.parse(jsonStr);
-      for (const item of (parsed.suggestions || [])) {
-        const product = batch.find(p => p.id === item.productId);
-        if (!product) continue;
-        const existingIds = new Set(product.curatedMatches.map(m => m.id).filter(Boolean));
-        const filtered = (item.suggestedMatches || []).filter(m => !existingIds.has(m.productId));
-        suggestions[item.productId] = {
-          productTitle: product.title,
-          productHandle: product.handle,
-          matches: filtered.map(m => {
-            const matchProduct = availableSkirts.find(s => s.id === m.productId);
-            return {
-              productId: m.productId,
-              title: matchProduct?.title || 'Unknown',
-              handle: matchProduct?.handle || '',
-              image: matchProduct?.image || null,
-              price: matchProduct?.price || null,
-              reason: m.reason
+          if (matches.length > 0) {
+            existing.suggestions[item.productId] = {
+              productTitle: product.title,
+              productHandle: product.handle,
+              matches
             };
-          }).filter(m => m.title !== 'Unknown')
-        };
+            totalNew++;
+          }
+        }
+      } catch (e) {
+        console.error(`  Failed to parse response for ${result.custom_id}: ${e.message}`);
+        console.error(`  Preview: ${responseText.slice(0, 200)}`);
       }
-    } catch (e) {
-      console.error(`  Failed to parse Claude response for batch: ${e.message}`);
-      console.error(`  Response preview: ${response.slice(0, 200)}`);
     }
 
-    if (i + BATCH_SIZE < availableTops.length) {
-      await new Promise(r => setTimeout(r, 65000)); // 65s between batches to respect rate limits
-    }
+    console.log(`  Processed ${totalNew} new product suggestions\n`);
   }
 
-  // 6. Write output
+  // 7. Write output
   const output = {
     generatedAt: new Date().toISOString(),
-    totalProducts: Object.keys(suggestions).length,
-    totalSuggestions: Object.values(suggestions).reduce((sum, s) => sum + s.matches.length, 0),
-    suggestions
+    totalProducts: Object.keys(existing.suggestions).length,
+    totalSuggestions: Object.values(existing.suggestions).reduce((sum, s) => sum + s.matches.length, 0),
+    suggestions: existing.suggestions
   };
 
-  const outputFile = TEST_MODE ? 'suggestions-test.json' : 'suggestions.json';
-  const outputPath = path.join(__dirname, '..', 'data', outputFile);
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
 
-  console.log(`\nDone! Generated suggestions for ${output.totalProducts} products (${output.totalSuggestions} total matches)`);
+  console.log(`Done! ${output.totalProducts} products with ${output.totalSuggestions} total suggestions`);
   console.log(`Output: ${outputPath}`);
 }
 
