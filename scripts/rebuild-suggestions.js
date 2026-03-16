@@ -582,6 +582,7 @@ Respond ONLY in this exact JSON format, no other text:
             existing.suggestions[item.productId] = {
               productTitle: product.title,
               productHandle: product.handle,
+              productImage: product.image || null,
               matches
             };
             totalNew++;
