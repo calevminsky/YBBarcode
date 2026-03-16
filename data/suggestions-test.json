@@ -1,6 +1,343 @@
 {
-  "generatedAt": "2026-03-16T17:48:06.363Z",
-  "totalProducts": 0,
-  "totalSuggestions": 0,
-  "suggestions": {}
+  "generatedAt": "2026-03-16T18:00:02.850Z",
+  "totalProducts": 19,
+  "totalSuggestions": 28,
+  "suggestions": {
+    "gid://shopify/Product/7416004739169": {
+      "productTitle": "Suri Skirt (Pink Flower)",
+      "productHandle": "suri-skirt-pink-flower",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492751163489",
+          "title": "Rena Top (Light Lavender)",
+          "handle": "rena-top-light-pink-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-lavender-top-yakira-bella-2725309.jpg?v=1772058556",
+          "price": "44.00",
+          "reason": "Light lavender Rena Top coordinates with pink flower tones"
+        },
+        {
+          "productId": "gid://shopify/Product/7468150521953",
+          "title": "Lia Top (Light Pink)",
+          "handle": "lia-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-pink-top-yakira-bella-9796521.jpg?v=1771453345",
+          "price": "38.00",
+          "reason": "Light pink Lia Top pairs well with pink flower skirt"
+        }
+      ]
+    },
+    "gid://shopify/Product/7415995891809": {
+      "productTitle": "Suri Skirt (Blue Flower)",
+      "productHandle": "suri-skirt-blue-flower",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7466012115041",
+          "title": "Aria Top (Pastel Blue)",
+          "handle": "aria-top-pastel-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-pastel-blue-top-yakira-bella-8947553.jpg?v=1770956180",
+          "price": "78.00",
+          "reason": "Pastel blue Aria Top complements blue floral pattern"
+        }
+      ]
+    },
+    "gid://shopify/Product/7489066565729": {
+      "productTitle": "Zella Skirt (White/Green)",
+      "productHandle": "zella-skirt-white-green",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468122013793",
+          "title": "Lia Top (Green)",
+          "handle": "lia-top-green",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-green-top-yakira-bella-1671900.jpg?v=1771453348",
+          "price": "38.00",
+          "reason": "Green Lia Top coordinates with green elements in skirt"
+        }
+      ]
+    },
+    "gid://shopify/Product/7437297221729": {
+      "productTitle": "Laurel Skirt (Pink Flower)",
+      "productHandle": "laurel-skirt-pink-flower",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light pink Rena Top matches pink flower pattern"
+        },
+        {
+          "productId": "gid://shopify/Product/7492751163489",
+          "title": "Rena Top (Light Lavender)",
+          "handle": "rena-top-light-pink-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-lavender-top-yakira-bella-2725309.jpg?v=1772058556",
+          "price": "44.00",
+          "reason": "Light lavender Rena Top complements pink flower pattern"
+        },
+        {
+          "productId": "gid://shopify/Product/7468150521953",
+          "title": "Lia Top (Light Pink)",
+          "handle": "lia-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-pink-top-yakira-bella-9796521.jpg?v=1771453345",
+          "price": "38.00",
+          "reason": "Light pink Lia Top coordinates with pink floral skirt"
+        }
+      ]
+    },
+    "gid://shopify/Product/7437298696289": {
+      "productTitle": "Laurel Skirt (Blue Flower)",
+      "productHandle": "laurel-skirt-blue-flower",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492756832353",
+          "title": "Rena Top (Baby Blue)",
+          "handle": "rena-top-baby-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9754.jpg?v=1772640865",
+          "price": "44.00",
+          "reason": "Baby blue Rena Top matches blue flower pattern"
+        },
+        {
+          "productId": "gid://shopify/Product/7468114673761",
+          "title": "Lia Top (Butter Yellow)",
+          "handle": "lia-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-butter-yellow-top-yakira-bella-3599483.jpg?v=1771453346",
+          "price": "38.00",
+          "reason": "Butter yellow Lia Top pairs with blue floral tones"
+        }
+      ]
+    },
+    "gid://shopify/Product/7487619858529": {
+      "productTitle": "Rachel Skirt (Ivory Pattern)",
+      "productHandle": "rachel-skirt-ivory-pattern",
+      "matches": []
+    },
+    "gid://shopify/Product/7492656988257": {
+      "productTitle": "Aviana Skirt (White/Blue)",
+      "productHandle": "aviana-skirt-white-blue",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7482923614305",
+          "title": "Jemma Top (Blue)",
+          "handle": "jemma-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-blue-top-yakira-bella-5097614.jpg?v=1770956177",
+          "price": "54.00",
+          "reason": "Blue Jemma Top matches white/blue pattern"
+        }
+      ]
+    },
+    "gid://shopify/Product/7492662591585": {
+      "productTitle": "Zella Skirt (Pink/Green)",
+      "productHandle": "zella-skirt-pink-green",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492781473889",
+          "title": "Rena Top (Light Mint)",
+          "handle": "rena-top-light-mint",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-mint-top-yakira-bella-1620463.jpg?v=1772653539",
+          "price": "44.00",
+          "reason": "Light mint Rena Top pairs with green elements"
+        }
+      ]
+    },
+    "gid://shopify/Product/7462146932833": {
+      "productTitle": "Raya Skirt (White/Blue)",
+      "productHandle": "raya-skirt-white-blue",
+      "matches": []
+    },
+    "gid://shopify/Product/7462179831905": {
+      "productTitle": "Zella Skirt (Blue Pattern)",
+      "productHandle": "zella-skirt-blue-pattern",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468179456097",
+          "title": "Lia Top (Pink Blush)",
+          "handle": "lia-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
+          "price": "38.00",
+          "reason": "Pink blush Lia Top complements blue pattern skirt"
+        }
+      ]
+    },
+    "gid://shopify/Product/7492660199521": {
+      "productTitle": "Laurel Skirt (Light Peach Pattern)",
+      "productHandle": "laurel-skirt-light-peach-pattern",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492662689889",
+          "title": "Leah Top (Coral Pink)",
+          "handle": "leah-top-coral-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9950.jpg?v=1773347521",
+          "price": "58.00",
+          "reason": "Coral pink complements the ivory flower pattern, matching existing color coordination"
+        },
+        {
+          "productId": "gid://shopify/Product/7453216997473",
+          "title": "Paige Top (Medium Coral Pink)",
+          "handle": "paige-top-m",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-medium-coral-pink-top-yakira-bella-2254434.jpg?v=1768432094",
+          "price": "68.00",
+          "reason": "Medium coral pink pairs well with ivory florals, consistent with Rachel Skirt (Ivory Pattern) matches"
+        },
+        {
+          "productId": "gid://shopify/Product/7468377342049",
+          "title": "Paige Top (Bright Coral Pink)",
+          "handle": "paige-top-bright-coral-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-bright-coral-pink-top-yakira-bella-1712998.jpg?v=1769878991",
+          "price": "68.00",
+          "reason": "Bright coral pink creates fresh contrast with ivory floral, similar to existing curated matches"
+        }
+      ]
+    },
+    "gid://shopify/Product/7462165839969": {
+      "productTitle": "Zella Skirt (Peach Flower)",
+      "productHandle": "zella-skirt-peach-flower",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7453216997473",
+          "title": "Paige Top (Medium Coral Pink)",
+          "handle": "paige-top-m",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-medium-coral-pink-top-yakira-bella-2254434.jpg?v=1768432094",
+          "price": "68.00",
+          "reason": "Medium coral pink pairs beautifully with peach florals, consistent with existing Zella matches"
+        }
+      ]
+    },
+    "gid://shopify/Product/7492660625505": {
+      "productTitle": "Liana Skirt (Pink /Blue)",
+      "productHandle": "liana-skirt-pink-blue",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468114673761",
+          "title": "Lia Top (Butter Yellow)",
+          "handle": "lia-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-butter-yellow-top-yakira-bella-3599483.jpg?v=1771453346",
+          "price": "38.00",
+          "reason": "Butter yellow provides fresh contrast to pink/blue, complementary pairing"
+        }
+      ]
+    },
+    "gid://shopify/Product/7462137888865": {
+      "productTitle": "Laurel Skirt (White/Pink)",
+      "productHandle": "laurel-skirt-white-pink",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light pink complements white/pink pattern, matching existing Laurel style"
+        },
+        {
+          "productId": "gid://shopify/Product/7492751163489",
+          "title": "Rena Top (Light Lavender)",
+          "handle": "rena-top-light-pink-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-lavender-top-yakira-bella-2725309.jpg?v=1772058556",
+          "price": "44.00",
+          "reason": "Light lavender pairs beautifully with white/pink, already in curated list"
+        }
+      ]
+    },
+    "gid://shopify/Product/7492664721505": {
+      "productTitle": "Marley Skirt (Ivory)",
+      "productHandle": "marley-skirt-ivory",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White Rena top creates classic ivory/white pairing, core versatile match"
+        }
+      ]
+    },
+    "gid://shopify/Product/7492656726113": {
+      "productTitle": "Vera Skirt (Dark Blue)",
+      "productHandle": "vera-skirt-dark-blue1",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black top pairs with dark blue denim, versatile neutral combination"
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White top creates classic contrast with dark blue, similar to existing matches"
+        }
+      ]
+    },
+    "gid://shopify/Product/7492661149793": {
+      "productTitle": "Rachel Skirt (Red/Blue)",
+      "productHandle": "rachel-skirt-red-blue",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7452908912737",
+          "title": "Aria Top (Ivory)",
+          "handle": "aria-top-ivory",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-ivory-top-yakira-bella-4125192.jpg?v=1770956231",
+          "price": "78.00",
+          "reason": "Ivory provides neutral base for red/blue pattern, complementary match"
+        }
+      ]
+    },
+    "gid://shopify/Product/7492664688737": {
+      "productTitle": "Marley Skirt (Teal)",
+      "productHandle": "marley-skirt-teal",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7274417848417",
+          "title": "3/4 Sleeve Knit Cardigan (Mint)",
+          "handle": "3-4-sleeve-knit-cardigan-mint",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/34-sleeve-knit-cardigan-mint-top-yakira-bella-5691273.jpg?v=1770956411",
+          "price": "42.00",
+          "reason": "Mint cardigan pairs with teal skirt, coordinating color family"
+        },
+        {
+          "productId": "gid://shopify/Product/7492660428897",
+          "title": "Moss Cardigan (Blue)",
+          "handle": "moss-cardigan-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/moss-cardigan-blue-top-yakira-bella-2355888.jpg?v=1772053347",
+          "price": "68.00",
+          "reason": "Blue Moss cardigan complements teal elegantly, similar tones"
+        },
+        {
+          "productId": "gid://shopify/Product/7492659773537",
+          "title": "Mila Top (Light Blue)",
+          "handle": "mila-top-light-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mila-top-light-blue-top-yakira-bella-8960158.jpg?v=1773316580",
+          "price": "48.00",
+          "reason": "Light blue coordinates with teal skirt beautifully, harmonious pairing"
+        }
+      ]
+    },
+    "gid://shopify/Product/7492664655969": {
+      "productTitle": "Marley Skirt (Deep Coral)",
+      "productHandle": "marley-skirt-deep-coral",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492662689889",
+          "title": "Leah Top (Coral Pink)",
+          "handle": "leah-top-coral-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9950.jpg?v=1773347521",
+          "price": "58.00",
+          "reason": "Coral Leah top pairs with deep coral for tonal coordination"
+        },
+        {
+          "productId": "gid://shopify/Product/7468377342049",
+          "title": "Paige Top (Bright Coral Pink)",
+          "handle": "paige-top-bright-coral-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-bright-coral-pink-top-yakira-bella-1712998.jpg?v=1769878991",
+          "price": "68.00",
+          "reason": "Bright coral pink enhances deep coral skirt, monochromatic elegance"
+        }
+      ]
+    }
+  }
 }
