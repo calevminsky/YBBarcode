@@ -259,23 +259,50 @@ async function fetchCollectionProducts(handle) {
     }
   `;
 
-  // Try title-based search (most reliable for Shopify Admin API)
-  const result = await shopifyGraphQL(COLLECTION_WITH_PRODUCTS, { query: `title:*${handle}*` });
-
-  // Find the collection whose handle matches
+  // Shopify Admin API collection search is unreliable with handles.
+  // Try multiple strategies to find the collection.
   let collection = null;
-  for (const edge of (result.data?.collections?.edges || [])) {
-    if (edge.node.handle === handle) {
-      collection = edge.node;
-      break;
+
+  // Strategy 1: plain text search (searches title, handle, etc.)
+  const r1 = await shopifyGraphQL(COLLECTION_WITH_PRODUCTS, { query: handle });
+  console.log(`  Strategy 1 (plain search "${handle}"): ${r1.data?.collections?.edges?.length || 0} results`);
+  for (const edge of (r1.data?.collections?.edges || [])) {
+    console.log(`    - "${edge.node.title}" (handle: ${edge.node.handle})`);
+    if (edge.node.handle === handle) { collection = edge.node; break; }
+  }
+
+  // Strategy 2: title: prefix (exact title match)
+  if (!collection) {
+    const r2 = await shopifyGraphQL(COLLECTION_WITH_PRODUCTS, { query: `title:${handle}` });
+    console.log(`  Strategy 2 (title:${handle}): ${r2.data?.collections?.edges?.length || 0} results`);
+    for (const edge of (r2.data?.collections?.edges || [])) {
+      console.log(`    - "${edge.node.title}" (handle: ${edge.node.handle})`);
+      if (edge.node.handle === handle) { collection = edge.node; break; }
+    }
+    // Take first result if handle matched
+    if (!collection && r2.data?.collections?.edges?.length) {
+      collection = r2.data.collections.edges[0].node;
     }
   }
-  // If no exact handle match, take the first result (user likely typed the right thing)
+
+  // Strategy 3: fetch ALL collections and find by handle
   if (!collection) {
-    collection = result.data?.collections?.edges?.[0]?.node;
+    console.log('  Strategy 3: scanning all collections for handle match...');
+    const r3 = await shopifyGraphQL(COLLECTION_WITH_PRODUCTS, { query: '' });
+    for (const edge of (r3.data?.collections?.edges || [])) {
+      if (edge.node.handle === handle) { collection = edge.node; break; }
+    }
+    if (!collection) {
+      // Log what we did find for debugging
+      console.log(`  All collections returned (${r3.data?.collections?.edges?.length || 0}):`);
+      for (const edge of (r3.data?.collections?.edges || [])) {
+        console.log(`    - "${edge.node.title}" (handle: ${edge.node.handle})`);
+      }
+    }
   }
+
   if (!collection) {
-    console.error(`  Collection "${handle}" not found. Check the handle in Shopify admin.`);
+    console.error(`  Collection "${handle}" not found after all strategies. Check the handle in Shopify admin.`);
     return [];
   }
   console.log(`  Found collection: "${collection.title}" (handle: ${collection.handle})`);
