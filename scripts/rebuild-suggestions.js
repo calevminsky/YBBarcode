@@ -215,10 +215,14 @@ async function fetchAllProducts(productType) {
 }
 
 // ----- Fetch products from a specific collection -----
+// Two-step approach to stay under Shopify's 1000-point query cost limit:
+// 1. Fetch product IDs from the collection (cheap query)
+// 2. Fetch full product details one at a time (reuses same field set as fetchAllProducts)
 async function fetchCollectionProducts(handle) {
   console.log(`  Fetching collection: ${handle}...`);
 
-  const QUERY = `
+  // Step 1: Get product IDs from collection (low cost query)
+  const COLLECTION_IDS_QUERY = `
     query getCollectionProducts($handle: String!, $cursor: String) {
       collectionByHandle(handle: $handle) {
         id
@@ -227,53 +231,32 @@ async function fetchCollectionProducts(handle) {
         products(first: 100, after: $cursor) {
           pageInfo { hasNextPage endCursor }
           edges {
+            node { id title status }
+          }
+        }
+      }
+    }
+  `;
+
+  const PRODUCT_DETAIL_QUERY = `
+    query getProduct($id: ID!) {
+      product(id: $id) {
+        id
+        title
+        handle
+        productType
+        tags
+        status
+        images(first: 1) { edges { node { url } } }
+        variants(first: 50) {
+          edges {
             node {
-              id
-              title
-              handle
-              productType
-              tags
-              status
-              images(first: 1) {
-                edges { node { url } }
-              }
-              variants(first: 50) {
-                edges {
-                  node {
-                    price
-                    inventoryItem {
-                      inventoryLevels(first: 20) {
-                        edges {
-                          node {
-                            quantities(names: ["available"]) {
-                              name
-                              quantity
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              metafields(first: 10) {
-                edges {
-                  node {
-                    namespace
-                    key
-                    value
-                  }
-                }
-              }
-              upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
-                type
-                value
-                references(first: 30) {
-                  nodes {
-                    ... on Product {
-                      id
-                      title
-                      handle
+              price
+              inventoryItem {
+                inventoryLevels(first: 20) {
+                  edges {
+                    node {
+                      quantities(names: ["available"]) { name quantity }
                     }
                   }
                 }
@@ -281,20 +264,30 @@ async function fetchCollectionProducts(handle) {
             }
           }
         }
+        metafields(first: 10) {
+          edges { node { namespace key value } }
+        }
+        upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
+          type
+          value
+          references(first: 30) {
+            nodes { ... on Product { id title handle } }
+          }
+        }
       }
     }
   `;
 
-  const products = [];
+  // Collect product IDs from collection
+  const productIds = [];
   let cursor = null;
   let page = 0;
-  let collection = null;
 
   while (true) {
     page++;
-    const result = await shopifyGraphQL(QUERY, { handle, cursor });
+    const result = await shopifyGraphQL(COLLECTION_IDS_QUERY, { handle, cursor });
 
-    collection = result.data?.collectionByHandle;
+    const collection = result.data?.collectionByHandle;
     if (!collection) {
       console.error(`  Collection "${handle}" not found.`);
       return [];
@@ -306,58 +299,68 @@ async function fetchCollectionProducts(handle) {
 
     const conn = collection.products;
     const edges = conn?.edges || [];
-
     console.log(`  Collection page ${page}: ${edges.length} products`);
 
     for (const edge of edges) {
-      const p = edge.node;
-
-      console.log(`    ${p.title} | status=${p.status} | type=${p.productType}`);
-
-      const totalInventory = p.variants.edges.reduce((sum, v) => {
-        const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
-        return sum + levels.reduce((lSum, lvl) => {
-          const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
-          return lSum + qty;
-        }, 0);
-      }, 0);
-
-      const metafields = {};
-      for (const mfEdge of (p.metafields?.edges || [])) {
-        const mf = mfEdge.node;
-        metafields[`${mf.namespace}.${mf.key}`] = mf.value;
+      console.log(`    ${edge.node.title} | status=${edge.node.status}`);
+      if (edge.node.status === 'ACTIVE') {
+        productIds.push(edge.node.id);
       }
-
-      const curatedMatches = [];
-      const upsellMeta = p.upsellMeta;
-      if (upsellMeta) {
-        const refs = upsellMeta.references?.nodes || [];
-        if (refs.length) {
-          refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
-        } else if (upsellMeta.value) {
-          const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
-          tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
-        }
-      }
-
-      products.push({
-        id: p.id,
-        title: p.title,
-        handle: p.handle,
-        productType: p.productType,
-        tags: p.tags,
-        image: p.images?.edges?.[0]?.node?.url || null,
-        price: p.variants.edges[0]?.node?.price || null,
-        totalInventory,
-        color: metafields['theme.color'] || metafields['custom.color'] || '',
-        material: metafields['theme.material'] || metafields['custom.material'] || '',
-        season: metafields['theme.season'] || metafields['custom.season'] || '',
-        curatedMatches
-      });
     }
 
     if (!conn?.pageInfo?.hasNextPage) break;
     cursor = conn.pageInfo.endCursor;
+  }
+
+  console.log(`  ${productIds.length} active products to fetch details for...`);
+
+  // Step 2: Fetch full details for each product
+  const products = [];
+  for (const id of productIds) {
+    const result = await shopifyGraphQL(PRODUCT_DETAIL_QUERY, { id });
+    const p = result.data?.product;
+    if (!p) continue;
+
+    const totalInventory = p.variants.edges.reduce((sum, v) => {
+      const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
+      return sum + levels.reduce((lSum, lvl) => {
+        const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
+        return lSum + qty;
+      }, 0);
+    }, 0);
+
+    const metafields = {};
+    for (const mfEdge of (p.metafields?.edges || [])) {
+      const mf = mfEdge.node;
+      metafields[`${mf.namespace}.${mf.key}`] = mf.value;
+    }
+
+    const curatedMatches = [];
+    const upsellMeta = p.upsellMeta;
+    if (upsellMeta) {
+      const refs = upsellMeta.references?.nodes || [];
+      if (refs.length) {
+        refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
+      } else if (upsellMeta.value) {
+        const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+        tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
+      }
+    }
+
+    products.push({
+      id: p.id,
+      title: p.title,
+      handle: p.handle,
+      productType: p.productType,
+      tags: p.tags,
+      image: p.images?.edges?.[0]?.node?.url || null,
+      price: p.variants.edges[0]?.node?.price || null,
+      totalInventory,
+      color: metafields['theme.color'] || metafields['custom.color'] || '',
+      material: metafields['theme.material'] || metafields['custom.material'] || '',
+      season: metafields['theme.season'] || metafields['custom.season'] || '',
+      curatedMatches
+    });
   }
 
   return products;
