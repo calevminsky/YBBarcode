@@ -205,43 +205,48 @@ async function fetchAllProducts(productType) {
 async function fetchCollectionProducts(handle) {
   console.log(`  Fetching collection: ${handle}...`);
   const result = await shopifyGraphQL(`
-    query collectionByHandle($handle: String!) {
-      collectionByHandle(handle: $handle) {
-        title
-        products(first: 100) {
-          edges {
-            node {
-              id
-              title
-              handle
-              productType
-              tags
-              status
-              images(first: 1) { edges { node { url } } }
-              variants(first: 50) {
-                edges {
-                  node {
-                    price
-                    inventoryItem {
-                      inventoryLevels(first: 20) {
-                        edges {
-                          node {
-                            quantities(names: ["available"]) { name quantity }
+    query findCollection($query: String!) {
+      collections(first: 1, query: $query) {
+        edges {
+          node {
+            title
+            handle
+            products(first: 100) {
+              edges {
+                node {
+                  id
+                  title
+                  handle
+                  productType
+                  tags
+                  status
+                  images(first: 1) { edges { node { url } } }
+                  variants(first: 50) {
+                    edges {
+                      node {
+                        price
+                        inventoryItem {
+                          inventoryLevels(first: 20) {
+                            edges {
+                              node {
+                                quantities(names: ["available"]) { name quantity }
+                              }
+                            }
                           }
                         }
                       }
                     }
                   }
-                }
-              }
-              metafields(first: 10) {
-                edges { node { namespace key value } }
-              }
-              upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
-                type
-                value
-                references(first: 30) {
-                  nodes { ... on Product { id title handle } }
+                  metafields(first: 10) {
+                    edges { node { namespace key value } }
+                  }
+                  upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
+                    type
+                    value
+                    references(first: 30) {
+                      nodes { ... on Product { id title handle } }
+                    }
+                  }
                 }
               }
             }
@@ -249,14 +254,14 @@ async function fetchCollectionProducts(handle) {
         }
       }
     }
-  `, { handle });
+  `, { query: `handle:${handle}` });
 
-  const collection = result.data?.collectionByHandle;
+  const collection = result.data?.collections?.edges?.[0]?.node;
   if (!collection) {
     console.error(`  Collection "${handle}" not found!`);
     return [];
   }
-  console.log(`  Found collection: "${collection.title}"`);
+  console.log(`  Found collection: "${collection.title}" (handle: ${collection.handle})`);
 
   const products = [];
   for (const edge of collection.products.edges) {
