@@ -8,9 +8,9 @@ The goal is to suggest tops that go well with skirts, and skirts that go well wi
 - Match skirts with tops and tops with skirts that a customer would realistically wear together
 - Consider style compatibility: casual with casual, dressy with dressy, Shabbos/formal with Shabbos/formal
 - Color matching: pair bold prints or patterns with solid neutrals; similar color families also work
-- Never suggest two very similar items (e.g. two plain black tops)
-- Material compatibility matters: heavy fabrics with heavy, light with light, summer fabrics together
 - Prefer core/evergreen tops over seasonal ones — core tops are versatile and pair with more skirts
+- Take into account color of skirt and color of top to match or a contrast match
+- Other colors of products already in its curated match list or other products of colors already in its curated match list
 
 ## What to Avoid
 
