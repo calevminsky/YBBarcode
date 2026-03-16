@@ -1,0 +1,36 @@
+name: Rebuild AI Suggestions
+
+on:
+  schedule:
+    # Run daily at 4:00 AM EST (9:00 AM UTC)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run rebuild script
+        env:
+          SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/rebuild-suggestions.js
+
+      - name: Commit and push suggestions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/suggestions.json
+          # Only commit if there are changes
+          git diff --staged --quiet || git commit -m "chore: rebuild AI product suggestions $(date -u +%Y-%m-%d)"
+          git push
