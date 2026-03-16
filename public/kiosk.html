@@ -218,7 +218,15 @@
     .ai-matches-toggle .arrow { font-size: 0.8em; transition: transform 0.2s; }
     .ai-matches-toggle .arrow.open { transform: rotate(90deg); }
     .ai-matches-body { display: none; padding-bottom: 16px; }
-    .ai-matches-body.open { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+    .ai-matches-body.open {
+      display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px;
+      scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+    }
+    .ai-matches-body::-webkit-scrollbar { display: none; }
+    .ai-matches-body .match-card {
+      flex-shrink: 0; width: 160px; scroll-snap-align: start;
+    }
+    .ai-matches-body .match-card img { width: 160px; height: 200px; aspect-ratio: auto; }
 
     /* ---- Floating New Search Button ---- */
     .new-search-fab {
@@ -730,13 +738,29 @@
             </button>
             <div class="ai-matches-body" id="aiMatchesBody">
               ${aiMatches.map((u, idx) => {
+                const stockClass = (u.storeTotal || 0) > 0 ? 'has-stock' : 'no-stock';
+                const stockText = (u.storeTotal || 0) > 0 ? 'In Stock' : 'Out of Stock';
                 const invId = `aiMatchInv${idx}`;
+                const sizes = u.sizeInventory || [];
                 return `
                   <div class="match-card">
                     <img src="${u.image || ''}" alt="${escapeHTML(u.title)}" onclick="navigateToProduct('${u.id}')" />
                     <div class="match-card-info">
                       <div class="mc-title" onclick="navigateToProduct('${u.id}')">${escapeHTML(u.title)}</div>
                       ${u.price ? `<div class="mc-price">$${Number(u.price).toFixed(2)}</div>` : ''}
+                      <div class="mc-stock ${stockClass}">${stockText}</div>
+                      ${sizes.length ? `
+                        <button class="card-inv-toggle" onclick="toggleCardInv('${invId}', this, event)">
+                          <span class="arrow">&#9654;</span>
+                          <span>Size Availability</span>
+                        </button>
+                        <div class="card-inv-sizes" id="${invId}">
+                          ${sizes.map(s => {
+                            const q = s.storeQuantity || 0;
+                            return `<div class="card-inv-chip ${q > 0 ? 'has' : ''}"><span class="ci-qty">${escapeHTML(s.size)}</span> ${q > 0 ? q : '0'}</div>`;
+                          }).join('')}
+                        </div>
+                      ` : ''}
                     </div>
                   </div>
                 `;

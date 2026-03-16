@@ -354,8 +354,9 @@ async function buildKioskProductData(productId, storeName) {
     attachKioskInventory(siblingsRaw)
   ]);
 
-  // Load AI suggestions for this product
-  const aiMatches = await getAISuggestions(productId, storeName);
+  // Load AI suggestions for this product and attach inventory
+  const aiMatchesRaw = getAISuggestions(productId);
+  const aiMatches = await attachKioskInventory(aiMatchesRaw);
 
   return {
     title: product.title,
@@ -369,7 +370,7 @@ async function buildKioskProductData(productId, storeName) {
   };
 }
 
-function getAISuggestions(productId, storeName) {
+function getAISuggestions(productId) {
   try {
     const filePath = path.join(__dirname, 'data', 'suggestions.json');
     const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -380,8 +381,7 @@ function getAISuggestions(productId, storeName) {
       title: m.title,
       handle: m.handle,
       image: m.image,
-      price: m.price,
-      reason: m.reason
+      price: m.price
     }));
   } catch {
     return [];
