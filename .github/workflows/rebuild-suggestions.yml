@@ -4,7 +4,17 @@ on:
   schedule:
     # Run daily at 4:00 AM EST (9:00 AM UTC)
     - cron: '0 9 * * *'
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      test_mode:
+        description: 'Run in test mode (single collection only)'
+        required: false
+        type: boolean
+        default: false
+      test_collection:
+        description: 'Collection handle to test with (e.g. "summer-skirts")'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -15,7 +25,7 @@ env:
 jobs:
   rebuild:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
 
     steps:
       - name: Checkout repository
@@ -30,13 +40,17 @@ jobs:
         env:
           SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/rebuild-suggestions.js
+        run: |
+          ARGS=""
+          if [ "${{ inputs.test_mode }}" = "true" ]; then ARGS="--test"; fi
+          if [ -n "${{ inputs.test_collection }}" ]; then ARGS="$ARGS --collection ${{ inputs.test_collection }}"; fi
+          node scripts/rebuild-suggestions.js $ARGS
 
       - name: Commit and push suggestions
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/suggestions.json
+          git add data/suggestions.json data/suggestions-test.json 2>/dev/null || git add data/suggestions.json
           # Only commit if there are changes
           git diff --staged --quiet || git commit -m "chore: rebuild AI product suggestions $(date -u +%Y-%m-%d)"
           git push

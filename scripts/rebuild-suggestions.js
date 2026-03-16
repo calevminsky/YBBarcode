@@ -23,6 +23,10 @@ const SHOPIFY_TOKEN = process.env.SHOPIFY_ACCESS_TOKEN;
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const API_VERSION = '2025-10';
 
+const TEST_MODE = process.argv.includes('--test');
+const COLLECTION_FLAG_IDX = process.argv.indexOf('--collection');
+const TEST_COLLECTION = COLLECTION_FLAG_IDX !== -1 ? process.argv[COLLECTION_FLAG_IDX + 1] : null;
+
 if (!SHOPIFY_TOKEN) { console.error('Missing SHOPIFY_ACCESS_TOKEN'); process.exit(1); }
 if (!ANTHROPIC_KEY) { console.error('Missing ANTHROPIC_API_KEY'); process.exit(1); }
 
@@ -37,28 +41,40 @@ async function shopifyGraphQL(query, variables = {}) {
   return res.json();
 }
 
-// ----- Claude API helper -----
-async function askClaude(systemPrompt, userPrompt) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': ANTHROPIC_KEY,
-      'anthropic-version': '2023-06-01'
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-5-20250929',
-      max_tokens: 4096,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userPrompt }]
-    })
-  });
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Claude API error ${res.status}: ${err}`);
+// ----- Claude API helper (with retry for rate limits) -----
+async function askClaude(systemPrompt, userPrompt, retries = 5) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_KEY,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-5-20250929',
+        max_tokens: 4096,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+
+    if (res.status === 429) {
+      const retryAfter = res.headers.get('retry-after');
+      const waitSec = retryAfter ? parseInt(retryAfter) : Math.min(15 * attempt, 120);
+      console.log(`    Rate limited. Waiting ${waitSec}s (attempt ${attempt}/${retries})...`);
+      await new Promise(r => setTimeout(r, waitSec * 1000));
+      continue;
+    }
+
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`Claude API error ${res.status}: ${err}`);
+    }
+    const data = await res.json();
+    return data.content?.[0]?.text || '';
   }
-  const data = await res.json();
-  return data.content?.[0]?.text || '';
+  throw new Error('Claude API: max retries exceeded due to rate limiting');
 }
 
 // ----- Fetch all products of a given type (paginated) -----
@@ -185,6 +201,108 @@ async function fetchAllProducts(productType) {
   return allProducts;
 }
 
+// ----- Fetch products from a specific collection -----
+async function fetchCollectionProducts(handle) {
+  console.log(`  Fetching collection: ${handle}...`);
+  const result = await shopifyGraphQL(`
+    query collectionByHandle($handle: String!) {
+      collectionByHandle(handle: $handle) {
+        title
+        products(first: 100) {
+          edges {
+            node {
+              id
+              title
+              handle
+              productType
+              tags
+              status
+              images(first: 1) { edges { node { url } } }
+              variants(first: 50) {
+                edges {
+                  node {
+                    price
+                    inventoryItem {
+                      inventoryLevels(first: 20) {
+                        edges {
+                          node {
+                            quantities(names: ["available"]) { name quantity }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              metafields(first: 10) {
+                edges { node { namespace key value } }
+              }
+              upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
+                type
+                value
+                references(first: 30) {
+                  nodes { ... on Product { id title handle } }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `, { handle });
+
+  const collection = result.data?.collectionByHandle;
+  if (!collection) {
+    console.error(`  Collection "${handle}" not found!`);
+    return [];
+  }
+  console.log(`  Found collection: "${collection.title}"`);
+
+  const products = [];
+  for (const edge of collection.products.edges) {
+    const p = edge.node;
+    if (p.status !== 'ACTIVE') continue;
+    const totalInventory = p.variants.edges.reduce((sum, v) => {
+      const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
+      return sum + levels.reduce((lSum, lvl) => {
+        const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
+        return lSum + qty;
+      }, 0);
+    }, 0);
+
+    const metafields = {};
+    for (const mfEdge of (p.metafields?.edges || [])) {
+      const mf = mfEdge.node;
+      metafields[`${mf.namespace}.${mf.key}`] = mf.value;
+    }
+
+    const curatedMatches = [];
+    const upsellMeta = p.upsellMeta;
+    if (upsellMeta) {
+      const refs = upsellMeta.references?.nodes || [];
+      if (refs.length) {
+        refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
+      } else if (upsellMeta.value) {
+        const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+        tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
+      }
+    }
+
+    products.push({
+      id: p.id, title: p.title, handle: p.handle,
+      productType: p.productType, tags: p.tags,
+      image: p.images?.edges?.[0]?.node?.url || null,
+      price: p.variants.edges[0]?.node?.price || null,
+      totalInventory,
+      color: metafields['theme.color'] || metafields['custom.color'] || '',
+      material: metafields['theme.material'] || metafields['custom.material'] || '',
+      season: metafields['theme.season'] || metafields['custom.season'] || '',
+      curatedMatches
+    });
+  }
+  return products;
+}
+
 // ----- Build product catalog summary for Claude -----
 function buildProductSummary(product) {
   const parts = [`[${product.id}] ${product.title}`];
@@ -217,7 +335,7 @@ async function discoverProductTypes() {
 
 // ----- Main -----
 async function main() {
-  console.log('Starting suggestion rebuild...\n');
+  console.log(`Starting suggestion rebuild${TEST_MODE ? ' (TEST MODE - 1 batch only)' : ''}...\n`);
 
   // 0. Discover product types
   console.log('Discovering product types...');
@@ -234,19 +352,27 @@ async function main() {
   const topType = allTypes.find(t => t.toLowerCase().includes('top')) || 'Tops';
   console.log(`Using types: skirts="${skirtType}", tops="${topType}"\n`);
 
-  // 1. Fetch all products
-  console.log('Fetching skirts...');
-  const skirts = await fetchAllProducts(skirtType);
-  console.log(`  Found ${skirts.length} active skirts`);
+  // 1. Fetch products
+  let skirts, tops;
+
+  if (TEST_MODE && TEST_COLLECTION) {
+    console.log(`Fetching test collection: ${TEST_COLLECTION}...`);
+    skirts = await fetchCollectionProducts(TEST_COLLECTION);
+    console.log(`  Found ${skirts.length} products in collection\n`);
+  } else {
+    console.log('Fetching skirts...');
+    skirts = await fetchAllProducts(skirtType);
+    console.log(`  Found ${skirts.length} active skirts`);
+  }
 
   console.log('Fetching tops...');
-  const tops = await fetchAllProducts(topType);
+  tops = await fetchAllProducts(topType);
   console.log(`  Found ${tops.length} active tops\n`);
 
   // Filter out very low stock
   const availableSkirts = skirts.filter(p => p.totalInventory > 2);
   const availableTops = tops.filter(p => p.totalInventory > 2);
-  console.log(`After filtering low stock: ${availableSkirts.length} skirts, ${availableTops.length} tops\n`);
+  console.log(`After filtering low stock: ${availableSkirts.length} skirts/collection products, ${availableTops.length} tops\n`);
 
   // 2. Load matching instructions
   const instructionsPath = path.join(__dirname, '..', 'data', 'matching-instructions.md');
@@ -274,10 +400,11 @@ async function main() {
   // 5. Ask Claude for suggestions in batches
   const suggestions = {};
   const BATCH_SIZE = 20;
+  const skirtLimit = TEST_MODE ? BATCH_SIZE : availableSkirts.length;
 
   // Process skirts -> suggest tops
   console.log('Generating suggestions for skirts (matching with tops)...');
-  for (let i = 0; i < availableSkirts.length; i += BATCH_SIZE) {
+  for (let i = 0; i < skirtLimit; i += BATCH_SIZE) {
     const batch = availableSkirts.slice(i, i + BATCH_SIZE);
     console.log(`  Batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(availableSkirts.length / BATCH_SIZE)} (${batch.length} skirts)...`);
 
@@ -346,13 +473,18 @@ Respond ONLY in this exact JSON format, no other text:
 
     // Rate limit: small delay between batches
     if (i + BATCH_SIZE < availableSkirts.length) {
-      await new Promise(r => setTimeout(r, 1000));
+      await new Promise(r => setTimeout(r, 65000)); // 65s between batches to respect rate limits
     }
   }
 
   // Process tops -> suggest skirts
-  console.log('\nGenerating suggestions for tops (matching with skirts)...');
-  for (let i = 0; i < availableTops.length; i += BATCH_SIZE) {
+  if (TEST_MODE) {
+    console.log('\nTEST MODE: Skipping tops. Only processed 1 batch of skirts.\n');
+  } else {
+    console.log('\nGenerating suggestions for tops (matching with skirts)...');
+  }
+  const topLimit = TEST_MODE ? 0 : availableTops.length;
+  for (let i = 0; i < topLimit; i += BATCH_SIZE) {
     const batch = availableTops.slice(i, i + BATCH_SIZE);
     console.log(`  Batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(availableTops.length / BATCH_SIZE)} (${batch.length} tops)...`);
 
@@ -416,7 +548,7 @@ Respond ONLY in this exact JSON format, no other text:
     }
 
     if (i + BATCH_SIZE < availableTops.length) {
-      await new Promise(r => setTimeout(r, 1000));
+      await new Promise(r => setTimeout(r, 65000)); // 65s between batches to respect rate limits
     }
   }
 
@@ -428,7 +560,8 @@ Respond ONLY in this exact JSON format, no other text:
     suggestions
   };
 
-  const outputPath = path.join(__dirname, '..', 'data', 'suggestions.json');
+  const outputFile = TEST_MODE ? 'suggestions-test.json' : 'suggestions.json';
+  const outputPath = path.join(__dirname, '..', 'data', outputFile);
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
 
   console.log(`\nDone! Generated suggestions for ${output.totalProducts} products (${output.totalSuggestions} total matches)`);
