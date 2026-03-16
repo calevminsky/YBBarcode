@@ -206,6 +206,20 @@
     .match-card .mc-stock.has-stock { color: #28a745; }
     .match-card .mc-stock.no-stock { color: #ccc; }
 
+    /* ---- AI Pairing Options (collapsible) ---- */
+    .ai-matches-section { padding: 0 24px; margin-top: 32px; }
+    .ai-matches-toggle {
+      display: flex; align-items: center; gap: 10px; width: 100%; padding: 16px 0;
+      cursor: pointer; background: none; border: none; border-top: 1px solid #eee;
+      font-size: 1em; font-weight: 600; color: #555; text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .ai-matches-toggle:active { opacity: 0.6; }
+    .ai-matches-toggle .arrow { font-size: 0.8em; transition: transform 0.2s; }
+    .ai-matches-toggle .arrow.open { transform: rotate(90deg); }
+    .ai-matches-body { display: none; padding-bottom: 16px; }
+    .ai-matches-body.open { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+
     /* ---- Floating New Search Button ---- */
     .new-search-fab {
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
@@ -704,6 +718,34 @@
         `;
       }
 
+      // AI Matches (collapsed by default)
+      const aiMatches = data.aiMatches || [];
+      let aiMatchesHTML = '';
+      if (aiMatches.length) {
+        aiMatchesHTML = `
+          <div class="ai-matches-section">
+            <button class="ai-matches-toggle" onclick="toggleAiMatches()">
+              <span class="arrow" id="aiMatchesArrow">&#9654;</span>
+              <span>Other Pairing Options</span>
+            </button>
+            <div class="ai-matches-body" id="aiMatchesBody">
+              ${aiMatches.map((u, idx) => {
+                const invId = `aiMatchInv${idx}`;
+                return `
+                  <div class="match-card">
+                    <img src="${u.image || ''}" alt="${escapeHTML(u.title)}" onclick="navigateToProduct('${u.id}')" />
+                    <div class="match-card-info">
+                      <div class="mc-title" onclick="navigateToProduct('${u.id}')">${escapeHTML(u.title)}</div>
+                      ${u.price ? `<div class="mc-price">$${Number(u.price).toFixed(2)}</div>` : ''}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
       // Assemble PDP
       pdpScreen.innerHTML = `
         ${carouselHTML}
@@ -714,6 +756,7 @@
         </div>
         ${storeHTML}
         ${matchesHTML}
+        ${aiMatchesHTML}
         ${siblingsHTML}
       `;
 
@@ -747,6 +790,14 @@
       el.classList.toggle('open');
       const arrow = btn.querySelector('.arrow');
       if (arrow) arrow.classList.toggle('open');
+    }
+
+    function toggleAiMatches() {
+      const body = document.getElementById('aiMatchesBody');
+      const arrow = document.getElementById('aiMatchesArrow');
+      if (!body) return;
+      body.classList.toggle('open');
+      arrow.classList.toggle('open');
     }
 
     function toggleOnline() {
