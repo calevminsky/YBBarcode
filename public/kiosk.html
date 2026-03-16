@@ -94,7 +94,7 @@
     .kiosk-status.error { background: #fff0f0; color: #d22; display: block; }
 
     /* ---- Product Detail (PDP) ---- */
-    .pdp-screen { display: none; padding-bottom: 40px; }
+    .pdp-screen { display: none; padding-bottom: 100px; }
 
     .image-carousel {
       width: 100%; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -206,6 +206,34 @@
     .match-card .mc-stock.has-stock { color: #28a745; }
     .match-card .mc-stock.no-stock { color: #ccc; }
 
+    /* ---- Floating New Search Button ---- */
+    .new-search-fab {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      padding: 16px 36px; font-size: 1em; font-weight: 600;
+      background: #111; color: #fff; border: none; border-radius: 50px;
+      cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 40;
+      letter-spacing: 0.3px; display: none;
+    }
+    .new-search-fab:active { background: #333; transform: translateX(-50%) scale(0.96); }
+
+    /* ---- Expandable Inventory on Cards ---- */
+    .card-inv-toggle {
+      display: flex; align-items: center; gap: 6px; margin-top: 8px; padding: 8px 0 0;
+      border-top: 1px solid #f0f0f0; cursor: pointer; font-size: 0.8em; color: #555; font-weight: 500;
+      background: none; border-left: none; border-right: none; border-bottom: none; width: 100%;
+    }
+    .card-inv-toggle:active { opacity: 0.6; }
+    .card-inv-toggle .arrow { font-size: 0.7em; transition: transform 0.2s; }
+    .card-inv-toggle .arrow.open { transform: rotate(90deg); }
+    .card-inv-sizes { display: none; margin-top: 6px; }
+    .card-inv-sizes.open { display: flex; flex-wrap: wrap; gap: 6px; }
+    .card-inv-chip {
+      padding: 4px 8px; border-radius: 6px; font-size: 0.75em; text-align: center;
+      background: #f5f5f5; border: 1px solid #eee; color: #666;
+    }
+    .card-inv-chip.has { background: #f0faf0; border-color: #c3e6cb; color: #1a7a31; }
+    .card-inv-chip .ci-qty { font-weight: 600; }
+
     /* ---- Responsive ---- */
     @media (min-width: 1024px) {
       .image-carousel img { max-height: 60vh; }
@@ -251,6 +279,9 @@
 
     <!-- Product Detail -->
     <div id="pdpScreen" class="pdp-screen"></div>
+
+    <!-- Floating new search button (visible on PDP) -->
+    <button id="newSearchFab" class="new-search-fab" onclick="showScanScreen()">New Search</button>
   </div>
 
   <script>
@@ -336,10 +367,13 @@
     }
 
     // ---- SCREENS ----
+    const newSearchFab = document.getElementById('newSearchFab');
+
     function showScanScreen() {
       scanScreen.style.display = 'flex';
       pdpScreen.style.display = 'none';
       backBtn.style.display = 'none';
+      newSearchFab.style.display = 'none';
       navStack = [];
       currentProductData = null;
       hideStatus();
@@ -351,7 +385,8 @@
     function showPDP() {
       scanScreen.style.display = 'none';
       pdpScreen.style.display = 'block';
-      backBtn.style.display = navStack.length > 0 ? 'block' : 'none';
+      backBtn.style.display = 'block';
+      newSearchFab.style.display = 'block';
       window.scrollTo(0, 0);
     }
 
@@ -598,15 +633,29 @@
           <div class="siblings-section">
             <h3>Other Colors</h3>
             <div class="siblings-scroll">
-              ${siblings.map(s => {
+              ${siblings.map((s, idx) => {
                 const stockClass = (s.storeTotal || 0) > 0 ? 'has-stock' : 'no-stock';
                 const stockText = (s.storeTotal || 0) > 0 ? 'In Stock' : 'Out of Stock';
+                const invId = `sibInv${idx}`;
+                const sizes = s.sizeInventory || [];
                 return `
-                  <div class="sibling-card" onclick="navigateToProduct('${s.id}')">
-                    <img src="${s.image || ''}" alt="${escapeHTML(s.title)}" />
-                    <div class="sc-title">${escapeHTML(s.title)}</div>
+                  <div class="sibling-card">
+                    <img src="${s.image || ''}" alt="${escapeHTML(s.title)}" onclick="navigateToProduct('${s.id}')" />
+                    <div class="sc-title" onclick="navigateToProduct('${s.id}')">${escapeHTML(s.title)}</div>
                     ${s.price ? `<div class="sc-price">$${Number(s.price).toFixed(2)}</div>` : ''}
                     <div class="sc-stock ${stockClass}">${stockText}</div>
+                    ${sizes.length ? `
+                      <button class="card-inv-toggle" onclick="toggleCardInv('${invId}', this, event)" style="font-size:0.7em;">
+                        <span class="arrow">&#9654;</span>
+                        <span>Sizes</span>
+                      </button>
+                      <div class="card-inv-sizes" id="${invId}">
+                        ${sizes.map(sz => {
+                          const q = sz.storeQuantity || 0;
+                          return `<div class="card-inv-chip ${q > 0 ? 'has' : ''}" style="font-size:0.7em;"><span class="ci-qty">${escapeHTML(sz.size)}</span> ${q > 0 ? q : '0'}</div>`;
+                        }).join('')}
+                      </div>
+                    ` : ''}
                   </div>
                 `;
               }).join('')}
@@ -622,16 +671,30 @@
           <div class="matches-section">
             <h3>Complete the Look</h3>
             <div class="matches-grid">
-              ${upsells.map(u => {
+              ${upsells.map((u, idx) => {
                 const stockClass = (u.storeTotal || 0) > 0 ? 'has-stock' : 'no-stock';
                 const stockText = (u.storeTotal || 0) > 0 ? 'In Stock' : 'Out of Stock';
+                const invId = `matchInv${idx}`;
+                const sizes = u.sizeInventory || [];
                 return `
-                  <div class="match-card" onclick="navigateToProduct('${u.id}')">
-                    <img src="${u.image || ''}" alt="${escapeHTML(u.title)}" />
+                  <div class="match-card">
+                    <img src="${u.image || ''}" alt="${escapeHTML(u.title)}" onclick="navigateToProduct('${u.id}')" />
                     <div class="match-card-info">
-                      <div class="mc-title">${escapeHTML(u.title)}</div>
+                      <div class="mc-title" onclick="navigateToProduct('${u.id}')">${escapeHTML(u.title)}</div>
                       ${u.price ? `<div class="mc-price">$${Number(u.price).toFixed(2)}</div>` : ''}
                       <div class="mc-stock ${stockClass}">${stockText}</div>
+                      ${sizes.length ? `
+                        <button class="card-inv-toggle" onclick="toggleCardInv('${invId}', this, event)">
+                          <span class="arrow">&#9654;</span>
+                          <span>Size Availability</span>
+                        </button>
+                        <div class="card-inv-sizes" id="${invId}">
+                          ${sizes.map(s => {
+                            const q = s.storeQuantity || 0;
+                            return `<div class="card-inv-chip ${q > 0 ? 'has' : ''}"><span class="ci-qty">${escapeHTML(s.size)}</span> ${q > 0 ? q : '0'}</div>`;
+                          }).join('')}
+                        </div>
+                      ` : ''}
                     </div>
                   </div>
                 `;
@@ -650,8 +713,8 @@
           ${data.handle ? `<a class="view-online-btn" href="https://yakirabella.com/products/${data.handle}" target="_blank">View Online</a>` : ''}
         </div>
         ${storeHTML}
-        ${siblingsHTML}
         ${matchesHTML}
+        ${siblingsHTML}
       `;
 
       // Set up carousel scroll observer
@@ -675,6 +738,15 @@
         });
       }, { root: carousel, threshold: 0.6 });
       imgs.forEach(img => observer.observe(img));
+    }
+
+    function toggleCardInv(id, btn, event) {
+      event.stopPropagation();
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.toggle('open');
+      const arrow = btn.querySelector('.arrow');
+      if (arrow) arrow.classList.toggle('open');
     }
 
     function toggleOnline() {
