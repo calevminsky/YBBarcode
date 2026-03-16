@@ -66,7 +66,7 @@ async function askClaude(systemPrompt, userPrompt, retries = 5) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-5-20250929',
-        max_tokens: 4096,
+        max_tokens: 16384,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }]
       })
@@ -85,6 +85,9 @@ async function askClaude(systemPrompt, userPrompt, retries = 5) {
       throw new Error(`Claude API error ${res.status}: ${err}`);
     }
     const data = await res.json();
+    if (data.stop_reason === 'max_tokens') {
+      console.log('    Warning: Claude response was truncated (hit max_tokens). Consider smaller batches.');
+    }
     return data.content?.[0]?.text || '';
   }
   throw new Error('Claude API: max retries exceeded due to rate limiting');
@@ -153,7 +156,7 @@ async function fetchAllProducts(productType) {
     page++;
     console.log(`  Fetching ${productType} page ${page}...`);
     const result = await shopifyGraphQL(FETCH_PRODUCTS_QUERY, {
-      query: `product_type:'${productType}' AND status:active`,
+      query: `product_type:'${productType}' AND status:active AND published_status:published`,
       cursor
     });
 
@@ -436,10 +439,15 @@ async function main() {
   tops = await fetchAllProducts(topType);
   console.log(`  Found ${tops.length} active tops\n`);
 
-  // Filter out very low stock
+  // Filter out very low stock, final sale, and online-unavailable tops
   const availableSkirts = skirts.filter(p => p.totalInventory > 2);
-  const availableTops = tops.filter(p => p.totalInventory > 2);
-  console.log(`After filtering low stock: ${availableSkirts.length} skirts/collection products, ${availableTops.length} tops\n`);
+  const availableTops = tops.filter(p => {
+    if (p.totalInventory <= 2) return false;
+    const lowerTags = (p.tags || []).map(t => t.toLowerCase());
+    if (lowerTags.includes('finalsale')) return false;
+    return true;
+  });
+  console.log(`After filtering (low stock + finalsale): ${availableSkirts.length} skirts/collection products, ${availableTops.length} tops\n`);
 
   // 2. Load matching instructions
   const instructionsPath = path.join(__dirname, '..', 'data', 'matching-instructions.md');
@@ -466,8 +474,8 @@ async function main() {
 
   // 5. Ask Claude for suggestions in batches
   const suggestions = {};
-  const BATCH_SIZE = 20;
-  const skirtLimit = TEST_MODE ? BATCH_SIZE : availableSkirts.length;
+  const BATCH_SIZE = 10;
+  const skirtLimit = TEST_MODE ? Math.min(BATCH_SIZE * 2, availableSkirts.length) : availableSkirts.length;
 
   // Process skirts -> suggest tops
   console.log('Generating suggestions for skirts (matching with tops)...');
