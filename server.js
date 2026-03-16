@@ -321,7 +321,7 @@ async function buildKioskProductData(productId, storeName) {
     getSiblingsFromCollectionHandleMetafield(productId)
   ]);
 
-  // Attach store-specific inventory summary to upsells/siblings
+  // Attach store-specific per-size inventory to upsells/siblings
   async function attachKioskInventory(products) {
     const unique = [];
     const seen = new Set();
@@ -331,9 +331,21 @@ async function buildKioskProductData(productId, storeName) {
       unique.push(p);
     }
     return Promise.all(unique.map(async (p) => {
-      const summary = await getProductInventorySummary(p.id, [storeName]);
-      const storeTotal = summary?.inventory?.[0]?.quantity || 0;
-      return { id: p.id, title: p.title, handle: p.handle, image: p.image, price: p.price, storeTotal };
+      const prodResult = await shopifyGraphQL(GET_PRODUCT_FOR_KIOSK, { productId: p.id });
+      const prodData = prodResult?.data?.product;
+      let storeTotal = 0;
+      let sizeInventory = [];
+      if (prodData) {
+        const pvariants = prodData.variants.edges.map(e => e.node);
+        sizeInventory = pvariants.map(v => {
+          const size = extractSize(v);
+          const levels = v.inventoryItem.inventoryLevels.edges;
+          const storeQty = findLocationQuantity(levels, storeName);
+          storeTotal += storeQty;
+          return { size, storeQuantity: storeQty };
+        });
+      }
+      return { id: p.id, title: p.title, handle: p.handle, image: p.image, price: p.price, storeTotal, sizeInventory };
     }));
   }
 
@@ -796,12 +808,29 @@ app.get('/returns', (req, res) => {
 const kioskLimiter = rateLimit({ windowMs: 60 * 1000, max: 60, standardHeaders: true });
 app.use('/kiosk', kioskLimiter);
 
+// Kiosk search: active products only, newest first
+const KIOSK_SEARCH_PRODUCTS = `
+  query searchProducts($query: String!) {
+    products(first: 30, query: $query, sortKey: CREATED_AT, reverse: true) {
+      edges {
+        node {
+          id
+          title
+          handle
+          images(first: 1) { edges { node { url } } }
+        }
+      }
+    }
+  }
+`;
+
 app.get('/kiosk/search', async (req, res) => {
   try {
     const q = (req.query.q || '').trim();
     if (!q || q.length < 2) return res.json([]);
     const escaped = escapeSearchTerm(q);
-    const result = await shopifyGraphQL(SEARCH_PRODUCTS, { query: `title:*${escaped}*` });
+    const query = `title:*${escaped}* AND status:active`;
+    const result = await shopifyGraphQL(KIOSK_SEARCH_PRODUCTS, { query });
     const products = (result?.data?.products?.edges || []).map(e => ({
       id: e.node.id,
       title: e.node.title,
