@@ -8,6 +8,7 @@ The goal is to suggest tops that go well with skirts, and skirts that go well wi
 - Prefer core/evergreen tops over seasonal ones — core tops are versatile and pair with more skirts
 - Take into account color of skirt and color of top to match or a contrast match
 - Other colors of products already in its curated match list or other products of colors already in its curated match list
+
 ## What to Avoid
 - Do not match a product with itself or with products already in its curated match list
 - Do not suggest items marked as clearance or with very low stock (2 or fewer total units)
