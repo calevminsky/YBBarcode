@@ -23,6 +23,8 @@ const SHOPIFY_TOKEN = process.env.SHOPIFY_ACCESS_TOKEN;
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const API_VERSION = '2025-10';
 
+const TEST_MODE = process.argv.includes('--test');
+
 if (!SHOPIFY_TOKEN) { console.error('Missing SHOPIFY_ACCESS_TOKEN'); process.exit(1); }
 if (!ANTHROPIC_KEY) { console.error('Missing ANTHROPIC_API_KEY'); process.exit(1); }
 
@@ -229,7 +231,7 @@ async function discoverProductTypes() {
 
 // ----- Main -----
 async function main() {
-  console.log('Starting suggestion rebuild...\n');
+  console.log(`Starting suggestion rebuild${TEST_MODE ? ' (TEST MODE - 1 batch only)' : ''}...\n`);
 
   // 0. Discover product types
   console.log('Discovering product types...');
@@ -286,10 +288,11 @@ async function main() {
   // 5. Ask Claude for suggestions in batches
   const suggestions = {};
   const BATCH_SIZE = 20;
+  const skirtLimit = TEST_MODE ? BATCH_SIZE : availableSkirts.length;
 
   // Process skirts -> suggest tops
   console.log('Generating suggestions for skirts (matching with tops)...');
-  for (let i = 0; i < availableSkirts.length; i += BATCH_SIZE) {
+  for (let i = 0; i < skirtLimit; i += BATCH_SIZE) {
     const batch = availableSkirts.slice(i, i + BATCH_SIZE);
     console.log(`  Batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(availableSkirts.length / BATCH_SIZE)} (${batch.length} skirts)...`);
 
@@ -363,8 +366,13 @@ Respond ONLY in this exact JSON format, no other text:
   }
 
   // Process tops -> suggest skirts
-  console.log('\nGenerating suggestions for tops (matching with skirts)...');
-  for (let i = 0; i < availableTops.length; i += BATCH_SIZE) {
+  if (TEST_MODE) {
+    console.log('\nTEST MODE: Skipping tops. Only processed 1 batch of skirts.\n');
+  } else {
+    console.log('\nGenerating suggestions for tops (matching with skirts)...');
+  }
+  const topLimit = TEST_MODE ? 0 : availableTops.length;
+  for (let i = 0; i < topLimit; i += BATCH_SIZE) {
     const batch = availableTops.slice(i, i + BATCH_SIZE);
     console.log(`  Batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(availableTops.length / BATCH_SIZE)} (${batch.length} tops)...`);
 
@@ -440,7 +448,8 @@ Respond ONLY in this exact JSON format, no other text:
     suggestions
   };
 
-  const outputPath = path.join(__dirname, '..', 'data', 'suggestions.json');
+  const outputFile = TEST_MODE ? 'suggestions-test.json' : 'suggestions.json';
+  const outputPath = path.join(__dirname, '..', 'data', outputFile);
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
 
   console.log(`\nDone! Generated suggestions for ${output.totalProducts} products (${output.totalSuggestions} total matches)`);
