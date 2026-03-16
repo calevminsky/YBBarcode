@@ -79,7 +79,15 @@ const FETCH_PRODUCTS_QUERY = `
             edges {
               node {
                 price
-                inventoryQuantity
+                inventoryItem {
+                  inventoryLevels(first: 20) {
+                    edges {
+                      node {
+                        quantities(names: ["available"]) { name quantity }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -125,7 +133,13 @@ async function fetchAllProducts(productType) {
 
     for (const edge of data.edges) {
       const p = edge.node;
-      const totalInventory = p.variants.edges.reduce((sum, v) => sum + (v.node.inventoryQuantity || 0), 0);
+      const totalInventory = p.variants.edges.reduce((sum, v) => {
+        const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
+        return sum + levels.reduce((lSum, lvl) => {
+          const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
+          return lSum + qty;
+        }, 0);
+      }, 0);
 
       // Extract metafields
       const metafields = {};
@@ -184,17 +198,49 @@ function buildProductSummary(product) {
   return parts.join(' | ');
 }
 
+// ----- Discover product types -----
+async function discoverProductTypes() {
+  const result = await shopifyGraphQL(`
+    query {
+      products(first: 250, query: "status:active") {
+        edges { node { productType } }
+      }
+    }
+  `);
+  const types = {};
+  for (const edge of (result.data?.products?.edges || [])) {
+    const t = edge.node.productType || '(empty)';
+    types[t] = (types[t] || 0) + 1;
+  }
+  return types;
+}
+
 // ----- Main -----
 async function main() {
   console.log('Starting suggestion rebuild...\n');
 
+  // 0. Discover product types
+  console.log('Discovering product types...');
+  const typesCounts = await discoverProductTypes();
+  console.log('Product types found:');
+  for (const [type, count] of Object.entries(typesCounts).sort((a, b) => b[1] - a[1])) {
+    console.log(`  ${type}: ${count}`);
+  }
+  console.log('');
+
+  // Find the right type names (case-insensitive match)
+  const allTypes = Object.keys(typesCounts);
+  const skirtType = allTypes.find(t => t.toLowerCase().includes('skirt')) || 'Skirts';
+  const topType = allTypes.find(t => t.toLowerCase().includes('top')) || 'Tops';
+  console.log(`Using types: skirts="${skirtType}", tops="${topType}"\n`);
+
   // 1. Fetch all products
   console.log('Fetching skirts...');
-  const skirts = await fetchAllProducts('Skirts');
+  const skirts = await fetchAllProducts(skirtType);
   console.log(`  Found ${skirts.length} active skirts`);
 
   console.log('Fetching tops...');
-  const tops = await fetchAllProducts('Tops');
+  const tops = await fetchAllProducts(topType);
   console.log(`  Found ${tops.length} active tops\n`);
 
   // Filter out very low stock
