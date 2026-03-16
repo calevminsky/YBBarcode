@@ -37,28 +37,40 @@ async function shopifyGraphQL(query, variables = {}) {
   return res.json();
 }
 
-// ----- Claude API helper -----
-async function askClaude(systemPrompt, userPrompt) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': ANTHROPIC_KEY,
-      'anthropic-version': '2023-06-01'
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-5-20250929',
-      max_tokens: 4096,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userPrompt }]
-    })
-  });
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Claude API error ${res.status}: ${err}`);
+// ----- Claude API helper (with retry for rate limits) -----
+async function askClaude(systemPrompt, userPrompt, retries = 5) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_KEY,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-5-20250929',
+        max_tokens: 4096,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+
+    if (res.status === 429) {
+      const retryAfter = res.headers.get('retry-after');
+      const waitSec = retryAfter ? parseInt(retryAfter) : Math.min(15 * attempt, 120);
+      console.log(`    Rate limited. Waiting ${waitSec}s (attempt ${attempt}/${retries})...`);
+      await new Promise(r => setTimeout(r, waitSec * 1000));
+      continue;
+    }
+
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`Claude API error ${res.status}: ${err}`);
+    }
+    const data = await res.json();
+    return data.content?.[0]?.text || '';
   }
-  const data = await res.json();
-  return data.content?.[0]?.text || '';
+  throw new Error('Claude API: max retries exceeded due to rate limiting');
 }
 
 // ----- Fetch all products of a given type (paginated) -----
@@ -346,7 +358,7 @@ Respond ONLY in this exact JSON format, no other text:
 
     // Rate limit: small delay between batches
     if (i + BATCH_SIZE < availableSkirts.length) {
-      await new Promise(r => setTimeout(r, 1000));
+      await new Promise(r => setTimeout(r, 65000)); // 65s between batches to respect rate limits
     }
   }
 
@@ -416,7 +428,7 @@ Respond ONLY in this exact JSON format, no other text:
     }
 
     if (i + BATCH_SIZE < availableTops.length) {
-      await new Promise(r => setTimeout(r, 1000));
+      await new Promise(r => setTimeout(r, 65000)); // 65s between batches to respect rate limits
     }
   }
 
