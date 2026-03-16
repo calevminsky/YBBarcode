@@ -24,6 +24,8 @@ const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const API_VERSION = '2025-10';
 
 const TEST_MODE = process.argv.includes('--test');
+const COLLECTION_FLAG_IDX = process.argv.indexOf('--collection');
+const TEST_COLLECTION = COLLECTION_FLAG_IDX !== -1 ? process.argv[COLLECTION_FLAG_IDX + 1] : null;
 
 if (!SHOPIFY_TOKEN) { console.error('Missing SHOPIFY_ACCESS_TOKEN'); process.exit(1); }
 if (!ANTHROPIC_KEY) { console.error('Missing ANTHROPIC_API_KEY'); process.exit(1); }
@@ -199,6 +201,108 @@ async function fetchAllProducts(productType) {
   return allProducts;
 }
 
+// ----- Fetch products from a specific collection -----
+async function fetchCollectionProducts(handle) {
+  console.log(`  Fetching collection: ${handle}...`);
+  const result = await shopifyGraphQL(`
+    query collectionByHandle($handle: String!) {
+      collectionByHandle(handle: $handle) {
+        title
+        products(first: 100) {
+          edges {
+            node {
+              id
+              title
+              handle
+              productType
+              tags
+              status
+              images(first: 1) { edges { node { url } } }
+              variants(first: 50) {
+                edges {
+                  node {
+                    price
+                    inventoryItem {
+                      inventoryLevels(first: 20) {
+                        edges {
+                          node {
+                            quantities(names: ["available"]) { name quantity }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              metafields(first: 10) {
+                edges { node { namespace key value } }
+              }
+              upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
+                type
+                value
+                references(first: 30) {
+                  nodes { ... on Product { id title handle } }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `, { handle });
+
+  const collection = result.data?.collectionByHandle;
+  if (!collection) {
+    console.error(`  Collection "${handle}" not found!`);
+    return [];
+  }
+  console.log(`  Found collection: "${collection.title}"`);
+
+  const products = [];
+  for (const edge of collection.products.edges) {
+    const p = edge.node;
+    if (p.status !== 'ACTIVE') continue;
+    const totalInventory = p.variants.edges.reduce((sum, v) => {
+      const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
+      return sum + levels.reduce((lSum, lvl) => {
+        const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
+        return lSum + qty;
+      }, 0);
+    }, 0);
+
+    const metafields = {};
+    for (const mfEdge of (p.metafields?.edges || [])) {
+      const mf = mfEdge.node;
+      metafields[`${mf.namespace}.${mf.key}`] = mf.value;
+    }
+
+    const curatedMatches = [];
+    const upsellMeta = p.upsellMeta;
+    if (upsellMeta) {
+      const refs = upsellMeta.references?.nodes || [];
+      if (refs.length) {
+        refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
+      } else if (upsellMeta.value) {
+        const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+        tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
+      }
+    }
+
+    products.push({
+      id: p.id, title: p.title, handle: p.handle,
+      productType: p.productType, tags: p.tags,
+      image: p.images?.edges?.[0]?.node?.url || null,
+      price: p.variants.edges[0]?.node?.price || null,
+      totalInventory,
+      color: metafields['theme.color'] || metafields['custom.color'] || '',
+      material: metafields['theme.material'] || metafields['custom.material'] || '',
+      season: metafields['theme.season'] || metafields['custom.season'] || '',
+      curatedMatches
+    });
+  }
+  return products;
+}
+
 // ----- Build product catalog summary for Claude -----
 function buildProductSummary(product) {
   const parts = [`[${product.id}] ${product.title}`];
@@ -248,19 +352,27 @@ async function main() {
   const topType = allTypes.find(t => t.toLowerCase().includes('top')) || 'Tops';
   console.log(`Using types: skirts="${skirtType}", tops="${topType}"\n`);
 
-  // 1. Fetch all products
-  console.log('Fetching skirts...');
-  const skirts = await fetchAllProducts(skirtType);
-  console.log(`  Found ${skirts.length} active skirts`);
+  // 1. Fetch products
+  let skirts, tops;
+
+  if (TEST_MODE && TEST_COLLECTION) {
+    console.log(`Fetching test collection: ${TEST_COLLECTION}...`);
+    skirts = await fetchCollectionProducts(TEST_COLLECTION);
+    console.log(`  Found ${skirts.length} products in collection\n`);
+  } else {
+    console.log('Fetching skirts...');
+    skirts = await fetchAllProducts(skirtType);
+    console.log(`  Found ${skirts.length} active skirts`);
+  }
 
   console.log('Fetching tops...');
-  const tops = await fetchAllProducts(topType);
+  tops = await fetchAllProducts(topType);
   console.log(`  Found ${tops.length} active tops\n`);
 
   // Filter out very low stock
   const availableSkirts = skirts.filter(p => p.totalInventory > 2);
   const availableTops = tops.filter(p => p.totalInventory > 2);
-  console.log(`After filtering low stock: ${availableSkirts.length} skirts, ${availableTops.length} tops\n`);
+  console.log(`After filtering low stock: ${availableSkirts.length} skirts/collection products, ${availableTops.length} tops\n`);
 
   // 2. Load matching instructions
   const instructionsPath = path.join(__dirname, '..', 'data', 'matching-instructions.md');

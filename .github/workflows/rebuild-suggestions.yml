@@ -7,10 +7,14 @@ on:
   workflow_dispatch:
     inputs:
       test_mode:
-        description: 'Run in test mode (1 batch of 20 skirts only)'
+        description: 'Run in test mode (single collection only)'
         required: false
         type: boolean
         default: false
+      test_collection:
+        description: 'Collection handle to test with (e.g. "summer-skirts")'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -36,7 +40,11 @@ jobs:
         env:
           SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/rebuild-suggestions.js ${{ inputs.test_mode == true && '--test' || '' }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.test_mode }}" = "true" ]; then ARGS="--test"; fi
+          if [ -n "${{ inputs.test_collection }}" ]; then ARGS="$ARGS --collection ${{ inputs.test_collection }}"; fi
+          node scripts/rebuild-suggestions.js $ARGS
 
       - name: Commit and push suggestions
         run: |
