@@ -34,11 +34,24 @@ if (!ANTHROPIC_KEY) { console.error('Missing ANTHROPIC_API_KEY'); process.exit(1
 async function shopifyGraphQL(query, variables = {}) {
   const res = await fetch(`https://${SHOPIFY_STORE}/admin/api/${API_VERSION}/graphql.json`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Shopify-Access-Token': SHOPIFY_TOKEN },
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Access-Token': SHOPIFY_TOKEN
+    },
     body: JSON.stringify({ query, variables })
   });
-  if (!res.ok) throw new Error(`Shopify API error: ${res.status}`);
-  return res.json();
+
+  const json = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`Shopify API error ${res.status}: ${JSON.stringify(json)}`);
+  }
+
+  if (json.errors?.length) {
+    throw new Error(`Shopify GraphQL errors: ${JSON.stringify(json.errors, null, 2)}`);
+  }
+
+  return json;
 }
 
 // ----- Claude API helper (with retry for rate limits) -----
@@ -205,49 +218,62 @@ async function fetchAllProducts(productType) {
 async function fetchCollectionProducts(handle) {
   console.log(`  Fetching collection: ${handle}...`);
 
-  // Shopify collections query doesn't reliably match handles directly.
-  // Search by title, then verify the handle matches.
-  const COLLECTION_WITH_PRODUCTS = `
-    query findCollection($query: String!) {
-      collections(first: 5, query: $query) {
-        edges {
-          node {
-            title
-            handle
-            products(first: 100) {
-              edges {
-                node {
-                  id
-                  title
-                  handle
-                  productType
-                  tags
-                  status
-                  images(first: 1) { edges { node { url } } }
-                  variants(first: 50) {
-                    edges {
-                      node {
-                        price
-                        inventoryItem {
-                          inventoryLevels(first: 20) {
-                            edges {
-                              node {
-                                quantities(names: ["available"]) { name quantity }
-                              }
+  const QUERY = `
+    query getCollectionProducts($handle: String!, $cursor: String) {
+      collectionByHandle(handle: $handle) {
+        id
+        title
+        handle
+        products(first: 100, after: $cursor) {
+          pageInfo { hasNextPage endCursor }
+          edges {
+            node {
+              id
+              title
+              handle
+              productType
+              tags
+              status
+              images(first: 1) {
+                edges { node { url } }
+              }
+              variants(first: 50) {
+                edges {
+                  node {
+                    price
+                    inventoryItem {
+                      inventoryLevels(first: 20) {
+                        edges {
+                          node {
+                            quantities(names: ["available"]) {
+                              name
+                              quantity
                             }
                           }
                         }
                       }
                     }
                   }
-                  metafields(first: 10) {
-                    edges { node { namespace key value } }
-                  }
-                  upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
-                    type
+                }
+              }
+              metafields(first: 10) {
+                edges {
+                  node {
+                    namespace
+                    key
                     value
-                    references(first: 30) {
-                      nodes { ... on Product { id title handle } }
+                  }
+                }
+              }
+              upsellMeta: metafield(namespace: "theme", key: "upsell_list") {
+                type
+                value
+                references(first: 30) {
+                  nodes {
+                    ... on Product {
+                      id
+                      title
+                      handle
                     }
                   }
                 }
@@ -259,69 +285,81 @@ async function fetchCollectionProducts(handle) {
     }
   `;
 
-  // Try title-based search (most reliable for Shopify Admin API)
-  const result = await shopifyGraphQL(COLLECTION_WITH_PRODUCTS, { query: `title:*${handle}*` });
-
-  // Find the collection whose handle matches
-  let collection = null;
-  for (const edge of (result.data?.collections?.edges || [])) {
-    if (edge.node.handle === handle) {
-      collection = edge.node;
-      break;
-    }
-  }
-  // If no exact handle match, take the first result (user likely typed the right thing)
-  if (!collection) {
-    collection = result.data?.collections?.edges?.[0]?.node;
-  }
-  if (!collection) {
-    console.error(`  Collection "${handle}" not found. Check the handle in Shopify admin.`);
-    return [];
-  }
-  console.log(`  Found collection: "${collection.title}" (handle: ${collection.handle})`);
-
   const products = [];
-  for (const edge of collection.products.edges) {
-    const p = edge.node;
-    if (p.status !== 'ACTIVE') continue;
-    const totalInventory = p.variants.edges.reduce((sum, v) => {
-      const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
-      return sum + levels.reduce((lSum, lvl) => {
-        const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
-        return lSum + qty;
+  let cursor = null;
+  let page = 0;
+  let collection = null;
+
+  while (true) {
+    page++;
+    const result = await shopifyGraphQL(QUERY, { handle, cursor });
+
+    collection = result.data?.collectionByHandle;
+    if (!collection) {
+      console.error(`  Collection "${handle}" not found.`);
+      return [];
+    }
+
+    if (page === 1) {
+      console.log(`  Found collection: "${collection.title}" (handle: ${collection.handle})`);
+    }
+
+    const conn = collection.products;
+    const edges = conn?.edges || [];
+
+    console.log(`  Collection page ${page}: ${edges.length} products`);
+
+    for (const edge of edges) {
+      const p = edge.node;
+
+      console.log(`    ${p.title} | status=${p.status} | type=${p.productType}`);
+
+      const totalInventory = p.variants.edges.reduce((sum, v) => {
+        const levels = v.node.inventoryItem?.inventoryLevels?.edges || [];
+        return sum + levels.reduce((lSum, lvl) => {
+          const qty = lvl.node.quantities?.find(q => q.name === 'available')?.quantity || 0;
+          return lSum + qty;
+        }, 0);
       }, 0);
-    }, 0);
 
-    const metafields = {};
-    for (const mfEdge of (p.metafields?.edges || [])) {
-      const mf = mfEdge.node;
-      metafields[`${mf.namespace}.${mf.key}`] = mf.value;
-    }
-
-    const curatedMatches = [];
-    const upsellMeta = p.upsellMeta;
-    if (upsellMeta) {
-      const refs = upsellMeta.references?.nodes || [];
-      if (refs.length) {
-        refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
-      } else if (upsellMeta.value) {
-        const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
-        tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
+      const metafields = {};
+      for (const mfEdge of (p.metafields?.edges || [])) {
+        const mf = mfEdge.node;
+        metafields[`${mf.namespace}.${mf.key}`] = mf.value;
       }
+
+      const curatedMatches = [];
+      const upsellMeta = p.upsellMeta;
+      if (upsellMeta) {
+        const refs = upsellMeta.references?.nodes || [];
+        if (refs.length) {
+          refs.forEach(r => curatedMatches.push({ id: r.id, title: r.title, handle: r.handle }));
+        } else if (upsellMeta.value) {
+          const tokens = upsellMeta.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+          tokens.forEach(t => curatedMatches.push({ handle: t, title: t }));
+        }
+      }
+
+      products.push({
+        id: p.id,
+        title: p.title,
+        handle: p.handle,
+        productType: p.productType,
+        tags: p.tags,
+        image: p.images?.edges?.[0]?.node?.url || null,
+        price: p.variants.edges[0]?.node?.price || null,
+        totalInventory,
+        color: metafields['theme.color'] || metafields['custom.color'] || '',
+        material: metafields['theme.material'] || metafields['custom.material'] || '',
+        season: metafields['theme.season'] || metafields['custom.season'] || '',
+        curatedMatches
+      });
     }
 
-    products.push({
-      id: p.id, title: p.title, handle: p.handle,
-      productType: p.productType, tags: p.tags,
-      image: p.images?.edges?.[0]?.node?.url || null,
-      price: p.variants.edges[0]?.node?.price || null,
-      totalInventory,
-      color: metafields['theme.color'] || metafields['custom.color'] || '',
-      material: metafields['theme.material'] || metafields['custom.material'] || '',
-      season: metafields['theme.season'] || metafields['custom.season'] || '',
-      curatedMatches
-    });
+    if (!conn?.pageInfo?.hasNextPage) break;
+    cursor = conn.pageInfo.endCursor;
   }
+
   return products;
 }
 
@@ -381,6 +419,10 @@ async function main() {
     console.log(`Fetching test collection: ${TEST_COLLECTION}...`);
     skirts = await fetchCollectionProducts(TEST_COLLECTION);
     console.log(`  Found ${skirts.length} products in collection\n`);
+
+    if (skirts.length === 0) {
+      throw new Error(`Test collection "${TEST_COLLECTION}" returned 0 products.`);
+    }
   } else {
     console.log('Fetching skirts...');
     skirts = await fetchAllProducts(skirtType);
