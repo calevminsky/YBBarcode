@@ -2,19 +2,24 @@ name: Rebuild AI Suggestions
 
 on:
   schedule:
-    # Run daily at 4:00 AM EST (9:00 AM UTC)
+    # Run daily at 4:00 AM EST (9:00 AM UTC) — incremental by default
     - cron: '0 9 * * *'
   workflow_dispatch:
     inputs:
       test_mode:
-        description: 'Run in test mode (single collection only)'
+        description: 'Run in test mode (limited skirts, output to suggestions-test.json)'
         required: false
         type: boolean
         default: false
       test_collection:
-        description: 'Collection handle to test with (e.g. "summer-skirts")'
+        description: 'Collection handle for skirts to test with (e.g. "testaimatches")'
         required: false
         type: string
+      full_rebuild:
+        description: 'Force full rebuild (re-process all skirts, not just new ones)'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -44,6 +49,7 @@ jobs:
           ARGS=""
           if [ "${{ inputs.test_mode }}" = "true" ]; then ARGS="--test"; fi
           if [ -n "${{ inputs.test_collection }}" ]; then ARGS="$ARGS --collection ${{ inputs.test_collection }}"; fi
+          if [ "${{ inputs.full_rebuild }}" = "true" ]; then ARGS="$ARGS --full"; fi
           node scripts/rebuild-suggestions.js $ARGS
 
       - name: Commit and push suggestions

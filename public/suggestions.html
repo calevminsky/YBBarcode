@@ -97,11 +97,14 @@ function render(data) {
 
   content.innerHTML = entries.map(([productId, item]) => {
     const matches = item.matches || [];
-    const productImg = item.matches?.[0]?.image ? '' : ''; // We don't have the source product image in suggestions
 
     return `
       <div class="product-card">
         <div class="product-header">
+          ${item.productImage
+            ? `<img src="${esc(item.productImage)}" alt="${esc(item.productTitle)}" loading="lazy">`
+            : ''
+          }
           <div class="info">
             <h2>${esc(item.productTitle)}</h2>
             <div class="detail">${esc(productId)}</div>
