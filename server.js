@@ -906,6 +906,22 @@ app.get('/store', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'kiosk.html'));
 });
 
+// ----- Suggestions review -----
+const fs = require('fs');
+app.get('/suggestions/data', (req, res) => {
+  const file = req.query.test === '1' ? 'suggestions-test.json' : 'suggestions.json';
+  const filePath = path.join(__dirname, 'data', file);
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    res.json(data);
+  } catch (e) {
+    res.status(404).json({ error: `No suggestions file found (${file})` });
+  }
+});
+app.get('/suggestions', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'suggestions.html'));
+});
+
 // ----- Start -----
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
