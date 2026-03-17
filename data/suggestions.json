@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-16T19:06:07.628Z",
-  "totalProducts": 222,
-  "totalSuggestions": 1015,
+  "generatedAt": "2026-03-17T10:02:16.929Z",
+  "totalProducts": 227,
+  "totalSuggestions": 1047,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -6576,49 +6576,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7462143787105": {
-      "productTitle": "Vega Skirt (Light Blue)",
-      "productHandle": "vega-skirt-light-blue",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9487.jpg?v=1770414115",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7501209239649",
-          "title": "Paige Top (Light Blue)",
-          "handle": "paige-top-light-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-blue-top-yakira-bella-5404271.jpg?v=1770376392",
-          "price": "68.00",
-          "reason": "Light Blue Paige top offers perfect tonal match - similar to existing pairing",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7466742448225",
-          "title": "Bailey Top Short Sleeve (White)",
-          "handle": "bailey-top-short-sleeve-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-short-sleeve-white-top-yakira-bella-2284244.jpg?v=1769713694",
-          "price": "58.00",
-          "reason": "White Bailey short sleeve offers fresh contrast to light blue",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7468265963617",
-          "title": "Tina Top (Baby Blue)",
-          "handle": "tina-top-baby-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
-          "price": "44.00",
-          "reason": "Baby Blue Tina top creates soft tonal pairing with light blue",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7468186828897",
-          "title": "Lia Top (White)",
-          "handle": "lia-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
-          "price": "38.00",
-          "reason": "White Lia top provides versatile neutral pairing",
-          "confidence": 0.84
-        }
-      ]
-    },
     "gid://shopify/Product/7462146932833": {
       "productTitle": "Raya Skirt (White/Blue)",
       "productHandle": "raya-skirt-white-blue",
@@ -10689,6 +10646,372 @@
           "price": "68.00",
           "reason": "White provides fresh clean contrast to green pattern maxi",
           "confidence": 0.86
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658069601": {
+      "productTitle": "Mina Skirt 20\" (Baby Blue)",
+      "productHandle": "mina-skirt-20-baby-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-20-baby-blue-skirt-yakira-bella-2770401.jpg?v=1773731833",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina Top pairs perfectly with light blue skirt - classic neutral contrast match",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey Top is core evergreen piece that complements baby blue beautifully",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468179456097",
+          "title": "Lia Top (Pink Blush)",
+          "handle": "lia-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
+          "price": "38.00",
+          "reason": "Pink Blush Lia Top creates soft pastel color family pairing with baby blue",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia Top offers versatile neutral pairing for light blue Mina skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana Top provides clean, classic match for baby blue athletic skirt",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468273500257",
+          "title": "Tina Top (Butter Yellow)",
+          "handle": "tina-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7642.jpg?v=1772047080",
+          "price": "44.00",
+          "reason": "Butter Yellow Tina Top creates cheerful complementary pairing with baby blue",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658135137": {
+      "productTitle": "Mina Skirt 20\" (Marina Blue)",
+      "productHandle": "mina-skirt-20-marina-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8990.jpg?v=1772214879",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina Top is perfect neutral core piece for marina blue athletic skirt",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey Top provides clean evergreen match for blue Mina skirt",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia Top offers versatile neutral pairing with marina blue",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468179456097",
+          "title": "Lia Top (Pink Blush)",
+          "handle": "lia-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
+          "price": "38.00",
+          "reason": "Pink Blush Lia Top creates soft contrast with marina blue skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana Top pairs well with blue athletic skirt in same color family",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468289425505",
+          "title": "Tina Top (Light Sage)",
+          "handle": "tina-top-light-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-sage-top-yakira-bella-5782224.jpg?v=1771453345",
+          "price": "44.00",
+          "reason": "Light Sage Tina Top offers cool-toned complementary pairing with marina blue",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658200673": {
+      "productTitle": "Mina Skirt 20\" (Black)",
+      "productHandle": "mina-skirt-20-black",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-20-black-skirt-yakira-bella-3647666.jpg?v=1773731832",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina Top is classic contrast for black athletic skirt - core pairing",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey Top provides evergreen neutral match for black Mina skirt",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia Top offers versatile contrast pairing with black skirt",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7468179456097",
+          "title": "Lia Top (Pink Blush)",
+          "handle": "lia-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
+          "price": "38.00",
+          "reason": "Pink Blush Lia Top creates soft feminine contrast with black athletic skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana Top pairs perfectly with black for classic look",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468265963617",
+          "title": "Tina Top (Baby Blue)",
+          "handle": "tina-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
+          "price": "44.00",
+          "reason": "Baby Blue Tina Top offers light contrast for black Mina skirt",
+          "confidence": 0.88
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658364513": {
+      "productTitle": "Mina Skirt 23\" (Baby Blue)",
+      "productHandle": "mina-skirt-23-baby-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9863.jpg?v=1772644992",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina Top pairs perfectly with baby blue - classic neutral contrast",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey Top is core piece that complements baby blue beautifully",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468179456097",
+          "title": "Lia Top (Pink Blush)",
+          "handle": "lia-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
+          "price": "38.00",
+          "reason": "Pink Blush Lia Top creates soft pastel pairing with baby blue",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia Top offers versatile neutral for light blue Mina skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana Top provides clean match for baby blue athletic skirt",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468273500257",
+          "title": "Tina Top (Butter Yellow)",
+          "handle": "tina-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7642.jpg?v=1772047080",
+          "price": "44.00",
+          "reason": "Butter Yellow Tina Top creates cheerful complementary pairing",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658430049": {
+      "productTitle": "Mina Skirt 23\" (Marina Blue)",
+      "productHandle": "mina-skirt-23-marina-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-23-marina-blue-skirt-yakira-bella-4632315.jpg?v=1773731831",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina Top is perfect neutral core match for marina blue skirt",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey Top provides clean evergreen pairing with blue",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia Top offers versatile neutral for marina blue",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468179456097",
+          "title": "Lia Top (Pink Blush)",
+          "handle": "lia-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
+          "price": "38.00",
+          "reason": "Pink Blush Lia Top creates soft contrast with marina blue",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana Top pairs well with blue athletic skirt",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468289425505",
+          "title": "Tina Top (Light Sage)",
+          "handle": "tina-top-light-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-sage-top-yakira-bella-5782224.jpg?v=1771453345",
+          "price": "44.00",
+          "reason": "Light Sage Tina Top offers cool-toned complement to marina blue",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658528353": {
+      "productTitle": "Mina Skirt 23\" (Black)",
+      "productHandle": "mina-skirt-23-black",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-23-black-skirt-yakira-bella-7959338.jpg?v=1773731831",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina Top is classic contrast for black athletic skirt",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey Top provides evergreen neutral match for black",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia Top offers versatile contrast with black skirt",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7468179456097",
+          "title": "Lia Top (Pink Blush)",
+          "handle": "lia-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
+          "price": "38.00",
+          "reason": "Pink Blush Lia Top creates soft feminine contrast with black",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana Top pairs perfectly with black for classic look",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468265963617",
+          "title": "Tina Top (Baby Blue)",
+          "handle": "tina-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
+          "price": "44.00",
+          "reason": "Baby Blue Tina Top offers light pastel contrast for black",
+          "confidence": 0.88
         }
       ]
     }
