@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-17T10:02:16.929Z",
-  "totalProducts": 227,
-  "totalSuggestions": 1047,
+  "generatedAt": "2026-03-18T09:59:08.133Z",
+  "totalProducts": 228,
+  "totalSuggestions": 1055,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11012,6 +11012,85 @@
           "price": "44.00",
           "reason": "Baby Blue Tina Top offers light pastel contrast for black",
           "confidence": 0.88
+        }
+      ]
+    },
+    "gid://shopify/Product/7469754515553": {
+      "productTitle": "Mina Skirt 35\" (Baby Blue)",
+      "productHandle": "mina-skirt-35-baby-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-35-baby-blue-skirt-yakira-bella-6095503.jpg?v=1773814512",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White top pairs perfectly with Baby Blue skirt - classic, fresh combination. Matches existing pattern of Mina skirts with solid neutral tops.",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice Blue top creates a tonal monochromatic look with Baby Blue skirt - sophisticated and cohesive matching.",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top is versatile core basic that pairs beautifully with Baby Blue - clean, elegant match.",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top provides elegant contrast with Baby Blue skirt - dressy yet wearable combination.",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468296962145",
+          "title": "Tina Top (Pink Blush)",
+          "handle": "tina-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-pink-blush-top-yakira-bella-2117769.jpg?v=1772739734",
+          "price": "44.00",
+          "reason": "Pink Blush top creates soft, feminine color pairing with Baby Blue - complementary pastel combination.",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is core versatile piece that pairs well with any blue skirt - reliable classic match.",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468265963617",
+          "title": "Tina Top (Baby Blue)",
+          "handle": "tina-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
+          "price": "44.00",
+          "reason": "Baby Blue Tina top creates full tonal set look - coordinates perfectly as matching set piece.",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige top is core staple that works beautifully with Baby Blue skirt - clean, polished look.",
+          "confidence": 0.85
         }
       ]
     }
