@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-18T09:59:08.133Z",
-  "totalProducts": 228,
-  "totalSuggestions": 1055,
+  "generatedAt": "2026-03-19T09:47:57.676Z",
+  "totalProducts": 229,
+  "totalSuggestions": 1065,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11091,6 +11091,103 @@
           "price": "68.00",
           "reason": "White Paige top is core staple that works beautifully with Baby Blue skirt - clean, polished look.",
           "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492659150945": {
+      "productTitle": "Karla Skirt 23\" (Light Lavender)",
+      "productHandle": "karla-skirt-23-light-lavender",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A6287.jpg?v=1771626830",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7295712985185",
+          "title": "Paige Top (Light Lavender)",
+          "handle": "paige-top-light-lavender",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-lavender-top-yakira-bella-9512386.jpg?v=1770873911",
+          "price": "68.00",
+          "reason": "Exact color match - Paige Top in Light Lavender pairs perfectly with Karla Skirt in Light Lavender, creating a coordinated set look",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7250787860577",
+          "title": "Paige Top (Lavender)",
+          "handle": "paige-top-lavender",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9858.jpg?v=1770159281",
+          "price": "68.00",
+          "reason": "Lavender family match - Paige Top in Lavender complements the Light Lavender skirt for a tonal, sophisticated look",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "Classic neutral pairing - Bailey Top in White is a versatile core top that creates a fresh, clean contrast with light lavender",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Neutral foundation - Paige Top in White provides a crisp, classic base that highlights the soft lavender skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492751163489",
+          "title": "Rena Top (Light Lavender)",
+          "handle": "rena-top-light-pink-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-lavender-top-yakira-bella-2725309.jpg?v=1772058556",
+          "price": "44.00",
+          "reason": "Tonal lavender pairing - Rena Top in Light Lavender coordinates beautifully with the light lavender skirt for a monochromatic look",
+          "confidence": 0.91
+        },
+        {
+          "productId": "gid://shopify/Product/7287233478753",
+          "title": "Bailey Top (Light Pink)",
+          "handle": "bailey-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-light-pink-top-yakira-bella-8903028.jpg?v=1769713453",
+          "price": "58.00",
+          "reason": "Soft pastel combination - Bailey Top in Light Pink creates a gentle, feminine color story with light lavender",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468284641377",
+          "title": "Tina Top (Light Pink)",
+          "handle": "tina-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-pink-top-yakira-bella-6713166.jpg?v=1772819412",
+          "price": "44.00",
+          "reason": "Pastel pairing - Tina Top in Light Pink complements the light lavender skirt for a cohesive pastel aesthetic",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Neutral versatility - Paige Top in Beige offers a soft neutral that pairs elegantly with lavender tones",
+          "confidence": 0.86
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "Core white essential - Tina Top in White provides a clean, versatile match for the lavender skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7173164138593",
+          "title": "Bailey Top (Beige)",
+          "handle": "bailey-top-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-beige-top-yakira-bella-1030283.jpg?v=1771540632",
+          "price": "58.00",
+          "reason": "Soft neutral - Bailey Top in Beige creates a subtle, sophisticated combination with light lavender",
+          "confidence": 0.84
         }
       ]
     }
