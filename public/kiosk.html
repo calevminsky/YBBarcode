@@ -339,11 +339,8 @@
       const today = new Date().toISOString().slice(0, 10);
       const pathStore = decodeURIComponent(location.pathname.replace(/^\/store\/?/, ''));
 
-      if (saved && savedDate === today) {
-        currentStore = saved;
-        enterKiosk();
-      } else if (pathStore) {
-        // Check if URL has a valid store name
+      // URL path takes priority over localStorage
+      if (pathStore) {
         const match = AVAILABLE_STORES.find(s =>
           s.toLowerCase().replace(/\s+/g, '-') === pathStore.toLowerCase() ||
           s.toLowerCase() === pathStore.toLowerCase()
@@ -352,7 +349,11 @@
           selectStore(match);
           return;
         }
-        showStoreSelector();
+      }
+
+      if (saved && savedDate === today) {
+        currentStore = saved;
+        enterKiosk();
       } else {
         showStoreSelector();
       }
