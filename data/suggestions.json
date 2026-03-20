@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-19T09:47:57.676Z",
-  "totalProducts": 229,
-  "totalSuggestions": 1065,
+  "generatedAt": "2026-03-20T09:44:34.850Z",
+  "totalProducts": 232,
+  "totalSuggestions": 1082,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11188,6 +11188,180 @@
           "price": "58.00",
           "reason": "Soft neutral - Bailey Top in Beige creates a subtle, sophisticated combination with light lavender",
           "confidence": 0.84
+        }
+      ]
+    },
+    "gid://shopify/Product/7492657807457": {
+      "productTitle": "Karla Skirt 23\" (Sky Blue)",
+      "productHandle": "karla-skirt-23-sky-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/karla-skirt-23-sky-blue-skirt-yakira-bella-3510105.jpg?v=1773979631",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top pairs perfectly with sky blue skirt - classic, versatile combination matching curated patterns for other Karla skirts",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige top creates clean, fresh look with sky blue Karla skirt - core top matches well with core skirt",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top offers simple, elegant pairing with sky blue skirt - light neutral complements blue beautifully",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top provides casual, wearable match for sky blue Karla skirt - short sleeve option for warmer weather",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice Blue Tina top creates tonal blue combination with sky blue skirt - cohesive monochromatic look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468136366177",
+          "title": "Lia Top (Ice Blue)",
+          "handle": "lia-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-ice-blue-top-yakira-bella-4313687.jpg?v=1771039150",
+          "price": "38.00",
+          "reason": "Ice Blue Lia top offers tonal matching with sky blue Karla skirt - short sleeve for casual style",
+          "confidence": 0.9
+        }
+      ]
+    },
+    "gid://shopify/Product/7492657905761": {
+      "productTitle": "Karla Skirt 26\" (Sky Blue)",
+      "productHandle": "karla-skirt-26-sky-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/karla-skirt-26-sky-blue-skirt-yakira-bella-9690781.jpg?v=1773979631",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top pairs perfectly with sky blue skirt - classic combination matching curated patterns for Karla skirts",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige top creates clean, fresh look with sky blue Karla skirt - core top with core skirt",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top offers simple, elegant pairing with sky blue skirt - versatile neutral",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top provides casual match for sky blue Karla skirt - short sleeve for warmer days",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice Blue Tina top creates tonal blue combination with sky blue skirt - monochromatic styling",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468136366177",
+          "title": "Lia Top (Ice Blue)",
+          "handle": "lia-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-ice-blue-top-yakira-bella-4313687.jpg?v=1771039150",
+          "price": "38.00",
+          "reason": "Ice Blue Lia top offers tonal matching with sky blue Karla skirt - cohesive blue palette",
+          "confidence": 0.9
+        }
+      ]
+    },
+    "gid://shopify/Product/7492662362209": {
+      "productTitle": "Lucy Skirt (Blue Grey)",
+      "productHandle": "lucy-skirt-blue-grey",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lucy-skirt-blue-grey-skirt-yakira-bella-6305882.jpg?v=1773979514",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492662952033",
+          "title": "Alma Top (Dark Blue)",
+          "handle": "alma-top-dark-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-dark-blue-top-yakira-bella-2144031.jpg?v=1772819293",
+          "price": "68.00",
+          "reason": "Alma White top creates sophisticated contrast with blue-grey skirt - elegant maxi skirt deserves elevated top",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Paige White top provides versatile neutral match for blue-grey skirt - core top works with S26 skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492660396129",
+          "title": "Sonia Top (White)",
+          "handle": "sonia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-white-top-yakira-bella-8700939.jpg?v=1773404534",
+          "price": "48.00",
+          "reason": "Sonia White top creates fresh, polished look with blue-grey Lucy skirt - S26 collection cohesion",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7492662657121",
+          "title": "Leah Top (Light Yellow)",
+          "handle": "leah-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9055.jpg?v=1773264463",
+          "price": "58.00",
+          "reason": "Moss White cardigan adds sophisticated layer to blue-grey maxi skirt - longer skirt pairs well with cardigan",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492662165601",
+          "title": "Jane Cardigan (White)",
+          "handle": "jane-cardigan-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jane-cardigan-white-top-yakira-bella-7936343.jpg?v=1773233476",
+          "price": "78.00",
+          "reason": "Jane White cardigan offers elegant layering option for blue-grey Lucy skirt - dressy enough for maxi length",
+          "confidence": 0.87
         }
       ]
     }
