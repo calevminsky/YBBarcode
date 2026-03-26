@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-25T09:56:08.200Z",
-  "totalProducts": 233,
-  "totalSuggestions": 1086,
+  "generatedAt": "2026-03-26T10:05:22.294Z",
+  "totalProducts": 235,
+  "totalSuggestions": 1097,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11405,6 +11405,119 @@
           "price": "44.00",
           "reason": "White Tina tee provides crisp contrast, excellent for casual styling",
           "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7324709847137": {
+      "productTitle": "Josephine Skirt (Light Blue)",
+      "productHandle": "josephine-skirt-light-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/Canon-1789_2ccd3b08-448d-40da-bc7f-0e79cdc5a213.jpg?v=1752183400",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top pairs beautifully with light blue skirt - classic, fresh combination matching existing curated patterns",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top creates clean, crisp pairing with light blue skirt - core top versatility",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top offers simple, elegant match - light blue and white is timeless spring combination",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492660396129",
+          "title": "Sonia Top (White)",
+          "handle": "sonia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-white-top-yakira-bella-8700939.jpg?v=1773404534",
+          "price": "48.00",
+          "reason": "White Sonia top provides fresh casual pairing with light blue skirt - similar to existing light blue skirt matches",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7466740449377",
+          "title": "Bailey Top Short Sleeve (Light Blue)",
+          "handle": "bailey-top-short-sleeve-light-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-short-sleeve-light-blue-top-yakira-bella-7334763.jpg?v=1769713272",
+          "price": "58.00",
+          "reason": "Light Blue Bailey short sleeve creates tonal monochromatic look - matches color family pattern",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468265963617",
+          "title": "Tina Top (Baby Blue)",
+          "handle": "tina-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
+          "price": "44.00",
+          "reason": "Baby Blue Tina top offers soft tonal pairing with light blue skirt",
+          "confidence": 0.87
+        }
+      ]
+    },
+    "gid://shopify/Product/7492656988257": {
+      "productTitle": "Aviana Skirt (White/Blue)",
+      "productHandle": "aviana-skirt-white-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aviana-skirt-whiteblue-skirt-yakira-bella-5954468.jpg?v=1772819360",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7466065133665",
+          "title": "Bailey Top (Royal Blue)",
+          "handle": "bailey-top-royal-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-royal-blue-top-yakira-bella-9253681.jpg?v=1769713282",
+          "price": "58.00",
+          "reason": "Royal Blue Bailey top creates striking contrast with white/blue skirt - matches blue accents perfectly",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7247881896033",
+          "title": "Jemma Top (Navy)",
+          "handle": "jemma-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-navy-top-yakira-bella-7625473.jpg?v=1771540634",
+          "price": "54.00",
+          "reason": "Navy Jemma top pairs well with white/blue pattern - similar to existing Aviana white/blue matches",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7482923614305",
+          "title": "Jemma Top (Blue)",
+          "handle": "jemma-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-blue-top-yakira-bella-5097614.jpg?v=1770956177",
+          "price": "54.00",
+          "reason": "Blue Jemma short sleeve offers fresh casual pairing with white/blue skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top creates clean contrast with blue pattern - versatile core top",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top provides classic pairing with white/blue skirt - crisp and elegant",
+          "confidence": 0.86
         }
       ]
     }
