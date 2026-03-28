@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-27T09:58:42.558Z",
-  "totalProducts": 238,
-  "totalSuggestions": 1112,
+  "generatedAt": "2026-03-28T09:42:52.530Z",
+  "totalProducts": 240,
+  "totalSuggestions": 1128,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11674,6 +11674,164 @@
           "price": "68.00",
           "reason": "White Paige top creates clean, classic pairing with light blue",
           "confidence": 0.86
+        }
+      ]
+    },
+    "gid://shopify/Product/7254585344097": {
+      "productTitle": "Nina Skirt 20\" (Khaki)",
+      "productHandle": "nina-skirt-20-khaki",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/nina-skirt-20-khaki-skirt-yakira-bella-475595.jpg?v=1739294437",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey Top pairs perfectly with khaki - classic neutral combination, versatile core top",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige Top with khaki skirt - timeless neutral pairing, core versatile piece",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7173164138593",
+          "title": "Bailey Top (Beige)",
+          "handle": "bailey-top-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-beige-top-yakira-bella-1030283.jpg?v=1771540632",
+          "price": "58.00",
+          "reason": "Beige Bailey Top creates tonal neutral look with khaki, similar to Dakota skirt matches",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige Paige Top for sophisticated tonal neutral pairing with khaki",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7141789892705",
+          "title": "Bailey Top (Black)",
+          "handle": "bailey-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-black-top-yakira-bella-3298120.jpg?v=1772058973",
+          "price": "58.00",
+          "reason": "Black Bailey Top provides clean contrast with khaki, follows khaki skirt matching patterns",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black Paige Top for classic khaki/black contrast, versatile core top",
+          "confidence": 0.91
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana Top offers fresh neutral pairing with khaki skirt",
+          "confidence": 0.89
+        },
+        {
+          "productId": "gid://shopify/Product/7219516637281",
+          "title": "Renee Tee (Black)",
+          "handle": "renee-tee-black-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-black-top-yakira-bella-6456506.jpg?v=1757132598",
+          "price": "34.00",
+          "reason": "Black Renee Tee provides casual khaki/black pairing, similar to Nina skirt matches",
+          "confidence": 0.88
+        }
+      ]
+    },
+    "gid://shopify/Product/7254591701089": {
+      "productTitle": "Nina Skirt 23\" (Khaki)",
+      "productHandle": "nina-skirt-23-khaki",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/nina-skirt-23-khaki-skirt-yakira-bella-648162.jpg?v=1739294435",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey Top pairs perfectly with khaki - classic neutral combination, versatile core top",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige Top with khaki skirt - timeless neutral pairing, core versatile piece",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7173164138593",
+          "title": "Bailey Top (Beige)",
+          "handle": "bailey-top-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-beige-top-yakira-bella-1030283.jpg?v=1771540632",
+          "price": "58.00",
+          "reason": "Beige Bailey Top creates tonal neutral look with khaki, follows Dakota skirt patterns",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige Paige Top for sophisticated tonal neutral pairing with khaki",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7141789892705",
+          "title": "Bailey Top (Black)",
+          "handle": "bailey-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-black-top-yakira-bella-3298120.jpg?v=1772058973",
+          "price": "58.00",
+          "reason": "Black Bailey Top provides clean contrast with khaki, similar to Dakota/Nina matches",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black Paige Top for classic khaki/black contrast, versatile core top",
+          "confidence": 0.91
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana Top offers fresh neutral pairing with khaki skirt",
+          "confidence": 0.89
+        },
+        {
+          "productId": "gid://shopify/Product/7219516637281",
+          "title": "Renee Tee (Black)",
+          "handle": "renee-tee-black-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-black-top-yakira-bella-6456506.jpg?v=1757132598",
+          "price": "34.00",
+          "reason": "Black Renee Tee for casual khaki/black pairing, matches Nina skirt pattern",
+          "confidence": 0.88
         }
       ]
     }
