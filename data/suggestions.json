@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-03-30T10:19:13.148Z",
-  "totalProducts": 240,
-  "totalSuggestions": 1128,
+  "generatedAt": "2026-03-31T10:09:00.128Z",
+  "totalProducts": 243,
+  "totalSuggestions": 1144,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11832,6 +11832,171 @@
           "price": "34.00",
           "reason": "Black Renee Tee for casual khaki/black pairing, matches Nina skirt pattern",
           "confidence": 0.88
+        }
+      ]
+    },
+    "gid://shopify/Product/7462143787105": {
+      "productTitle": "Vega Skirt (Light Blue)",
+      "productHandle": "vega-skirt-light-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9487.jpg?v=1770414115",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is core staple that matches light blue beautifully - proven pairing pattern",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7295799689313",
+          "title": "Paige Top (Light Aqua)",
+          "handle": "paige-top-light-aqua",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-aqua-top-yakira-bella-2086625.jpg?v=1770127754",
+          "price": "68.00",
+          "reason": "Light aqua creates tonal blue/aqua color family harmony with light blue skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7501209239649",
+          "title": "Paige Top (Light Blue)",
+          "handle": "paige-top-light-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-blue-top-yakira-bella-5404271.jpg?v=1770376392",
+          "price": "68.00",
+          "reason": "Light blue top creates elegant monochromatic look with light blue skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246340685921",
+          "title": "Viviana Top (Blue)",
+          "handle": "viviana-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-blue-top-yakira-bella-5399768.jpg?v=1767520632",
+          "price": "68.00",
+          "reason": "Blue Viviana top complements light blue skirt in same color family",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492657709153": {
+      "productTitle": "Karla Skirt 20\" (Marina Blue)",
+      "productHandle": "karla-skirt-20-marina-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7071.jpg?v=1772213566",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468136366177",
+          "title": "Lia Top (Ice Blue)",
+          "handle": "lia-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-ice-blue-top-yakira-bella-4313687.jpg?v=1771039150",
+          "price": "38.00",
+          "reason": "Ice blue Lia top pairs with marina blue skirt creating sophisticated blue tonal match",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice blue Tina top matches marina blue skirt in complementary blue palette",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White core top creates clean contrast with marina blue - classic pairing",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is versatile core piece that pairs well with all blue skirts",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top offers fresh contrast to marina blue skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top pairs cleanly with marina blue creating classic look",
+          "confidence": 0.89
+        }
+      ]
+    },
+    "gid://shopify/Product/7492657774689": {
+      "productTitle": "Karla Skirt 23\" (Marina Blue)",
+      "productHandle": "karla-skirt-23-marina-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7071_f6c3fec8-2201-4c85-aadb-a5ad906ed72a.jpg?v=1772214446",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468136366177",
+          "title": "Lia Top (Ice Blue)",
+          "handle": "lia-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-ice-blue-top-yakira-bella-4313687.jpg?v=1771039150",
+          "price": "38.00",
+          "reason": "Ice blue Lia top creates beautiful tonal match with marina blue skirt",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice blue Tina top pairs elegantly with marina blue in same color family",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige top offers clean contrast - core versatile match for marina blue",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is classic pairing with marina blue skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top creates fresh, clean look with marina blue",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top pairs well with marina blue for classic style",
+          "confidence": 0.89
         }
       ]
     }
