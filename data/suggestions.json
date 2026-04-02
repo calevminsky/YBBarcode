@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-01T10:07:51.793Z",
-  "totalProducts": 243,
-  "totalSuggestions": 1144,
+  "generatedAt": "2026-04-02T10:06:02.150Z",
+  "totalProducts": 244,
+  "totalSuggestions": 1153,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11997,6 +11997,94 @@
           "price": "44.00",
           "reason": "White Tina top pairs well with marina blue for classic style",
           "confidence": 0.89
+        }
+      ]
+    },
+    "gid://shopify/Product/7301634719841": {
+      "productTitle": "Kelly Skirt (Pastel Yellow)",
+      "productHandle": "kelly-skirt-pastel-yellow",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kelly-skirt-pastel-yellow-skirt-yakira-bella-1697120.jpg?v=1772033661",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top pairs perfectly with pastel yellow skirt - clean, fresh spring look matching the S25 season",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige top is a core versatile piece that complements pastel yellow beautifully for coordinated outfit",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is best-selling core piece that creates classic neutral pairing with pastel yellow skirt",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top provides clean contrast to pastel yellow, excellent for everyday spring wear",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top short sleeve option pairs well with pastel yellow for warmer spring days",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7287295934561",
+          "title": "Paige Top (Light Yellow)",
+          "handle": "paige-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-yellow-top-yakira-bella-7759727.jpg?v=1770293534",
+          "price": "68.00",
+          "reason": "Light Yellow Paige top creates tonal monochromatic look with pastel yellow skirt for coordinated spring outfit",
+          "confidence": 0.91
+        },
+        {
+          "productId": "gid://shopify/Product/7295799689313",
+          "title": "Paige Top (Light Aqua)",
+          "handle": "paige-top-light-aqua",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-aqua-top-yakira-bella-2086625.jpg?v=1770127754",
+          "price": "68.00",
+          "reason": "Light Aqua Paige top offers fresh pastel contrast to pastel yellow for spring color blocking",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7295712985185",
+          "title": "Paige Top (Light Lavender)",
+          "handle": "paige-top-light-lavender",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-lavender-top-yakira-bella-9512386.jpg?v=1770873911",
+          "price": "68.00",
+          "reason": "Light Lavender Paige top creates soft pastel pairing with pastel yellow for feminine spring look",
+          "confidence": 0.89
+        },
+        {
+          "productId": "gid://shopify/Product/7492660396129",
+          "title": "Sonia Top (White)",
+          "handle": "sonia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-white-top-yakira-bella-8700939.jpg?v=1773404534",
+          "price": "48.00",
+          "reason": "White Sonia top from S26 collection provides fresh neutral base for pastel yellow skirt",
+          "confidence": 0.88
         }
       ]
     }
