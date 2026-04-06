@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-05T09:40:27.578Z",
+  "generatedAt": "2026-04-06T10:11:33.463Z",
   "totalProducts": 244,
-  "totalSuggestions": 1153,
+  "totalSuggestions": 1152,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -4671,15 +4671,6 @@
           "price": "34.00",
           "reason": "Off White Renee complements teal green - neutral pairing",
           "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White Renee pairs with teal green - clean contrast",
-          "confidence": 0.83
         }
       ]
     },
