@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-12T09:47:31.600Z",
-  "totalProducts": 252,
-  "totalSuggestions": 1190,
+  "generatedAt": "2026-04-13T11:36:40.335Z",
+  "totalProducts": 253,
+  "totalSuggestions": 1196,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -4080,15 +4080,6 @@
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rosie-skirt-white-skirt-yakira-bella-8717067.jpg?v=1773332628",
       "matches": [
         {
-          "productId": "gid://shopify/Product/7296179077217",
-          "title": "Paige Top (Butter Yellow)",
-          "handle": "paige-top-off-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-pastel-yellow-top-yakira-bella-5176381.jpg?v=1770127756",
-          "price": "68.00",
-          "reason": "Butter yellow provides cheerful contrast to white denim, similar to other Rosie White matches",
-          "confidence": 0.9
-        },
-        {
           "productId": "gid://shopify/Product/7468302008417",
           "title": "Tina Top (White)",
           "handle": "tina-top-white",
@@ -4226,15 +4217,6 @@
       "productHandle": "suri-skirt-black-flower",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/suri-skirt-black-flower-skirt-yakira-bella-9838962.jpg?v=1770743169",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7296179077217",
-          "title": "Paige Top (Butter Yellow)",
-          "handle": "paige-top-off-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-pastel-yellow-top-yakira-bella-5176381.jpg?v=1770127756",
-          "price": "68.00",
-          "reason": "Butter yellow creates cheerful contrast with black flower pattern",
-          "confidence": 0.9
-        },
         {
           "productId": "gid://shopify/Product/7250786484321",
           "title": "Paige Top (Black)",
@@ -12474,6 +12456,85 @@
           "price": "44.00",
           "reason": "Black Rena top creates crisp contrast with white",
           "confidence": 0.84
+        }
+      ]
+    },
+    "gid://shopify/Product/7466913661025": {
+      "productTitle": "Emma Skirt 20\" (Blue)",
+      "productHandle": "emma-skirt-20-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/emma-skirt-20-blue-skirt-yakira-bella-8419658.jpg?v=1770742009",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy Lumi top creates classic contrast with blue skirt, similar to other blue Emma skirt matches with navy tops",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492660068449",
+          "title": "Sonia Top (Navy)",
+          "handle": "sonia-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-navy-top-yakira-bella-4833437.jpg?v=1773404538",
+          "price": "48.00",
+          "reason": "Navy Sonia top pairs well with blue denim, matching pattern of navy tops with Emma blue skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7492660232289",
+          "title": "Lumi Top (Light Pink)",
+          "handle": "lumi-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-light-pink-top-yakira-bella-7814954.jpg?v=1772819293",
+          "price": "54.00",
+          "reason": "Light pink Lumi provides soft feminine contrast to blue denim, similar to pink tops matched with other blue skirts",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492660101217",
+          "title": "Sonia Top (Light Pink)",
+          "handle": "sonia-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8682.jpg?v=1772121236",
+          "price": "48.00",
+          "reason": "Light pink Sonia creates soft pairing with blue denim, pattern seen in Emma skirt matches",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7492660494433",
+          "title": "Sonia Top (Light Blue)",
+          "handle": "sonia-top-light-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-light-blue-top-yakira-bella-1620542.jpg?v=1773404533",
+          "price": "48.00",
+          "reason": "Light blue Sonia creates tonal monochromatic look with blue denim skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7492660265057",
+          "title": "Lumi Top (Light Blue)",
+          "handle": "lumi-top-light-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-light-blue-top-yakira-bella-3295507.jpg?v=1772819293",
+          "price": "54.00",
+          "reason": "Light blue Lumi offers tone-on-tone blue pairing with denim skirt",
+          "confidence": 0.84
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top creates clean contrast with blue denim, core neutral pairing",
+          "confidence": 0.83
+        },
+        {
+          "productId": "gid://shopify/Product/7492660396129",
+          "title": "Sonia Top (White)",
+          "handle": "sonia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-white-top-yakira-bella-8700939.jpg?v=1773404534",
+          "price": "48.00",
+          "reason": "White Sonia provides crisp neutral contrast to blue denim skirt",
+          "confidence": 0.82
         }
       ]
     }
