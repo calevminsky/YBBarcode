@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-14T10:17:09.477Z",
-  "totalProducts": 250,
-  "totalSuggestions": 1181,
+  "generatedAt": "2026-04-15T10:20:25.926Z",
+  "totalProducts": 251,
+  "totalSuggestions": 1186,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -12379,6 +12379,58 @@
           "price": "48.00",
           "reason": "White Sonia provides crisp neutral contrast to blue denim skirt",
           "confidence": 0.82
+        }
+      ]
+    },
+    "gid://shopify/Product/7492657053793": {
+      "productTitle": "Lisa Skirt (Dark Green Flower)",
+      "productHandle": "lisa-skirt-dark-green-flower",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-dark-green-flower-skirt-yakira-bella-6409720.jpg?v=1776218712",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black solid top provides classic contrast with dark green floral print, allowing pattern to stand out",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top creates fresh, clean pairing with dark green floral, similar to existing white top matches with green skirts",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige neutral pairs well with dark green floral, similar to beige tops matched with green pattern skirts",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top (core/evergreen) versatile match for dark green floral, consistent with pattern-neutral pairings",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7273749119073",
+          "title": "3/4 Sleeve Knit Cardigan (Green)",
+          "handle": "3-4-sleeve-knit-cardigan-green",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/34-sleeve-knit-cardigan-green-top-yakira-bella-7694783.jpg?v=1770956412",
+          "price": "42.00",
+          "reason": "Green cardigan creates cohesive tonal look with dark green floral skirt",
+          "confidence": 0.85
         }
       ]
     }
