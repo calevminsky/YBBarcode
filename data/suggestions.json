@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-16T10:19:40.817Z",
-  "totalProducts": 266,
-  "totalSuggestions": 1253,
+  "generatedAt": "2026-04-17T10:19:32.988Z",
+  "totalProducts": 267,
+  "totalSuggestions": 1256,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13139,6 +13139,40 @@
           "price": "44.00",
           "reason": "Pink blush adds soft feminine touch to lavender maxi",
           "confidence": 0.84
+        }
+      ]
+    },
+    "gid://shopify/Product/7492657348705": {
+      "productTitle": "Lia Skirt (Blue)",
+      "productHandle": "lia-skirt-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9613.jpg?v=1772639800",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top provides clean contrast to blue denim skirt, already matched with similar denim skirts",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White tee is classic denim pairing, clean and timeless look",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492763680865",
+          "title": "Rena Top (Cobalt Blue)",
+          "handle": "rena-top-cobalt-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-cobalt-blue-top-yakira-bella-9276204.jpg?v=1772156358",
+          "price": "44.00",
+          "reason": "Cobalt blue adds color depth while staying in blue family, matches denim aesthetic",
+          "confidence": 0.82
         }
       ]
     }
