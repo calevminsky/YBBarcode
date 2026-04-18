@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-17T10:19:32.988Z",
-  "totalProducts": 267,
-  "totalSuggestions": 1256,
+  "generatedAt": "2026-04-18T09:51:07.127Z",
+  "totalProducts": 265,
+  "totalSuggestions": 1246,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13034,110 +13034,6 @@
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-mint-top-yakira-bella-4609549.jpg?v=1771453345",
           "price": "38.00",
           "reason": "Light mint creates fresh spring pairing with blue floral",
-          "confidence": 0.84
-        }
-      ]
-    },
-    "gid://shopify/Product/7518537056353": {
-      "productTitle": "Liana Skirt (Light Sage)",
-      "productHandle": "liana-skirt-light-sage",
-      "productImage": null,
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468186828897",
-          "title": "Lia Top (White)",
-          "handle": "lia-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
-          "price": "38.00",
-          "reason": "White top provides clean, elegant contrast with light sage maxi",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492662919265",
-          "title": "Alma Top (White)",
-          "handle": "alma-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-white-top-yakira-bella-1700012.jpg?v=1773233473",
-          "price": "68.00",
-          "reason": "White Alma top pairs beautifully with sage maxi - crisp neutral pairing",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7468289425505",
-          "title": "Tina Top (Light Sage)",
-          "handle": "tina-top-light-sage",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-sage-top-yakira-bella-5782224.jpg?v=1771453345",
-          "price": "44.00",
-          "reason": "Light sage Tina top creates tone-on-tone sophisticated look with sage skirt",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7482842284129",
-          "title": "Dini Top (Sage)",
-          "handle": "dini-top-sage",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8105.jpg?v=1771446792",
-          "price": "48.00",
-          "reason": "Sage Dini top matches skirt color directly - coordinated set look",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7468122013793",
-          "title": "Lia Top (Green)",
-          "handle": "lia-top-green",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-green-top-yakira-bella-1671900.jpg?v=1771453348",
-          "price": "38.00",
-          "reason": "Green Lia top coordinates with sage tones in maxi skirt",
-          "confidence": 0.83
-        }
-      ]
-    },
-    "gid://shopify/Product/7518538956897": {
-      "productTitle": "Liana Skirt (Light Lavender)",
-      "productHandle": "liana-skirt-light-lavender",
-      "productImage": null,
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468186828897",
-          "title": "Lia Top (White)",
-          "handle": "lia-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
-          "price": "38.00",
-          "reason": "White top creates soft, elegant pairing with light lavender maxi",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7295712985185",
-          "title": "Paige Top (Light Lavender)",
-          "handle": "paige-top-light-lavender",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-lavender-top-yakira-bella-9512386.jpg?v=1770873911",
-          "price": "68.00",
-          "reason": "Light lavender Paige top creates tone-on-tone coordinated look",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7250787860577",
-          "title": "Paige Top (Lavender)",
-          "handle": "paige-top-lavender",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9858.jpg?v=1770159281",
-          "price": "68.00",
-          "reason": "Lavender Paige top matches lavender maxi directly",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492751163489",
-          "title": "Rena Top (Light Lavender)",
-          "handle": "rena-top-light-pink-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-lavender-top-yakira-bella-2725309.jpg?v=1772058556",
-          "price": "44.00",
-          "reason": "Light lavender Rena top coordinates with lavender maxi skirt",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7468296962145",
-          "title": "Tina Top (Pink Blush)",
-          "handle": "tina-top-pink-blush",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-pink-blush-top-yakira-bella-2117769.jpg?v=1772739734",
-          "price": "44.00",
-          "reason": "Pink blush adds soft feminine touch to lavender maxi",
           "confidence": 0.84
         }
       ]
