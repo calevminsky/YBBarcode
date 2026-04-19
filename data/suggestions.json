@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-18T09:51:07.127Z",
-  "totalProducts": 265,
-  "totalSuggestions": 1246,
+  "generatedAt": "2026-04-19T09:49:40.943Z",
+  "totalProducts": 263,
+  "totalSuggestions": 1238,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -3646,49 +3646,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7402979950689": {
-      "productTitle": "Selena Skirt (Green Pattern)",
-      "productHandle": "celina-skirt-green-pattern",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/selena-skirt-green-pattern-skirt-yakira-bella-7076423.jpg?v=1770743414",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7250785435745",
-          "title": "Paige Top (White)",
-          "handle": "paige-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
-          "price": "68.00",
-          "reason": "White Paige top provides clean contrast for green patterned skirt",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7482062602337",
-          "title": "Paige Top (Green)",
-          "handle": "paige-top-green-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-green-top-yakira-bella-3104879.jpg?v=1770956180",
-          "price": "68.00",
-          "reason": "Green Paige top echoes skirt color - tonal match",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7072949010529",
-          "title": "Bailey Top (White)",
-          "handle": "bailey-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
-          "price": "58.00",
-          "reason": "White Bailey top offers versatile neutral for green pattern",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7468289425505",
-          "title": "Tina Top (Light Sage)",
-          "handle": "tina-top-light-sage",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-sage-top-yakira-bella-5782224.jpg?v=1771453345",
-          "price": "44.00",
-          "reason": "Light sage Tina top complements green pattern with tonal coordination",
-          "confidence": 0.86
-        }
-      ]
-    },
     "gid://shopify/Product/7402995941473": {
       "productTitle": "Lisa Skirt (Green Pattern)",
       "productHandle": "lisa-skirt-green-pattern",
@@ -4860,49 +4817,6 @@
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jane-cardigan-blue-top-yakira-bella-9672554.jpg?v=1772905640",
           "price": "78.00",
           "reason": "Blue Jane cardigan adds soft color to neutral pattern, layering option",
-          "confidence": 0.82
-        }
-      ]
-    },
-    "gid://shopify/Product/7434990157921": {
-      "productTitle": "Siena Skirt (Purple Flower)",
-      "productHandle": "siena-skirt-purple-flower",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/siena-skirt-purple-flower-skirt-yakira-bella-1746362.jpg?v=1772903469",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7466014834785",
-          "title": "Aria Top (Royal Blue)",
-          "handle": "aria-top-royal-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-royal-blue-top-yakira-bella-3869067.jpg?v=1770956180",
-          "price": "78.00",
-          "reason": "Royal blue Aria enhances purple flower pattern with bold complementary color, matching floral pairing strategy",
-          "confidence": 0.93
-        },
-        {
-          "productId": "gid://shopify/Product/7492662100065",
-          "title": "Jane Cardigan (Blue)",
-          "handle": "jane-cardigan-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jane-cardigan-blue-top-yakira-bella-9672554.jpg?v=1772905640",
-          "price": "78.00",
-          "reason": "Blue Jane cardigan provides layering option that enhances purple floral theme",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7466065133665",
-          "title": "Bailey Top (Royal Blue)",
-          "handle": "bailey-top-royal-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-royal-blue-top-yakira-bella-9253681.jpg?v=1769713282",
-          "price": "58.00",
-          "reason": "Royal blue Bailey offers versatile core option for purple flowers",
-          "confidence": 0.84
-        },
-        {
-          "productId": "gid://shopify/Product/7250785435745",
-          "title": "Paige Top (White)",
-          "handle": "paige-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
-          "price": "68.00",
-          "reason": "White Paige provides clean neutral for purple pattern",
           "confidence": 0.82
         }
       ]
