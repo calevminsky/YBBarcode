@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-20T10:50:24.404Z",
-  "totalProducts": 263,
-  "totalSuggestions": 1238,
+  "generatedAt": "2026-04-21T10:21:15.905Z",
+  "totalProducts": 265,
+  "totalSuggestions": 1250,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -12983,6 +12983,128 @@
           "price": "44.00",
           "reason": "Cobalt blue adds color depth while staying in blue family, matches denim aesthetic",
           "confidence": 0.82
+        }
+      ]
+    },
+    "gid://shopify/Product/7466717479009": {
+      "productTitle": "Kora Skirt (Blue)",
+      "productHandle": "kora-skirt-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kora-skirt-blue-skirt-yakira-bella-5487334.jpg?v=1770742041",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White core top provides clean neutral match for solid blue skirt, matching existing Kora Top (Blue) set pattern",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7492662952033",
+          "title": "Alma Top (Dark Blue)",
+          "handle": "alma-top-dark-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-dark-blue-top-yakira-bella-2144031.jpg?v=1772819293",
+          "price": "68.00",
+          "reason": "Dark blue top creates tonal blue-on-blue pairing, similar to other solid blue skirt matches",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7492663148641",
+          "title": "Viviana Top (White Stripe)",
+          "handle": "viviana-top-white-stripe",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-stripe-top-yakira-bella-4885333.jpg?v=1772905639",
+          "price": "68.00",
+          "reason": "White stripe adds subtle pattern interest while keeping neutral foundation for solid blue skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492662919265",
+          "title": "Alma Top (White)",
+          "handle": "alma-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-white-top-yakira-bella-1700012.jpg?v=1773233473",
+          "price": "68.00",
+          "reason": "White top provides crisp neutral contrast for solid blue skirt, versatile core pairing",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White tee offers simple core neutral for solid blue knit skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top provides clean neutral match for blue skirt",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492657872993": {
+      "productTitle": "Karla Skirt 26\" (Marina Blue)",
+      "productHandle": "karla-skirt-26-marina-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9025.jpg?v=1772214755",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492661706849",
+          "title": "Maisy Top (Blue)",
+          "handle": "maisy-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/maisy-top-blue-top-yakira-bella-4837489.jpg?v=1774144934",
+          "price": "58.00",
+          "reason": "Matching set - Marina Blue Karla Top matches Marina Blue Karla Skirt following Karla set pattern",
+          "confidence": 0.99
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White core top provides clean neutral for marina blue skirt, versatile pairing",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina tee offers simple neutral for marina blue 26\" skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top provides clean contrast for marina blue skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492662919265",
+          "title": "Alma Top (White)",
+          "handle": "alma-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-white-top-yakira-bella-1700012.jpg?v=1773233473",
+          "price": "68.00",
+          "reason": "White Alma top creates fresh neutral pairing for blue skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice Blue Tina creates tonal blue pairing with marina blue skirt",
+          "confidence": 0.83
         }
       ]
     }
