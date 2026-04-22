@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-21T10:21:15.905Z",
-  "totalProducts": 265,
-  "totalSuggestions": 1250,
+  "generatedAt": "2026-04-22T10:23:50.946Z",
+  "totalProducts": 266,
+  "totalSuggestions": 1258,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13104,6 +13104,85 @@
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
           "price": "44.00",
           "reason": "Ice Blue Tina creates tonal blue pairing with marina blue skirt",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7462239371361": {
+      "productTitle": "Molly Skirt (Light Yellow)",
+      "productHandle": "molly-skirt-light-yellow",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/molly-skirt-light-yellow-skirt-yakira-bella-4322936.jpg?v=1770843430",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7491945431137",
+          "title": "Mila Top (Light Yellow)",
+          "handle": "mila-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mila-top-light-yellow-top-yakira-bella-6670076.jpg?v=1771453338",
+          "price": "48.00",
+          "reason": "Perfect match - same light yellow color family, creates cohesive monochromatic look for the set",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7468273500257",
+          "title": "Tina Top (Butter Yellow)",
+          "handle": "tina-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7642.jpg?v=1772047080",
+          "price": "44.00",
+          "reason": "Butter yellow coordinates beautifully with light yellow skirt, core top provides versatility",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7287295934561",
+          "title": "Paige Top (Light Yellow)",
+          "handle": "paige-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-yellow-top-yakira-bella-7759727.jpg?v=1770293534",
+          "price": "68.00",
+          "reason": "Light yellow on light yellow - tonal dressing, very on-trend monochromatic styling",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7434927407201",
+          "title": "Viviana Top (Light Yellow)",
+          "handle": "viviana-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-light-yellow-top-yakira-bella-9140348.jpg?v=1769713291",
+          "price": "68.00",
+          "reason": "Light yellow top matches skirt perfectly, creates coordinated set look",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White provides clean contrast to light yellow, classic fresh spring pairing",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White core top offers versatile neutral pairing with light yellow skirt",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White provides clean, fresh contrast to light yellow - classic spring combination",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee offers simple, clean pairing with light yellow skirt",
           "confidence": 0.83
         }
       ]
