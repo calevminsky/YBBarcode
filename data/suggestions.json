@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-22T10:23:50.946Z",
-  "totalProducts": 266,
-  "totalSuggestions": 1258,
+  "generatedAt": "2026-04-23T10:24:20.852Z",
+  "totalProducts": 267,
+  "totalSuggestions": 1264,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13183,6 +13183,67 @@
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
           "price": "44.00",
           "reason": "White tee offers simple, clean pairing with light yellow skirt",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7466913661025": {
+      "productTitle": "Emma Skirt 20\" (Blue)",
+      "productHandle": "emma-skirt-20-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/emma-skirt-20-blue-skirt-yakira-bella-8419658.jpg?v=1770742009",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492660396129",
+          "title": "Sonia Top (White)",
+          "handle": "sonia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-white-top-yakira-bella-8700939.jpg?v=1773404534",
+          "price": "48.00",
+          "reason": "White Sonia top pairs perfectly with blue denim skirt - clean casual contrast",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7482934558817",
+          "title": "Jemma Top (White)",
+          "handle": "jemma-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-white-top-yakira-bella-6814885.jpg?v=1771453338",
+          "price": "54.00",
+          "reason": "White Jemma top creates classic denim look, short sleeve matches casual style",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492662952033",
+          "title": "Alma Top (Dark Blue)",
+          "handle": "alma-top-dark-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-dark-blue-top-yakira-bella-2144031.jpg?v=1772819293",
+          "price": "68.00",
+          "reason": "Dark blue Alma top creates tonal denim-on-denim sophisticated look",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top is core basic that pairs well with any blue denim",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492660068449",
+          "title": "Sonia Top (Navy)",
+          "handle": "sonia-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-navy-top-yakira-bella-4833437.jpg?v=1773404538",
+          "price": "48.00",
+          "reason": "Navy Sonia top creates cohesive blue tonal look with denim skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Blue Paige top matches denim color family for coordinated casual outfit",
           "confidence": 0.83
         }
       ]
