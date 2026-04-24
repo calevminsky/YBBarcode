@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-23T10:24:20.852Z",
-  "totalProducts": 267,
-  "totalSuggestions": 1264,
+  "generatedAt": "2026-04-24T10:26:18.794Z",
+  "totalProducts": 268,
+  "totalSuggestions": 1267,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13245,6 +13245,40 @@
           "price": "68.00",
           "reason": "Blue Paige top matches denim color family for coordinated casual outfit",
           "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7518514118753": {
+      "productTitle": "Rina Skirt (Peach Green)",
+      "productHandle": "rina-skirt-peach-green",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rina-skirt-peach-green-skirt-yakira-bella-7358485.jpg?v=1776996083",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468299747425",
+          "title": "Tina Top (Teal)",
+          "handle": "tina-top-teal-green",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-teal-top-yakira-bella-9351675.jpg?v=1771453339",
+          "price": "44.00",
+          "reason": "Teal provides sophisticated contrast to peach while echoing green accents",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7482842284129",
+          "title": "Dini Top (Sage)",
+          "handle": "dini-top-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8105.jpg?v=1771446792",
+          "price": "48.00",
+          "reason": "Sage green works well with the green elements in the pattern",
+          "confidence": 0.83
+        },
+        {
+          "productId": "gid://shopify/Product/7468289425505",
+          "title": "Tina Top (Light Sage)",
+          "handle": "tina-top-light-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-sage-top-yakira-bella-5782224.jpg?v=1771453345",
+          "price": "44.00",
+          "reason": "Light sage complements the green tones without overwhelming the peach",
+          "confidence": 0.82
         }
       ]
     }
