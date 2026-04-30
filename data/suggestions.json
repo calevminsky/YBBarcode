@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-29T10:58:19.187Z",
-  "totalProducts": 273,
-  "totalSuggestions": 1298,
+  "generatedAt": "2026-04-30T10:59:27.940Z",
+  "totalProducts": 277,
+  "totalSuggestions": 1321,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13593,6 +13593,241 @@
           "price": "44.00",
           "reason": "Ice blue creates fresh blue family pairing with navy",
           "confidence": 0.84
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658266209": {
+      "productTitle": "Mina Skirt 20\" (Navy)",
+      "productHandle": "mina-skirt-20-navy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-20-navy-skirt-yakira-bella-2021595.jpg?v=1777499412",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492756832353",
+          "title": "Rena Top (Baby Blue)",
+          "handle": "rena-top-baby-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9754.jpg?v=1772640865",
+          "price": "44.00",
+          "reason": "Baby Blue top pairs perfectly with Navy skirt - matching blue family with lighter contrast",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White top is classic neutral pairing with Navy - versatile core combination",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top pairs well with Navy - similar to other Navy skirt matches",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top provides clean neutral contrast with Navy skirt",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7492771872865",
+          "title": "Rena Top (Navy)",
+          "handle": "rena-top-pink-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-navy-top-yakira-bella-8293079.jpg?v=1772653538",
+          "price": "44.00",
+          "reason": "Navy on Navy monochromatic look - sophisticated matching set style",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light Pink top provides soft feminine contrast with Navy - classic color pairing",
+          "confidence": 0.92
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658561121": {
+      "productTitle": "Mina Skirt 23\" (Navy)",
+      "productHandle": "mina-skirt-23-navy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-23-navy-skirt-yakira-bella-7627660.jpg?v=1777499410",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492756832353",
+          "title": "Rena Top (Baby Blue)",
+          "handle": "rena-top-baby-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9754.jpg?v=1772640865",
+          "price": "44.00",
+          "reason": "Baby Blue top pairs perfectly with Navy 23\" skirt - matching blue family with lighter contrast",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White Rena top is classic neutral pairing with Navy - versatile core combination",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top pairs well with Navy 23\" - similar to other Navy skirt matches",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top provides clean neutral contrast with Navy skirt",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7492771872865",
+          "title": "Rena Top (Navy)",
+          "handle": "rena-top-pink-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-navy-top-yakira-bella-8293079.jpg?v=1772653538",
+          "price": "44.00",
+          "reason": "Navy Rena top for monochromatic Navy look - sophisticated matching set",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light Pink top provides soft feminine contrast with Navy - classic pairing",
+          "confidence": 0.92
+        }
+      ]
+    },
+    "gid://shopify/Product/7518537056353": {
+      "productTitle": "Liana Skirt (Light Sage)",
+      "productHandle": "liana-skirt-light-sage",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/liana-skirt-light-sage-skirt-yakira-bella-8717441.jpg?v=1777498453",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492781473889",
+          "title": "Rena Top (Light Mint)",
+          "handle": "rena-top-light-mint",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-mint-top-yakira-bella-1620463.jpg?v=1772653539",
+          "price": "44.00",
+          "reason": "Light Mint Rena top matches Light Sage skirt perfectly - same soft green family",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7468146655329",
+          "title": "Lia Top (Light Mint)",
+          "handle": "lia-top-light-mint",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-mint-top-yakira-bella-4609549.jpg?v=1771453345",
+          "price": "38.00",
+          "reason": "Light Mint Lia top pairs beautifully with Light Sage - coordinating soft greens",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White top provides clean neutral contrast with Light Sage - versatile pairing",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top pairs well with Light Sage - fresh neutral combination",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7511170089057",
+          "title": "Renee Tee (Sage)",
+          "handle": "renee-tee-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-sage-top-yakira-bella-2750021.jpg?v=1776996087",
+          "price": "34.00",
+          "reason": "Sage Renee tee matches Light Sage skirt - coordinating green tones",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7482842284129",
+          "title": "Dini Top (Sage)",
+          "handle": "dini-top-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8105.jpg?v=1771446792",
+          "price": "48.00",
+          "reason": "Sage Dini top pairs with Light Sage skirt - matching green family",
+          "confidence": 0.93
+        }
+      ]
+    },
+    "gid://shopify/Product/7518538956897": {
+      "productTitle": "Liana Skirt (Light Lavender)",
+      "productHandle": "liana-skirt-light-lavender",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/liana-skirt-light-lavender-skirt-yakira-bella-5911856.jpg?v=1777498452",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7295712985185",
+          "title": "Paige Top (Light Lavender)",
+          "handle": "paige-top-light-lavender",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-lavender-top-yakira-bella-9512386.jpg?v=1770873911",
+          "price": "68.00",
+          "reason": "Light Lavender Paige top pairs with Light Lavender skirt - coordinating lavender tones",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White Rena top provides clean neutral contrast with Light Lavender - classic pairing",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top pairs well with Light Lavender - fresh neutral combination",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7250787860577",
+          "title": "Paige Top (Lavender)",
+          "handle": "paige-top-lavender",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9858.jpg?v=1770159281",
+          "price": "68.00",
+          "reason": "Lavender Paige top coordinates with Light Lavender skirt - deeper purple contrast",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top provides versatile neutral pairing with Light Lavender",
+          "confidence": 0.92
         }
       ]
     }
