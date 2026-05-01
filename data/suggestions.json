@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-30T10:59:27.940Z",
-  "totalProducts": 277,
-  "totalSuggestions": 1321,
+  "generatedAt": "2026-05-01T10:26:27.833Z",
+  "totalProducts": 278,
+  "totalSuggestions": 1327,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13827,6 +13827,67 @@
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
           "price": "38.00",
           "reason": "White Lia top provides versatile neutral pairing with Light Lavender",
+          "confidence": 0.92
+        }
+      ]
+    },
+    "gid://shopify/Product/7272241037409": {
+      "productTitle": "Dakota Skirt (Ivory Solid)",
+      "productHandle": "dakota-skirt-ivory-solid",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/dakota-skirt-ivory-solid-skirt-yakira-bella-353773.jpg?v=1762786160",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige pairs perfectly with ivory solid - neutral on neutral creates elegant, cohesive look. Similar to Dakota (Ivory Solid) existing matches with beige tops",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is core evergreen piece that pairs with all Dakota skirts. Classic ivory/white combination for versatile styling",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige top matches pattern from other Dakota ivory skirt matches. Clean neutral pairing",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana creates classic ivory/white pairing, matches Dakota (Ivory Solid) existing pattern with white tops",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7492656857185",
+          "title": "Kai Top (Navy)",
+          "handle": "kai-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kai-top-navy-top-yakira-bella-3424779.jpg?v=1776300013",
+          "price": "58.00",
+          "reason": "Navy Kai top creates sophisticated contrast with ivory, similar to Dakota (White Solid) matched with navy",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top provides fresh neutral pairing, core versatile piece for ivory skirt",
           "confidence": 0.92
         }
       ]
