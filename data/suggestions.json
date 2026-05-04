@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-03T10:06:12.915Z",
-  "totalProducts": 278,
-  "totalSuggestions": 1327,
+  "generatedAt": "2026-05-04T11:06:53.578Z",
+  "totalProducts": 277,
+  "totalSuggestions": 1322,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -5908,58 +5908,6 @@
           "price": "38.00",
           "reason": "Light beige Lia top creates tonal match with beige in pattern",
           "confidence": 0.83
-        }
-      ]
-    },
-    "gid://shopify/Product/7461357027425": {
-      "productTitle": "Kelly Skirt (Aqua Blue)",
-      "productHandle": "kelly-skirt-aqua-blue",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kelly-skirt-aqua-blue-skirt-yakira-bella-7829535.jpg?v=1770822079",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7250785435745",
-          "title": "Paige Top (White)",
-          "handle": "paige-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
-          "price": "68.00",
-          "reason": "White Paige top creates fresh contrast with aqua blue knit set",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7468186828897",
-          "title": "Lia Top (White)",
-          "handle": "lia-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
-          "price": "38.00",
-          "reason": "White Lia top provides crisp neutral pairing with aqua blue set piece",
-          "confidence": 0.93
-        },
-        {
-          "productId": "gid://shopify/Product/7468302008417",
-          "title": "Tina Top (White)",
-          "handle": "tina-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
-          "price": "44.00",
-          "reason": "White Tina top offers clean classic match with aqua blue knit",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492660396129",
-          "title": "Sonia Top (White)",
-          "handle": "sonia-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-white-top-yakira-bella-8700939.jpg?v=1773404534",
-          "price": "48.00",
-          "reason": "White Sonia top creates versatile pairing with aqua blue set",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7466742448225",
-          "title": "Bailey Top Short Sleeve (White)",
-          "handle": "bailey-top-short-sleeve-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-short-sleeve-white-top-yakira-bella-2284244.jpg?v=1769713694",
-          "price": "58.00",
-          "reason": "White Bailey short sleeve provides fresh spring match with aqua blue",
-          "confidence": 0.85
         }
       ]
     },
