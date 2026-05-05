@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-04T11:06:53.578Z",
-  "totalProducts": 277,
-  "totalSuggestions": 1322,
+  "generatedAt": "2026-05-05T10:49:45.494Z",
+  "totalProducts": 278,
+  "totalSuggestions": 1325,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13837,6 +13837,40 @@
           "price": "38.00",
           "reason": "White Lia top provides fresh neutral pairing, core versatile piece for ivory skirt",
           "confidence": 0.92
+        }
+      ]
+    },
+    "gid://shopify/Product/7538218074209": {
+      "productTitle": "Kendra Skirt (Beige)",
+      "productHandle": "kendra-skirt-beige",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kendra-skirt-beige-skirt-yakira-bella-8312864.jpg?v=1777934593",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top pairs perfectly with beige skirt - clean neutral combination, already proven with similar beige skirt matches",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7434927407201",
+          "title": "Viviana Top (Light Yellow)",
+          "handle": "viviana-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-light-yellow-top-yakira-bella-9140348.jpg?v=1769713291",
+          "price": "68.00",
+          "reason": "Light yellow Viviana top creates soft neutral palette with beige, proven color combination in existing matches",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top is core basic that pairs with all neutrals including beige, high stock availability",
+          "confidence": 0.94
         }
       ]
     }
