@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-05T10:49:45.494Z",
-  "totalProducts": 278,
-  "totalSuggestions": 1325,
+  "generatedAt": "2026-05-06T11:10:39.218Z",
+  "totalProducts": 279,
+  "totalSuggestions": 1335,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13871,6 +13871,103 @@
           "price": "44.00",
           "reason": "White Tina top is core basic that pairs with all neutrals including beige, high stock availability",
           "confidence": 0.94
+        }
+      ]
+    },
+    "gid://shopify/Product/7538219188321": {
+      "productTitle": "Emma Skirt (White)",
+      "productHandle": "emma-skirt-white",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9010.jpg?v=1777581572",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top pairs perfectly with white Emma skirt - classic, clean look for spring",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top creates a fresh monochromatic spring look, similar to existing white Emma skirt matches",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White Rena top offers versatile layering option for white skirt, matching the neutral palette",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492660396129",
+          "title": "Sonia Top (White)",
+          "handle": "sonia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-white-top-yakira-bella-8700939.jpg?v=1773404534",
+          "price": "48.00",
+          "reason": "White Sonia top provides casual-dressy balance for white Emma skirt in spring collection",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7466742448225",
+          "title": "Bailey Top Short Sleeve (White)",
+          "handle": "bailey-top-short-sleeve-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-short-sleeve-white-top-yakira-bella-2284244.jpg?v=1769713694",
+          "price": "58.00",
+          "reason": "White Bailey short sleeve creates fresh spring pairing, following pattern of white-on-white matches",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7452909207649",
+          "title": "Aria Top (Light Pink)",
+          "handle": "aria-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-light-pink-top-yakira-bella-2558252.jpg?v=1770956235",
+          "price": "78.00",
+          "reason": "Light Pink Aria top adds soft color contrast to white skirt, similar to existing Emma matches with light colors",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light Pink Rena top creates gentle contrast with white, following pattern of pastels with white skirts",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice Blue Tina top adds fresh spring color to white skirt, like light blue matches seen elsewhere",
+          "confidence": 0.84
+        },
+        {
+          "productId": "gid://shopify/Product/7492756832353",
+          "title": "Rena Top (Baby Blue)",
+          "handle": "rena-top-baby-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9754.jpg?v=1772640865",
+          "price": "44.00",
+          "reason": "Baby Blue Rena top provides soft color pop for white Emma skirt in spring palette",
+          "confidence": 0.83
+        },
+        {
+          "productId": "gid://shopify/Product/7492662722657",
+          "title": "Leah Top (Light Pink)",
+          "handle": "leah-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A0146.jpg?v=1773258698",
+          "price": "58.00",
+          "reason": "Light Yellow Leah top brings cheerful spring color to white skirt, similar to Bailey light yellow matches",
+          "confidence": 0.82
         }
       ]
     }
