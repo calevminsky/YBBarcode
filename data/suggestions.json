@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-08T10:26:01.032Z",
-  "totalProducts": 279,
-  "totalSuggestions": 1335,
+  "generatedAt": "2026-05-09T10:07:38.999Z",
+  "totalProducts": 280,
+  "totalSuggestions": 1340,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13968,6 +13968,58 @@
           "price": "58.00",
           "reason": "Light Yellow Leah top brings cheerful spring color to white skirt, similar to Bailey light yellow matches",
           "confidence": 0.82
+        }
+      ]
+    },
+    "gid://shopify/Product/7462274334817": {
+      "productTitle": "Calia Skirt (Red)",
+      "productHandle": "calia-skirt-red",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/calia-skirt-red-skirt-yakira-bella-5767821.jpg?v=1770293297",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7250789302369",
+          "title": "Paige Top (Magenta)",
+          "handle": "paige-top-magenta",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-magenta-top-yakira-bella-5037554.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Magenta top pairs well with red skirt - similar color family, creates bold cohesive look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black top provides classic neutral contrast with red skirt, versatile and elegant",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige/neutral top tones down bold red skirt for sophisticated, balanced outfit",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7453978755169",
+          "title": "Paige Top (Medium Pastel Blue)",
+          "handle": "paige-top-medium-patel-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-medium-pastel-blue-top-yakira-bella-8633702.jpg?v=1769796133",
+          "price": "68.00",
+          "reason": "Medium pastel blue creates interesting color contrast with red, fresh spring look",
+          "confidence": 0.82
+        },
+        {
+          "productId": "gid://shopify/Product/7317515305057",
+          "title": "Paige Cardigan (Black)",
+          "handle": "paige-cardigan-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/Canon-1749.jpg?v=1752155569",
+          "price": "88.00",
+          "reason": "Black cardigan layers well over lighter tops with red skirt for formal occasions",
+          "confidence": 0.8
         }
       ]
     }
