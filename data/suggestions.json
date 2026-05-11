@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-10T10:16:41.226Z",
+  "generatedAt": "2026-05-11T12:13:59.251Z",
   "totalProducts": 280,
-  "totalSuggestions": 1340,
+  "totalSuggestions": 1343,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -5390,40 +5390,6 @@
           "price": "58.00",
           "reason": "Beige Bailey creates warm, cohesive look with rust",
           "confidence": 0.84
-        }
-      ]
-    },
-    "gid://shopify/Product/7450424770657": {
-      "productTitle": "Natalia Skirt (White Blue)",
-      "productHandle": "natalia-skirt-white-blue",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/natalia-skirt-white-blue-skirt-yakira-bella-7061683.jpg?v=1770754499",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7250782912609",
-          "title": "Paige Top (Blue)",
-          "handle": "paige-top-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
-          "price": "68.00",
-          "reason": "Blue Paige picks up blue in pattern, creates cohesive look",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7468302008417",
-          "title": "Tina Top (White)",
-          "handle": "tina-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
-          "price": "44.00",
-          "reason": "White tee provides fresh base for white/blue pattern",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7466060447841",
-          "title": "Bailey Top (Blue)",
-          "handle": "bailey-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-blue-top-yakira-bella-7145076.jpg?v=1769713284",
-          "price": "58.00",
-          "reason": "Blue Bailey coordinates with pattern colors, balanced pairing",
-          "confidence": 0.85
         }
       ]
     },
@@ -14020,6 +13986,67 @@
           "price": "88.00",
           "reason": "Black cardigan layers well over lighter tops with red skirt for formal occasions",
           "confidence": 0.8
+        }
+      ]
+    },
+    "gid://shopify/Product/7541204582497": {
+      "productTitle": "Lottie Skirt (Yellow White)",
+      "productHandle": "lottie-skirt-yellow-white",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A0784_148f6122-5c8f-4a1c-8910-563fc58088b7.jpg?v=1778441915",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468114673761",
+          "title": "Lia Top (Butter Yellow)",
+          "handle": "lia-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-butter-yellow-top-yakira-bella-3599483.jpg?v=1771453346",
+          "price": "38.00",
+          "reason": "Butter yellow top matches yellow in skirt pattern, same color family pairing seen in Lottie Green White skirt with matching top",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top pairs well with yellow patterns as neutral base, similar to other Lottie skirt pairings with white tops",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is core versatile piece that pairs with yellow patterns, consistent with pattern skirt matching strategy",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7434927407201",
+          "title": "Viviana Top (Light Yellow)",
+          "handle": "viviana-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-light-yellow-top-yakira-bella-9140348.jpg?v=1769713291",
+          "price": "68.00",
+          "reason": "Light yellow Viviana top provides tonal harmony with yellow skirt pattern, matching color family approach",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492662919265",
+          "title": "Alma Top (White)",
+          "handle": "alma-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-white-top-yakira-bella-1700012.jpg?v=1773233473",
+          "price": "68.00",
+          "reason": "White Alma top offers clean neutral pairing for yellow pattern skirt, similar to white top pairings with patterned skirts",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top provides versatile neutral base for yellow stripe pattern, core top with high stock",
+          "confidence": 0.88
         }
       ]
     }
