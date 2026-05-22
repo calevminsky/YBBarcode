@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-21T12:15:27.705Z",
-  "totalProducts": 277,
-  "totalSuggestions": 1334,
+  "generatedAt": "2026-05-22T11:48:36.422Z",
+  "totalProducts": 278,
+  "totalSuggestions": 1340,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13945,6 +13945,67 @@
           "price": "78.00",
           "reason": "Jane Cardigan (Blue) layering option coordinates with blue",
           "confidence": 0.86
+        }
+      ]
+    },
+    "gid://shopify/Product/7113871622241": {
+      "productTitle": "Ascend Skirt (White) 24\"",
+      "productHandle": "ascend-skirt-white-24",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/ascend-skirt-white-24-skirt-yakira-bella-579413.jpg?v=1739626124",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light pink top pairs beautifully with white athletic skirt - soft feminine contrast, similar to existing pink matches with white Ascend skirts",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468265963617",
+          "title": "Tina Top (Baby Blue)",
+          "handle": "tina-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
+          "price": "44.00",
+          "reason": "Baby blue creates fresh athletic look with white skirt, following pattern of light blue tops paired with white Ascend skirts",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492751163489",
+          "title": "Rena Top (Light Lavender)",
+          "handle": "rena-top-light-pink-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-lavender-top-yakira-bella-2725309.jpg?v=1772058556",
+          "price": "44.00",
+          "reason": "Light lavender offers soft pastel contrast with white athletic skirt, consistent with lavender matches to white athletic pieces",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492781473889",
+          "title": "Rena Top (Light Mint)",
+          "handle": "rena-top-light-mint",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-mint-top-yakira-bella-1620463.jpg?v=1772653539",
+          "price": "44.00",
+          "reason": "Light mint provides refreshing color pop with white skirt, similar to mint tops matched with white athletic styles",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige creates sophisticated neutral-on-neutral athletic look, good stock and core versatility",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468296962145",
+          "title": "Tina Top (Pink Blush)",
+          "handle": "tina-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-pink-blush-top-yakira-bella-2117769.jpg?v=1772739734",
+          "price": "44.00",
+          "reason": "Pink blush offers subtle feminine touch with white athletic skirt, aligns with existing pink pairings",
+          "confidence": 0.87
         }
       ]
     }
