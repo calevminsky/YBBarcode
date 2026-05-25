@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-24T10:42:26.645Z",
-  "totalProducts": 252,
-  "totalSuggestions": 1226,
+  "generatedAt": "2026-05-25T12:33:10.719Z",
+  "totalProducts": 251,
+  "totalSuggestions": 1222,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -2226,49 +2226,6 @@
           "price": "44.00",
           "reason": "White Tina Top offers core versatile pairing with black",
           "confidence": 0.92
-        }
-      ]
-    },
-    "gid://shopify/Product/7328180371553": {
-      "productTitle": "Dakota Skirt (Pink Pattern)",
-      "productHandle": "dakota-skirt-pink-pattern",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/dakota-skirt-pink-pattern-skirt-yakira-bella-6537923.jpg?v=1753433024",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7452909207649",
-          "title": "Aria Top (Light Pink)",
-          "handle": "aria-top-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-light-pink-top-yakira-bella-2558252.jpg?v=1770956235",
-          "price": "78.00",
-          "reason": "Light Pink Aria Top coordinates with pink tones in pattern",
-          "confidence": 0.89
-        },
-        {
-          "productId": "gid://shopify/Product/7246308638817",
-          "title": "Viviana Top (White)",
-          "handle": "viviana-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
-          "price": "68.00",
-          "reason": "White Viviana Top provides clean contrast to pink pattern",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7287233478753",
-          "title": "Bailey Top (Light Pink)",
-          "handle": "bailey-top-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-light-pink-top-yakira-bella-8903028.jpg?v=1769713453",
-          "price": "58.00",
-          "reason": "Light Pink Bailey Top matches pink tones in skirt pattern",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7468296962145",
-          "title": "Tina Top (Pink Blush)",
-          "handle": "tina-top-pink-blush",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-pink-blush-top-yakira-bella-2117769.jpg?v=1772739734",
-          "price": "44.00",
-          "reason": "Pink Blush Tina Top complements pink pattern beautifully",
-          "confidence": 0.85
         }
       ]
     },
