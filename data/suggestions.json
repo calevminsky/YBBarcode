@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-27T12:31:08.959Z",
-  "totalProducts": 260,
-  "totalSuggestions": 1261,
+  "generatedAt": "2026-05-28T12:28:12.306Z",
+  "totalProducts": 259,
+  "totalSuggestions": 1255,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -8773,67 +8773,6 @@
           "price": "44.00",
           "reason": "Light Sage Tina Top offers cool-toned complement to marina blue",
           "confidence": 0.85
-        }
-      ]
-    },
-    "gid://shopify/Product/7492658528353": {
-      "productTitle": "Mina Skirt 23\" (Black)",
-      "productHandle": "mina-skirt-23-black",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-23-black-skirt-yakira-bella-7959338.jpg?v=1773731831",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468302008417",
-          "title": "Tina Top (White)",
-          "handle": "tina-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
-          "price": "44.00",
-          "reason": "White Tina Top is classic contrast for black athletic skirt",
-          "confidence": 0.98
-        },
-        {
-          "productId": "gid://shopify/Product/7072949010529",
-          "title": "Bailey Top (White)",
-          "handle": "bailey-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
-          "price": "58.00",
-          "reason": "White Bailey Top provides evergreen neutral match for black",
-          "confidence": 0.96
-        },
-        {
-          "productId": "gid://shopify/Product/7468186828897",
-          "title": "Lia Top (White)",
-          "handle": "lia-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
-          "price": "38.00",
-          "reason": "White Lia Top offers versatile contrast with black skirt",
-          "confidence": 0.94
-        },
-        {
-          "productId": "gid://shopify/Product/7468179456097",
-          "title": "Lia Top (Pink Blush)",
-          "handle": "lia-top-pink-blush",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
-          "price": "38.00",
-          "reason": "Pink Blush Lia Top creates soft feminine contrast with black",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7246308638817",
-          "title": "Viviana Top (White)",
-          "handle": "viviana-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
-          "price": "68.00",
-          "reason": "White Viviana Top pairs perfectly with black for classic look",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7468265963617",
-          "title": "Tina Top (Baby Blue)",
-          "handle": "tina-top-baby-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
-          "price": "44.00",
-          "reason": "Baby Blue Tina Top offers light pastel contrast for black",
-          "confidence": 0.88
         }
       ]
     },
