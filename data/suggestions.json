@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-28T12:28:12.306Z",
-  "totalProducts": 259,
-  "totalSuggestions": 1255,
+  "generatedAt": "2026-05-29T12:27:34.513Z",
+  "totalProducts": 284,
+  "totalSuggestions": 1375,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -13108,6 +13108,1261 @@
           "price": "44.00",
           "reason": "Ice blue creates cohesive cool-toned look with teal",
           "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7328418922593": {
+      "productTitle": "Lisa Skirt 36\" (Cream)",
+      "productHandle": "lisa-skirt-cream",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-36-cream-skirt-yakira-bella-1579910.jpg?v=1752065007",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "Classic white top pairs perfectly with cream skirt for a fresh, elegant neutral look",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige top creates beautiful tone-on-tone neutral pairing with cream skirt",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black creates crisp contrast with cream skirt, versatile and sophisticated",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Navy blue provides classic contrast to cream skirt, refined and elegant",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7295799689313",
+          "title": "Paige Top (Light Aqua)",
+          "handle": "paige-top-light-aqua",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-aqua-top-yakira-bella-2086625.jpg?v=1770127754",
+          "price": "68.00",
+          "reason": "Light aqua adds soft color accent to cream base, fresh spring look",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7452908912737",
+          "title": "Aria Top (Ivory)",
+          "handle": "aria-top-ivory",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-ivory-top-yakira-bella-4125192.jpg?v=1770956231",
+          "price": "78.00",
+          "reason": "Ivory top creates seamless tonal cream/ivory pairing, elegant monochrome",
+          "confidence": 0.87
+        }
+      ]
+    },
+    "gid://shopify/Product/7331226189921": {
+      "productTitle": "Dakota Skirt (Lavender)",
+      "productHandle": "dakota-skirt-lavender-1",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/Canon-0212.jpg?v=1753121895",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7250789302369",
+          "title": "Paige Top (Magenta)",
+          "handle": "paige-top-magenta",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-magenta-top-yakira-bella-5037554.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Light lavender matches existing patterns - lavender skirt with magenta top creates beautiful purple family pairing",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black provides elegant contrast to lavender, similar to other Dakota skirt matches",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7453216997473",
+          "title": "Paige Top (Medium Coral Pink)",
+          "handle": "paige-top-m",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-medium-coral-pink-top-yakira-bella-2254434.jpg?v=1768432094",
+          "price": "68.00",
+          "reason": "Medium coral pink adds warmth to lavender, complimentary color pairing",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White top keeps lavender skirt as focal point, clean and fresh",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Navy creates sophisticated contrast with lavender, classic pairing",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige neutralizes lavender beautifully, soft elegant combination",
+          "confidence": 0.86
+        }
+      ]
+    },
+    "gid://shopify/Product/7332895981665": {
+      "productTitle": "Tansy Skirt (Blue)",
+      "productHandle": "tansy-skirt-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tansy-skirt-blue-skirt-yakira-bella-7979512.jpg?v=1755351090",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White top pairs with blue Tansy skirt following existing Claire Top (Blue) match pattern",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black creates sophisticated contrast with blue skirt, versatile pairing",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige neutralizes blue beautifully, soft elegant combination",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Navy blue creates tonal blue family pairing with deeper richness",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7434927407201",
+          "title": "Viviana Top (Light Yellow)",
+          "handle": "viviana-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-light-yellow-top-yakira-bella-9140348.jpg?v=1769713291",
+          "price": "68.00",
+          "reason": "Light yellow provides cheerful contrast to blue skirt",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468273500257",
+          "title": "Tina Top (Butter Yellow)",
+          "handle": "tina-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7642.jpg?v=1772047080",
+          "price": "44.00",
+          "reason": "Butter yellow top adds warm sunny contrast to blue skirt",
+          "confidence": 0.86
+        }
+      ]
+    },
+    "gid://shopify/Product/7355221868641": {
+      "productTitle": "Dakota Skirt (Pink Ground)",
+      "productHandle": "dakota-skirt-pink-ground",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/Canon-0928.jpg?v=1755882827",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White top neutralizes pink ground pattern, clean and versatile",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige complements pink ground pattern without competing",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black provides contrast to pink ground, grounding the pattern",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468296962145",
+          "title": "Tina Top (Pink Blush)",
+          "handle": "tina-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-pink-blush-top-yakira-bella-2117769.jpg?v=1772739734",
+          "price": "44.00",
+          "reason": "Pink blush echoes pink tones in skirt for tonal coordination",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7434927407201",
+          "title": "Viviana Top (Light Yellow)",
+          "handle": "viviana-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-light-yellow-top-yakira-bella-9140348.jpg?v=1769713291",
+          "price": "68.00",
+          "reason": "Light yellow adds brightness that complements pink tones",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7295799689313",
+          "title": "Paige Top (Light Aqua)",
+          "handle": "paige-top-light-aqua",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-aqua-top-yakira-bella-2086625.jpg?v=1770127754",
+          "price": "68.00",
+          "reason": "Light aqua provides cool contrast to pink ground pattern",
+          "confidence": 0.84
+        }
+      ]
+    },
+    "gid://shopify/Product/7402979950689": {
+      "productTitle": "Selena Skirt (Green Pattern)",
+      "productHandle": "celina-skirt-green-pattern",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/selena-skirt-green-pattern-skirt-yakira-bella-7076423.jpg?v=1770743414",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White top keeps green pattern as focal point, clean versatile match",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black provides grounding contrast to green pattern",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7482062602337",
+          "title": "Paige Top (Green)",
+          "handle": "paige-top-green-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-green-top-yakira-bella-3104879.jpg?v=1770956180",
+          "price": "68.00",
+          "reason": "Green top creates tonal green family pairing with pattern",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468289425505",
+          "title": "Tina Top (Light Sage)",
+          "handle": "tina-top-light-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-sage-top-yakira-bella-5782224.jpg?v=1771453345",
+          "price": "44.00",
+          "reason": "Light sage echoes green tones in skirt for coordinated look",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Navy provides rich contrast to green pattern",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7403035033697": {
+      "productTitle": "Natalia Skirt (Peach/Grey)",
+      "productHandle": "natalia-skirt-peach-grey",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/natalia-skirt-peachgrey-skirt-yakira-bella-5274555.jpg?v=1770753003",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige matches existing Natalia peach/grey pairing pattern perfectly",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White neutralizes peach/grey pattern, clean elegant look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black grounds peach/grey tones with sophisticated contrast",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7453216997473",
+          "title": "Paige Top (Medium Coral Pink)",
+          "handle": "paige-top-m",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-medium-coral-pink-top-yakira-bella-2254434.jpg?v=1768432094",
+          "price": "68.00",
+          "reason": "Medium coral pink echoes peach tones in skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468296962145",
+          "title": "Tina Top (Pink Blush)",
+          "handle": "tina-top-pink-blush",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-pink-blush-top-yakira-bella-2117769.jpg?v=1772739734",
+          "price": "44.00",
+          "reason": "Pink blush complements peach undertones in pattern",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige creates tonal neutral coordination with grey/peach",
+          "confidence": 0.86
+        }
+      ]
+    },
+    "gid://shopify/Product/7416009261153": {
+      "productTitle": "Leila Skirt (Mint Ground)",
+      "productHandle": "leila-skit-mint-ground",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/leila-skirt-mint-ground-skirt-yakira-bella-9684195.jpg?v=1770956292",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468273500257",
+          "title": "Tina Top (Butter Yellow)",
+          "handle": "tina-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7642.jpg?v=1772047080",
+          "price": "44.00",
+          "reason": "Butter yellow complements mint following Leila skirt pairing patterns",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White keeps mint pattern focal, clean fresh look",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7434927407201",
+          "title": "Viviana Top (Light Yellow)",
+          "handle": "viviana-top-light-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-light-yellow-top-yakira-bella-9140348.jpg?v=1769713291",
+          "price": "68.00",
+          "reason": "Light yellow adds sunny warmth to mint tones",
+          "confidence": 0.87
+        }
+      ]
+    },
+    "gid://shopify/Product/7428958879841": {
+      "productTitle": "Lisa Skirt (Blue Pattern)",
+      "productHandle": "lisa-skirt-blue-pattern",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-blue-pattern-skirt-yakira-bella-8174572.jpg?v=1773234076",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White top matches existing Lisa blue pattern pairings perfectly",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7466060447841",
+          "title": "Bailey Top (Blue)",
+          "handle": "bailey-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-blue-top-yakira-bella-7145076.jpg?v=1769713284",
+          "price": "58.00",
+          "reason": "Bailey Top (Blue) creates tonal blue coordination with pattern",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black provides grounding contrast to blue pattern",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige neutralizes blue pattern elegantly",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7466065133665",
+          "title": "Bailey Top (Royal Blue)",
+          "handle": "bailey-top-royal-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-royal-blue-top-yakira-bella-9253681.jpg?v=1769713282",
+          "price": "58.00",
+          "reason": "Royal blue creates rich tonal blue family pairing",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Navy provides deeper blue contrast within same color family",
+          "confidence": 0.86
+        }
+      ]
+    },
+    "gid://shopify/Product/7434977542241": {
+      "productTitle": "Lisa Skirt (Teal Flower)",
+      "productHandle": "lisa-skirt-teal-flower",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-teal-flower-skirt-yakira-bella-6905537.jpg?v=1770742883",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White top keeps teal flower focal, clean fresh pairing",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige neutralizes teal beautifully, elegant combination",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black creates sophisticated contrast with teal flower",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468183978081",
+          "title": "Lia Top (Teal)",
+          "handle": "lia-top-teal",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-teal-top-yakira-bella-4651672.jpg?v=1771453345",
+          "price": "38.00",
+          "reason": "Lia Top (Teal) creates perfect tonal match with teal pattern",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy adds depth to teal tones, rich blue family pairing",
+          "confidence": 0.87
+        }
+      ]
+    },
+    "gid://shopify/Product/7434981376097": {
+      "productTitle": "Lisa Skirt (Teal Green Pattern)",
+      "productHandle": "lisa-skirt-teal-green-pattern",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-teal-green-pattern-skirt-yakira-bella-9693891.jpg?v=1773234071",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White top matches existing Lisa teal green pattern pairings",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7482062602337",
+          "title": "Paige Top (Green)",
+          "handle": "paige-top-green-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-green-top-yakira-bella-3104879.jpg?v=1770956180",
+          "price": "68.00",
+          "reason": "Green top creates tonal coordination with teal green pattern",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468289425505",
+          "title": "Tina Top (Light Sage)",
+          "handle": "tina-top-light-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-sage-top-yakira-bella-5782224.jpg?v=1771453345",
+          "price": "44.00",
+          "reason": "Light sage echoes green tones in pattern",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige neutralizes teal green pattern elegantly",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7250786484321",
+          "title": "Paige Top (Black)",
+          "handle": "paige-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "Black provides grounding contrast to teal green",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7295811879009",
+          "title": "Paige Top (Teal Blue)",
+          "handle": "paige-top-teal-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-teal-blue-top-yakira-bella-7730157.jpg?v=1769879171",
+          "price": "68.00",
+          "reason": "Teal blue complements teal green within blue-green family",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492659347553": {
+      "productTitle": "Kalina Skirt (Light Purple)",
+      "productHandle": "kalina-skirt-light-purple",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7195.jpg?v=1773161011",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468273500257",
+          "title": "Tina Top (Butter Yellow)",
+          "handle": "tina-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7642.jpg?v=1772047080",
+          "price": "44.00",
+          "reason": "Butter yellow top pairs beautifully with light purple skirt - complementary pastels, existing pattern shows yellow works with purple skirts",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige top is core versatile piece that pairs well with all pastel skirts including light purple",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7452908912737",
+          "title": "Aria Top (Ivory)",
+          "handle": "aria-top-ivory",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-ivory-top-yakira-bella-4125192.jpg?v=1770956231",
+          "price": "78.00",
+          "reason": "Ivory Aria top provides neutral complement to light purple, dressy top matches skirt formality",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top is versatile neutral that works with light purple pastels",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey core top provides clean neutral pairing with light purple skirt",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7492660625505": {
+      "productTitle": "Liana Skirt (Pink /Blue)",
+      "productHandle": "liana-skirt-pink-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/liana-skirt-pink-blue-skirt-yakira-bella-2239683.jpg?v=1772062633",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top provides clean neutral for pink/blue pattern, similar to proven matches",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492659708001",
+          "title": "Mila Top (White)",
+          "handle": "mila-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mila-top-white-top-yakira-bella-8920198.jpg?v=1773316577",
+          "price": "48.00",
+          "reason": "White Mila top offers neutral base for pink/blue skirt pattern",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice blue Tina top picks up blue tones in skirt, creates cohesive look",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light pink Rena top echoes pink tones in skirt pattern",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492660985953": {
+      "productTitle": "Eloisa Skirt (Green Pattern)",
+      "productHandle": "eloisa-skirt-green-pattern",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8007.jpg?v=1771521283",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top provides versatile neutral for green pattern",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492660068449",
+          "title": "Sonia Top (Navy)",
+          "handle": "sonia-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-navy-top-yakira-bella-4833437.jpg?v=1773404538",
+          "price": "48.00",
+          "reason": "Navy Sonia top creates contrast with green pattern, similar to proven matches",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7518537056353": {
+      "productTitle": "Liana Skirt (Light Sage)",
+      "productHandle": "liana-skirt-light-sage",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/liana-skirt-light-sage-skirt-yakira-bella-8717441.jpg?v=1777498453",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7511170089057",
+          "title": "Renee Tee (Sage)",
+          "handle": "renee-tee-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-sage-top-yakira-bella-2750021.jpg?v=1776996087",
+          "price": "34.00",
+          "reason": "Sage Renee tee creates tonal monochromatic look with light sage skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top provides clean neutral contrast to light sage",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina core top pairs well with sage tones",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7482842284129",
+          "title": "Dini Top (Sage)",
+          "handle": "dini-top-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8105.jpg?v=1771446792",
+          "price": "48.00",
+          "reason": "Sage Dini top creates sophisticated tonal look with light sage skirt",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7518538956897": {
+      "productTitle": "Liana Skirt (Light Lavender)",
+      "productHandle": "liana-skirt-light-lavender",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/liana-skirt-light-lavender-skirt-yakira-bella-5911856.jpg?v=1777498452",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White Paige top provides versatile neutral for light lavender skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7295712985185",
+          "title": "Paige Top (Light Lavender)",
+          "handle": "paige-top-light-lavender",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-lavender-top-yakira-bella-9512386.jpg?v=1770873911",
+          "price": "68.00",
+          "reason": "Light lavender Paige top creates elegant tonal pairing",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top offers clean neutral for lavender tones",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina core top pairs beautifully with lavender pastels",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7434986946657": {
+      "productTitle": "Lisa Skirt (Pink Flower)",
+      "productHandle": "lisa-skirt-pink-flower",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-pink-flower-skirt-yakira-bella-2630728.jpg?v=1771176309",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492662100065",
+          "title": "Jane Cardigan (Blue)",
+          "handle": "jane-cardigan-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jane-cardigan-blue-top-yakira-bella-9672554.jpg?v=1772905640",
+          "price": "78.00",
+          "reason": "Navy cardigan pairs beautifully with pink floral - classic dressy combination",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve creates clean, elegant look with pink floral pattern",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7250785435745",
+          "title": "Paige Top (White)",
+          "handle": "paige-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
+          "price": "68.00",
+          "reason": "White core top - versatile neutral that highlights pink floral beautifully",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468141969505",
+          "title": "Lia Top (Light Beige)",
+          "handle": "lia-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-beige-top-yakira-bella-3340710.jpg?v=1772062693",
+          "price": "38.00",
+          "reason": "Light beige tee provides soft neutral base for pink floral skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7466742317153",
+          "title": "Bailey Top Short Sleeve (Light Pink)",
+          "handle": "bailey-top-short-sleeve-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-short-sleeve-light-pink-top-yakira-bella-9513465.jpg?v=1769713272",
+          "price": "58.00",
+          "reason": "Light pink short sleeve echoes floral tones - tonal matching",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7434990157921": {
+      "productTitle": "Siena Skirt (Purple Flower)",
+      "productHandle": "siena-skirt-purple-flower",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/siena-skirt-purple-flower-skirt-yakira-bella-1746362.jpg?v=1772903469",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7466012115041",
+          "title": "Aria Top (Pastel Blue)",
+          "handle": "aria-top-pastel-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-pastel-blue-top-yakira-bella-8947553.jpg?v=1770956180",
+          "price": "78.00",
+          "reason": "Pastel blue with purple floral creates sophisticated color harmony",
+          "confidence": 0.91
+        },
+        {
+          "productId": "gid://shopify/Product/7466014343265",
+          "title": "Aria Top (Red Pink)",
+          "handle": "aria-top-red-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-red-pink-top-yakira-bella-1996570.jpg?v=1770956186",
+          "price": "78.00",
+          "reason": "Red pink top adds vibrant contrast to purple floral pattern",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492662100065",
+          "title": "Jane Cardigan (Blue)",
+          "handle": "jane-cardigan-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jane-cardigan-blue-top-yakira-bella-9672554.jpg?v=1772905640",
+          "price": "78.00",
+          "reason": "Blue cardigan complements purple tones in floral - dressy pairing",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve provides clean backdrop for purple floral",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light pink tee softly complements purple floral pattern",
+          "confidence": 0.82
+        }
+      ]
+    },
+    "gid://shopify/Product/7441928749153": {
+      "productTitle": "Malia Skirt (Navy)",
+      "productHandle": "malia-skirt-navy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/malia-skirt-navy-skirt-yakira-bella-8167610.jpg?v=1770742625",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7441399578721",
+          "title": "Aria Top (Navy)",
+          "handle": "aria-top-dark-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-navy-top-yakira-bella-7116307.jpg?v=1770541935",
+          "price": "78.00",
+          "reason": "Matching set piece - navy top with navy skirt",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve creates classic navy/white combination",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee offers clean contrast with navy knit skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468141969505",
+          "title": "Lia Top (Light Beige)",
+          "handle": "lia-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-beige-top-yakira-bella-3340710.jpg?v=1772062693",
+          "price": "38.00",
+          "reason": "Light beige provides soft neutral with navy skirt",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468136366177",
+          "title": "Lia Top (Ice Blue)",
+          "handle": "lia-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-ice-blue-top-yakira-bella-4313687.jpg?v=1771039150",
+          "price": "38.00",
+          "reason": "Ice blue tee creates fresh color pairing with navy",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7441929568353": {
+      "productTitle": "Malia Skirt (Rust)",
+      "productHandle": "malia-skirt-rust",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/malia-skirt-rust-skirt-yakira-bella-6428577.jpg?v=1770742618",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7480242733153",
+          "title": "Noa Top (Pink Green)",
+          "handle": "noa-top-pink-green",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/noa-top-pink-green-top-yakira-bella-1879749.jpg?v=1772033369",
+          "price": "39.99",
+          "reason": "Matching set piece - pink/green top with rust skirt",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7468141969505",
+          "title": "Lia Top (Light Beige)",
+          "handle": "lia-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-beige-top-yakira-bella-3340710.jpg?v=1772062693",
+          "price": "38.00",
+          "reason": "Light beige tee complements warm rust tones beautifully",
+          "confidence": 0.91
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve provides clean contrast with rust skirt",
+          "confidence": 0.89
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee creates fresh pairing with warm rust tone",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige long sleeve harmonizes with rust color family",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7453224730721": {
+      "productTitle": "Bria Skirt (Coral Pink)",
+      "productHandle": "bria-skirt-coral-pink",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bria-skirt-coral-pink-skirt-yakira-bella-1522057.jpg?v=1770742469",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7453981409377",
+          "title": "Paige Cardigan (White)",
+          "handle": "paige-cardigan-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-cardigan-white-top-yakira-bella-1570646.jpg?v=1768432093",
+          "price": "88.00",
+          "reason": "White cardigan creates elegant dressy look with coral pink",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve - clean classic pairing with coral pink",
+          "confidence": 0.91
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee provides fresh contrast to coral pink skirt",
+          "confidence": 0.89
+        },
+        {
+          "productId": "gid://shopify/Product/7492662100065",
+          "title": "Jane Cardigan (Blue)",
+          "handle": "jane-cardigan-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jane-cardigan-blue-top-yakira-bella-9672554.jpg?v=1772905640",
+          "price": "78.00",
+          "reason": "Blue cardigan creates sophisticated color contrast with coral",
+          "confidence": 0.86
+        },
+        {
+          "productId": "gid://shopify/Product/7468141969505",
+          "title": "Lia Top (Light Beige)",
+          "handle": "lia-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-beige-top-yakira-bella-3340710.jpg?v=1772062693",
+          "price": "38.00",
+          "reason": "Light beige tee softly complements coral pink tone",
+          "confidence": 0.84
+        }
+      ]
+    },
+    "gid://shopify/Product/7457043316833": {
+      "productTitle": "Lisa Skirt (Navy/Mint)",
+      "productHandle": "lisa-skirt-navy-mint",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-navymint-skirt-yakira-bella-3700776.jpg?v=1773234013",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve highlights navy/mint pattern beautifully",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492781473889",
+          "title": "Rena Top (Light Mint)",
+          "handle": "rena-top-light-mint",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-mint-top-yakira-bella-1620463.jpg?v=1772653539",
+          "price": "44.00",
+          "reason": "Light mint tee echoes mint tones in skirt pattern",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7492660101217",
+          "title": "Sonia Top (Light Pink)",
+          "handle": "sonia-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8682.jpg?v=1772121236",
+          "price": "48.00",
+          "reason": "Light pink short sleeve provides soft contrast to navy/mint",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee creates clean look with navy/mint pattern",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7274417848417",
+          "title": "3/4 Sleeve Knit Cardigan (Mint)",
+          "handle": "3-4-sleeve-knit-cardigan-mint",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/34-sleeve-knit-cardigan-mint-top-yakira-bella-5691273.jpg?v=1770956411",
+          "price": "42.00",
+          "reason": "Mint cardigan complements mint tones in skirt",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7462179831905": {
+      "productTitle": "Zella Skirt (Blue Pattern)",
+      "productHandle": "zella-skirt-blue-pattern",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/zella-skirt-blue-pattern-skirt-yakira-bella-1566382.jpg?v=1770742227",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve creates clean backdrop for blue pattern",
+          "confidence": 0.89
+        },
+        {
+          "productId": "gid://shopify/Product/7378911428705",
+          "title": "Moss Cardigan (Light Pink)",
+          "handle": "moss-cardigan-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/moss-cardigan-light-pink-top-yakira-bella-8599770.jpg?v=1770624916",
+          "price": "68.00",
+          "reason": "Light pink cardigan softly complements blue pattern",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee highlights blue pattern beautifully",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7492751163489",
+          "title": "Rena Top (Light Lavender)",
+          "handle": "rena-top-light-pink-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-lavender-top-yakira-bella-2725309.jpg?v=1772058556",
+          "price": "44.00",
+          "reason": "Light lavender tee creates gentle color harmony",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7462310805601": {
+      "productTitle": "Kira Skirt (Brown)",
+      "productHandle": "kira-skirt-brown",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kira-skirt-brown-skirt-yakira-bella-3623789.jpg?v=1770822168",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige tee complements brown knit skirt in same color family",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve creates classic contrast with brown",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468141969505",
+          "title": "Lia Top (Light Beige)",
+          "handle": "lia-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-beige-top-yakira-bella-3340710.jpg?v=1772062693",
+          "price": "38.00",
+          "reason": "Light beige short sleeve harmonizes with brown tone",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee provides fresh pairing with brown skirt",
+          "confidence": 0.86
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige sweater creates tonal dressy look with brown",
+          "confidence": 0.84
+        }
+      ]
+    },
+    "gid://shopify/Product/7482443989089": {
+      "productTitle": "Kaida Skirt (Black)",
+      "productHandle": "kaida-skirt-black",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kaida-skirt-black-skirt-yakira-bella-3719779.jpg?v=1770956179",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve creates classic black/white contrast",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee provides clean contrast to black skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468141969505",
+          "title": "Lia Top (Light Beige)",
+          "handle": "lia-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-beige-top-yakira-bella-3340710.jpg?v=1772062693",
+          "price": "38.00",
+          "reason": "Light beige tee softens black with neutral warmth",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7485992992865": {
+      "productTitle": "Siena Skirt (Aqua Blue Flower)",
+      "productHandle": "siena-skirt-aqua-blue-flower",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/siena-skirt-aqua-blue-flower-skirt-yakira-bella-8713674.jpg?v=1772748271",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White long sleeve creates fresh look with aqua blue floral",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492705878113",
+          "title": "Rena Top (White)",
+          "handle": "rena-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-white-top-yakira-bella-1005366.jpg?v=1772239212",
+          "price": "44.00",
+          "reason": "White tee highlights aqua blue floral beautifully",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492662100065",
+          "title": "Jane Cardigan (Blue)",
+          "handle": "jane-cardigan-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jane-cardigan-blue-top-yakira-bella-9672554.jpg?v=1772905640",
+          "price": "78.00",
+          "reason": "Blue cardigan complements aqua floral - dressy pairing",
+          "confidence": 0.86
+        },
+        {
+          "productId": "gid://shopify/Product/7492743331937",
+          "title": "Rena Top (Light Pink)",
+          "handle": "rena-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
+          "price": "44.00",
+          "reason": "Light pink tee provides soft contrast to aqua floral",
+          "confidence": 0.84
         }
       ]
     }
