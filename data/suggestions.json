@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-31T10:58:37.160Z",
-  "totalProducts": 284,
-  "totalSuggestions": 1375,
+  "generatedAt": "2026-06-01T15:22:22.593Z",
+  "totalProducts": 283,
+  "totalSuggestions": 1369,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -2408,67 +2408,6 @@
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-blue-top-yakira-bella-5404271.jpg?v=1770376392",
           "price": "68.00",
           "reason": "Light Blue Paige Top coordinates with navy tones",
-          "confidence": 0.85
-        }
-      ]
-    },
-    "gid://shopify/Product/7339205001313": {
-      "productTitle": "Mina Swing Skirt 23\" (Black)",
-      "productHandle": "mina-swing-skirt-23-black",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-swing-skirt-23-black-skirt-yakira-bella-9763293.png?v=1770743622",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7250785435745",
-          "title": "Paige Top (White)",
-          "handle": "paige-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
-          "price": "68.00",
-          "reason": "White Paige Top provides classic contrast to black skirt",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7246308638817",
-          "title": "Viviana Top (White)",
-          "handle": "viviana-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
-          "price": "68.00",
-          "reason": "White Viviana Top creates crisp black/white combination",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7468302008417",
-          "title": "Tina Top (White)",
-          "handle": "tina-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
-          "price": "44.00",
-          "reason": "White Tina Top is versatile neutral for black skirt",
-          "confidence": 0.89
-        },
-        {
-          "productId": "gid://shopify/Product/7452909207649",
-          "title": "Aria Top (Light Pink)",
-          "handle": "aria-top-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-light-pink-top-yakira-bella-2558252.jpg?v=1770956235",
-          "price": "78.00",
-          "reason": "Light Pink Aria Top adds soft color to black skirt",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7501209239649",
-          "title": "Paige Top (Light Blue)",
-          "handle": "paige-top-light-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-blue-top-yakira-bella-5404271.jpg?v=1770376392",
-          "price": "68.00",
-          "reason": "Light Blue Paige Top provides gentle contrast to black",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7468276809825",
-          "title": "Tina Top (Ice Blue)",
-          "handle": "tina-top-ice-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
-          "price": "44.00",
-          "reason": "Ice Blue Tina Top creates fresh look with black skirt",
           "confidence": 0.85
         }
       ]
