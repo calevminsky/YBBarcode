@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-03T13:18:44.735Z",
-  "totalProducts": 222,
-  "totalSuggestions": 1098,
+  "generatedAt": "2026-06-04T11:57:33.110Z",
+  "totalProducts": 223,
+  "totalSuggestions": 1104,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11436,6 +11436,67 @@
           "price": "38.00",
           "reason": "Green Lia top picks up green from skirt for cohesive look",
           "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7538218696801": {
+      "productTitle": "Anita Skirt (Blue Stripe)",
+      "productHandle": "anita-skirt-white-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/anita-skirt-blue-stripe-skirt-yakira-bella-3396881.jpg?v=1779830176",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492662263905",
+          "title": "Moss Cardigan (White)",
+          "handle": "moss-cardigan-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/moss-cardigan-white-top-yakira-bella-6133621.jpg?v=1773233474",
+          "price": "68.00",
+          "reason": "White cardigan pairs perfectly with blue stripe skirt - classic nautical look, versatile neutral top",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is a core bestseller that matches blue stripe pattern with clean neutral contrast",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top is high-stock core item that creates fresh, clean look with blue stripe skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia short sleeve top provides casual versatility with blue stripe, perfect spring/summer pairing",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7492660396129",
+          "title": "Sonia Top (White)",
+          "handle": "sonia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sonia-top-white-top-yakira-bella-8700939.jpg?v=1773404534",
+          "price": "48.00",
+          "reason": "White Sonia top is a fresh short sleeve option that complements the blue stripe pattern beautifully",
+          "confidence": 0.89
+        },
+        {
+          "productId": "gid://shopify/Product/7492662919265",
+          "title": "Alma Top (White)",
+          "handle": "alma-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-white-top-yakira-bella-1700012.jpg?v=1773233473",
+          "price": "68.00",
+          "reason": "White Alma top offers woven texture contrast to the stripe, creating sophisticated casual look",
+          "confidence": 0.87
         }
       ]
     }
