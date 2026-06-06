@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-05T12:09:38.250Z",
-  "totalProducts": 222,
-  "totalSuggestions": 1098,
+  "generatedAt": "2026-06-06T10:54:59.197Z",
+  "totalProducts": 223,
+  "totalSuggestions": 1103,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11436,6 +11436,58 @@
           "price": "38.00",
           "reason": "Green Lia top picks up green from skirt for cohesive look",
           "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7293696933985": {
+      "productTitle": "Karla Skirt 23\" (Light Blue)",
+      "productHandle": "karla-skirt-23-light-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A6105.jpg?v=1772147832",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top pairs perfectly with light blue Karla skirt - classic, clean match that's versatile and core inventory",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7468114673761",
+          "title": "Lia Top (Butter Yellow)",
+          "handle": "lia-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-butter-yellow-top-yakira-bella-3599483.jpg?v=1771453346",
+          "price": "38.00",
+          "reason": "Butter yellow Lia top creates a fresh spring color combination with light blue skirt",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468150521953",
+          "title": "Lia Top (Light Pink)",
+          "handle": "lia-top-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-pink-top-yakira-bella-9796521.jpg?v=1771453345",
+          "price": "38.00",
+          "reason": "Light pink Lia top complements light blue skirt beautifully - soft pastel pairing",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7468273500257",
+          "title": "Tina Top (Butter Yellow)",
+          "handle": "tina-top-butter-yellow",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7642.jpg?v=1772047080",
+          "price": "44.00",
+          "reason": "Butter yellow Tina top matches well with light blue - similar to existing curated matches",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7467993563233",
+          "title": "Lia Top (Baby Blue)",
+          "handle": "lia-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-baby-blue-top-yakira-bella-5981997.jpg?v=1771453347",
+          "price": "38.00",
+          "reason": "Baby blue Lia top creates a tonal light blue pairing for cohesive look",
+          "confidence": 0.9
         }
       ]
     }
