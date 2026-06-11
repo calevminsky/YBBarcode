@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-10T12:24:02.858Z",
-  "totalProducts": 224,
-  "totalSuggestions": 1107,
+  "generatedAt": "2026-06-11T12:49:28.726Z",
+  "totalProducts": 225,
+  "totalSuggestions": 1108,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -3454,15 +3454,6 @@
           "price": "48.00",
           "reason": "White Mila matches black slate - clean pairing",
           "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492738285665",
-          "title": "Rena Top (Black)",
-          "handle": "rena-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-black-top-yakira-bella-8026441.jpg?v=1772058552",
-          "price": "44.00",
-          "reason": "Black Rena matches black slate - tonal sophisticated",
-          "confidence": 0.88
         },
         {
           "productId": "gid://shopify/Product/7482840481889",
@@ -8140,15 +8131,6 @@
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9828.jpg?v=1772642083",
       "matches": [
         {
-          "productId": "gid://shopify/Product/7492738285665",
-          "title": "Rena Top (Black)",
-          "handle": "rena-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-black-top-yakira-bella-8026441.jpg?v=1772058552",
-          "price": "44.00",
-          "reason": "Black top pairs perfectly with off white skirt - classic neutral combination",
-          "confidence": 0.95
-        },
-        {
           "productId": "gid://shopify/Product/7492705878113",
           "title": "Rena Top (White)",
           "handle": "rena-top-baby-blue",
@@ -8243,15 +8225,6 @@
       "productHandle": "avery-skirt-23-off-white",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/avery-skirt-23-off-white-skirt-yakira-bella-6404185.jpg?v=1775802252",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492738285665",
-          "title": "Rena Top (Black)",
-          "handle": "rena-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-black-top-yakira-bella-8026441.jpg?v=1772058552",
-          "price": "44.00",
-          "reason": "Black top creates sophisticated contrast with off white skirt",
-          "confidence": 0.95
-        },
         {
           "productId": "gid://shopify/Product/7492705878113",
           "title": "Rena Top (White)",
@@ -8529,15 +8502,6 @@
           "price": "44.00",
           "reason": "Pink blush adds feminine touch to white skirt",
           "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7492738285665",
-          "title": "Rena Top (Black)",
-          "handle": "rena-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-black-top-yakira-bella-8026441.jpg?v=1772058552",
-          "price": "44.00",
-          "reason": "Black Rena top creates crisp contrast with white",
-          "confidence": 0.84
         }
       ]
     },
@@ -9673,15 +9637,6 @@
           "price": "38.00",
           "reason": "White Lia top creates timeless navy/white combination",
           "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492738285665",
-          "title": "Rena Top (Black)",
-          "handle": "rena-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-black-top-yakira-bella-8026441.jpg?v=1772058552",
-          "price": "44.00",
-          "reason": "Black top creates sophisticated monochrome look with navy",
-          "confidence": 0.88
         },
         {
           "productId": "gid://shopify/Product/7468291883105",
@@ -11530,6 +11485,67 @@
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
           "price": "58.00",
           "reason": "White Bailey top offers classic core match for navy patterned skirt",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7462331940961": {
+      "productTitle": "Kira Skirt (Blue)",
+      "productHandle": "kira-skirt-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kira-skirt-blue-skirt-yakira-bella-5014663.jpg?v=1770822175",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White core top pairs perfectly with blue solid skirt - clean, versatile match",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
+          "price": "44.00",
+          "reason": "Ice blue top creates a tonal blue-on-blue look with the blue skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468265963617",
+          "title": "Tina Top (Baby Blue)",
+          "handle": "tina-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
+          "price": "44.00",
+          "reason": "Baby blue top offers a lighter blue shade that complements the skirt beautifully",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7287275225185",
+          "title": "Bailey Top (Aqua Blue)",
+          "handle": "bailey-top-aqua-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-aqua-blue-top-yakira-bella-368594.jpg?v=1744794339",
+          "price": "58.00",
+          "reason": "Aqua blue top provides a fresh blue variation that works well with blue skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige neutral top offers contrast and pairs well with any blue",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7072949010529",
+          "title": "Bailey Top (White)",
+          "handle": "bailey-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
+          "price": "58.00",
+          "reason": "White Bailey top is a core neutral that works with all solid colors",
           "confidence": 0.85
         }
       ]
