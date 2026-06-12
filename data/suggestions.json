@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-11T12:49:28.726Z",
-  "totalProducts": 225,
-  "totalSuggestions": 1108,
+  "generatedAt": "2026-06-12T12:21:56.819Z",
+  "totalProducts": 227,
+  "totalSuggestions": 1121,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11547,6 +11547,137 @@
           "price": "58.00",
           "reason": "White Bailey top is a core neutral that works with all solid colors",
           "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7574375301217": {
+      "productTitle": "Lula Skirt (Green Pattern)",
+      "productHandle": "lula-skirt-green-pattern",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A0346_4a177933-4973-427d-9efe-489c918f428d.jpg?v=1780935671",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige top pairs beautifully with green pattern - neutral beige complements the earthy tones in the green pattern",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top provides clean contrast to green pattern skirt, similar to existing curated matches with white tops",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468289425505",
+          "title": "Tina Top (Light Sage)",
+          "handle": "tina-top-light-sage",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-sage-top-yakira-bella-5782224.jpg?v=1771453345",
+          "price": "44.00",
+          "reason": "Light sage top creates harmonious tone-on-tone green look with green pattern skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top offers versatile neutral pairing for patterned skirt, core staple",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7273749119073",
+          "title": "3/4 Sleeve Knit Cardigan (Green)",
+          "handle": "3-4-sleeve-knit-cardigan-green",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/34-sleeve-knit-cardigan-green-top-yakira-bella-7694783.jpg?v=1770956412",
+          "price": "42.00",
+          "reason": "Green 3/4 sleeve cardigan matches skirt's green tones for coordinated set look",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top provides classic neutral contrast to green pattern, core versatile piece",
+          "confidence": 0.84
+        }
+      ]
+    },
+    "gid://shopify/Product/7574382411873": {
+      "productTitle": "Siena Skirt (Blue Pattern)",
+      "productHandle": "siena-skirt-blue-pattern",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/yb-job2-draft14.jpg?v=1781190771",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468302008417",
+          "title": "Tina Top (White)",
+          "handle": "tina-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "price": "44.00",
+          "reason": "White Tina top is perfect neutral for blue pattern skirt, matches existing curated examples",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468186828897",
+          "title": "Lia Top (White)",
+          "handle": "lia-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-white-top-yakira-bella-8363712.jpg?v=1771453344",
+          "price": "38.00",
+          "reason": "White Lia top offers clean, versatile pairing with blue pattern skirt",
+          "confidence": 0.91
+        },
+        {
+          "productId": "gid://shopify/Product/7501209239649",
+          "title": "Paige Top (Light Blue)",
+          "handle": "paige-top-light-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-blue-top-yakira-bella-5404271.jpg?v=1770376392",
+          "price": "68.00",
+          "reason": "Light blue Paige top creates tone-on-tone coordination with blue pattern skirt",
+          "confidence": 0.89
+        },
+        {
+          "productId": "gid://shopify/Product/7468265963617",
+          "title": "Tina Top (Baby Blue)",
+          "handle": "tina-top-baby-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A8044.jpg?v=1771445374",
+          "price": "44.00",
+          "reason": "Baby blue Tina top pairs beautifully with blue pattern, matches color family",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top provides sophisticated neutral contrast to blue pattern",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7492662952033",
+          "title": "Alma Top (Dark Blue)",
+          "handle": "alma-top-dark-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/alma-top-dark-blue-top-yakira-bella-2144031.jpg?v=1772819293",
+          "price": "68.00",
+          "reason": "Dark blue Alma top creates coordinated blue monochrome look with pattern skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7465988653153",
+          "title": "3/4 Sleeve Knit Cardigan (Blue)",
+          "handle": "3-4-sleeve-knit-cardigan-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/34-sleeve-knit-cardigan-blue-top-yakira-bella-9580735.jpg?v=1770956181",
+          "price": "42.00",
+          "reason": "Blue 3/4 sleeve cardigan matches skirt's blue tones for complete set",
+          "confidence": 0.84
         }
       ]
     }
