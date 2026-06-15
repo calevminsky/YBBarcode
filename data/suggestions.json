@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-14T11:31:29.829Z",
-  "totalProducts": 226,
-  "totalSuggestions": 1089,
+  "generatedAt": "2026-06-15T15:16:42.047Z",
+  "totalProducts": 225,
+  "totalSuggestions": 1079,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -11286,103 +11286,6 @@
           "price": "42.00",
           "reason": "Blue 3/4 sleeve cardigan matches skirt's blue tones for complete set",
           "confidence": 0.84
-        }
-      ]
-    },
-    "gid://shopify/Product/7462238814305": {
-      "productTitle": "Molly Skirt (Light Pink)",
-      "productHandle": "molly-skirt-light-pink",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/molly-skirt-light-pink-skirt-yakira-bella-6056127.jpg?v=1770843465",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7492659708001",
-          "title": "Mila Top (White)",
-          "handle": "mila-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mila-top-white-top-yakira-bella-8920198.jpg?v=1773316577",
-          "price": "48.00",
-          "reason": "Molly Top and Skirt are a matching set - Light Pink colorway pairs perfectly",
-          "confidence": 0.98
-        },
-        {
-          "productId": "gid://shopify/Product/7287233478753",
-          "title": "Bailey Top (Light Pink)",
-          "handle": "bailey-top-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-light-pink-top-yakira-bella-8903028.jpg?v=1769713453",
-          "price": "58.00",
-          "reason": "Bailey Light Pink top matches the skirt's light pink color - core versatile top",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492743331937",
-          "title": "Rena Top (Light Pink)",
-          "handle": "rena-top-black-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rena-top-light-pink-top-yakira-bella-8002031.jpg?v=1772239211",
-          "price": "44.00",
-          "reason": "Rena Light Pink top matches the skirt perfectly - solid neutral pairing",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7468296962145",
-          "title": "Tina Top (Pink Blush)",
-          "handle": "tina-top-pink-blush",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-pink-blush-top-yakira-bella-2117769.jpg?v=1772739734",
-          "price": "44.00",
-          "reason": "Tina Pink Blush top complements light pink skirt beautifully - similar soft pink tones",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7468284641377",
-          "title": "Tina Top (Light Pink)",
-          "handle": "tina-top-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-pink-top-yakira-bella-6713166.jpg?v=1772819412",
-          "price": "44.00",
-          "reason": "Tina Light Pink top matches the skirt color - core top with good stock",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7492660232289",
-          "title": "Lumi Top (Light Pink)",
-          "handle": "lumi-top-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-light-pink-top-yakira-bella-7814954.jpg?v=1772819293",
-          "price": "54.00",
-          "reason": "Lumi Light Pink top pairs perfectly with matching light pink skirt",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7072949010529",
-          "title": "Bailey Top (White)",
-          "handle": "bailey-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-white-top-yakira-bella-5305934.jpg?v=1769631011",
-          "price": "58.00",
-          "reason": "Bailey White top creates clean contrast with light pink skirt - versatile neutral pairing",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7250786484321",
-          "title": "Paige Top (Black)",
-          "handle": "paige-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
-          "price": "68.00",
-          "reason": "Paige Black top offers sophisticated contrast to light pink - dress up option",
-          "confidence": 0.82
-        },
-        {
-          "productId": "gid://shopify/Product/7468150521953",
-          "title": "Lia Top (Light Pink)",
-          "handle": "lia-top-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lia-top-light-pink-top-yakira-bella-9796521.jpg?v=1771453345",
-          "price": "38.00",
-          "reason": "Lia Light Pink top matches the skirt - core basic for monochrome look",
-          "confidence": 0.81
-        },
-        {
-          "productId": "gid://shopify/Product/7468179456097",
-          "title": "Lia Top (Pink Blush)",
-          "handle": "lia-top-pink-blush",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7659.jpg?v=1771439176",
-          "price": "38.00",
-          "reason": "Lia Pink Blush complements the light pink skirt with similar soft tones",
-          "confidence": 0.8
         }
       ]
     }
