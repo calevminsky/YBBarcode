@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-15T15:16:42.047Z",
+  "generatedAt": "2026-06-16T13:28:48.330Z",
   "totalProducts": 225,
-  "totalSuggestions": 1079,
+  "totalSuggestions": 1075,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -1704,15 +1704,6 @@
           "price": "68.00",
           "reason": "Beige Paige Top offers neutral complement to denim blue",
           "confidence": 0.93
-        },
-        {
-          "productId": "gid://shopify/Product/7287223156833",
-          "title": "Bailey Top (Light Yellow)",
-          "handle": "bailey-top-light-yellow",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-light-yellow-top-yakira-bella-1013317.jpg?v=1769713451",
-          "price": "58.00",
-          "reason": "Light Yellow Bailey Top creates fresh contrast with denim blue",
-          "confidence": 0.91
         },
         {
           "productId": "gid://shopify/Product/7468186828897",
@@ -4417,15 +4408,6 @@
           "price": "58.00",
           "reason": "Royal blue Bailey Top pairs well with casual blue denim",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7287223156833",
-          "title": "Bailey Top (Light Yellow)",
-          "handle": "bailey-top-light-yellow",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-light-yellow-top-yakira-bella-1013317.jpg?v=1769713451",
-          "price": "58.00",
-          "reason": "Light yellow Bailey provides warm contrast to blue denim",
-          "confidence": 0.86
         }
       ]
     },
@@ -7786,15 +7768,6 @@
           "confidence": 0.92
         },
         {
-          "productId": "gid://shopify/Product/7287295934561",
-          "title": "Paige Top (Light Yellow)",
-          "handle": "paige-top-light-yellow",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-yellow-top-yakira-bella-7759727.jpg?v=1770293534",
-          "price": "68.00",
-          "reason": "Light Yellow Paige top creates tonal monochromatic look with pastel yellow skirt for coordinated spring outfit",
-          "confidence": 0.91
-        },
-        {
           "productId": "gid://shopify/Product/7295799689313",
           "title": "Paige Top (Light Aqua)",
           "handle": "paige-top-light-aqua",
@@ -8960,15 +8933,6 @@
           "price": "44.00",
           "reason": "Butter yellow coordinates beautifully with light yellow skirt, core top provides versatility",
           "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7287295934561",
-          "title": "Paige Top (Light Yellow)",
-          "handle": "paige-top-light-yellow",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-light-yellow-top-yakira-bella-7759727.jpg?v=1770293534",
-          "price": "68.00",
-          "reason": "Light yellow on light yellow - tonal dressing, very on-trend monochromatic styling",
-          "confidence": 0.92
         },
         {
           "productId": "gid://shopify/Product/7434927407201",
