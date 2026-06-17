@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-16T13:28:48.330Z",
-  "totalProducts": 225,
-  "totalSuggestions": 1075,
+  "generatedAt": "2026-06-17T12:52:25.987Z",
+  "totalProducts": 224,
+  "totalSuggestions": 1070,
   "suggestions": {
     "gid://shopify/Product/4460621267041": {
       "productTitle": "Heidi Skirt 31\" (Black)",
@@ -9649,15 +9649,6 @@
           "confidence": 0.85
         },
         {
-          "productId": "gid://shopify/Product/7453978755169",
-          "title": "Paige Top (Medium Pastel Blue)",
-          "handle": "paige-top-medium-patel-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-medium-pastel-blue-top-yakira-bella-8633702.jpg?v=1769796133",
-          "price": "68.00",
-          "reason": "Medium pastel blue creates interesting color contrast with red, fresh spring look",
-          "confidence": 0.82
-        },
-        {
           "productId": "gid://shopify/Product/7317515305057",
           "title": "Paige Cardigan (Black)",
           "handle": "paige-cardigan-black",
@@ -10963,49 +10954,6 @@
           "price": "38.00",
           "reason": "Baby blue Lia top creates a tonal light blue pairing for cohesive look",
           "confidence": 0.9
-        }
-      ]
-    },
-    "gid://shopify/Product/7328180371553": {
-      "productTitle": "Dakota Skirt (Pink Pattern)",
-      "productHandle": "dakota-skirt-pink-pattern",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/dakota-skirt-pink-pattern-skirt-yakira-bella-6537923.jpg?v=1753433024",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7250786484321",
-          "title": "Paige Top (Black)",
-          "handle": "paige-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-black-top-yakira-bella-4171240.jpg?v=1769796613",
-          "price": "68.00",
-          "reason": "Black Paige top pairs perfectly with pink pattern skirt - solid neutral anchors the pattern",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
-          "price": "68.00",
-          "reason": "Beige Paige top complements pink pattern - neutral creates sophisticated contrast",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7250785435745",
-          "title": "Paige Top (White)",
-          "handle": "paige-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-white-top-yakira-bella-2034955.jpg?v=1769796613",
-          "price": "68.00",
-          "reason": "White Paige top provides clean contrast to pink pattern - versatile core match",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7287233478753",
-          "title": "Bailey Top (Light Pink)",
-          "handle": "bailey-top-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-light-pink-top-yakira-bella-8903028.jpg?v=1769713453",
-          "price": "58.00",
-          "reason": "Light Pink Bailey top echoes pink in skirt pattern - cohesive look",
-          "confidence": 0.87
         }
       ]
     },
