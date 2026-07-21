@@ -312,6 +312,7 @@ let openOrderCache = { data: null, fetchedAt: 0, orderCount: 0, lastError: null,
 
 function matchFulfillmentLocation(name) {
   const loc = (name || '').toLowerCase();
+  if (!loc) return undefined; // no name — don't let ''.includes() match everything
   return FULFILLMENT_LOCATION_NAMES.find(n => {
     const w = n.toLowerCase();
     return loc.includes(w) || w.includes(loc);
@@ -921,6 +922,29 @@ app.get('/health', (req, res) => {
 
 // Debug: open-order demand index health (add ?refresh=1 to force a rebuild)
 app.get('/debug/open-orders', async (req, res) => {
+  // ?probe=1: fetch one raw page and report its structure, to see WHERE data goes missing
+  if (req.query.probe) {
+    try {
+      const since = new Date(Date.now() - OPEN_ORDER_WINDOW_DAYS * 86400000).toISOString().slice(0, 10);
+      const query = `created_at:>=${since} (fulfillment_status:unfulfilled OR fulfillment_status:partial) status:open`;
+      const result = await shopifyGraphQL(GET_OPEN_FULFILLMENT_ORDERS, { query, after: null });
+      const edges = result?.data?.orders?.edges || [];
+      return res.json({
+        graphqlErrors: result.errors || null,
+        ordersOnPage: edges.length,
+        ordersWithFOs: edges.filter(e => (e.node.fulfillmentOrders?.edges || []).length > 0).length,
+        foLocationCounts: edges.flatMap(e => e.node.fulfillmentOrders?.edges || [])
+          .reduce((acc, fo) => {
+            const n = fo.node.assignedLocation?.name || '(null)';
+            acc[n] = (acc[n] || 0) + 1;
+            return acc;
+          }, {}),
+        firstOrderRaw: edges[0]?.node || null
+      });
+    } catch (err) {
+      return res.status(500).json({ probeError: err.message });
+    }
+  }
   if (req.query.refresh) openOrderCache.fetchedAt = 0;
   const demand = await getOpenOrderDemand();
   res.json({
