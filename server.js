@@ -12,9 +12,12 @@ app.use(express.json());
 const SHOPIFY_STORE = process.env.SHOPIFY_STORE || 'yakirabella.myshopify.com';
 const ACCESS_TOKEN  = process.env.SHOPIFY_ACCESS_TOKEN;
 const TARGET_LOCATION_NAMES = ['Warehouse', 'Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
-// Locations that fulfill online orders. Their "committed" inventory = units held for
-// unfulfilled orders, so we surface it to avoid sending needed stock to retail stores.
+// Locations that fulfill online orders. We surface their unfulfilled-order demand so
+// staff don't send needed stock to retail stores.
 const FULFILLMENT_LOCATION_NAMES = ['Warehouse', 'Bogota'];
+// Only count orders placed within this many days (older = likely stale/junk).
+const OPEN_ORDER_WINDOW_DAYS = 14;
+const OPEN_ORDER_TTL_MS = 5 * 60 * 1000; // refresh the open-order index at most every 5 min
 
 // Helper to call Shopify Admin GraphQL
 async function shopifyGraphQL(query, variables = {}) {
@@ -80,7 +83,7 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
                 edges {
                   node {
                     location { id name }
-                    quantities(names: ["available", "committed"]) { name quantity }
+                    quantities(names: ["available"]) { name quantity }
                   }
                 }
               }
@@ -139,6 +142,34 @@ const GET_LOCATIONS = `
   query {
     locations(first: 20) {
       edges { node { id name } }
+    }
+  }
+`;
+
+// 5b) Open (unfulfilled) fulfillment orders in the recent window, for open-order demand by variant
+const GET_OPEN_FULFILLMENT_ORDERS = `
+  query openOrders($query: String!, $after: String) {
+    orders(first: 50, query: $query, after: $after) {
+      pageInfo { hasNextPage endCursor }
+      edges {
+        node {
+          fulfillmentOrders(first: 10) {
+            edges {
+              node {
+                assignedLocation { name }
+                lineItems(first: 50) {
+                  edges {
+                    node {
+                      remainingQuantity
+                      lineItem { variant { id } }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -223,7 +254,7 @@ const GET_PRODUCT_FOR_KIOSK = `
                 edges {
                   node {
                     location { id name }
-                    quantities(names: ["available", "committed"]) { name quantity }
+                    quantities(names: ["available"]) { name quantity }
                   }
                 }
               }
@@ -271,6 +302,86 @@ async function getFulfillmentLocations() {
     console.error('Error fetching fulfillment locations:', err);
     return fulfillmentCache.data || [];
   }
+}
+
+// ----- Open-order demand index -----
+// Map of variantId -> { Warehouse: n, Bogota: n } of units still to ship on recent
+// unfulfilled orders. Built by paging all open orders in the window; cached briefly so
+// each scan is a cheap lookup rather than a full order sweep.
+let openOrderCache = { data: null, fetchedAt: 0 };
+
+function matchFulfillmentLocation(name) {
+  const loc = (name || '').toLowerCase();
+  return FULFILLMENT_LOCATION_NAMES.find(n => {
+    const w = n.toLowerCase();
+    return loc.includes(w) || w.includes(loc);
+  });
+}
+
+async function getOpenOrderDemand() {
+  const now = Date.now();
+  if (openOrderCache.data && (now - openOrderCache.fetchedAt) < OPEN_ORDER_TTL_MS) {
+    return openOrderCache.data;
+  }
+
+  const demand = {}; // variantId -> { [location]: units }
+  try {
+    const since = new Date(now - OPEN_ORDER_WINDOW_DAYS * 86400000).toISOString().slice(0, 10);
+    // All open (non-cancelled) orders with work left to ship, placed in the window.
+    const query = `created_at:>=${since} (fulfillment_status:unfulfilled OR fulfillment_status:partial) status:open`;
+
+    let after = null;
+    let pages = 0;
+    let orderCount = 0;
+    do {
+      const result = await shopifyGraphQL(GET_OPEN_FULFILLMENT_ORDERS, { query, after });
+      const orders = result?.data?.orders;
+      if (!orders) break;
+
+      orders.edges.forEach(({ node }) => {
+        orderCount++;
+        (node.fulfillmentOrders?.edges || []).forEach(({ node: fo }) => {
+          const matchedLoc = matchFulfillmentLocation(fo.assignedLocation?.name);
+          if (!matchedLoc) return;
+          (fo.lineItems?.edges || []).forEach(({ node: li }) => {
+            const qty = li.remainingQuantity || 0;
+            const variantId = li.lineItem?.variant?.id;
+            if (qty > 0 && variantId) {
+              if (!demand[variantId]) {
+                demand[variantId] = Object.fromEntries(FULFILLMENT_LOCATION_NAMES.map(n => [n, 0]));
+              }
+              demand[variantId][matchedLoc] += qty;
+            }
+          });
+        });
+      });
+
+      after = orders.pageInfo?.hasNextPage ? orders.pageInfo.endCursor : null;
+      pages++;
+    } while (after && pages < 80); // safety cap (~4000 orders)
+
+    openOrderCache = { data: demand, fetchedAt: now };
+    console.log(`Open-order demand rebuilt: ${orderCount} orders, ${Object.keys(demand).length} variants (${OPEN_ORDER_WINDOW_DAYS}d)`);
+    return demand;
+  } catch (err) {
+    console.error('getOpenOrderDemand error:', err);
+    return openOrderCache.data || {}; // serve stale on error rather than nothing
+  }
+}
+
+// Attach outstanding open-order units (Warehouse + Bogota) to each inventory row.
+async function attachOpenOrderDemand(inventoryMatrix) {
+  const demand = await getOpenOrderDemand();
+  inventoryMatrix.forEach(row => {
+    const d = demand[row.variantId] || {};
+    const committedByLocation = FULFILLMENT_LOCATION_NAMES.map(location => ({
+      location,
+      quantity: d[location] || 0
+    }));
+    row.committedByLocation = committedByLocation;
+    row.outstandingOrders = committedByLocation.reduce((sum, e) => sum + e.quantity, 0);
+  });
+  return inventoryMatrix;
 }
 
 function findLocationQuantity(inventoryLevels, locationName) {
@@ -607,27 +718,18 @@ app.get('/product-inventory/:productId', async (req, res) => {
       );
       const size = sizeOption ? sizeOption.value : (v.title || 'Unknown');
       const inventoryLevels = v.inventoryItem.inventoryLevels.edges;
-      const findLevel = (locationName) => inventoryLevels.find(lvl => {
-        const actual = (lvl.node.location.name || '').toLowerCase();
-        const wanted = locationName.toLowerCase();
-        return actual.includes(wanted) || wanted.includes(actual);
-      });
-
       const quantities = targetLocationNames.map(locationName => {
-        const level = findLevel(locationName);
+        const level = inventoryLevels.find(lvl => {
+          const actual = (lvl.node.location.name || '').toLowerCase();
+          const wanted = locationName.toLowerCase();
+          return actual.includes(wanted) || wanted.includes(actual);
+        });
         const qtyEntry = level?.node?.quantities?.find(q => q.name === 'available');
         return { location: locationName, quantity: qtyEntry?.quantity || 0 };
       });
 
-      // Unfulfilled-order demand ("committed") at the online fulfillment locations.
-      const committedByLocation = FULFILLMENT_LOCATION_NAMES.map(locationName => {
-        const level = findLevel(locationName);
-        const committedEntry = level?.node?.quantities?.find(q => q.name === 'committed');
-        return { location: locationName, quantity: committedEntry?.quantity || 0 };
-      });
-      const outstandingOrders = committedByLocation.reduce((sum, e) => sum + e.quantity, 0);
-
       return {
+        variantId: v.id,
         variantTitle: v.title,
         size,
         sku: v.sku,
@@ -635,10 +737,13 @@ app.get('/product-inventory/:productId', async (req, res) => {
         price: v.price,
         compareAtPrice: v.compareAtPrice,
         inventory: quantities,
-        committedByLocation,
-        outstandingOrders
+        // Filled in by attachOpenOrderDemand() from recent unfulfilled orders.
+        committedByLocation: FULFILLMENT_LOCATION_NAMES.map(location => ({ location, quantity: 0 })),
+        outstandingOrders: 0
       };
     });
+
+    await attachOpenOrderDemand(inventoryMatrix);
 
     res.json({
       title: product.title,
@@ -735,27 +840,18 @@ app.post('/lookup', async (req, res) => {
 
       const inventoryLevels = v.inventoryItem.inventoryLevels.edges;
 
-      const findLevel = (locationName) => inventoryLevels.find(lvl => {
-        const actual = (lvl.node.location.name || '').toLowerCase();
-        const wanted = locationName.toLowerCase();
-        return actual.includes(wanted) || wanted.includes(actual);
-      });
-
       const quantities = targetLocationNames.map(locationName => {
-        const level = findLevel(locationName);
+        const level = inventoryLevels.find(lvl => {
+          const actual = (lvl.node.location.name || '').toLowerCase();
+          const wanted = locationName.toLowerCase();
+          return actual.includes(wanted) || wanted.includes(actual);
+        });
         const qtyEntry = level?.node?.quantities?.find(q => q.name === 'available');
         return { location: locationName, quantity: qtyEntry?.quantity || 0 };
       });
 
-      // Unfulfilled-order demand ("committed") at the online fulfillment locations.
-      const committedByLocation = FULFILLMENT_LOCATION_NAMES.map(locationName => {
-        const level = findLevel(locationName);
-        const committedEntry = level?.node?.quantities?.find(q => q.name === 'committed');
-        return { location: locationName, quantity: committedEntry?.quantity || 0 };
-      });
-      const outstandingOrders = committedByLocation.reduce((sum, e) => sum + e.quantity, 0);
-
       return {
+        variantId: v.id,
         variantTitle: v.title,
         size,
         sku: v.sku,
@@ -763,10 +859,13 @@ app.post('/lookup', async (req, res) => {
         price: v.price,
         compareAtPrice: v.compareAtPrice,
         inventory: quantities,
-        committedByLocation,
-        outstandingOrders
+        // Filled in by attachOpenOrderDemand() from recent unfulfilled orders.
+        committedByLocation: FULFILLMENT_LOCATION_NAMES.map(location => ({ location, quantity: 0 })),
+        outstandingOrders: 0
       };
     });
+
+    await attachOpenOrderDemand(inventoryMatrix);
 
     // Upsells & Siblings
     const upsellsRaw  = await getUpsellProducts(productId);
@@ -979,4 +1078,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Shopify store: ${SHOPIFY_STORE}`);
+  // Warm the open-order demand index so the first scan is fast.
+  getOpenOrderDemand().catch(err => console.error('Initial open-order warm-up failed:', err));
 });

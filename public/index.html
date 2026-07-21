@@ -374,12 +374,12 @@
         const list = openBySize.map(e => `${e.size}&nbsp;&times;${e.qty}`).join(', ');
         bannerHTML = `
           <div class="open-orders-banner">
-            <strong>⚠️ ${totalOpen} unfulfilled online order${totalOpen === 1 ? '' : 's'} (Warehouse&nbsp;+&nbsp;Bogota):</strong>
+            <strong>⚠️ ${totalOpen} unit${totalOpen === 1 ? '' : 's'} needed for open online orders (Warehouse&nbsp;+&nbsp;Bogota, last 14 days):</strong>
             ${list}. Keep these — don't send to stores.
           </div>`;
       }
 
-      let html = `<table class="inventory-table"><thead><tr><th>Size</th>${locations.map(l => `<th>${l}</th>`).join('')}<th>Total</th><th title="Unfulfilled online orders at Warehouse + Bogota">Open Orders</th></tr></thead><tbody>`;
+      let html = `<table class="inventory-table"><thead><tr><th>Size</th>${locations.map(l => `<th>${l}</th>`).join('')}<th>Total</th><th title="Units needed for open online orders at Warehouse + Bogota (last 14 days)">Open Orders</th></tr></thead><tbody>`;
       const locationTotals = Object.fromEntries(locations.map(l => [l, 0]));
       let grandTotal = 0;
       let openTotal = 0;
