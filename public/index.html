@@ -34,6 +34,16 @@
       background-color: #f5f2ff;
     }
 
+    /* Unfulfilled online orders held at Warehouse/Bogota */
+    .open-orders-banner {
+      margin: 12px 0 4px; padding: 10px 12px; border-radius: 8px;
+      background: #fff4e5; border: 1px solid #ffb74d; color: #8a4b00;
+      font-size: 0.9em; line-height: 1.35;
+    }
+    .inventory-table td.open-orders-cell {
+      background: #fff4e5; color: #c0392b; font-weight: bold;
+    }
+
     .btn-success, .btn-primary {
       color: white; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; margin-top: 10px; margin-right: 10px;
     }
@@ -353,9 +363,26 @@
     function buildInventoryTable(variants, scannedBarcode) {
       if (!Array.isArray(variants) || !variants.length) return '<div style="color:#666;">No inventory data.</div>';
       const locations = ["Warehouse", "Bogota", "Cedarhurst", "Teaneck Store", "Toms River"];
-      let html = `<table class="inventory-table"><thead><tr><th>Size</th>${locations.map(l => `<th>${l}</th>`).join('')}<th>Total</th></tr></thead><tbody>`;
+
+      // Warning banner: sizes with unfulfilled online orders held at Warehouse/Bogota.
+      const openBySize = variants
+        .map(row => ({ size: row.size, qty: row.outstandingOrders || 0 }))
+        .filter(e => e.qty > 0);
+      let bannerHTML = '';
+      if (openBySize.length) {
+        const totalOpen = openBySize.reduce((s, e) => s + e.qty, 0);
+        const list = openBySize.map(e => `${e.size}&nbsp;&times;${e.qty}`).join(', ');
+        bannerHTML = `
+          <div class="open-orders-banner">
+            <strong>⚠️ ${totalOpen} unfulfilled online order${totalOpen === 1 ? '' : 's'} (Warehouse&nbsp;+&nbsp;Bogota):</strong>
+            ${list}. Keep these — don't send to stores.
+          </div>`;
+      }
+
+      let html = `<table class="inventory-table"><thead><tr><th>Size</th>${locations.map(l => `<th>${l}</th>`).join('')}<th>Total</th><th title="Unfulfilled online orders at Warehouse + Bogota">Open Orders</th></tr></thead><tbody>`;
       const locationTotals = Object.fromEntries(locations.map(l => [l, 0]));
       let grandTotal = 0;
+      let openTotal = 0;
 
       variants.forEach(row => {
         const isScanned = scannedBarcode && row.barcode === scannedBarcode;
@@ -366,13 +393,18 @@
           locationTotals[loc] += qty; rowTotal += qty; grandTotal += qty;
           html += `<td class="${getStockClass(qty)}">${qty}</td>`;
         });
-        html += `<td><strong>${rowTotal}</strong></td></tr>`;
+        const open = row.outstandingOrders || 0;
+        openTotal += open;
+        const openCell = open > 0
+          ? `<td class="open-orders-cell" title="Warehouse + Bogota">${open}</td>`
+          : `<td>0</td>`;
+        html += `<td><strong>${rowTotal}</strong></td>${openCell}</tr>`;
       });
 
       html += `<tr style="background:#f0f0f0;"><td><strong>TOTAL</strong></td>`;
       locations.forEach(loc => html += `<td><strong>${locationTotals[loc]}</strong></td>`);
-      html += `<td><strong>${grandTotal}</strong></td></tr></tbody></table>`;
-      return html;
+      html += `<td><strong>${grandTotal}</strong></td><td><strong>${openTotal}</strong></td></tr></tbody></table>`;
+      return bannerHTML + html;
     }
 
     function showStatus(message, type='scanning') {

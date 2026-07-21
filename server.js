@@ -12,6 +12,9 @@ app.use(express.json());
 const SHOPIFY_STORE = process.env.SHOPIFY_STORE || 'yakirabella.myshopify.com';
 const ACCESS_TOKEN  = process.env.SHOPIFY_ACCESS_TOKEN;
 const TARGET_LOCATION_NAMES = ['Warehouse', 'Bogota', 'Teaneck Store', 'Toms River', 'Cedarhurst'];
+// Locations that fulfill online orders. Their "committed" inventory = units held for
+// unfulfilled orders, so we surface it to avoid sending needed stock to retail stores.
+const FULFILLMENT_LOCATION_NAMES = ['Warehouse', 'Bogota'];
 
 // Helper to call Shopify Admin GraphQL
 async function shopifyGraphQL(query, variables = {}) {
@@ -77,7 +80,7 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
                 edges {
                   node {
                     location { id name }
-                    quantities(names: ["available"]) { name quantity }
+                    quantities(names: ["available", "committed"]) { name quantity }
                   }
                 }
               }
@@ -220,7 +223,7 @@ const GET_PRODUCT_FOR_KIOSK = `
                 edges {
                   node {
                     location { id name }
-                    quantities(names: ["available"]) { name quantity }
+                    quantities(names: ["available", "committed"]) { name quantity }
                   }
                 }
               }
@@ -604,15 +607,25 @@ app.get('/product-inventory/:productId', async (req, res) => {
       );
       const size = sizeOption ? sizeOption.value : (v.title || 'Unknown');
       const inventoryLevels = v.inventoryItem.inventoryLevels.edges;
+      const findLevel = (locationName) => inventoryLevels.find(lvl => {
+        const actual = (lvl.node.location.name || '').toLowerCase();
+        const wanted = locationName.toLowerCase();
+        return actual.includes(wanted) || wanted.includes(actual);
+      });
+
       const quantities = targetLocationNames.map(locationName => {
-        const level = inventoryLevels.find(lvl => {
-          const actual = (lvl.node.location.name || '').toLowerCase();
-          const wanted = locationName.toLowerCase();
-          return actual.includes(wanted) || wanted.includes(actual);
-        });
+        const level = findLevel(locationName);
         const qtyEntry = level?.node?.quantities?.find(q => q.name === 'available');
         return { location: locationName, quantity: qtyEntry?.quantity || 0 };
       });
+
+      // Unfulfilled-order demand ("committed") at the online fulfillment locations.
+      const committedByLocation = FULFILLMENT_LOCATION_NAMES.map(locationName => {
+        const level = findLevel(locationName);
+        const committedEntry = level?.node?.quantities?.find(q => q.name === 'committed');
+        return { location: locationName, quantity: committedEntry?.quantity || 0 };
+      });
+      const outstandingOrders = committedByLocation.reduce((sum, e) => sum + e.quantity, 0);
 
       return {
         variantTitle: v.title,
@@ -621,7 +634,9 @@ app.get('/product-inventory/:productId', async (req, res) => {
         barcode: v.barcode,
         price: v.price,
         compareAtPrice: v.compareAtPrice,
-        inventory: quantities
+        inventory: quantities,
+        committedByLocation,
+        outstandingOrders
       };
     });
 
@@ -720,15 +735,25 @@ app.post('/lookup', async (req, res) => {
 
       const inventoryLevels = v.inventoryItem.inventoryLevels.edges;
 
+      const findLevel = (locationName) => inventoryLevels.find(lvl => {
+        const actual = (lvl.node.location.name || '').toLowerCase();
+        const wanted = locationName.toLowerCase();
+        return actual.includes(wanted) || wanted.includes(actual);
+      });
+
       const quantities = targetLocationNames.map(locationName => {
-        const level = inventoryLevels.find(lvl => {
-          const actual = (lvl.node.location.name || '').toLowerCase();
-          const wanted = locationName.toLowerCase();
-          return actual.includes(wanted) || wanted.includes(actual);
-        });
+        const level = findLevel(locationName);
         const qtyEntry = level?.node?.quantities?.find(q => q.name === 'available');
         return { location: locationName, quantity: qtyEntry?.quantity || 0 };
       });
+
+      // Unfulfilled-order demand ("committed") at the online fulfillment locations.
+      const committedByLocation = FULFILLMENT_LOCATION_NAMES.map(locationName => {
+        const level = findLevel(locationName);
+        const committedEntry = level?.node?.quantities?.find(q => q.name === 'committed');
+        return { location: locationName, quantity: committedEntry?.quantity || 0 };
+      });
+      const outstandingOrders = committedByLocation.reduce((sum, e) => sum + e.quantity, 0);
 
       return {
         variantTitle: v.title,
@@ -737,7 +762,9 @@ app.post('/lookup', async (req, res) => {
         barcode: v.barcode,
         price: v.price,
         compareAtPrice: v.compareAtPrice,
-        inventory: quantities
+        inventory: quantities,
+        committedByLocation,
+        outstandingOrders
       };
     });
 
