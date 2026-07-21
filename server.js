@@ -308,7 +308,7 @@ async function getFulfillmentLocations() {
 // Map of variantId -> { Warehouse: n, Bogota: n } of units still to ship on recent
 // unfulfilled orders. Built by paging all open orders in the window; cached briefly so
 // each scan is a cheap lookup rather than a full order sweep.
-let openOrderCache = { data: null, fetchedAt: 0 };
+let openOrderCache = { data: null, fetchedAt: 0, orderCount: 0, lastError: null, lastErrorAt: 0 };
 
 function matchFulfillmentLocation(name) {
   const loc = (name || '').toLowerCase();
@@ -335,8 +335,12 @@ async function getOpenOrderDemand() {
     let orderCount = 0;
     do {
       const result = await shopifyGraphQL(GET_OPEN_FULFILLMENT_ORDERS, { query, after });
+      if (result.errors) {
+        // Surface the real error (e.g. missing read_orders scope) instead of caching empties.
+        throw new Error(`GraphQL: ${JSON.stringify(result.errors)}`);
+      }
       const orders = result?.data?.orders;
-      if (!orders) break;
+      if (!orders) throw new Error('GraphQL: no orders in response');
 
       orders.edges.forEach(({ node }) => {
         orderCount++;
@@ -360,12 +364,17 @@ async function getOpenOrderDemand() {
       pages++;
     } while (after && pages < 80); // safety cap (~4000 orders)
 
-    openOrderCache = { data: demand, fetchedAt: now };
+    openOrderCache = { data: demand, fetchedAt: now, orderCount, lastError: null, lastErrorAt: 0 };
     console.log(`Open-order demand rebuilt: ${orderCount} orders, ${Object.keys(demand).length} variants (${OPEN_ORDER_WINDOW_DAYS}d)`);
     return demand;
   } catch (err) {
     console.error('getOpenOrderDemand error:', err);
-    return openOrderCache.data || {}; // serve stale on error rather than nothing
+    openOrderCache.lastError = err.message;
+    openOrderCache.lastErrorAt = now;
+    // Serve stale data on error rather than nothing; retry after a short backoff
+    // (bump fetchedAt so we don't hammer Shopify on every scan while broken).
+    openOrderCache.fetchedAt = now - OPEN_ORDER_TTL_MS + 60 * 1000;
+    return openOrderCache.data || {};
   }
 }
 
@@ -908,6 +917,21 @@ app.get('/locations', async (req, res) => {
 
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// Debug: open-order demand index health (add ?refresh=1 to force a rebuild)
+app.get('/debug/open-orders', async (req, res) => {
+  if (req.query.refresh) openOrderCache.fetchedAt = 0;
+  const demand = await getOpenOrderDemand();
+  res.json({
+    variantsWithDemand: Object.keys(demand).length,
+    orderCount: openOrderCache.orderCount || 0,
+    fetchedAt: openOrderCache.fetchedAt ? new Date(openOrderCache.fetchedAt).toISOString() : null,
+    lastError: openOrderCache.lastError || null,
+    lastErrorAt: openOrderCache.lastErrorAt ? new Date(openOrderCache.lastErrorAt).toISOString() : null,
+    windowDays: OPEN_ORDER_WINDOW_DAYS,
+    sample: Object.fromEntries(Object.entries(demand).slice(0, 5))
+  });
 });
 
 app.get('/debug', async (req, res) => {
