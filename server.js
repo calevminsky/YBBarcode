@@ -61,6 +61,7 @@ const GET_PRODUCT_VARIANTS_WITH_INVENTORY = `
       vendor
       productType
       images(first: 1) { edges { node { url } } }
+      saleMetafield: metafield(namespace: "custom", key: "sale") { value }
       variants(first: 50) {
         edges {
           node {
@@ -756,6 +757,7 @@ app.post('/lookup', async (req, res) => {
       productType: fullProduct.productType || '',
       productId,
       variants: inventoryMatrix,
+      saleMetafield: fullProduct.saleMetafield?.value || null,
       upsells,
       siblings,
       scannedVariantId,

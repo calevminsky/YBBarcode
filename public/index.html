@@ -40,8 +40,12 @@
     .btn-success { background: #28a745; }
     .btn-primary { background: #007bff; }
 
-    .price-block { font-size: 1.2em; margin: 0.5em 0; }
-    .price-block s { margin-left: 8px; color: #999; }
+    .price-block { font-size: 1.15em; margin: 0.5em 0; line-height: 1.35; }
+    .price-block .pr-row { display: flex; gap: 8px; align-items: baseline; }
+    .price-block .pr-label { color: #888; font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.03em; min-width: 120px; }
+    .price-block .pr-orig { color: #999; text-decoration: line-through; }
+    .price-block .pr-markdown { color: #111; font-weight: 600; }
+    .price-block .pr-current { color: #c0392b; font-weight: 700; }
 
     input[type="text"] {
       width: 100%; padding: 12px; font-size: 1.05em; border: 2px solid #ddd; border-radius: 6px; margin-bottom: 0;
@@ -493,21 +497,48 @@
     }
 
     function displayProduct(data) {
-      // Price block from variants (lowest)
+      // Price block: Compare at -> Markdown price (custom.sale) -> Current price (extra sale)
       let priceHTML = '';
       if (Array.isArray(data.variants) && data.variants.length) {
         const prices = data.variants.map(v => parseFloat(v.price)).filter(n => !isNaN(n));
         const compares = data.variants.map(v => parseFloat(v.compareAtPrice)).filter(n => !isNaN(n) && isFinite(n));
-        const lowestPrice = prices.length ? Math.min(...prices) : null;
-        const lowestCompareAt = compares.length ? Math.min(...compares) : null;
+        const current = prices.length ? Math.min(...prices) : null;        // live variant price (reflects extra sale)
+        const compareAt = compares.length ? Math.min(...compares) : null;  // original price
 
-        if (lowestPrice != null) {
-          if (lowestCompareAt && lowestCompareAt > lowestPrice) {
-            priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong> <s>$${lowestCompareAt.toFixed(2)}</s></div>`;
-          } else {
-            priceHTML = `<div class="price-block"><strong>$${lowestPrice.toFixed(2)}</strong></div>`;
+        // Parse the custom.sale metafield ("markdown price"). Free text: "$10", "15", or "50%".
+        // "%" => that percent off compare-at; otherwise a dollar amount. Always displayed ending in .99.
+        const to99 = n => Math.max(0, Math.round(n) - 0.01);
+        let markdown = null;
+        const rawSale = (data.saleMetafield || '').trim();
+        if (rawSale) {
+          const num = parseFloat(rawSale.replace(/[^0-9.]/g, ''));
+          if (!isNaN(num)) {
+            if (rawSale.includes('%')) {
+              if (compareAt != null) markdown = to99(compareAt * (1 - num / 100));
+            } else {
+              markdown = to99(num);
+            }
           }
         }
+
+        const rows = [];
+        if (markdown != null) {
+          if (compareAt != null && compareAt > markdown) {
+            rows.push(`<div class="pr-row"><span class="pr-label">Compare at</span><span class="pr-orig">$${compareAt.toFixed(2)}</span></div>`);
+          }
+          rows.push(`<div class="pr-row"><span class="pr-label">Markdown price</span><span class="pr-markdown">$${markdown.toFixed(2)}</span></div>`);
+          // Current price — only when an extra sale makes it lower than the markdown price
+          if (current != null && current < markdown - 0.001) {
+            rows.push(`<div class="pr-row"><span class="pr-label">Current price</span><span class="pr-current">$${current.toFixed(2)}</span></div>`);
+          }
+        } else if (current != null) {
+          // No markdown metafield — fall back to the original two-tier display
+          if (compareAt != null && compareAt > current) {
+            rows.push(`<div class="pr-row"><span class="pr-label">Compare at</span><span class="pr-orig">$${compareAt.toFixed(2)}</span></div>`);
+          }
+          rows.push(`<div class="pr-row"><span class="pr-label">Price</span><span class="pr-markdown">$${current.toFixed(2)}</span></div>`);
+        }
+        if (rows.length) priceHTML = `<div class="price-block">${rows.join('')}</div>`;
       }
 
       // Header (image, title, price)
