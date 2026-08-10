@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-09T09:39:40.149Z",
-  "totalProducts": 80,
-  "totalSuggestions": 366,
+  "generatedAt": "2026-08-10T10:16:59.913Z",
+  "totalProducts": 79,
+  "totalSuggestions": 362,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -3071,49 +3071,6 @@
           "price": "58.00",
           "reason": "Magenta Marina top adds pop of color to black skirt - bold contrast works well",
           "confidence": 0.85
-        }
-      ]
-    },
-    "gid://shopify/Product/7389511778401": {
-      "productTitle": "Heidi Skirt 37\" (Black)",
-      "productHandle": "heidi-skirt-37-black",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/heidi-skirt-37-black-skirt-yakira-bella-7457891.jpg?v=1762881013",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White Renee tee with black skirt - classic contrast, curated example shows Renee with Heidi skirts",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
-          "price": "68.00",
-          "reason": "Beige Paige top with black skirt - neutral pairing, dressy core piece",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7356649537633",
-          "title": "Lila Top (Black)",
-          "handle": "lila-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
-          "price": "48.00",
-          "reason": "Black Lila top with black skirt - monochrome long skirt look",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige Tina top contrasts beautifully with black maxi skirt",
-          "confidence": 0.83
         }
       ]
     },
