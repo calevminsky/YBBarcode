@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-10T10:16:59.913Z",
-  "totalProducts": 79,
-  "totalSuggestions": 362,
+  "generatedAt": "2026-08-11T10:01:04.597Z",
+  "totalProducts": 78,
+  "totalSuggestions": 357,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -2363,58 +2363,6 @@
           "price": "68.00",
           "reason": "Paige Top (Beige) — neutral beige balances navy short skirt",
           "confidence": 0.82
-        }
-      ]
-    },
-    "gid://shopify/Product/7520841629793": {
-      "productTitle": "Ember Skirt 25\" (White)",
-      "productHandle": "ember-skirt-20-white-copy",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/ember-skirt-25-white-skirt-yakira-bella-2699237.jpg?v=1779830186",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7378911428705",
-          "title": "Moss Cardigan (Light Pink)",
-          "handle": "moss-cardigan-light-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/moss-cardigan-light-pink-top-yakira-bella-8599770.jpg?v=1770624916",
-          "price": "68.00",
-          "reason": "Moss Cardigan (Light Pink) — light pink cardigan pairs softly with white skirt",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492657250401",
-          "title": "Paige Top (Pink)",
-          "handle": "paige-top-pink1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9585.jpg?v=1771605724",
-          "price": "68.00",
-          "reason": "Paige Top (Pink) — pink top creates feminine white skirt pairing",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7492660166753",
-          "title": "Marina Top (Magenta)",
-          "handle": "marina-top-magenta",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-magenta-top-yakira-bella-9843166.jpg?v=1772905641",
-          "price": "58.00",
-          "reason": "Marina Top (Magenta) — magenta adds color pop to white skirt",
-          "confidence": 0.84
-        },
-        {
-          "productId": "gid://shopify/Product/7453974659169",
-          "title": "Noa Top (Blue)",
-          "handle": "noa-top-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/noa-top-blue-top-yakira-bella-6492221.jpg?v=1769796133",
-          "price": "68.00",
-          "reason": "Noa Top (Blue) — blue top provides fresh contrast with white skirt",
-          "confidence": 0.82
-        },
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
-          "price": "68.00",
-          "reason": "Paige Top (Beige) — neutral beige pairs softly with white skirt",
-          "confidence": 0.8
         }
       ]
     },
