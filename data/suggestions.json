@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-11T10:01:04.597Z",
-  "totalProducts": 78,
-  "totalSuggestions": 357,
+  "generatedAt": "2026-08-12T10:06:55.875Z",
+  "totalProducts": 79,
+  "totalSuggestions": 363,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -3759,6 +3759,67 @@
           "price": "58.00",
           "reason": "Magenta Marina Top adds vibrant color to polka dot skirt",
           "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7598738341985": {
+      "productTitle": "Christa Skirt (Brown)",
+      "productHandle": "christa-skirt-brown",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1786472648944-0.jpg?v=1786472657",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige neutral pairs perfectly with brown - similar to how beige tops were matched with brown skirts in examples (e.g., Roselle Skirt Mint/Brown with May Top Beige)",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige core top is versatile and pairs well with brown - matches the pattern of neutral beige tops with brown/earth tone skirts",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black top provides classic contrast with brown skirt - similar to black tops paired with brown skirts in examples (e.g., Indra Skirt Olive Green with Ingrid Top Black)",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy provides sophisticated contrast with brown - complementary earth tones work well together",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black Lila top offers classic pairing with brown - neutral combination that's always appropriate",
+          "confidence": 0.83
+        },
+        {
+          "productId": "gid://shopify/Product/7492683464801",
+          "title": "Olly Top (Slate Green)",
+          "handle": "olly-top-coral-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
+          "price": "48.00",
+          "reason": "Slate green complements brown beautifully - earth tones pair well together for fall styling",
+          "confidence": 0.8
         }
       ]
     }
