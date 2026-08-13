@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-12T10:06:55.875Z",
-  "totalProducts": 79,
-  "totalSuggestions": 363,
+  "generatedAt": "2026-08-13T10:09:16.551Z",
+  "totalProducts": 81,
+  "totalSuggestions": 372,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -1228,49 +1228,6 @@
           "price": "54.00",
           "reason": "Navy tee for cohesive blue-on-blue styling",
           "confidence": 0.84
-        }
-      ]
-    },
-    "gid://shopify/Product/7466913661025": {
-      "productTitle": "Emma Skirt 20\" (Blue)",
-      "productHandle": "emma-skirt-20-blue",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/emma-skirt-20-blue-skirt-yakira-bella-5521297.jpg?v=1779831130",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige complements blue denim, matches existing pattern",
-          "confidence": 0.93
-        },
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
-          "price": "68.00",
-          "reason": "Beige neutral creates soft pairing with blue denim",
-          "confidence": 0.91
-        },
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White offers classic clean look with blue denim",
-          "confidence": 0.89
-        },
-        {
-          "productId": "gid://shopify/Product/7492660166753",
-          "title": "Marina Top (Magenta)",
-          "handle": "marina-top-magenta",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-magenta-top-yakira-bella-9843166.jpg?v=1772905641",
-          "price": "58.00",
-          "reason": "Magenta adds vibrant feminine touch to blue denim",
-          "confidence": 0.85
         }
       ]
     },
@@ -3820,6 +3777,144 @@
           "price": "48.00",
           "reason": "Slate green complements brown beautifully - earth tones pair well together for fall styling",
           "confidence": 0.8
+        }
+      ]
+    },
+    "gid://shopify/Product/7630181105761": {
+      "productTitle": "Dakota Skirt (Purple Ivory)",
+      "productHandle": "dakota-skirt-purple-ivory",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1786563216401-0.jpg?v=1786563225",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light Beige core top pairs beautifully with purple ivory tones, creating a soft neutral contrast that matches the existing Beige top pairing pattern",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige core top is a versatile neutral that complements purple ivory elegantly, similar to existing Dakota skirt matches with beige tops",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black core top provides classic contrast with purple ivory pattern, grounding the lighter tones effectively",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black Marina top offers sophisticated pairing with purple ivory, creating elegant contrast for dressy occasions",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7633670013025": {
+      "productTitle": "Sorina Skirt (Brown)",
+      "productHandle": "sorina-skirt-brown",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sorina-skirt-brown-skirt-yakira-bella-1829039.jpg?v=1786557973",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light Beige core top pairs naturally with brown tones, creating warm neutral coordination",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige core top complements brown beautifully, offering versatile neutral-on-neutral pairing",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black Marina top provides sophisticated contrast with brown, creating polished Fall 2026 coordination",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black core top offers classic contrast with brown, similar to existing brown skirt pairings",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7633707008097": {
+      "productTitle": "Suri Skirt (Black/Blue)",
+      "productHandle": "suri-skirt-black-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1786561087094-0.jpg?v=1786561095",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492660166753",
+          "title": "Marina Top (Magenta)",
+          "handle": "marina-top-magenta",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-magenta-top-yakira-bella-9843166.jpg?v=1772905641",
+          "price": "58.00",
+          "reason": "Magenta Marina top creates vibrant color coordination with blue tones in the skirt pattern, similar to existing Cornelia Mint pairing approach",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy Lumi top matches the blue in the skirt pattern perfectly, creating cohesive color coordination",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black core top provides neutral grounding for the black/blue pattern, letting the print shine",
+          "confidence": 0.86
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black Marina top offers sophisticated pairing with black/blue pattern, matching the black base color",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7453975117921",
+          "title": "Noa Top (Black)",
+          "handle": "noa-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/noa-top-black-top-yakira-bella-6377400.jpg?v=1769796133",
+          "price": "68.00",
+          "reason": "Black Noa top pairs well with black/blue pattern, providing classic neutral coordination",
+          "confidence": 0.82
         }
       ]
     }
