@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-14T10:04:36.220Z",
-  "totalProducts": 94,
-  "totalSuggestions": 421,
+  "generatedAt": "2026-08-15T09:28:00.586Z",
+  "totalProducts": 99,
+  "totalSuggestions": 446,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -4447,6 +4447,266 @@
           "price": "58.00",
           "reason": "Navy adds depth to black brown palette",
           "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492658430049": {
+      "productTitle": "Mina Skirt 23\" (Marina Blue)",
+      "productHandle": "mina-skirt-23-marina-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-23-marina-blue-skirt-yakira-bella-4632315.jpg?v=1773731831",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy top pairs perfectly with Marina Blue skirt - same color family already proven in curated matches",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top creates fresh, clean contrast with Marina Blue - classic combination",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige neutral pairs well with Marina Blue for softer, sophisticated look",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black top creates bold contrast with Marina Blue - elegant and versatile",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7621823135841": {
+      "productTitle": "Medina Skirt (Dark Brown)",
+      "productHandle": "medina-skirt-dark-brown",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1785434750953-0.jpg?v=1785434758",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black top pairs perfectly with Dark Brown skirt - classic neutral combination, proven in curated matches",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige top complements Dark Brown beautifully - warm neutral pairing similar to existing matches",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light Beige creates soft, tonal match with Dark Brown skirt - sophisticated fall combination",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7492660166753",
+          "title": "Marina Top (Magenta)",
+          "handle": "marina-top-magenta",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-magenta-top-yakira-bella-9843166.jpg?v=1772905641",
+          "price": "58.00",
+          "reason": "Magenta top adds rich color contrast to Dark Brown - similar to Brown/Marina Top matches in examples",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top creates clean contrast with Dark Brown - versatile and fresh",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7633747312737": {
+      "productTitle": "Parker Skirt (Brown/Navy)",
+      "productHandle": "parker-skirt-brown-navy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/2-3_c2faee70-7cb8-41b4-ae0c-69ecfb10b81f.png?v=1786724993",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black top pairs excellently with Brown/Navy skirt - neutral that works with both colors",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy top matches the navy tones in the skirt - cohesive monochromatic look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige top complements the brown tones in skirt - warm neutral pairing",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light Beige creates soft contrast with Brown/Navy pattern - versatile core top",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7321408045153",
+          "title": "Lila Top (Beige)",
+          "handle": "lila-top-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-beige-top-yakira-bella-3808769.jpg?v=1755848445",
+          "price": "48.00",
+          "reason": "Lila Beige top works well with brown tones - sophisticated fall combination",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7639906844769": {
+      "productTitle": "Dylan Skirt (Brown Ivory)",
+      "productHandle": "dylan-skirt-brown-ivory",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/1-4_1ef70f56-b039-45ee-a307-021f0ffaf22c.png?v=1786724662",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige top complements Brown Ivory skirt perfectly - tonal neutral pairing",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light Beige creates beautiful soft match with Brown Ivory - warm and cohesive",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black top adds contrast to Brown Ivory skirt - classic and versatile",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top pairs with ivory tones in skirt - fresh and clean combination",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7321408045153",
+          "title": "Lila Top (Beige)",
+          "handle": "lila-top-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-beige-top-yakira-bella-3808769.jpg?v=1755848445",
+          "price": "48.00",
+          "reason": "Lila Beige top creates tonal sophistication with Brown Ivory skirt",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7641899532385": {
+      "productTitle": "Tamara Skirt (Midnight Navy)",
+      "productHandle": "tamara-skirt-midnight-navy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/3-1_63897585-ba9f-40e9-a1b2-b09e6124ee65.png?v=1786726001",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy top matches Midnight Navy skirt perfectly - monochromatic proven pairing",
+          "confidence": 0.97
+        },
+        {
+          "productId": "gid://shopify/Product/7492682874977",
+          "title": "Olly Top (Midnight Navy)",
+          "handle": "olly-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/olly-top-midnight-navy-top-yakira-bella-4493271.jpg?v=1774560015",
+          "price": "48.00",
+          "reason": "Midnight Navy top creates cohesive tonal look with Midnight Navy skirt - same color family",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7454105370721",
+          "title": "Noa Top (Navy Solid)",
+          "handle": "noa-top-navy-solid",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/noa-top-navy-solid-top-yakira-bella-3564997.jpg?v=1786144630",
+          "price": "68.00",
+          "reason": "Navy Solid top pairs excellently with Midnight Navy skirt - classic navy combination",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7356638724193",
+          "title": "Lila Top (Navy)",
+          "handle": "lila-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-navy-top-yakira-bella-2710672.jpg?v=1757463681",
+          "price": "48.00",
+          "reason": "Lila Navy top matches navy tones perfectly - proven in curated examples",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Lumi Navy top creates sophisticated monochromatic look with Midnight Navy skirt",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
+          "price": "68.00",
+          "reason": "Beige top provides soft neutral contrast to Midnight Navy - classic combination",
+          "confidence": 0.88
         }
       ]
     }
