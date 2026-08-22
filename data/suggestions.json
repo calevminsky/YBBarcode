@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-21T09:39:40.551Z",
-  "totalProducts": 141,
-  "totalSuggestions": 621,
+  "generatedAt": "2026-08-22T09:27:56.611Z",
+  "totalProducts": 142,
+  "totalSuggestions": 627,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -6576,6 +6576,67 @@
           "price": "48.00",
           "reason": "Black grounds the ivory pattern - classic contrast",
           "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7520863977569": {
+      "productTitle": "Ember Skirt 25\" (Navy)",
+      "productHandle": "ember-skirt-25-navy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9655.jpg?v=1779814177",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige core knit top pairs perfectly with navy skirt - neutral contrast is classic and versatile, similar to existing Ember 20\" navy match with light blue",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy on navy creates elegant monochromatic look, core knit top with good stock matches the skirt's navy perfectly",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Beige core knit provides neutral contrast to navy, creating sophisticated pairing similar to other navy skirt matches",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7521519632481",
+          "title": "Jemma Top (Khaki)",
+          "handle": "jemma-top-khaki",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-khaki-top-yakira-bella-2148258.jpg?v=1786144105",
+          "price": "54.00",
+          "reason": "Khaki creates soft neutral contrast with navy, Fall 2026 top matches skirt season, similar to Jemma/Mika navy pairing in examples",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy knit tee with navy skirt creates cohesive monochromatic outfit, strong stock availability",
+          "confidence": 0.83
+        },
+        {
+          "productId": "gid://shopify/Product/7492682874977",
+          "title": "Olly Top (Midnight Navy)",
+          "handle": "olly-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/olly-top-midnight-navy-top-yakira-bella-4493271.jpg?v=1774560015",
+          "price": "48.00",
+          "reason": "Midnight navy tee on navy skirt - tonal navy pairing is sophisticated, both Fall 2026 season",
+          "confidence": 0.81
         }
       ]
     }
