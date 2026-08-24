@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-23T09:27:45.635Z",
-  "totalProducts": 142,
-  "totalSuggestions": 627,
+  "generatedAt": "2026-08-24T09:49:29.227Z",
+  "totalProducts": 143,
+  "totalSuggestions": 633,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -6637,6 +6637,67 @@
           "price": "48.00",
           "reason": "Midnight navy tee on navy skirt - tonal navy pairing is sophisticated, both Fall 2026 season",
           "confidence": 0.81
+        }
+      ]
+    },
+    "gid://shopify/Product/7538219188321": {
+      "productTitle": "Emma Skirt (White)",
+      "productHandle": "emma-skirt-white",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/emma-skirt-white-skirt-yakira-bella-7285683.jpg?v=1779830176",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top with white denim skirt - clean, fresh monochrome spring look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy top pairs well with white denim - classic contrast similar to existing navy matches",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7072949272673",
+          "title": "Bailey Top (Navy)",
+          "handle": "bailey-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
+          "price": "58.00",
+          "reason": "Navy Bailey top - proven pairing for white denim, versatile core piece",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy Lumi top offers another navy option for white denim contrast",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7492682874977",
+          "title": "Olly Top (Midnight Navy)",
+          "handle": "olly-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/olly-top-midnight-navy-top-yakira-bella-4493271.jpg?v=1774560015",
+          "price": "48.00",
+          "reason": "Midnight navy provides sophisticated contrast with white denim",
+          "confidence": 0.84
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Beige top creates soft neutral pairing with white denim",
+          "confidence": 0.82
         }
       ]
     }
