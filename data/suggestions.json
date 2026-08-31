@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-30T14:18:17.933Z",
-  "totalProducts": 163,
-  "totalSuggestions": 731,
+  "generatedAt": "2026-08-31T16:48:31.480Z",
+  "totalProducts": 169,
+  "totalSuggestions": 758,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -7720,6 +7720,291 @@
           "price": "68.00",
           "reason": "Beige Paige top offers elegant neutral pairing with royal blue",
           "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7538219188321": {
+      "productTitle": "Emma Skirt (White)",
+      "productHandle": "emma-skirt-white",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/emma-skirt-white-skirt-yakira-bella-7285683.jpg?v=1779830176",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White denim skirt pairs perfectly with white woven top for a fresh, cohesive spring look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy knit top creates classic contrast with white denim, similar to existing Emma skirt navy matches",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Blue knit top matches the pattern of pairing Emma white skirt with blue tops",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492682874977",
+          "title": "Olly Top (Midnight Navy)",
+          "handle": "olly-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/olly-top-midnight-navy-top-yakira-bella-4493271.jpg?v=1774560015",
+          "price": "48.00",
+          "reason": "Midnight navy tee provides classic navy/white contrast for casual spring styling",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7521519632481",
+          "title": "Jemma Top (Khaki)",
+          "handle": "jemma-top-khaki",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-khaki-top-yakira-bella-2148258.jpg?v=1786144105",
+          "price": "54.00",
+          "reason": "Khaki short sleeve top offers neutral casual pairing with white denim",
+          "confidence": 0.82
+        }
+      ]
+    },
+    "gid://shopify/Product/7633592189025": {
+      "productTitle": "Rosie Skirt (Black)",
+      "productHandle": "rosie-skirt-black",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1788189099854-0.jpg?v=1788189129",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Beige core top pairs with black skirt as neutral dressy combination, matching existing Rosie Black patterns",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black on black creates sleek monochrome look for formal occasions",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black knit top provides core versatile match with black skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7492660166753",
+          "title": "Marina Top (Magenta)",
+          "handle": "marina-top-magenta",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-magenta-top-yakira-bella-9843166.jpg?v=1772905641",
+          "price": "58.00",
+          "reason": "Magenta top adds bold color pop against black skirt for dressy styling",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7638987800673": {
+      "productTitle": "Amory Skirt (Mocha)",
+      "productHandle": "amory-skirt-mocha",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/AMORY_CAMEL_FULL.png?v=1788192846",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Beige core top matches mocha skirt in same neutral color family for cohesive athletic-casual look",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black top provides classic contrast with mocha for versatile casual styling",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top creates fresh contrast with mocha athletic skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black knit top pairs well with mocha for casual everyday wear",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7638987964513": {
+      "productTitle": "Amory Skirt (Navy)",
+      "productHandle": "amory-skirt-navy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/AMORYNAVYFULL-1.png?v=1788192167",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy on navy creates monochrome athletic look, matching navy Amory skirt pairing pattern",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy knit tee complements navy skirt for cohesive casual athletic styling",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492682874977",
+          "title": "Olly Top (Midnight Navy)",
+          "handle": "olly-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/olly-top-midnight-navy-top-yakira-bella-4493271.jpg?v=1774560015",
+          "price": "48.00",
+          "reason": "Midnight navy tee pairs perfectly with navy skirt for tonal look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7356638724193",
+          "title": "Lila Top (Navy)",
+          "handle": "lila-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-navy-top-yakira-bella-2710672.jpg?v=1757463681",
+          "price": "48.00",
+          "reason": "Navy Lila top creates sleek monochrome pairing with navy skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top provides classic contrast with navy athletic skirt",
+          "confidence": 0.87
+        }
+      ]
+    },
+    "gid://shopify/Product/7639903993953": {
+      "productTitle": "Dakota Skirt (Black Pink Flower)",
+      "productHandle": "dakota-skirt-black-pink-1",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1787942836287-0.jpg?v=1787942875",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7358459805793",
+          "title": "Tilly Top (Pink)",
+          "handle": "tilly-top-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tilly-top-pink-top-yakira-bella-5495541.jpg?v=1757463675",
+          "price": "78.00",
+          "reason": "Pink Tilly top pairs with black/pink flower skirt for color coordination",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black top grounds the floral pattern, matching black background of skirt",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Beige neutral top balances bold pink flower pattern",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7378911428705",
+          "title": "Moss Cardigan (Light Pink)",
+          "handle": "moss-cardigan-light-pink",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/moss-cardigan-light-pink-top-yakira-bella-8599770.jpg?v=1770624916",
+          "price": "68.00",
+          "reason": "Light pink cardigan echoes the pink flowers for coordinated dressy look",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7650249080929": {
+      "productTitle": "Jill Skirt (Deep Blue)",
+      "productHandle": "jill-skirt-deep-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/1-4_3.png?v=1788193068",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy top pairs with deep blue formal skirt for tonal dressy look",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy knit top complements deep blue skirt in same color family",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7356638724193",
+          "title": "Lila Top (Navy)",
+          "handle": "lila-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-navy-top-yakira-bella-2710672.jpg?v=1757463681",
+          "price": "48.00",
+          "reason": "Navy Lila top creates cohesive blue-toned formal pairing",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Beige neutral top provides sophisticated contrast with deep blue formal skirt",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White top creates fresh contrast with deep blue for dressy occasions",
+          "confidence": 0.82
         }
       ]
     }
