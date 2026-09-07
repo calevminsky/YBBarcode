@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-06T12:40:28.671Z",
-  "totalProducts": 173,
-  "totalSuggestions": 699,
+  "generatedAt": "2026-09-07T14:51:03.192Z",
+  "totalProducts": 171,
+  "totalSuggestions": 691,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -402,49 +402,6 @@
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
           "price": "34.00",
           "reason": "White brightens camel, creates fresh clean look",
-          "confidence": 0.85
-        }
-      ]
-    },
-    "gid://shopify/Product/4460621267041": {
-      "productTitle": "Heidi Skirt 31\" (Black)",
-      "productHandle": "heidi-skirt-black-1",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/Canon-1091.jpg?v=1745612463",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White Renee Tee pairs perfectly with black skirt - classic contrast match seen in curated examples",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7356649537633",
-          "title": "Lila Top (Black)",
-          "handle": "lila-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
-          "price": "48.00",
-          "reason": "Black Lila Top creates sophisticated monochrome look with black skirt, core piece",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal Green Tina Top provides fresh color contrast with black base, versatile pairing",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
-          "price": "68.00",
-          "reason": "Beige Paige Top offers neutral sophistication with black skirt, core versatile match",
           "confidence": 0.85
         }
       ]
@@ -1894,49 +1851,6 @@
           "price": "44.00",
           "reason": "Light beige harmonizes with beige tones in skirt",
           "confidence": 0.85
-        }
-      ]
-    },
-    "gid://shopify/Product/7612771074145": {
-      "productTitle": "Nico Skirt (Brown Multi)",
-      "productHandle": "nico-skirt-brown-multi",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/nico-skirt-brown-multi-skirt-yakira-bella-1821916.jpg?v=1786144097",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige coordinates with brown multi tones, matches existing burgundy pairing style",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
-          "price": "68.00",
-          "reason": "Beige top creates neutral base for brown multi pattern",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7521519632481",
-          "title": "Jemma Top (Khaki)",
-          "handle": "jemma-top-khaki",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-khaki-top-yakira-bella-2148258.jpg?v=1786144105",
-          "price": "54.00",
-          "reason": "Khaki top complements brown tones in multi-color skirt",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White tee provides clean canvas for brown multi pattern",
-          "confidence": 0.82
         }
       ]
     },
