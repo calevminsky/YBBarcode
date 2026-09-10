@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-07T14:51:03.192Z",
-  "totalProducts": 171,
-  "totalSuggestions": 691,
+  "generatedAt": "2026-09-10T13:24:29.440Z",
+  "totalProducts": 169,
+  "totalSuggestions": 681,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -1587,58 +1587,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7538219221089": {
-      "productTitle": "Emma Skirt (Navy)",
-      "productHandle": "emma-skirt-navy",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/emma-skirt-navy-skirt-yakira-bella-2182847.png?v=1780369029",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7454105370721",
-          "title": "Noa Top (Navy Solid)",
-          "handle": "noa-top-navy-solid",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/noa-top-navy-solid-top-yakira-bella-3564997.jpg?v=1786144630",
-          "price": "68.00",
-          "reason": "Noa Top (Navy Solid) — navy-on-navy denim pairing for short skirt",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Lumi Top (Navy) already matched with Emma Skirt (Navy) in examples",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7468291883105",
-          "title": "Tina Top (Navy)",
-          "handle": "tina-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
-          "price": "44.00",
-          "reason": "Tina Top (Navy) — solid navy pairs with navy denim short skirt",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Bailey Top (Navy) — navy knit coordinates with navy denim",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
-          "price": "68.00",
-          "reason": "Paige Top (Beige) — neutral beige balances navy denim short skirt",
-          "confidence": 0.84
-        }
-      ]
-    },
     "gid://shopify/Product/7610345554017": {
       "productTitle": "Roselle Skirt (Mint/Brown)",
       "productHandle": "roselle-skirt-mint-brown",
@@ -2180,22 +2128,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7428976640097": {
-      "productTitle": "Mina Skirt 35\" (Dusty Rose)",
-      "productHandle": "mina-skirt-dusty-rose",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-dusty-rose-skirt-yakira-bella-8078542.png?v=1770743025",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-1913521.jpg?v=1769796553",
-          "price": "68.00",
-          "reason": "Beige Paige top with dusty rose - neutral complements soft pink",
-          "confidence": 0.82
-        }
-      ]
-    },
     "gid://shopify/Product/7428985847905": {
       "productTitle": "Mina Skirt 35\" (Light Blue)",
       "productHandle": "mina-skirt-light-blue",
@@ -2252,15 +2184,6 @@
           "price": "44.00",
           "reason": "Light beige Tina top with ivory/brown skirt - neutral tonal match",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7321408045153",
-          "title": "Lila Top (Beige)",
-          "handle": "lila-top-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-beige-top-yakira-bella-3808769.jpg?v=1755848445",
-          "price": "48.00",
-          "reason": "Beige Lila top coordinates with ivory/brown pattern",
-          "confidence": 0.85
         },
         {
           "productId": "gid://shopify/Product/7351977082977",
@@ -3488,15 +3411,6 @@
           "price": "44.00",
           "reason": "Light Beige creates soft contrast with Brown/Navy pattern - versatile core top",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7321408045153",
-          "title": "Lila Top (Beige)",
-          "handle": "lila-top-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-beige-top-yakira-bella-3808769.jpg?v=1755848445",
-          "price": "48.00",
-          "reason": "Lila Beige top works well with brown tones - sophisticated fall combination",
-          "confidence": 0.85
         }
       ]
     },
@@ -3540,15 +3454,6 @@
           "price": "68.00",
           "reason": "White top pairs with ivory tones in skirt - fresh and clean combination",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7321408045153",
-          "title": "Lila Top (Beige)",
-          "handle": "lila-top-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-beige-top-yakira-bella-3808769.jpg?v=1755848445",
-          "price": "48.00",
-          "reason": "Lila Beige top creates tonal sophistication with Brown Ivory skirt",
-          "confidence": 0.85
         }
       ]
     },
@@ -3678,15 +3583,6 @@
           "price": "68.00",
           "reason": "Beige Paige top matches beige Corinna skirt set - perfect tonal pairing",
           "confidence": 0.98
-        },
-        {
-          "productId": "gid://shopify/Product/7321408045153",
-          "title": "Lila Top (Beige)",
-          "handle": "lila-top-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-beige-top-yakira-bella-3808769.jpg?v=1755848445",
-          "price": "48.00",
-          "reason": "Beige Lila top creates cohesive monochrome look with beige Corinna set",
-          "confidence": 0.95
         },
         {
           "productId": "gid://shopify/Product/7246308638817",
@@ -6851,58 +6747,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7246263451745": {
-      "productTitle": "Willa Skirt (Blue)",
-      "productHandle": "willa-skirt-blue",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A0024.jpg?v=1779803538",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7246308638817",
-          "title": "Viviana Top (White)",
-          "handle": "viviana-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
-          "price": "68.00",
-          "reason": "White top pairs perfectly with blue denim skirt - classic casual combination",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White tee matches blue denim for timeless casual look",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7468291883105",
-          "title": "Tina Top (Navy)",
-          "handle": "tina-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
-          "price": "44.00",
-          "reason": "Navy-on-navy denim creates cohesive monochromatic casual outfit",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7250782912609",
-          "title": "Paige Top (Blue)",
-          "handle": "paige-top-blue",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
-          "price": "68.00",
-          "reason": "Blue top with blue denim skirt for tonal denim-on-denim styling",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7287298752609",
-          "title": "Paige Top (Beige)",
-          "handle": "paige-top-blue-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
-          "price": "68.00",
-          "reason": "Beige neutral top softens blue denim for versatile casual wear",
-          "confidence": 0.83
-        }
-      ]
-    },
     "gid://shopify/Product/7630310178913": {
       "productTitle": "Irina Skirt (Grey)",
       "productHandle": "irina-skirt-grey",
@@ -7416,6 +7260,58 @@
           "price": "48.00",
           "reason": "Black Lila Top provides another black option for contrast with grey brown tones",
           "confidence": 0.78
+        }
+      ]
+    },
+    "gid://shopify/Product/7168297795681": {
+      "productTitle": "Dakota Skirt (Chambray)",
+      "productHandle": "dakota-skirt-chambray",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/dakota-skirt-chambray-skirt-yakira-bella-428542.jpg?v=1728570284",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White versatile top pairs perfectly with chambray denim skirt - classic casual combination",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Blue top creates tonal denim-on-denim look with chambray skirt, cohesive casual style",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7072949272673",
+          "title": "Bailey Top (Navy)",
+          "handle": "bailey-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
+          "price": "58.00",
+          "reason": "Navy top complements chambray blue perfectly, similar to Ariya Skirt (Chambray) match patterns",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7259646328929",
+          "title": "Renee Tee (White)",
+          "handle": "renee-tee-white-2",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
+          "price": "34.00",
+          "reason": "White core tee provides clean contrast with chambray, versatile casual pairing",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy tee creates cohesive blue family pairing with chambray denim skirt",
+          "confidence": 0.83
         }
       ]
     }
