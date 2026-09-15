@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-14T15:42:54.374Z",
-  "totalProducts": 177,
-  "totalSuggestions": 574,
+  "generatedAt": "2026-09-15T14:31:45.089Z",
+  "totalProducts": 178,
+  "totalSuggestions": 581,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -3069,40 +3069,6 @@
           "price": "34.00",
           "reason": "Black Renee tee complements black Irina - simple versatile pairing",
           "confidence": 0.92
-        }
-      ]
-    },
-    "gid://shopify/Product/7630319452257": {
-      "productTitle": "Foley Skirt (Black Plaid)",
-      "productHandle": "foley-skirt-black-plaid",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/foley-skirt-black-plaid-skirt-yakira-bella-6847582.jpg?v=1787054717",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7351977082977",
-          "title": "Marina Top (Black)",
-          "handle": "marina-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
-          "price": "58.00",
-          "reason": "Black Marina top grounds black in Foley plaid - sleek pairing",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492682874977",
-          "title": "Olly Top (Midnight Navy)",
-          "handle": "olly-top-black-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/olly-top-midnight-navy-top-yakira-bella-4493271.jpg?v=1774560015",
-          "price": "48.00",
-          "reason": "Midnight Navy Olly top complements Foley plaid - sophisticated contrast",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7246308638817",
-          "title": "Viviana Top (White)",
-          "handle": "viviana-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
-          "price": "68.00",
-          "reason": "White Viviana top brightens Foley Black Plaid - fresh contrast",
-          "confidence": 0.83
         }
       ]
     },
@@ -6405,6 +6371,110 @@
           "price": "34.00",
           "reason": "Black Renee Tee offers contrast with light beige Mina skirt",
           "confidence": 0.82
+        }
+      ]
+    },
+    "gid://shopify/Product/4460621267041": {
+      "productTitle": "Heidi Skirt 31\" (Black)",
+      "productHandle": "heidi-skirt-black-1",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/Canon-1091.jpg?v=1745612463",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black Marina top is perfect with black Heidi skirt - classic solid pairing, similar to other black skirt matches in examples",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Black Lila top creates elegant monochrome look with black Heidi skirt, core pieces pair well",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7219516637281",
+          "title": "Renee Tee (Black)",
+          "handle": "renee-tee-black-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-black-top-yakira-bella-6456506.jpg?v=1757132598",
+          "price": "34.00",
+          "reason": "Black Renee tee matches black skirts frequently in examples, versatile core basics pairing",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7482840481889",
+          "title": "Dini Top (Black)",
+          "handle": "dini-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/dini-top-black-top-yakira-bella-8498250.jpg?v=1771536503",
+          "price": "48.00",
+          "reason": "Black Dini top with black Heidi skirt creates sophisticated monochrome outfit",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7259646328929",
+          "title": "Renee Tee (White)",
+          "handle": "renee-tee-white-2",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
+          "price": "34.00",
+          "reason": "White Renee tee provides classic contrast with black skirt, matches Heidi examples with white tops",
+          "confidence": 0.88
+        }
+      ]
+    },
+    "gid://shopify/Product/7466913661025": {
+      "productTitle": "Emma Skirt 20\" (Blue)",
+      "productHandle": "emma-skirt-20-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/emma-skirt-20-blue-skirt-yakira-bella-5521297.jpg?v=1779831130",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7250782912609",
+          "title": "Paige Top (Blue)",
+          "handle": "paige-top-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-blue-top-yakira-bella-7128249.jpg?v=1769796612",
+          "price": "68.00",
+          "reason": "Blue Paige top pairs with blue Emma skirt perfectly - matches Emma skirt examples with blue tops",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7452908159073",
+          "title": "Aria Top (Dark Blue)",
+          "handle": "aria-top-dark-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-dark-blue-top-yakira-bella-5642288.jpg?v=1771536804",
+          "price": "78.00",
+          "reason": "Dark blue Aria top complements blue Emma skirt, similar to other blue denim skirt pairings",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7072949272673",
+          "title": "Bailey Top (Navy)",
+          "handle": "bailey-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
+          "price": "58.00",
+          "reason": "Navy Bailey top works well with blue Emma skirt - seen in medium blue Arden skirt examples",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy Tina top pairs with blue denim Emma skirt, core versatile match",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7259646328929",
+          "title": "Renee Tee (White)",
+          "handle": "renee-tee-white-2",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
+          "price": "34.00",
+          "reason": "White Renee tee provides fresh contrast with blue Emma skirt, matches other Emma examples",
+          "confidence": 0.88
         }
       ]
     }
