@@ -1,22 +1,13 @@
 {
-  "generatedAt": "2026-09-17T14:10:04.500Z",
-  "totalProducts": 184,
-  "totalSuggestions": 606,
+  "generatedAt": "2026-09-18T13:33:36.294Z",
+  "totalProducts": 185,
+  "totalSuggestions": 596,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
       "productHandle": "nell-skirt-chambray",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A0968.jpg?v=1779815564",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy on chambray creates cohesive denim-on-denim look, both casual staples",
-          "confidence": 0.88
-        },
         {
           "productId": "gid://shopify/Product/7259646328929",
           "title": "Renee Tee (White)",
@@ -84,15 +75,6 @@
           "price": "34.00",
           "reason": "White with blue denim is timeless casual pairing, matches set aesthetic",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy with blue denim creates tonal casual look",
-          "confidence": 0.83
         }
       ]
     },
@@ -1679,15 +1661,6 @@
           "confidence": 0.95
         },
         {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy Bailey top with black flower skirt - curated example shows Bailey Navy with Lisa Black Flower",
-          "confidence": 0.94
-        },
-        {
           "productId": "gid://shopify/Product/7417864519777",
           "title": "Tilly Top (Blue)",
           "handle": "tilly-top-dark-green",
@@ -1790,15 +1763,6 @@
           "confidence": 0.92
         },
         {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy Bailey top with ivory/blue skirt - curated example shows this pairing",
-          "confidence": 0.93
-        },
-        {
           "productId": "gid://shopify/Product/7492660330593",
           "title": "Lumi Top (Navy)",
           "handle": "lumi-top-navy",
@@ -1849,15 +1813,6 @@
           "price": "54.00",
           "reason": "Navy Lumi Top complements chambray blue, similar casual aesthetic",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy Bailey Top pairs well with blue denim casual skirt",
-          "confidence": 0.85
         }
       ]
     },
@@ -1951,15 +1906,6 @@
           "price": "54.00",
           "reason": "Navy Lumi Top creates tonal blue pairing with denim skirt",
           "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy Bailey Top core top pairs well with blue denim",
-          "confidence": 0.83
         }
       ]
     },
@@ -2441,15 +2387,6 @@
           "price": "58.00",
           "reason": "Black provides sophisticated contrast to beige, matching existing patterns",
           "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy adds depth to beige neutral base",
-          "confidence": 0.88
         }
       ]
     },
@@ -2500,15 +2437,6 @@
           "price": "58.00",
           "reason": "Black grounds burgundy pattern for sophisticated look",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy complements burgundy tones richly",
-          "confidence": 0.88
         }
       ]
     },
@@ -2568,15 +2496,6 @@
           "price": "58.00",
           "reason": "Black creates sophisticated contrast with burgundy pattern",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy pairs richly with burgundy pattern",
-          "confidence": 0.88
         }
       ]
     },
@@ -2602,15 +2521,6 @@
           "price": "54.00",
           "reason": "Navy echoes navy in pattern for cohesive look",
           "confidence": 0.89
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy top matches navy in skirt pattern",
-          "confidence": 0.88
         }
       ]
     },
@@ -2627,15 +2537,6 @@
           "price": "44.00",
           "reason": "Light beige complements brown tones in skirt",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy adds depth to black brown palette",
-          "confidence": 0.85
         }
       ]
     },
@@ -3688,15 +3589,6 @@
           "price": "54.00",
           "reason": "Navy Lumi top echoes navy in skirt pattern for cohesive look",
           "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy Bailey top pairs with navy-brown pattern, core versatile option",
-          "confidence": 0.84
         }
       ]
     },
@@ -4343,15 +4235,6 @@
           "price": "68.00",
           "reason": "Blue Paige top matches skirt color family, core versatile piece",
           "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy Bailey top complements blue skirt, existing pattern shows Bailey with blue skirts",
-          "confidence": 0.9
         },
         {
           "productId": "gid://shopify/Product/7468291883105",
@@ -5977,15 +5860,6 @@
           "confidence": 0.92
         },
         {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy top complements chambray blue perfectly, similar to Ariya Skirt (Chambray) match patterns",
-          "confidence": 0.9
-        },
-        {
           "productId": "gid://shopify/Product/7259646328929",
           "title": "Renee Tee (White)",
           "handle": "renee-tee-white-2",
@@ -6416,15 +6290,6 @@
           "confidence": 0.94
         },
         {
-          "productId": "gid://shopify/Product/7072949272673",
-          "title": "Bailey Top (Navy)",
-          "handle": "bailey-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-navy-top-yakira-bella-7895408.jpg?v=1772058976",
-          "price": "58.00",
-          "reason": "Navy Bailey top works well with blue Emma skirt - seen in medium blue Arden skirt examples",
-          "confidence": 0.92
-        },
-        {
           "productId": "gid://shopify/Product/7468291883105",
           "title": "Tina Top (Navy)",
           "handle": "tina-top-navy",
@@ -6742,6 +6607,58 @@
           "price": "44.00",
           "reason": "Light beige offers soft neutral with raspberry skirt",
           "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7612749578337": {
+      "productTitle": "Anita Skirt (Brown/Sage)",
+      "productHandle": "anita-skirt-brown-sage",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/anita-skirt-brownsage-skirt-yakira-bella-6018530.jpg?v=1786144097",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Beige top pairs perfectly with brown/sage skirt - neutral solid complements earth-toned pattern, matches existing pattern of pairing Paige tops with patterned skirts",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige Tina top provides neutral solid match for brown/sage set piece, similar to other set pairings like Karla and Sari",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black Marina top creates sophisticated contrast with brown/sage skirt, versatile core top pairs well with earth tones",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7259646328929",
+          "title": "Renee Tee (White)",
+          "handle": "renee-tee-white-2",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
+          "price": "34.00",
+          "reason": "White Renee tee offers clean neutral that works with brown/sage color combination, core basic piece",
+          "confidence": 0.82
+        },
+        {
+          "productId": "gid://shopify/Product/7492683464801",
+          "title": "Olly Top (Slate Green)",
+          "handle": "olly-top-coral-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
+          "price": "48.00",
+          "reason": "Slate green Olly top complements the sage element in the skirt while providing tonal coordination",
+          "confidence": 0.8
         }
       ]
     }
