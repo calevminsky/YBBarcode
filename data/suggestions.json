@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-18T13:33:36.294Z",
-  "totalProducts": 185,
-  "totalSuggestions": 596,
+  "generatedAt": "2026-09-19T12:57:47.101Z",
+  "totalProducts": 187,
+  "totalSuggestions": 610,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -5281,31 +5281,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7639903993953": {
-      "productTitle": "Dakota Skirt (Black Pink Flower)",
-      "productHandle": "dakota-skirt-black-pink-1",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1787942836287-0.jpg?v=1787942875",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7358459805793",
-          "title": "Tilly Top (Pink)",
-          "handle": "tilly-top-pink",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tilly-top-pink-top-yakira-bella-5495541.jpg?v=1757463675",
-          "price": "78.00",
-          "reason": "Pink Tilly top pairs with black/pink flower skirt for color coordination",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7356649537633",
-          "title": "Lila Top (Black)",
-          "handle": "lila-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
-          "price": "48.00",
-          "reason": "Black top grounds the floral pattern, matching black background of skirt",
-          "confidence": 0.88
-        }
-      ]
-    },
     "gid://shopify/Product/7650249080929": {
       "productTitle": "Jill Skirt (Deep Blue)",
       "productHandle": "jill-skirt-deep-blue",
@@ -6659,6 +6634,171 @@
           "price": "48.00",
           "reason": "Slate green Olly top complements the sage element in the skirt while providing tonal coordination",
           "confidence": 0.8
+        }
+      ]
+    },
+    "gid://shopify/Product/7650251964513": {
+      "productTitle": "Ketra Skirt (Blue)",
+      "productHandle": "ketra-skirt-blue",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/ketra-skirt-blue-skirt-yakira-bella-3536673.jpg?v=1789802291",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7452908159073",
+          "title": "Aria Top (Dark Blue)",
+          "handle": "aria-top-dark-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-dark-blue-top-yakira-bella-5642288.jpg?v=1771536804",
+          "price": "78.00",
+          "reason": "Dark blue top pairs beautifully with blue skirt - tonal blue matching creates cohesive look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7466014834785",
+          "title": "Aria Top (Royal Blue)",
+          "handle": "aria-top-royal-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/aria-top-royal-blue-top-yakira-bella-3869067.jpg?v=1770956180",
+          "price": "78.00",
+          "reason": "Royal blue creates elegant monochromatic blue pairing with blue skirt",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7417864519777",
+          "title": "Tilly Top (Blue)",
+          "handle": "tilly-top-dark-green",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tilly-top-blue-top-yakira-bella-2292960.jpg?v=1767520872",
+          "price": "78.00",
+          "reason": "Blue top with blue skirt - tonal coordination, similar to curated matches",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy top provides deeper blue contrast with blue skirt, high stock availability",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy top offers tonal blue pairing with blue skirt",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7653270782049": {
+      "productTitle": "Rio Skirt (Dark Green)",
+      "productHandle": "rio-skirt-dark-green",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rio-skirt-dark-green-skirt-yakira-bella-1748523.jpg?v=1789802292",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492683464801",
+          "title": "Olly Top (Slate Green)",
+          "handle": "olly-top-coral-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
+          "price": "48.00",
+          "reason": "Slate green top with dark green skirt creates cohesive green tonal look",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7468299747425",
+          "title": "Tina Top (Teal)",
+          "handle": "tina-top-teal-green",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-teal-top-yakira-bella-9351675.jpg?v=1771453339",
+          "price": "44.00",
+          "reason": "Teal top pairs well with dark green skirt - complementary cool tones",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7492659445857",
+          "title": "Tina Top (Teal Green)",
+          "handle": "tina-top-teal-green1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
+          "price": "44.00",
+          "reason": "Teal green top with dark green skirt - tonal green coordination",
+          "confidence": 0.87
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light beige neutralizes dark green skirt, creates balanced earthy palette",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Beige top provides neutral contrast to dark green skirt, earthy combination",
+          "confidence": 0.83
+        }
+      ]
+    },
+    "gid://shopify/Product/7653712986209": {
+      "productTitle": "Rio Skirt (Navy)",
+      "productHandle": "rio-skirt-navy",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rio-skirt-navy-skirt-yakira-bella-8610233.png?v=1789802291",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7492660330593",
+          "title": "Lumi Top (Navy)",
+          "handle": "lumi-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
+          "price": "54.00",
+          "reason": "Navy top with navy skirt - perfect monochromatic match, high stock",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7468291883105",
+          "title": "Tina Top (Navy)",
+          "handle": "tina-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
+          "price": "44.00",
+          "reason": "Navy top creates tonal navy coordination with navy skirt",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7356638724193",
+          "title": "Lila Top (Navy)",
+          "handle": "lila-top-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-navy-top-yakira-bella-2710672.jpg?v=1757463681",
+          "price": "48.00",
+          "reason": "Navy top with navy skirt - monochromatic pairing",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7454105370721",
+          "title": "Noa Top (Navy Solid)",
+          "handle": "noa-top-navy-solid",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/noa-top-navy-solid-top-yakira-bella-3564997.jpg?v=1786144630",
+          "price": "68.00",
+          "reason": "Navy solid top with navy skirt - seamless tonal match",
+          "confidence": 0.93
+        },
+        {
+          "productId": "gid://shopify/Product/7492682874977",
+          "title": "Olly Top (Midnight Navy)",
+          "handle": "olly-top-black-copy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/olly-top-midnight-navy-top-yakira-bella-4493271.jpg?v=1774560015",
+          "price": "48.00",
+          "reason": "Midnight navy top with navy skirt - deep navy coordination",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7378905497697",
+          "title": "Moss Cardigan (Navy)",
+          "handle": "moss-cardigan-navy",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/moss-cardigan-navy-top-yakira-bella-5139138.jpg?v=1773234252",
+          "price": "68.00",
+          "reason": "Navy cardigan provides layering option with navy skirt, monochromatic styling",
+          "confidence": 0.9
         }
       ]
     }
