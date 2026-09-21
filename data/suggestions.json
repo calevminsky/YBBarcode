@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-20T13:31:13.329Z",
-  "totalProducts": 188,
-  "totalSuggestions": 614,
+  "generatedAt": "2026-09-21T15:42:40.751Z",
+  "totalProducts": 187,
+  "totalSuggestions": 608,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -6781,67 +6781,6 @@
           "price": "68.00",
           "reason": "Navy cardigan provides layering option with navy skirt, monochromatic styling",
           "confidence": 0.9
-        }
-      ]
-    },
-    "gid://shopify/Product/7630319452257": {
-      "productTitle": "Foley Skirt (Black Plaid)",
-      "productHandle": "foley-skirt-black-plaid",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/foley-skirt-black-plaid-skirt-yakira-bella-6847582.jpg?v=1787054717",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light Beige core top pairs perfectly with black plaid - neutral solid balances the pattern, matches existing color preferences for Foley skirt",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7351977082977",
-          "title": "Marina Top (Black)",
-          "handle": "marina-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
-          "price": "58.00",
-          "reason": "Black Marina top already proven to match Foley Black Plaid in curated examples - classic monochrome pairing",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate Green Olly top provides sophisticated contrast to black plaid, similar to existing dark green pairings with plaid patterns",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7468299747425",
-          "title": "Tina Top (Teal)",
-          "handle": "tina-top-teal-green",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-teal-top-yakira-bella-9351675.jpg?v=1771453339",
-          "price": "44.00",
-          "reason": "Teal core top adds color interest to black plaid while maintaining formality, consistent with plaid matching patterns",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7468291883105",
-          "title": "Tina Top (Navy)",
-          "handle": "tina-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
-          "price": "44.00",
-          "reason": "Navy Tina top creates classic pairing with black plaid, similar to navy/plaid combinations in existing matches",
-          "confidence": 0.83
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi top offers versatile core option for black plaid, matches formality level and season",
-          "confidence": 0.8
         }
       ]
     }
