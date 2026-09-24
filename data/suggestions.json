@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-23T14:09:44.715Z",
-  "totalProducts": 187,
-  "totalSuggestions": 611,
+  "generatedAt": "2026-09-24T14:04:35.156Z",
+  "totalProducts": 186,
+  "totalSuggestions": 609,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -2471,31 +2471,6 @@
           "price": "54.00",
           "reason": "Navy adds depth to brown ground pattern",
           "confidence": 0.85
-        }
-      ]
-    },
-    "gid://shopify/Product/7630461534305": {
-      "productTitle": "Lisa Skirt (Burgundy Pattern)",
-      "productHandle": "lisa-skirt-burgundy-pattern",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1786653388136-0.jpg?v=1786653397",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige complements burgundy tones elegantly",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7351977082977",
-          "title": "Marina Top (Black)",
-          "handle": "marina-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
-          "price": "58.00",
-          "reason": "Black creates sophisticated contrast with burgundy pattern",
-          "confidence": 0.9
         }
       ]
     },
