@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-29T16:42:59.724Z",
-  "totalProducts": 191,
-  "totalSuggestions": 637,
+  "generatedAt": "2026-09-30T17:08:15.538Z",
+  "totalProducts": 192,
+  "totalSuggestions": 645,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -1516,40 +1516,6 @@
           "price": "34.00",
           "reason": "White tee creates crisp contrast with dark blue",
           "confidence": 0.82
-        }
-      ]
-    },
-    "gid://shopify/Product/7630362050657": {
-      "productTitle": "Elenia Skirt (Brown Plaid)",
-      "productHandle": "elenia-skirt-brown-plaid",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/elenia-skirt-brown-plaid-skirt-yakira-bella-4216747.jpg?v=1786143971",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige top coordinates with brown plaid, matches existing beige recommendations",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7468291883105",
-          "title": "Tina Top (Navy)",
-          "handle": "tina-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
-          "price": "44.00",
-          "reason": "Navy top adds depth to brown plaid pattern",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7521519632481",
-          "title": "Jemma Top (Khaki)",
-          "handle": "jemma-top-khaki",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-khaki-top-yakira-bella-2148258.jpg?v=1786144105",
-          "price": "54.00",
-          "reason": "Khaki complements brown tones in plaid",
-          "confidence": 0.83
         }
       ]
     },
@@ -5890,49 +5856,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7538219221089": {
-      "productTitle": "Emma Skirt (Navy)",
-      "productHandle": "emma-skirt-navy",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/emma-skirt-navy-skirt-yakira-bella-2182847.png?v=1780369029",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7246308638817",
-          "title": "Viviana Top (White)",
-          "handle": "viviana-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
-          "price": "68.00",
-          "reason": "White Viviana Top pairs with navy denim - classic combination seen in Emma Skirt matches",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top creates tonal navy look with Emma skirt",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7356638724193",
-          "title": "Lila Top (Navy)",
-          "handle": "lila-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-navy-top-yakira-bella-2710672.jpg?v=1757463681",
-          "price": "48.00",
-          "reason": "Navy Lila Top matches navy skirt for coordinated look",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7468291883105",
-          "title": "Tina Top (Navy)",
-          "handle": "tina-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
-          "price": "44.00",
-          "reason": "Navy Tina Top pairs well with navy Emma skirt",
-          "confidence": 0.85
-        }
-      ]
-    },
     "gid://shopify/Product/7639898095713": {
       "productTitle": "Bonita Skirt (Burgundy)",
       "productHandle": "bonita-skirt-burgundy",
@@ -7070,6 +6993,162 @@
           "price": "34.00",
           "reason": "White core tee creates casual contrast with brown skirt",
           "confidence": 0.8
+        }
+      ]
+    },
+    "gid://shopify/Product/7244608929889": {
+      "productTitle": "Mina Skirt 35\" (Mocha)",
+      "productHandle": "mina-skirt-mocha",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-mocha-skirt-yakira-bella-2475768.jpg?v=1757629629",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Marina Top (Black) pairs perfectly with mocha - classic neutral contrast that's versatile and elegant, core top matches core skirt",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Paige Top (Beige) - neutral beige tones complement mocha beautifully in a tonal pairing, both are core fancy pieces",
+          "confidence": 0.95
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Lila Top (Black) - black provides clean contrast with mocha, creating a sophisticated fall look",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7219516637281",
+          "title": "Renee Tee (Black)",
+          "handle": "renee-tee-black-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-black-top-yakira-bella-6456506.jpg?v=1757132598",
+          "price": "34.00",
+          "reason": "Renee Tee (Black) - simple black tee balances with mocha skirt, versatile everyday pairing",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/6843183759457",
+          "title": "Romi Top Long Sleeve (Black)",
+          "handle": "romi-top-long-sleeve-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/romi-top-long-sleeve-black-top-yakira-bella-7974173.jpg?v=1771705212",
+          "price": "34.00",
+          "reason": "Romi Top Long Sleeve (Black) - core black basic pairs well with mocha for casual-chic look",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7492656791649": {
+      "productTitle": "Leni Skirt (Black)",
+      "productHandle": "leni-skirt-black",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/leni-skirt-black-skirt-yakira-bella-4933043.jpg?v=1787054832",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Paige Top (Beige) - neutral beige contrasts beautifully with black, matches the fancy/dressy style level, seen in many black skirt pairings",
+          "confidence": 0.96
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "Viviana Top (White) - crisp white provides classic contrast with black, versatile core top for set coordination",
+          "confidence": 0.94
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Tina Top (Light Beige) - soft beige contrasts nicely with black, similar to successful Leni Top (Black) set matching pattern",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7259646328929",
+          "title": "Renee Tee (White)",
+          "handle": "renee-tee-white-2",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
+          "price": "34.00",
+          "reason": "Renee Tee (White) - clean white tee balances black skirt, simple elegant pairing for everyday wear",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7251506298977",
+          "title": "Bailey Top (Mint)",
+          "handle": "bailey-top-mint",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bailey-top-mint-top-yakira-bella-4938070.jpg?v=1769630831",
+          "price": "58.00",
+          "reason": "Bailey Top (Mint) - fresh mint color pops against black, adds color interest while maintaining sophistication",
+          "confidence": 0.85
+        }
+      ]
+    },
+    "gid://shopify/Product/7630461534305": {
+      "productTitle": "Lisa Skirt (Burgundy Pattern)",
+      "productHandle": "lisa-skirt-burgundy-pattern",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-burgundy-pattern-skirt-yakira-bella-5595826.jpg?v=1786723286",
+      "matches": [
+        {
+          "productId": "gid://shopify/Product/7287298752609",
+          "title": "Paige Top (Beige)",
+          "handle": "paige-top-blue-1",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/paige-top-beige-top-yakira-bella-2202734.jpg?v=1787054952",
+          "price": "68.00",
+          "reason": "Paige Top (Beige) - exact match from curated examples, neutral beige complements burgundy pattern perfectly",
+          "confidence": 0.98
+        },
+        {
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "Viviana Top (White) - white provides clean contrast with burgundy pattern, allows pattern to stand out",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Marina Top (Black) - black grounds burgundy pattern nicely, creates sophisticated fall look",
+          "confidence": 0.9
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Tina Top (Light Beige) - soft beige neutral allows burgundy pattern to be focal point",
+          "confidence": 0.88
+        },
+        {
+          "productId": "gid://shopify/Product/7356649537633",
+          "title": "Lila Top (Black)",
+          "handle": "lila-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
+          "price": "48.00",
+          "reason": "Lila Top (Black) - black creates elegant contrast with burgundy tones in pattern",
+          "confidence": 0.85
         }
       ]
     }
