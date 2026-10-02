@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-01T16:34:37.260Z",
-  "totalProducts": 191,
-  "totalSuggestions": 640,
+  "generatedAt": "2026-10-02T15:28:25.328Z",
+  "totalProducts": 181,
+  "totalSuggestions": 523,
   "suggestions": {
     "gid://shopify/Product/7539620315233": {
       "productTitle": "Nell Skirt (Chambray)",
@@ -125,40 +125,6 @@
           "price": "48.00",
           "reason": "Black grounds brown plaid pattern, versatile core top",
           "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green complements brown plaid earthy tones, F26 cohesion",
-          "confidence": 0.83
-        }
-      ]
-    },
-    "gid://shopify/Product/7593298591841": {
-      "productTitle": "Brenna Skirt (Black)",
-      "productHandle": "brenna-skirt-black",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/brenna-skirt-black-skirt-yakira-bella-3274922.jpg?v=1786144108",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige softens black maxi, creates elegant neutral look",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White creates crisp contrast with black maxi, classic pairing",
-          "confidence": 0.88
         }
       ]
     },
@@ -184,15 +150,6 @@
           "price": "48.00",
           "reason": "Black grounds burgundy pattern, creates sophisticated look",
           "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green creates unique earthy contrast with burgundy",
-          "confidence": 0.82
         }
       ]
     },
@@ -252,15 +209,6 @@
           "price": "34.00",
           "reason": "White provides crisp contrast to dark brown maxi",
           "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green complements dark brown earthy tones, F26 cohesion",
-          "confidence": 0.83
         }
       ]
     },
@@ -748,15 +696,6 @@
           "confidence": 0.89
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy creates sophisticated tonal pairing",
-          "confidence": 0.87
-        },
-        {
           "productId": "gid://shopify/Product/7468291883105",
           "title": "Tina Top (Navy)",
           "handle": "tina-top-navy",
@@ -789,15 +728,6 @@
           "price": "44.00",
           "reason": "Light beige creates soft pairing with marina blue",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy creates tonal blue coordination with marina blue",
-          "confidence": 0.86
         },
         {
           "productId": "gid://shopify/Product/7468291883105",
@@ -834,15 +764,6 @@
           "confidence": 0.88
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy tee for tonal blue coordination",
-          "confidence": 0.86
-        },
-        {
           "productId": "gid://shopify/Product/7468291883105",
           "title": "Tina Top (Navy)",
           "handle": "tina-top-navy",
@@ -866,15 +787,6 @@
           "price": "44.00",
           "reason": "Navy solid skirt with matching navy solid top - perfect tonal match for cohesive look",
           "confidence": 0.98
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy skirt with navy Lumi top - versatile core piece, tonal matching",
-          "confidence": 0.95
         },
         {
           "productId": "gid://shopify/Product/7492682874977",
@@ -961,15 +873,6 @@
           "price": "44.00",
           "reason": "Navy ground skirt with navy Tina top - excellent tonal match",
           "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy patterned skirt with navy Lumi top - versatile tonal pairing",
-          "confidence": 0.93
         }
       ]
     },
@@ -978,15 +881,6 @@
       "productHandle": "lisa-skirt-dark-green-flower",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-dark-green-flower-skirt-yakira-bella-6409720.jpg?v=1776218712",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Dark green floral skirt with slate green Olly top - complementary green tones",
-          "confidence": 0.93
-        },
         {
           "productId": "gid://shopify/Product/7468299747425",
           "title": "Tina Top (Teal)",
@@ -1029,31 +923,6 @@
           "price": "34.00",
           "reason": "Medium blue denim with white Renee tee - classic denim pairing",
           "confidence": 0.92
-        }
-      ]
-    },
-    "gid://shopify/Product/7492661772385": {
-      "productTitle": "Iris Skirt (Blue)",
-      "productHandle": "iris-skirt-blue",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/iris-skirt-blue-skirt-yakira-bella-4312867.jpg?v=1775802253",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Blue Iris skirt with light beige Tina top - soft neutral complements blue",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "Blue knit skirt with white Renee tee - clean crisp contrast",
-          "confidence": 0.9
         }
       ]
     },
@@ -1115,15 +984,6 @@
           "confidence": 0.88
         },
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Black pattern with slate green Olly top - adds subtle color interest",
-          "confidence": 0.85
-        },
-        {
           "productId": "gid://shopify/Product/7356649537633",
           "title": "Lila Top (Black)",
           "handle": "lila-top-black",
@@ -1147,15 +1007,6 @@
           "price": "44.00",
           "reason": "Tina Top (Light Beige) already matched with Vera Skirt (Blue) pattern — proven beige/blue pairing",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Lumi Top (Navy) already matched with Vera Skirt (Blue) in examples — navy/blue denim classic",
-          "confidence": 0.92
         },
         {
           "productId": "gid://shopify/Product/7453974659169",
@@ -1226,15 +1077,6 @@
           "confidence": 0.9
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Lumi Top (Navy) — navy top coordinates with navy short skirt",
-          "confidence": 0.88
-        },
-        {
           "productId": "gid://shopify/Product/7468291883105",
           "title": "Tina Top (Navy)",
           "handle": "tina-top-navy",
@@ -1269,24 +1111,6 @@
           "confidence": 0.92
         },
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green top creates cohesive earthy palette with mint/brown skirt",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green top complements mint tones in skirt for harmonious look",
-          "confidence": 0.85
-        },
-        {
           "productId": "gid://shopify/Product/7259646328929",
           "title": "Renee Tee (White)",
           "handle": "renee-tee-white-2",
@@ -1319,15 +1143,6 @@
           "price": "54.00",
           "reason": "Khaki top creates cohesive earthy tones with brown skirt",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green adds sophisticated contrast to brown",
-          "confidence": 0.85
         },
         {
           "productId": "gid://shopify/Product/7259646328929",
@@ -1399,54 +1214,11 @@
         }
       ]
     },
-    "gid://shopify/Product/7618353266785": {
-      "productTitle": "Hera Skirt (Grey)",
-      "productHandle": "hera-skirt-grey",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/hera-skirt-grey-skirt-yakira-bella-5372946.jpg?v=1786144093",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White tee creates fresh contrast with grey set skirt",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7468291883105",
-          "title": "Tina Top (Navy)",
-          "handle": "tina-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-navy-top-yakira-bella-5693376.jpg?v=1770956178",
-          "price": "44.00",
-          "reason": "Navy top adds depth to grey for sophisticated pairing",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7454105370721",
-          "title": "Noa Top (Navy Solid)",
-          "handle": "noa-top-navy-solid",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/noa-top-navy-solid-top-yakira-bella-3564997.jpg?v=1786144630",
-          "price": "68.00",
-          "reason": "Navy solid top creates classic combination with grey",
-          "confidence": 0.83
-        }
-      ]
-    },
     "gid://shopify/Product/7621757468769": {
       "productTitle": "Indra Skirt (Olive Green)",
       "productHandle": "indra-skirt-olive-green",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/indra-skirt-olive-green-skirt-yakira-bella-7482716.jpg?v=1786144093",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green top creates tonal earthy combination with olive",
-          "confidence": 0.9
-        },
         {
           "productId": "gid://shopify/Product/7468278972513",
           "title": "Tina Top (Light Beige)",
@@ -1491,15 +1263,6 @@
           "confidence": 0.88
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi top pairs well with dark blue skirt",
-          "confidence": 0.87
-        },
-        {
           "productId": "gid://shopify/Product/7259646328929",
           "title": "Renee Tee (White)",
           "handle": "renee-tee-white-2",
@@ -1532,15 +1295,6 @@
           "price": "68.00",
           "reason": "Navy Noa top with navy skirt - solid on solid in same color family, dressy core piece",
           "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi tee pairs with navy skirt - curated examples show navy tops with navy Mina skirts",
-          "confidence": 0.9
         },
         {
           "productId": "gid://shopify/Product/7492682874977",
@@ -1627,15 +1381,6 @@
           "confidence": 0.88
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi top with black flower skirt - curated example shows this pairing",
-          "confidence": 0.87
-        },
-        {
           "productId": "gid://shopify/Product/7453974659169",
           "title": "Noa Top (Blue)",
           "handle": "noa-top-blue",
@@ -1720,15 +1465,6 @@
           "confidence": 0.92
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi top coordinates with blue pattern in skirt",
-          "confidence": 0.88
-        },
-        {
           "productId": "gid://shopify/Product/7417864519777",
           "title": "Tilly Top (Blue)",
           "handle": "tilly-top-dark-green",
@@ -1761,15 +1497,6 @@
           "price": "44.00",
           "reason": "Navy Tina Top matches chambray blue tones, casual style pairing",
           "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top complements chambray blue, similar casual aesthetic",
-          "confidence": 0.88
         }
       ]
     },
@@ -1854,15 +1581,6 @@
           "price": "44.00",
           "reason": "Light Beige Tina Top soft neutral complements blue denim tones",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top creates tonal blue pairing with denim skirt",
-          "confidence": 0.85
         }
       ]
     },
@@ -1929,15 +1647,6 @@
           "price": "44.00",
           "reason": "Light Beige Tina Top soft neutral elevates black skirt",
           "confidence": 0.91
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top rich dark pairing with black knit skirt",
-          "confidence": 0.85
         }
       ]
     },
@@ -1954,15 +1663,6 @@
           "price": "44.00",
           "reason": "Light Beige Tina Top soft neutral with navy knit skirt",
           "confidence": 0.89
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top creates tonal navy Mina set look",
-          "confidence": 0.84
         }
       ]
     },
@@ -1979,15 +1679,6 @@
           "price": "44.00",
           "reason": "Light Beige Tina Top soft neutral complements navy knit",
           "confidence": 0.89
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top tonal navy Mina coordinated set",
-          "confidence": 0.84
         }
       ]
     },
@@ -2047,15 +1738,6 @@
           "price": "48.00",
           "reason": "Black Lila top offers classic pairing with brown - neutral combination that's always appropriate",
           "confidence": 0.83
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green complements brown beautifully - earth tones pair well together for fall styling",
-          "confidence": 0.8
         }
       ]
     },
@@ -2127,40 +1809,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7633707008097": {
-      "productTitle": "Suri Skirt (Black/Blue)",
-      "productHandle": "suri-skirt-black-blue",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1786561087094-0.jpg?v=1786561095",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi top matches the blue in the skirt pattern perfectly, creating cohesive color coordination",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7356649537633",
-          "title": "Lila Top (Black)",
-          "handle": "lila-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
-          "price": "48.00",
-          "reason": "Black core top provides neutral grounding for the black/blue pattern, letting the print shine",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7351977082977",
-          "title": "Marina Top (Black)",
-          "handle": "marina-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
-          "price": "58.00",
-          "reason": "Black Marina top offers sophisticated pairing with black/blue pattern, matching the black base color",
-          "confidence": 0.85
-        }
-      ]
-    },
     "gid://shopify/Product/7634594627681": {
       "productTitle": "Lisa Skirt (Beige Multi)",
       "productHandle": "lisa-skirt-beige-multi",
@@ -2195,54 +1843,11 @@
         }
       ]
     },
-    "gid://shopify/Product/7634596462689": {
-      "productTitle": "Frieda Skirt (Khaki)",
-      "productHandle": "frieda-skirt-khaki",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1786651050779-0.jpg?v=1786651060",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7521519632481",
-          "title": "Jemma Top (Khaki)",
-          "handle": "jemma-top-khaki",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/jemma-top-khaki-top-yakira-bella-2148258.jpg?v=1786144105",
-          "price": "54.00",
-          "reason": "Jemma Top (Khaki) creates tonal khaki-on-khaki look, matches existing neutral monochromatic pairings",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige complements khaki in neutral color family, creates sophisticated tonal look",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7356649537633",
-          "title": "Lila Top (Black)",
-          "handle": "lila-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
-          "price": "48.00",
-          "reason": "Black Lila Top provides grounding contrast to khaki, classic neutral pairing",
-          "confidence": 0.82
-        }
-      ]
-    },
     "gid://shopify/Product/7634596692065": {
       "productTitle": "Miriam Skirt (Dark Green)",
       "productHandle": "miriam-skirt-dark-green",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1786650348287-0.jpg?v=1786650357",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green creates tonal green harmony with dark green skirt, sophisticated monochromatic look",
-          "confidence": 0.9
-        },
         {
           "productId": "gid://shopify/Product/7468299747425",
           "title": "Tina Top (Teal)",
@@ -2260,15 +1865,6 @@
           "price": "44.00",
           "reason": "Light beige offers soft neutral contrast to dark green, elegant pairing",
           "confidence": 0.8
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green complements dark green in same color family, creates rich tonal look",
-          "confidence": 0.78
         }
       ]
     },
@@ -2301,15 +1897,6 @@
           "price": "58.00",
           "reason": "Black top pairs with grey plaid for classic neutral combination",
           "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green complements grey plaid tones beautifully",
-          "confidence": 0.92
         },
         {
           "productId": "gid://shopify/Product/7378905497697",
@@ -2372,31 +1959,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7627189682273": {
-      "productTitle": "Bria Skirt (Burgundy Pattern)",
-      "productHandle": "bria-skirt-burgundy-pattern",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1786651575182-0.jpg?v=1786651582",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige softens burgundy pattern elegantly",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7351977082977",
-          "title": "Marina Top (Black)",
-          "handle": "marina-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
-          "price": "58.00",
-          "reason": "Black grounds burgundy pattern for sophisticated look",
-          "confidence": 0.9
-        }
-      ]
-    },
     "gid://shopify/Product/7630179401825": {
       "productTitle": "Dakota Skirt (Brown Ground)",
       "productHandle": "dakota-skirt-brown-ground",
@@ -2419,15 +1981,6 @@
           "price": "58.00",
           "reason": "Black provides sophisticated contrast to brown",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy adds depth to brown ground pattern",
-          "confidence": 0.85
         }
       ]
     },
@@ -2444,15 +1997,6 @@
           "price": "44.00",
           "reason": "Light beige pairs softly with ivory tones",
           "confidence": 0.91
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy echoes navy in pattern for cohesive look",
-          "confidence": 0.89
         }
       ]
     },
@@ -2648,49 +2192,6 @@
           "price": "48.00",
           "reason": "Lila Navy top matches navy tones perfectly - proven in curated examples",
           "confidence": 0.93
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Lumi Navy top creates sophisticated monochromatic look with Midnight Navy skirt",
-          "confidence": 0.92
-        }
-      ]
-    },
-    "gid://shopify/Product/7630075232353": {
-      "productTitle": "Glenda Skirt (Black)",
-      "productHandle": "glenda-skirt-black",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/glenda-skirt-black-skirt-yakira-bella-4920180.jpg?v=1787054722",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7356649537633",
-          "title": "Lila Top (Black)",
-          "handle": "lila-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
-          "price": "48.00",
-          "reason": "Black Lila top matches black Glenda skirt set perfectly - core neutral pairing",
-          "confidence": 0.98
-        },
-        {
-          "productId": "gid://shopify/Product/7351977082977",
-          "title": "Marina Top (Black)",
-          "handle": "marina-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
-          "price": "58.00",
-          "reason": "Black Marina top creates sleek monochrome look with black Glenda set",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7219516637281",
-          "title": "Renee Tee (Black)",
-          "handle": "renee-tee-black-1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-black-top-yakira-bella-6456506.jpg?v=1757132598",
-          "price": "34.00",
-          "reason": "Black Renee tee pairs well with black skirt - simple, versatile core combo",
-          "confidence": 0.92
         }
       ]
     },
@@ -2784,15 +2285,6 @@
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/irina-skirt-dark-green-skirt-yakira-bella-3359248.jpg?v=1787054717",
       "matches": [
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate Green Olly top matches dark green Irina skirt set - tonal green pairing",
-          "confidence": 0.95
-        },
-        {
           "productId": "gid://shopify/Product/7351977082977",
           "title": "Marina Top (Black)",
           "handle": "marina-top-black",
@@ -2800,15 +2292,6 @@
           "price": "58.00",
           "reason": "Black Marina top creates elegant contrast with dark green Irina set",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal Green Tina top coordinates with green family of Irina skirt",
-          "confidence": 0.83
         }
       ]
     },
@@ -2945,15 +2428,6 @@
           "confidence": 0.85
         },
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate Green offers earthy tone coordination with brown pattern, sophisticated pairing",
-          "confidence": 0.83
-        },
-        {
           "productId": "gid://shopify/Product/7351977082977",
           "title": "Marina Top (Black)",
           "handle": "marina-top-black",
@@ -3029,15 +2503,6 @@
           "price": "44.00",
           "reason": "Light Beige offers soft neutral pairing with grey, versatile core top",
           "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate Green provides subtle color interest with grey, sophisticated pairing",
-          "confidence": 0.8
         }
       ]
     },
@@ -3081,15 +2546,6 @@
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/kendall-skirt-sage-skirt-yakira-bella-6469336.jpg?v=1787054775",
       "matches": [
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green Olly Top pairs perfectly with sage skirt - tonal green match with solid neutral versatility",
-          "confidence": 0.95
-        },
-        {
           "productId": "gid://shopify/Product/7351977082977",
           "title": "Marina Top (Black)",
           "handle": "marina-top-black",
@@ -3124,15 +2580,6 @@
           "confidence": 0.88
         },
         {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green Tina Top provides rich color contrast with brown - on-trend fall combination",
-          "confidence": 0.85
-        },
-        {
           "productId": "gid://shopify/Product/7356649537633",
           "title": "Lila Top (Black)",
           "handle": "lila-top-black",
@@ -3165,15 +2612,6 @@
           "price": "48.00",
           "reason": "Midnight navy Olly Top pairs richly with burgundy - deep jewel tone combination",
           "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top complements burgundy with deep color harmony - classic fall pairing",
-          "confidence": 0.83
         }
       ]
     },
@@ -3190,15 +2628,6 @@
           "price": "58.00",
           "reason": "Black Marina Top offers classic contrast with dark brown Mina skirt",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green Tina Top provides rich jewel tone contrast with brown - on-trend fall combo",
-          "confidence": 0.85
         },
         {
           "productId": "gid://shopify/Product/7356649537633",
@@ -3224,24 +2653,6 @@
           "price": "58.00",
           "reason": "Black Marina Top offers classic contrast with olive cargo skirt - sleek and versatile",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green Olly Top creates tonal green pairing with olive - cohesive fall look",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green Tina Top pairs with olive for rich green-on-green combination",
-          "confidence": 0.84
         }
       ]
     },
@@ -3258,24 +2669,6 @@
           "price": "48.00",
           "reason": "Midnight navy Olly Top creates sleek monochromatic look with black cargo skirt",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top pairs well with black for classic sophisticated combination",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green Tina Top adds pop of color against black - modern contrast",
-          "confidence": 0.85
         }
       ]
     },
@@ -3292,24 +2685,6 @@
           "price": "58.00",
           "reason": "Black Marina Top offers classic contrast with olive - versatile core match",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green Olly Top creates tonal green pairing with olive cargo skirt",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green Tina Top pairs with olive for rich green combination",
-          "confidence": 0.84
         }
       ]
     },
@@ -3326,58 +2701,6 @@
           "price": "48.00",
           "reason": "Midnight navy Olly Top creates sleek tonal look with black - sophisticated pairing",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top pairs classically with black cargo skirt - timeless combination",
-          "confidence": 0.86
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green Tina Top adds vibrant color contrast against black",
-          "confidence": 0.85
-        }
-      ]
-    },
-    "gid://shopify/Product/7630055276641": {
-      "productTitle": "Ania Skirt (Burgundy)",
-      "productHandle": "ania-skirt-burgundy",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/ania-skirt-burgundy-skirt-yakira-bella-7335144.jpg?v=1787054771",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7351977082977",
-          "title": "Marina Top (Black)",
-          "handle": "marina-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
-          "price": "58.00",
-          "reason": "Black Marina Top creates sophisticated contrast with burgundy Ania skirt",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492682874977",
-          "title": "Olly Top (Midnight Navy)",
-          "handle": "olly-top-black-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/olly-top-midnight-navy-top-yakira-bella-4493271.jpg?v=1774560015",
-          "price": "48.00",
-          "reason": "Midnight navy Olly Top pairs richly with burgundy - deep jewel tone harmony",
-          "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top complements burgundy with classic color pairing",
-          "confidence": 0.83
         }
       ]
     },
@@ -3394,24 +2717,6 @@
           "price": "58.00",
           "reason": "Black Marina Top offers classic contrast with green Ania skirt",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green Olly Top creates tonal green-on-green pairing - cohesive look",
-          "confidence": 0.87
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green Tina Top pairs with green for rich jewel tone combination",
-          "confidence": 0.85
         }
       ]
     },
@@ -3462,40 +2767,6 @@
           "price": "68.00",
           "reason": "White provides crisp contrast to coral, fresh and clean look",
           "confidence": 0.84
-        }
-      ]
-    },
-    "gid://shopify/Product/7581348397153": {
-      "productTitle": "Bria Skirt (Navy Brown)",
-      "productHandle": "bria-skirt-navy-brown",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/bria-skirt-navy-brown-skirt-yakira-bella-9448843.jpg?v=1787054780",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7356638724193",
-          "title": "Lila Top (Navy)",
-          "handle": "lila-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-navy-top-yakira-bella-2710672.jpg?v=1757463681",
-          "price": "48.00",
-          "reason": "Navy Lila top complements navy-brown pattern, similar to existing Lila Top (Navy) matches",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7468278972513",
-          "title": "Tina Top (Light Beige)",
-          "handle": "tina-top-light-beige",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
-          "price": "44.00",
-          "reason": "Light beige balances navy-brown tones, creates warm neutral pairing",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi top echoes navy in skirt pattern for cohesive look",
-          "confidence": 0.86
         }
       ]
     },
@@ -3574,22 +2845,6 @@
         }
       ]
     },
-    "gid://shopify/Product/7612683845729": {
-      "productTitle": "Sari Skirt (Light Pink)",
-      "productHandle": "sari-skirt-light-pink",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/sari-skirt-light-pink-skirt-yakira-bella-3116090.jpg?v=1787054777",
-      "matches": [
-        {
-          "productId": "gid://shopify/Product/7246308638817",
-          "title": "Viviana Top (White)",
-          "handle": "viviana-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
-          "price": "68.00",
-          "reason": "White Viviana provides fresh contrast with light pink",
-          "confidence": 0.86
-        }
-      ]
-    },
     "gid://shopify/Product/7612685516897": {
       "productTitle": "Sari Skirt (Blue)",
       "productHandle": "sari-skirt-blue",
@@ -3638,15 +2893,6 @@
       "productHandle": "elenia-skirt-dark-green-pattern",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/elenia-skirt-dark-green-pattern-skirt-yakira-bella-4934228.png?v=1787137690",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green pairs perfectly with dark green pattern skirt - tone-on-tone match",
-          "confidence": 0.95
-        },
         {
           "productId": "gid://shopify/Product/7351977082977",
           "title": "Marina Top (Black)",
@@ -3732,15 +2978,6 @@
           "price": "44.00",
           "reason": "Navy complements midnight grey set similar to Kaia matching pattern",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green adds subtle color to midnight grey set",
-          "confidence": 0.82
         }
       ]
     },
@@ -3757,15 +2994,6 @@
           "price": "44.00",
           "reason": "Teal top matches teal tones in burgundy/teal skirt pattern",
           "confidence": 0.93
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green echoes teal in skirt pattern - strong color coordination",
-          "confidence": 0.88
         }
       ]
     },
@@ -3782,15 +3010,6 @@
           "price": "44.00",
           "reason": "Teal top matches teal ground skirt - perfect tonal pairing",
           "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green coordinates with teal ground pattern skirt",
-          "confidence": 0.93
         },
         {
           "productId": "gid://shopify/Product/7351977082977",
@@ -3834,15 +3053,6 @@
           "price": "44.00",
           "reason": "Light beige complements brown multi similar to other Natalia pairings",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy adds depth to brown multi pattern skirt",
-          "confidence": 0.8
         }
       ]
     },
@@ -3859,15 +3069,6 @@
           "price": "44.00",
           "reason": "Teal coordinates with purple pattern, similar to curated Priya pairing",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green complements purple pattern - jewel tone pairing",
-          "confidence": 0.88
         },
         {
           "productId": "gid://shopify/Product/7492682874977",
@@ -3910,15 +3111,6 @@
       "productHandle": "lisa-skirt-black-sage",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lisa-skirt-black-sage-skirt-yakira-bella-5383607.jpg?v=1787054712",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green echoes sage in skirt pattern - strong color coordination",
-          "confidence": 0.92
-        },
         {
           "productId": "gid://shopify/Product/7468278972513",
           "title": "Tina Top (Light Beige)",
@@ -4006,15 +3198,6 @@
           "confidence": 0.85
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy knit tee with navy skirt creates cohesive monochromatic outfit, strong stock availability",
-          "confidence": 0.83
-        },
-        {
           "productId": "gid://shopify/Product/7492682874977",
           "title": "Olly Top (Midnight Navy)",
           "handle": "olly-top-black-copy",
@@ -4030,24 +3213,6 @@
       "productHandle": "junia-skirt-green",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1787929545974-0.jpg?v=1787929554",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Olive/slate green solid top pairs perfectly with green skirt - similar earth tone family creates cohesive monochromatic look",
-          "confidence": 0.98
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green solid top complements green skirt well - both in green/teal color family for coordinated styling",
-          "confidence": 0.95
-        },
         {
           "productId": "gid://shopify/Product/7468299747425",
           "title": "Tina Top (Teal)",
@@ -4196,15 +3361,6 @@
           "confidence": 0.93
         },
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green Olly top matches green tones in skirt pattern",
-          "confidence": 0.91
-        },
-        {
           "productId": "gid://shopify/Product/7468278972513",
           "title": "Tina Top (Light Beige)",
           "handle": "tina-top-light-beige",
@@ -4263,15 +3419,6 @@
       "productHandle": "perry-skirt-burgundy",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/perry-skirt-burgundy-skirt-yakira-bella-7937543.jpg?v=1787897294",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi top complements burgundy richness, classic pairing",
-          "confidence": 0.9
-        },
         {
           "productId": "gid://shopify/Product/7219516637281",
           "title": "Renee Tee (Black)",
@@ -4418,15 +3565,6 @@
           "price": "34.00",
           "reason": "White Renee tee creates fresh contrast with raspberry",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi top complements raspberry richness",
-          "confidence": 0.86
         },
         {
           "productId": "gid://shopify/Product/7351977082977",
@@ -4755,15 +3893,6 @@
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1787946823843-0.jpg?v=1787946832",
       "matches": [
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate Green Olly top coordinates with grey-green and blue tones in pattern",
-          "confidence": 0.89
-        },
-        {
           "productId": "gid://shopify/Product/7356638724193",
           "title": "Lila Top (Navy)",
           "handle": "lila-top-navy",
@@ -4807,24 +3936,6 @@
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1787931019802-0.jpg?v=1787931029",
       "matches": [
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate Green Olly top matches sage green skirt perfectly - exact color coordination",
-          "confidence": 0.96
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal Green Tina top coordinates beautifully with sage green - analogous color pairing",
-          "confidence": 0.9
-        },
-        {
           "productId": "gid://shopify/Product/7351977082977",
           "title": "Marina Top (Black)",
           "handle": "marina-top-black",
@@ -4858,24 +3969,6 @@
       "productHandle": "vega-skirt-grey-green",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/shoot-1787931876104-0.jpg?v=1787931888",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate Green Olly top coordinates with grey-green skirt - similar color family",
-          "confidence": 0.93
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal Green Tina top pairs with grey-green tones in skirt",
-          "confidence": 0.88
-        },
         {
           "productId": "gid://shopify/Product/7351977082977",
           "title": "Marina Top (Black)",
@@ -5006,15 +4099,6 @@
           "confidence": 0.92
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy knit top creates classic contrast with white denim, similar to existing Emma skirt navy matches",
-          "confidence": 0.9
-        },
-        {
           "productId": "gid://shopify/Product/7250782912609",
           "title": "Paige Top (Blue)",
           "handle": "paige-top-blue",
@@ -5117,15 +4201,6 @@
           "confidence": 0.95
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy knit tee complements navy skirt for cohesive casual athletic styling",
-          "confidence": 0.93
-        },
-        {
           "productId": "gid://shopify/Product/7492682874977",
           "title": "Olly Top (Midnight Navy)",
           "handle": "olly-top-black-copy",
@@ -5167,15 +4242,6 @@
           "price": "44.00",
           "reason": "Navy top pairs with deep blue formal skirt for tonal dressy look",
           "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy knit top complements deep blue skirt in same color family",
-          "confidence": 0.88
         },
         {
           "productId": "gid://shopify/Product/7356638724193",
@@ -5228,15 +4294,6 @@
           "price": "44.00",
           "reason": "Light Beige provides soft neutral contrast with black, core versatile top matches long skirt formality",
           "confidence": 0.85
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy creates sophisticated contrast with black skirt, Lumi Top is core versatile piece with excellent stock",
-          "confidence": 0.83
         },
         {
           "productId": "gid://shopify/Product/7246308638817",
@@ -5298,15 +4355,6 @@
           "confidence": 0.9
         },
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green top with olive green skirt for tonal earthy look",
-          "confidence": 0.85
-        },
-        {
           "productId": "gid://shopify/Product/7246308638817",
           "title": "Viviana Top (White)",
           "handle": "viviana-top-white",
@@ -5330,15 +4378,6 @@
           "price": "58.00",
           "reason": "Black top matches black in patterned skirt - similar to curated Black Green Dakota",
           "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green top picks up green tones in black/green pattern",
-          "confidence": 0.9
         },
         {
           "productId": "gid://shopify/Product/7246308638817",
@@ -5430,15 +4469,6 @@
           "price": "44.00",
           "reason": "Teal Tina Top provides a color-coordinated match with blue skirt, similar to existing teal/blue pairings",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top creates a blue tonal pairing with blue skirt, matching established patterns",
-          "confidence": 0.85
         },
         {
           "productId": "gid://shopify/Product/7378905497697",
@@ -5561,15 +4591,6 @@
           "confidence": 0.85
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy Lumi Top creates blue tonal match with blue skirt, consistent with established pairings",
-          "confidence": 0.83
-        },
-        {
           "productId": "gid://shopify/Product/7259646328929",
           "title": "Renee Tee (White)",
           "handle": "renee-tee-white-2",
@@ -5602,24 +4623,6 @@
           "price": "44.00",
           "reason": "Teal Tina Top matches the teal/green color family of Coralie skirt, direct color coordination",
           "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate Green Olly Top provides green tonal pairing with teal green skirt, matching color strategy",
-          "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal Green Tina Top directly matches the teal green skirt color, perfect coordination",
-          "confidence": 0.95
         },
         {
           "productId": "gid://shopify/Product/7351977082977",
@@ -6283,24 +5286,6 @@
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/3-2.jpg?v=1789499781",
       "matches": [
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green top coordinates with green-purple skirt, tonal green match",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green pairs beautifully with green-purple pattern skirt",
-          "confidence": 0.88
-        },
-        {
           "productId": "gid://shopify/Product/7351977082977",
           "title": "Marina Top (Black)",
           "handle": "marina-top-black",
@@ -6394,15 +5379,6 @@
           "price": "34.00",
           "reason": "White Renee tee offers clean neutral that works with brown/sage color combination, core basic piece",
           "confidence": 0.82
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green Olly top complements the sage element in the skirt while providing tonal coordination",
-          "confidence": 0.8
         }
       ]
     },
@@ -6439,15 +5415,6 @@
           "confidence": 0.88
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy top provides deeper blue contrast with blue skirt, high stock availability",
-          "confidence": 0.85
-        },
-        {
           "productId": "gid://shopify/Product/7468291883105",
           "title": "Tina Top (Navy)",
           "handle": "tina-top-navy",
@@ -6464,15 +5431,6 @@
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rio-skirt-dark-green-skirt-yakira-bella-1748523.jpg?v=1789802292",
       "matches": [
         {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green top with dark green skirt creates cohesive green tonal look",
-          "confidence": 0.94
-        },
-        {
           "productId": "gid://shopify/Product/7468299747425",
           "title": "Tina Top (Teal)",
           "handle": "tina-top-teal-green",
@@ -6480,15 +5438,6 @@
           "price": "44.00",
           "reason": "Teal top pairs well with dark green skirt - complementary cool tones",
           "confidence": 0.88
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green top with dark green skirt - tonal green coordination",
-          "confidence": 0.87
         },
         {
           "productId": "gid://shopify/Product/7468278972513",
@@ -6506,15 +5455,6 @@
       "productHandle": "rio-skirt-navy",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/rio-skirt-navy-skirt-yakira-bella-8610233.png?v=1789802291",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy top with navy skirt - perfect monochromatic match, high stock",
-          "confidence": 0.96
-        },
         {
           "productId": "gid://shopify/Product/7468291883105",
           "title": "Tina Top (Navy)",
@@ -6595,15 +5535,6 @@
           "confidence": 0.88
         },
         {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy core top complements black plaid without competing, provides depth to neutral palette",
-          "confidence": 0.85
-        },
-        {
           "productId": "gid://shopify/Product/7468291883105",
           "title": "Tina Top (Navy)",
           "handle": "tina-top-navy",
@@ -6611,15 +5542,6 @@
           "price": "44.00",
           "reason": "Navy tee offers versatile neutral that works with black plaid, similar to existing navy matches",
           "confidence": 0.83
-        },
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green adds subtle color contrast to black plaid while staying sophisticated",
-          "confidence": 0.8
         }
       ]
     },
@@ -6628,24 +5550,6 @@
       "productHandle": "mina-skirt-dark-green",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/mina-skirt-dark-green-skirt-yakira-bella-4780538.jpg?v=1757629629",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green complements dark green skirt perfectly - similar color family for cohesive look",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green pairs beautifully with dark green - analogous colors create harmonious outfit",
-          "confidence": 0.92
-        },
         {
           "productId": "gid://shopify/Product/7468299747425",
           "title": "Tina Top (Teal)",
@@ -6680,24 +5584,6 @@
       "productHandle": "dakota-skirt-olive-green",
       "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/dakota-skirt-olive-green-skirt-yakira-bella-9878364.jpg?v=1755848445",
       "matches": [
-        {
-          "productId": "gid://shopify/Product/7492683464801",
-          "title": "Olly Top (Slate Green)",
-          "handle": "olly-top-coral-copy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A9417.jpg?v=1772829574",
-          "price": "48.00",
-          "reason": "Slate green top with olive green skirt - perfect tonal match in green family",
-          "confidence": 0.95
-        },
-        {
-          "productId": "gid://shopify/Product/7492659445857",
-          "title": "Tina Top (Teal Green)",
-          "handle": "tina-top-teal-green1",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/CT5A7632.jpg?v=1773166123",
-          "price": "44.00",
-          "reason": "Teal green complements olive beautifully - similar cool-toned greens work well together",
-          "confidence": 0.92
-        },
         {
           "productId": "gid://shopify/Product/7468299747425",
           "title": "Tina Top (Teal)",
@@ -6835,15 +5721,6 @@
           "price": "44.00",
           "reason": "Navy top with blue denim skirt - classic denim pairing in same color family",
           "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/7492660330593",
-          "title": "Lumi Top (Navy)",
-          "handle": "lumi-top-navy",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lumi-top-navy-top-yakira-bella-1870481.jpg?v=1773404537",
-          "price": "54.00",
-          "reason": "Navy matches blue denim perfectly - tonal denim-appropriate pairing",
-          "confidence": 0.9
         },
         {
           "productId": "gid://shopify/Product/7246308638817",
@@ -7039,10 +5916,10 @@
         }
       ]
     },
-    "gid://shopify/Product/7639903993953": {
-      "productTitle": "Dakota Skirt (Black Pink Flower)",
-      "productHandle": "dakota-skirt-black-pink-1",
-      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/dakota-skirt-black-pink-flower-skirt-yakira-bella-6649099.jpg?v=1788227831",
+    "gid://shopify/Product/7678128586849": {
+      "productTitle": "Jackie Skirt (Black)",
+      "productHandle": "jackie-skirt-black",
+      "productImage": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/REF-4.png?v=1790889599",
       "matches": [
         {
           "productId": "gid://shopify/Product/7468296962145",
@@ -7050,8 +5927,17 @@
           "handle": "tina-top-pink-blush",
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-pink-blush-top-yakira-bella-2117769.jpg?v=1772739734",
           "price": "44.00",
-          "reason": "Pink blush coordinates with pink floral elements in the skirt - color matching the pattern for cohesive look",
-          "confidence": 0.94
+          "reason": "Pink Blush top provides soft feminine contrast to black skirt, creating versatile dressy outfit",
+          "confidence": 0.92
+        },
+        {
+          "productId": "gid://shopify/Product/7351977082977",
+          "title": "Marina Top (Black)",
+          "handle": "marina-top-black",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/marina-top-black-top-yakira-bella-1387278.jpg?v=1786144991",
+          "price": "58.00",
+          "reason": "Black Marina top creates sleek monochromatic look, matches existing black top patterns for Jackie skirts",
+          "confidence": 0.9
         },
         {
           "productId": "gid://shopify/Product/7468284641377",
@@ -7059,43 +5945,34 @@
           "handle": "tina-top-light-pink",
           "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-pink-top-yakira-bella-6713166.jpg?v=1772819412",
           "price": "44.00",
-          "reason": "Light pink echoes the pink flowers in the skirt - soft tonal match that complements the pattern",
-          "confidence": 0.92
-        },
-        {
-          "productId": "gid://shopify/Product/6843183759457",
-          "title": "Romi Top Long Sleeve (Black)",
-          "handle": "romi-top-long-sleeve-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/romi-top-long-sleeve-black-top-yakira-bella-7974173.jpg?v=1771705212",
-          "price": "34.00",
-          "reason": "Black solid grounds the black base of the skirt - classic pairing that lets the pink flowers pop",
-          "confidence": 0.9
-        },
-        {
-          "productId": "gid://shopify/Product/7356649537633",
-          "title": "Lila Top (Black)",
-          "handle": "lila-top-black",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/lila-top-black-top-yakira-bella-6119898.jpg?v=1757463680",
-          "price": "48.00",
-          "reason": "Black Lila top matches the skirt's black ground - sophisticated core top for versatile styling",
+          "reason": "Light Pink Tina top offers gentle color contrast with black, similar to other black skirt pairings",
           "confidence": 0.88
         },
         {
-          "productId": "gid://shopify/Product/7468302008417",
-          "title": "Tina Top (White)",
-          "handle": "tina-top-white",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-white-top-yakira-bella-7162228.jpg?v=1771453340",
+          "productId": "gid://shopify/Product/7468276809825",
+          "title": "Tina Top (Ice Blue)",
+          "handle": "tina-top-ice-blue",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-ice-blue-top-yakira-bella-2716466.jpg?v=1772062692",
           "price": "44.00",
-          "reason": "White provides fresh contrast to black/pink floral - brightens the look while complementing pink tones",
-          "confidence": 0.86
+          "reason": "Ice Blue creates fresh contrast with black skirt, core top versatility matches other Jackie skirt pairings",
+          "confidence": 0.87
         },
         {
-          "productId": "gid://shopify/Product/7259646328929",
-          "title": "Renee Tee (White)",
-          "handle": "renee-tee-white-2",
-          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/renee-tee-white-top-yakira-bella-757331.jpg?v=1745457387",
-          "price": "34.00",
-          "reason": "White Renee tee offers casual styling with the floral skirt - clean neutral that works with both colors",
+          "productId": "gid://shopify/Product/7246308638817",
+          "title": "Viviana Top (White)",
+          "handle": "viviana-top-white",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/viviana-top-white-top-yakira-bella-7396287.jpg?v=1767520633",
+          "price": "68.00",
+          "reason": "White Viviana top provides classic contrast to black maxi skirt, core versatile piece",
+          "confidence": 0.85
+        },
+        {
+          "productId": "gid://shopify/Product/7468278972513",
+          "title": "Tina Top (Light Beige)",
+          "handle": "tina-top-light-beige",
+          "image": "https://cdn.shopify.com/s/files/1/0079/3998/1409/files/tina-top-light-beige-top-yakira-bella-8369863.jpg?v=1771619125",
+          "price": "44.00",
+          "reason": "Light Beige offers neutral soft contrast, similar to beige/black pairings in curated examples",
           "confidence": 0.84
         }
       ]
